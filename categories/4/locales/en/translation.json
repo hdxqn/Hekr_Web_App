@@ -1,0 +1,54 @@
+{
+  "category":{
+    "name":"DEHUMIDIFIER  "
+  },
+  "status":{
+    "speed":{
+      "high":"HIGH",
+      "low":"LOW"
+    },
+    "mode":{
+      "off":"OFF",
+      "dehumidifying":"DEHU",
+      "dryClothes":"DRY"
+    },
+    "water":{
+      "full":"FULL",
+      "notFull":"NOT FULL"
+    },
+    "uv":{
+      "off":"ION OFF",
+      "on":"ION ON"
+    },
+    "humidity":{
+      "label":"RH"
+    }
+  },
+  "control":{
+    "power":"POWER",
+    "mode":"MODE",
+    "speed":"SPEED",
+    "uv":"ION"
+  },
+  "timerMode":{
+    "cancle":"CANCEL",
+    "on":"ON",
+    "uvOn":"ION ON",
+    "off":"OFF"
+  },
+  "panel":{
+    "humidityControl":"HUM SET",
+    "timerLabel":{
+      "cancle":"NO TIMING",
+      "on":"TURN-ON AFTER __hour__ HOURS",
+      "uvOn":"ION ON AFTER __hour__ HOURS",
+      "off":"TURN-ON AFTER __hour__ HOURS"
+    }
+  },
+  "toast":{
+    "message":"Command Sent"
+  },
+  "modal":{
+    "text":"Connecting..."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "category":{
+    "name":"除湿器"
+  },
+  "status":{
+    "speed":{
+      "high":"高速",
+      "low":"低速"
+    },
+    "mode":{
+      "off":"待机",
+      "dehumidifying":"除湿",
+      "dryClothes":"干衣"
+    },
+    "water":{
+      "full":"水满",
+      "notFull":"水未满"
+    },
+    "uv":{
+      "off":"UV关",
+      "on":"UV开"
+    },
+    "humidity":{
+      "label":"当前湿度"
+    }
+  },
+  "control":{
+    "power":"电源",
+    "mode":"模式",
+    "speed":"风速",
+    "uv":"UV"
+  },
+  "timerMode":{
+    "cancle":"取消",
+    "on":"开启",
+    "uvOn":"开启UV",
+    "off":"关闭"
+  },
+  "panel":{
+    "humidityControl":"湿度调节",
+    "timerLabel":{
+      "cancle":"暂无定时",
+      "on":" __hour__ 小时后开启",
+      "uvOn":" __hour__ 小时后开启UV",
+      "off":" __hour__ 小时后关闭"
+    }
+  },
+  "toast":{
+    "message":"命令已发送"
+  },
+  "modal":{
+    "text":"拼命连接中..."
+  }
+}
