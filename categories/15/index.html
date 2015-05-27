@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LED灯</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script src="scripts/main.js"></script>
 </head>
 <body>
  <div class="main">
@@ -15,20 +14,38 @@
  		<span>LED灯</span>
  	</div>
 
- 	<div class="circle"></div>
+ 	<div class="circle">
+ 		<img src="images/out1.png" alt="" id="logo">
+ 		<span id="power-on"><P>当前状态</P><b>关</b></span>
+ 	</div>
 
  	<div class="power"><img src="images/power.png"></div>
-	
+
 	<ul>
 		<li>
-			<span class="clock">开启定时</span>
-			<span class="clock">关闭定时</span>
+			<span class="clock" id="clock1">开启定时</span>
+			<span class="clock" id="clock2">关闭定时</span>
 		</li>
-		<li></li>
-		<li></li>
-		<li></li>
+		<li>
+			<span class="timer"><i>3</i>小时后关闭</span>
+			<span class="timer-num">0<input type=range id="timer" class="slider" value=0 min=0 max=23>23</span>
+		</li>
+		<li>
+			<span class="brightness">亮度</span>
+			<span class="timer">40%</span>
+			<span class="timer-num">40<input  type=range id="brightness" class="slider" value=0 min=40 max=80>80</span>
+		</li>
+		<li>
+		    <span class="temperature">色温</span>
+			<span class="timer" style="opacity:0;">色温</span>
+			<span class="timer-num">暖<input type=range id="temperature" class="slider" value=0 min=0 max=23>冷</span>
+		</li>
+		
 	</ul>
  </div>
 	
+
+	<script src="scripts/jquery-2.1.3.min.js"></script>
+	<script src="scripts/main.js"></script>
 </body>
 </html>
