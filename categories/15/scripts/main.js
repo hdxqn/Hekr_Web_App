@@ -30,6 +30,10 @@ $(document).ready(function(){
 			},200,function(){
 				$(".circle b").text("开");
 			});
+		var code = '(@devcall "{tid}" (controlpower 1) (lambda (x) x))'.replace("{tid}", tid);
+
+		ws.send(code);
+
 		//开关开启
 		}else if(on>0.5){
 			$(this).animate({
@@ -37,6 +41,11 @@ $(document).ready(function(){
 			},200,function(){
 				$(".circle b").text("关");
 			});
+
+		var code = '(@devcall "{tid}" (controlpower 0) (lambda (x) x))'.replace("{tid}", tid);
+
+		ws.send(code);
+
 		//开关关闭
 		}
 	}
@@ -49,6 +58,17 @@ $(document).ready(function(){
 			$(this).animate({
 				opacity:1
 			},200);
+		if($('.clock').eq(0).css('opacity')>0.5){
+			var code = '(@devcall "{tid}" (controltimer 1) (lambda (x) x))'.replace("{tid}", tid);
+
+			ws.send(code);
+		}else if($('.clock').eq(0).css('opacity')<0.5){
+			var code = '(@devcall "{tid}" (controltimer 0) (lambda (x) x))'.replace("{tid}", tid);
+
+			ws.send(code);
+		}
+		
+
 			return;
 		}
 		
@@ -59,14 +79,24 @@ $(document).ready(function(){
 		switch(id){
 			case 'timer':
 			$('.timer i').text($(this).val());
+			var code = '(@devcall "{tid}" (controltimer 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
+
+			ws.send(code);
+
 			//定时器改变
 			break;
 			case 'brightness':
 			$('.timer').eq(1).text($(this).val()+'%');
 			//亮度调节改变
+			var code = '(@devcall "{tid}" (controlbrightness 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
+
+			ws.send(code);
 			break;
 			case 'temperature':
 			//色温调节改变
+			var code = '(@devcall "{tid}" (controltemperature 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
+
+			ws.send(code);
 			break;
 			default:
 			break;
@@ -76,4 +106,38 @@ $(document).ready(function(){
 
 })
 
+
+var tid = getUrlParam("tid");
+var host = getUrlParam("host") || "device.smartmatrix.mx";
+
+var token = getUrlParam("access_key");
+
+var user = getUrlParam("user") || randomString(10);
+var url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({
+  host: host,
+  user: user,
+  token: token
+});
+var ws = new ReconnectingWebSocket(url);
+
+
+
+
+ws.onmessage = function(e) {
+  console.debug("[RESULT] " + e.data);
+  SEXP.exec(e.data);
+}
+
+ws.onerror = function() {
+  console.error("[ERROR]");
+}
+
+ws.onopen = function() {
+  console.debug("[CONNECTED]");
+  ws.send('(get-state "{tid}")'.format({tid:tid}));
+  $.modal.close();
+}
+ws.onclose = function() {
+  console.error("[CLOSED]");
+}
 
