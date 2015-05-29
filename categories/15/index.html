@@ -23,14 +23,6 @@
 
 	<ul>
 		<li>
-			<span class="clock" id="clock1">开启定时</span>
-			<span class="clock" id="clock2">关闭定时</span>
-		</li>
-		<li>
-			<span class="timer"><i>3</i>小时后关闭</span>
-			<span class="timer-num">0<input type=range id="timer" class="slider" value=0 min=0 max=23>23</span>
-		</li>
-		<li>
 			<span class="brightness">亮度</span>
 			<span class="timer">40%</span>
 			<span class="timer-num">40<input  type=range id="brightness" class="slider" value=0 min=40 max=80>80</span>
@@ -40,12 +32,24 @@
 			<span class="timer" style="opacity:0;">色温</span>
 			<span class="timer-num">暖<input type=range id="temperature" class="slider" value=0 min=0 max=23>冷</span>
 		</li>
+		<li>
+			<span class="clock" id="clock1">开启定时</span>
+			<span class="clock" id="clock2">关闭定时</span>
+		</li>
 		
+		<li>
+			<span class="timer"><i>0</i>小时后关闭</span>
+			<span class="timer-num">0<input type=range id="timer" class="slider" value=0 min=0 max=23>23</span>
+		</li>
 	</ul>
  </div>
 	
 
 	<script src="scripts/jquery-2.1.3.min.js"></script>
+	<script src="scripts/lambdaTM.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="scripts/reconnecting-websocket.js"></script>
+    <script src="scripts/util.js"></script>
 	<script src="scripts/main.js"></script>
 </body>
 </html>
