@@ -86,7 +86,7 @@ $(document).ready(function(){
 			//定时器改变
 			break;
 			case 'brightness':
-			$('.timer').eq(1).text($(this).val()+'%');
+			$('.timer').eq(0).text($(this).val()+'%');
 			//亮度调节改变
 			var code = '(@devcall "{tid}" (controlbrightness 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
 
