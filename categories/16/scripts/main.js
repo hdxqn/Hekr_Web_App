@@ -35,42 +35,42 @@ function setLightState(data){
 	var i=data.tid;
 	var j=data.state.power;
 	switch(i){
-		case 'a':
+		case 'ESP_2M_1AFE349C3D01':
 		if(j==1)
 		$('#dp1').attr({
 				src:'images/deng2.png',
 				data:0
 			});
 		break;
-		case 'b':
+		case 'ESP_2M_1AFE349C3D02':
 		if(j==1)
 		$('#dp2').attr({
 				src:'images/deng2.png',
 				data:0
 			});
 		break;
-		case 'c':
+		case 'ESP_2M_1AFE349C3D03':
 		if(j==1)
 		$('#dp3').attr({
 				src:'images/deng2.png',
 				data:0
 			});
 		break;
-		case 'd':
+		case 'ESP_2M_1AFE349C3D04':
 		if(j==1)
 		$('#dp4').attr({
 				src:'images/deng2.png',
 				data:0
 			});
 		break;
-		case 'e':
+		case 'ESP_2M_1AFE349C3D05':
 		if(j==1)
 		$('#dp5').attr({
 				src:'images/deng2.png',
 				data:0
 			});
 		break;
-		case 'f':
+		case 'ESP_2M_1AFE349C3D06':
 		if(j==1)
 		$('#dp6').attr({
 				src:'images/deng2.png',
@@ -163,22 +163,22 @@ function bulb(){
 
 	switch(id){
 		case 'dp1':
-		tidcode='a';
+		tidcode='ESP_2M_1AFE349C3D01';
 		break;
 		case 'dp2':
-		tidcode='b';
+		tidcode='ESP_2M_1AFE349C3D02';
 		break;
 		case 'dp3':
-		tidcode='c';
+		tidcode='ESP_2M_1AFE349C3D03';
 		break;
 		case 'dp4':
-		tidcode='d';
+		tidcode='ESP_2M_1AFE349C3D04';
 		break;
 		case 'dp5':
-		tidcode='e';
+		tidcode='ESP_2M_1AFE349C3D05';
 		break;
 		case 'dp6':
-		tidcode='f';
+		tidcode='ESP_2M_1AFE349C3D06';
 		break;
 		default:
 		break;
@@ -226,7 +226,8 @@ function powerChange(){
 	}
 }
 
-var tids=['a','b','c','d','e','f'];
+var tids=['ESP_2M_1AFE349C3D01','ESP_2M_1AFE349C3D02','ESP_2M_1AFE349C3D03','ESP_2M_1AFE349C3D04',
+			'ESP_2M_1AFE349C3D05','ESP_2M_1AFE349C3D06'];
 var host = getUrlParam("host") || "device.hekr.me";
 var token = getUrlParam("access_key");
 
