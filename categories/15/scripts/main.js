@@ -134,7 +134,7 @@ ws.onerror = function() {
 
 ws.onopen = function() {
   console.debug("[CONNECTED]");
-  ws.send('(get-state "{tid}")'.format({tid:tid}));
+   ws.send('(get-state "{tid}")'.format({tid:tid}));
   $.modal.close();
 }
 ws.onclose = function() {
