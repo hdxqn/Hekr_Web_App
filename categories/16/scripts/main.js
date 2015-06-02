@@ -132,11 +132,11 @@ function changeCss(event){
 	if(i==1){
 		$('#bulb').find('.choice').css({
 	 	opacity: 1,
-   		'transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
-  		'-webkit-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
-  		'-moz-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
-  		'-o-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
-  		'-ms-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)'	
+   		'transform':'translate3d(0,0,0) rotate3d(1,1,1,0)',
+  		'-webkit-transform':'translate3d(0,0,0) rotate3d(1,1,1,0)',
+  		'-moz-transform':'translate3d(0,0,0) rotate3d(1,1,1,0)',
+  		'-o-transform':'translate3d(0,0,0) rotate3d(1,1,1,0)',
+  		'-ms-transform':'translate3d(0,0,0) rotate3d(1,1,1,0)'	
 	 });
 	 $(this).attr('src','images/unchecked.png');
 	 $('#btn1').animate({
