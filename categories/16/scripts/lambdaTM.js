@@ -534,14 +534,17 @@ Util.proxycall = function(fun, env, args) {
 LambdaTM.globalenv = new LambdaTM.Env();
 onmessage = function() {
     this.apply = function(env, args) {
-        var tid =args.cdr.car 
-        var tag = args.cdr.cdr.car;
-        var f = eval(tag);
-        var as = {};
-        as["tid"]=tid;
-        as["state"]=LambdaTM.sexp2list(args.cdr.cdr.cdr);
-        return f.apply(window, as);
-        
+        //var tids=['ESP_2M_1AFE349C3D01','ESP_2M_1AFE349C3D02','ESP_2M_1AFE349C3D03','ESP_2M_1AFE349C3D04','ESP_2M_1AFE349C3D05','ESP_2M_1AFE349C3D06'];
+        if (tids.indexOf(args.cdr.car)>-1) {
+       // if (args.cdr.car === window.tid) {
+            var tag = args.cdr.cdr.car;
+            var f = eval(tag);
+            var as = LambdaTM.sexp2list(args.cdr.cdr.cdr);
+
+            as.push("tid");
+            as.push(args.cdr.car );
+            return f.apply(window, as);
+        }
     }
     return this;
 }
@@ -560,10 +563,9 @@ LambdaTM.list2json = function(list) {
 
 
 function state() {
-    changestate(arguments);
+    var list = arguments;
+    changestate(LambdaTM.list2json(list));
 }
-
-
 
 /**
 
@@ -638,11 +640,11 @@ SEXP.exec = function(sExprString) {
     var sexp = new LambdaTM.LambdaTMReader(new LambdaTM.StringReader(sExprString))();
     return LambdaTM.LispEval.lisp_eval( LambdaTM.globalenv , sexp );
 }
-
+/*
 Array.prototype.toObj = function() {
     var rv = {};
     if (this.length % 2 != 0) return;
     for (var i = 0; i < this.length; i += 2)
         rv[this[i]] = this[i + 1];
     return rv;
-};
+};*/
