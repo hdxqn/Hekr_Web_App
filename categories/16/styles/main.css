@@ -18,6 +18,10 @@ abbr, acronym {border: 0;}
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   /*设置该属性表示，不希望任何元素生产的填充或边框影响盒子的大小*/ 
+/* -webkit-touch-callout:none;
+ -webkit-tap-highlight-color: transparent;
+ -webkit-user-select: none;
+ 以上设置用于手机端防止长按选中等问题*/
   cursor: pointer;
 }
 
@@ -108,7 +112,7 @@ ul#bulb li span .choice{
   transform:translate3d(0,10px,0) rotate3d(0,1,0,90deg);
   -webkit-transform:translate3d(0,10px,0) rotate3d(0,1,0,90deg);
   -moz-transform:translate3d(0,10px,0) rotate3d(0,1,0,90deg);
-    -ms-transform:translate3d(0,10px,0) rotate3d(0,1,0,90deg);
+  -ms-transform:translate3d(0,10px,0) rotate3d(0,1,0,90deg);
   -o-transform:translate3d(0,10px,0) rotate3d(0,1,0,90deg);
 
   -webkit-transition:opacity 0.3s,-webkit-transform 0.3s;

@@ -123,14 +123,20 @@ function setBulb(j,str){
 		}
 }
 
-function changeCss(){
+function changeCss(event){
+	var event=event||window.event;
+	event.preventDefault();
 	var i=$(this).attr('data');
 	
 
 	if(i==1){
 		$('#bulb').find('.choice').css({
 	 	opacity: 1,
-   		transform:'translate3d(0,0,0) rotate3d(1,1,1,0)'	
+   		'transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-webkit-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-moz-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-o-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-ms-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)'	
 	 });
 	 $(this).attr('src','images/unchecked.png');
 	 $('#btn1').animate({
@@ -156,7 +162,11 @@ function changeCss(){
 		$('#editor').attr('src','images/unpressed.png');
 		$('#bulb').find('.choice').css({
 		opacity: 1,
-  		transform:'translate3d(0,10px,0) rotate3d(0,1,0,90deg)'
+  		'transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-webkit-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-moz-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-o-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-ms-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)'
 	});
 		 $(this).attr('data',1);
 	}
@@ -164,19 +174,27 @@ function changeCss(){
 	
 	 }
 
-function ePress(){
+function ePress(event){
+	var event=event||window.event;
+	event.preventDefault();
 	$(this).attr('src','images/pressed.png');
 }
 
-function bPress(){
+function bPress(event){
+	var event=event||window.event;
+	event.preventDefault();
 	$(this).attr('src','images/unsaved.png');
 }
-function pPress(){
+function pPress(event){
+	var event=event||window.event;
+	event.preventDefault();
 	$(this).attr('src','images/powerOff.png');
 }
 	
 
-function cancle(){
+function cancle(event){
+	var event=event||window.event;
+	event.preventDefault();
 	$(this).attr('src','images/saved.png');
 	if($(this).parent('#btn1').css('opacity')>0.5){
 		$(this).parent('#btn1').css('opacity','0');
@@ -190,12 +208,18 @@ function cancle(){
 		});
 		$('#bulb').find('.choice').css({
 		opacity: 1,
-  		transform:'translate3d(0,10px,0) rotate3d(0,1,0,90deg)'
+  		'transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-webkit-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-moz-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-o-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
+  		'-ms-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)'
 	});
 	}
 }
 
-function choice(){
+function choice(event){
+	var event=event||window.event;
+	event.preventDefault();
 	var i=$(this).attr('data');
 	if(i==1){
 		$(this).attr('src','images/dagou.png');
@@ -207,7 +231,9 @@ function choice(){
 	
 }
 
-function bulb(){
+function bulb(event){
+	var event=event||window.event;
+	event.preventDefault();
 	var i=$(this).attr('data');
 	var id=$(this).attr('id');
 	var tidcode=null;
@@ -256,17 +282,7 @@ function bulb(){
 	}
 	
 }
-function choice(){
-	var i=$(this).attr('data');
-	if(i==1){
-		$(this).attr('src','images/dagou.png');
-		$(this).attr('data',0);
-	}else if(i==0){
-		$(this).attr('src','images/circle.png');
-		$(this).attr('data',1);
-	}
-	
-}
+
 function powerSend(id,i){
 
 	var tidcode=null;
@@ -316,7 +332,9 @@ function powerSend(id,i){
 	
 }
 
-function powerChange(){
+function powerChange(event){
+	var event=event||window.event;
+	event.preventDefault();
 	$(this).attr('src','images/powerOn.png');
 	var i=$(this).attr('data');
 	if (i==1) {
