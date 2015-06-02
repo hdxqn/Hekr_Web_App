@@ -1,13 +1,48 @@
 $(document).ready(function(){
-	$('#editor').bind({touchstart:ePress,touchend:changeCss});
-	$('#cancle').bind({touchstart:bPress,touchend:cancle});
-	$('.choice').bind({touchend:choice});
-	$('.dp').bind({touchend:bulb});
-	$('#btn').bind({touchstart:pPress,touchend:powerChange});
+
+	var touchEvents={};
+	browserRedirect(touchEvents);
+	//$('#editor').bind({touchEvents.touchstart:ePress,touchEvents.touchend:changeCss});
+	$('#editor').bind(touchEvents.touchstart,ePress);
+	$('#editor').bind(touchEvents.touchend,changeCss);
+	// $('#cancle').bind({touchEvents.touchstart:bPress,touchEvents.touchend:cancle});
+	$('#cancle').bind(touchEvents.touchstart,bPress);
+	$('#cancle').bind(touchEvents.touchend,cancle);
+	// $('.choice').bind({touchEvents.touchend:choice});
+	$('.choice').bind(touchEvents.touchend,choice);
+	// $('.dp').bind({touchEvents.touchend:bulb});
+	$('.dp').bind(touchEvents.touchend,bulb);
+	// $('#btn').bind({touchEvents.touchstart:pPress,touchEvents.touchend:powerChange});
+	$('#btn').bind(touchEvents.touchstart,pPress);
+	$('#btn').bind(touchEvents.touchend,powerChange);
 	init();
 
 
 })
+function browserRedirect(obj) {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+         
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+         obj.touchstart="touchstart";
+            obj.touchmove= "touchmove";
+            obj.touchend= "touchend";
+         
+    } else {
+        
+                obj.touchstart = "mousedown";
+                obj.touchmove = "mousemove";
+                obj.touchend = "mouseup";
+         
+    }
+ }
 
 function localSave(tid){
 
