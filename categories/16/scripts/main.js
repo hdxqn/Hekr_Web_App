@@ -9,13 +9,13 @@ $(document).ready(function(){
 	$('#cancle').bind(touchEvents.touchstart,bPress);
 	$('#cancle').bind(touchEvents.touchend,cancle);
 	// $('.choice').bind({touchEvents.touchend:choice});
-	$('.choice').bind(touchEvents.touchend,choice);
+	$('#bulb').find('.choice').bind(touchEvents.touchend,choice);
 	// $('.dp').bind({touchEvents.touchend:bulb});
 	$('.dp').bind(touchEvents.touchend,bulb);
 	// $('#btn').bind({touchEvents.touchstart:pPress,touchEvents.touchend:powerChange});
 	$('#btn').bind(touchEvents.touchstart,pPress);
 	$('#btn').bind(touchEvents.touchend,powerChange);
-	init();
+	init(1);
 
 
 })
@@ -60,10 +60,12 @@ function setJson(arr){
 
 }
 
-function init(){
-	var documentWidth=window.screen.availWidth;
-	var documentHeight=window.screen.availHeight;
-	if(documentWidth<440){
+function init(i){
+
+	if(i==1){
+		var documentWidth=window.screen.availWidth;
+		var documentHeight=window.screen.availHeight;
+		if(documentWidth<440){
 		$('#btn1').css({
 			left:'0',
 			margin:'0 0 0 0'
@@ -71,9 +73,78 @@ function init(){
 		$('#btn3').css({
 			left:'100%',
 			margin:'0 0 0 -80px'
-});
+		});
+
+		if(documentWidth<340){
+			$('#bulb').find('.lt1').css({
+				left:'0',
+				margin:'-40px 0 0 0'
+			});
+			$('#bulb').find('.lt3').css({
+				left:'100%',
+				margin:'-40px 0 0 -80px'
+			});
+		}
+		}
+		//宽度适配
+	}
+	
+
+	if(localStorage){
+		if(localStorage.tid){
+		var arr2=JSON.parse(localStorage.tid);
+
+		for(var j=0;j<arr2.length;j++){
+			if(arr2[j]==1){
+				$('#choice'+(j+1)).attr({
+					src:'images/dagou.png',
+					data:0
+				});
+			}else if(arr2[j]==0){
+				$('#choice'+(j+1)).attr({
+					src:'images/circle.png',
+					data:1
+				});
+			}
+		}
+		return;	
+	}		
+	$('#bulb').find('.choice').attr({
+		src:'images/dagou.png',
+		data:0
+	});
+	}else if(!localStorage){
+		localStorage={
+			tid:'[1,1,1,1,1,1]'
+		};
+
+		var arr2=JSON.parse(localStorage.tid);
+
+		for(var j=0;j<arr2.length;j++){
+			if(arr2[j]==1){
+				$('#choice'+(j+1)).attr({
+					src:'images/dagou.png',
+					data:0
+				});
+			}else if(arr2[j]==0){
+				$('#choice'+(j+1)).attr({
+					src:'images/circle.png',
+					data:1
+				});
+			}
+		}
+		return;	
+		$('#bulb').find('.choice').attr({
+		src:'images/dagou.png',
+		data:0
+	});
+	}
+
+
+	
+
 }
-}
+
 
 window.changestate=function(data){
 	console.debug('[DATA]'+data);
@@ -130,6 +201,7 @@ function changeCss(event){
 	
 
 	if(i==1){
+		init(0);
 		$('#bulb').find('.choice').css({
 	 	opacity: 1,
    		'transform':'translate3d(0,0,0) rotate3d(1,1,1,0)',
@@ -144,23 +216,24 @@ function changeCss(event){
 	 },300);
 	 $(this).attr('data',0);
 	}else if(i==0){
-		var arr1=[];
+		var arr1=[],
+		choice=$('#bulb').find('.choice');
 		$('#btn1').css('opacity','0');
 		for(var j=0;j<6;j++){
-			if($('.choice').eq(j).attr('data')==0){
+			if(choice.eq(j).attr('data')==0){
 				arr1[j]=1;
-			}else if($('.choice').eq(j).attr('data')==1){
+			}else if(choice.eq(j).attr('data')==1){
 				arr1[j]=0;
 		   }
 		   
 		}
 		setJson(arr1);
-		$('.choice').attr({
+		choice.attr({
 			src:'images/circle.png',
 			data:1
 		});
 		$('#editor').attr('src','images/unpressed.png');
-		$('#bulb').find('.choice').css({
+		choice.css({
 		opacity: 1,
   		'transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
   		'-webkit-transform':'translate3d(0,10px,0) rotate3d(0,1,0,90deg)',
@@ -198,10 +271,7 @@ function cancle(event){
 	$(this).attr('src','images/saved.png');
 	if($(this).parent('#btn1').css('opacity')>0.5){
 		$(this).parent('#btn1').css('opacity','0');
-		$('.choice').attr({
-			src:'images/circle.png',
-			data:1
-		});
+		
 		$('#editor').attr({
 			src:'images/unpressed.png',
 			data:1
@@ -348,7 +418,6 @@ function powerChange(event){
 			return;
 		}
 
-		localStorage.tid='[1,1,1,1,1,1]';
 		for(var k=1;k<=6;k++){
 			powerSend('dp'+k,1);
 		}
