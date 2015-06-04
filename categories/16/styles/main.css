@@ -134,6 +134,7 @@ ul#bulb2 #btn1{
   -o-border-radius: 50%;
   margin: 0 0 0 -40px;
   opacity: 0;
+  overflow: hidden;
 }
 ul#bulb2 #btn2{
   left: 50%;
@@ -145,6 +146,7 @@ ul#bulb2 #btn2{
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   margin: 0 0 0 -70px;
+  overflow: hidden;
 }
 ul#bulb2 #btn3{
   left: 75%;
@@ -156,6 +158,7 @@ ul#bulb2 #btn3{
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   margin: 0 0 0 -40px;
+  overflow: hidden;
 }
 ul#bulb2 li img{
   width: 100%;

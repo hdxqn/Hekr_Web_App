@@ -1,78 +1,67 @@
 <!DOCTYPE html>
-<html>
- <head> 
-  <meta charset="utf-8" /> 
-  <meta name="description" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <title>Hekr</title> 
-  <link rel="stylesheet" href="styles/vendor.css" /> 
-  <link rel="stylesheet" href="styles/main.css" /> 
- </head> 
- <body> 
-  <div class="main"> 
-   <div class="navbar"> 
-    <div class="back supper-center" id="back">
-     <img src="images/back.png" />
-    </div> 
-    <div class="title supper-center">
-     <span>插座</span>
-    </div> 
-   </div> 
-   <div class="banner"> 
-    <div class="status center"> 
-     <img class="logo" src="images/logo.png" /> 
-     <div class="desc"> 
-      <p>当前状态</p> 
-      <p id="powerState">关</p> 
-      <span id="time1">0</span>
-      <span>h后</span>
-      <span id="timerState1">关闭</span> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="control"> 
-    <div class="center"> 
-     <div class="box"> 
-      <div id="power" class="round1 off"> 
-       <div class="fill supper-center">
-        <img class="icon" src="images/power.png" />
-       </div> 
-      </div> 
-      <p class="label">开关</p> 
-     </div> 
-    </div> 
-   </div> 
-   <div class="popup"> 
-    <div class="supper-center"> 
-     <div class="tab"> 
-      <button class="kuang">定时</button> 
-     </div> 
-    </div> 
-    <div class="panel tag"> 
-     <div class="harf supper-center"> 
-      <div> 
-       <span id="time2">0</span> 
-       <span>h后</span>
-       <span id="timerState2">关闭</span> 
-      </div>
-     </div>
-     <div class="harf slider-panel">
-      <span class="label">0</span> 
-      <input id="timer" type="range" class="slider" value="0" min="0" max="23" /> 
-      <span class="label">23</span> 
-     </div> 
-    </div> 
-   </div> 
-  </div>
+<html lang="en">
+<head>
+	 <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <title>light</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<div id="head">
+		<span>智能灯矩阵</span>
+	</div>
 
-  <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/jquery.modal.min.js"></script>
+	<ul id="bulb">
+		<li>
+			<span class="lt1">
+			<img src="images/deng.png" id="dp1" class="dp" data=1>
+			<img src="images/circle.png" alt="" id="choice1" class="choice" data=1>
+			</span>
+			<span class="lt2">
+			<img src="images/deng.png" id="dp2" class="dp" data=1>
+			<img src="images/circle.png" alt="" id="choice2" class="choice" data=1>
+			</span>
+			<span class="lt3">
+			<img src="images/deng.png" id="dp3" class="dp" data=1>
+			<img src="images/circle.png" alt="" id="choice3" class="choice" data=1>
+			</span>
+		</li>
+		<li>
+			<span class="lt1">
+			<img src="images/deng.png" id="dp4" class="dp" data=1>
+			<img src="images/circle.png" alt="" id="choice4" class="choice" data=1>
+			</span>
+			<span class="lt2">
+			<img src="images/deng.png" id="dp5" class="dp" data=1>
+			<img src="images/circle.png" alt="" id="choice5" class="choice" data=1>
+			</span>
+			<span class="lt3">
+			<img src="images/deng.png" id="dp6" class="dp" data=1>
+			<img src="images/circle.png" alt="" id="choice6" class="choice" data=1>
+			</span>
+		</li>
+	</ul>
 
-    <script src="scripts/lambdaTM.js"></script>
-    <script src="scripts/reconnecting-websocket.js"></script>
-    <script src="scripts/toast.js"></script>
-    <script src="scripts/main.js"></script>
+	<ul id="bulb2">
+		<li id="btn1">
+			<img src="images/saved.png" alt="" id="cancle">
+		</li>
+		<li id="btn2">
+			<img src="images/powerOn.png" alt="" id="btn" data=1>
+		</li>
+		<li id="btn3">
+			<img src="images/unpressed.png" alt="" id="editor" data=1>
+		</li>
+	</ul>
 	
 
- </body>
+ 
+ <script src="scripts/lambdaTM.js"></script>
+ <script src="scripts/toast.js"></script>
+ <script src="scripts/reconnecting-websocket.js"></script>
+ <script src="scripts/util.js"></script>
+ <script src="scripts/jquery-2.1.3.min.js"></script>
+	<script src="scripts/main.js"></script>
+</body>
 </html>
