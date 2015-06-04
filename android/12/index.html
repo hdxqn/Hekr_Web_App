@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta name="description" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" /> 
+  <title>Hekr</title> 
+  <link rel="stylesheet" href="styles/vendor.css" /> 
+  <link rel="stylesheet" href="styles/main.css" /> 
+ </head> 
+ <body> 
+  <div class="main"> 
+   <div class="navbar"> 
+    <div class="back supper-center" id="back">
+     <img src="images/back.png" />
+    </div> 
+    <div class="title supper-center">
+     <span>HEKR</span>
+    </div> 
+   </div> 
+
+<div class="banner"> 
+    <div class="status center"> 
+     <div class="desc"> 
+      <p> SERIAL 9600-8-N-1 </p><br>
+
+      <textarea type="text" id="serialget" class="serialtext"> </textarea> <br><input id="getserial" type="button" value="GET"><br>
+	  <textarea type="text" id="serialset" class="serialtext"> </textarea> <br><input id="setserial" type="button" value="SET">
+
+     </div>
+    </div> 
+   </div>
+  
+  <div class="extra"> 
+   <div class="popup"> 
+    <div class="panel"> 
+     <div class="harf supper-center"> 
+      <div> 
+       <span class="label">PWM TEST</span> 
+       <span id="toPWM" class="label">55</span> 
+      </div> 
+     </div> 
+     <div class="harf slider-panel">
+      <span class="label">0</span> 
+      <input id="funcPWM" type="range" class="slider" value="55" min="0" max="255" step="1" /> 
+      <span class="label">255</span>
+     </div> 
+    </div> 
+   </div> 
+
+
+   <div id="modal" class="popup"> 
+    <div class="panel"> 
+     <div class="fill supper-center"> 
+      <span>连接服务器...</span> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script src="scripts/vendor.js"></script> 
+  <script src="scripts/main.js"></script>   
+ </body>
+</html>

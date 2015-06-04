@@ -1,0 +1,54 @@
+{
+  "category":{
+    "name":"dehumidifier"
+  },
+  "status":{
+    "speed":{
+      "high":"High Speed",
+      "low":"Low Speed"
+    },
+    "mode":{
+      "off":"Power Off",
+      "dehumidifying":"Dehumidifying",
+      "dryClothes":"Dry Clothes"
+    },
+    "water":{
+      "full":"Tank Full",
+      "notFull":"Tank Unfilled"
+    },
+    "uv":{
+      "off":"UV OFF",
+      "on":"UV ON"
+    },
+    "humidity":{
+      "label":"Current RH"
+    }
+  },
+  "control":{
+    "power":"Power",
+    "mode":"Mode",
+    "speed":"Fan Speed",
+    "uv":"UV"
+  },
+  "timerMode":{
+    "cancle":"Cancle",
+    "on":"ON",
+    "uvOff":"UV OFF",
+    "off":"OFF"
+  },
+  "panel":{
+    "humidityControl":"Humidity Control",
+    "timerLabel":{
+      "cancle":"Cancle Timing",
+      "on":"ON after __hour__ hours",
+      "uvOff":"UV OFF after __hour__ hours",
+      "off":"OFF after __hour__ hours"
+    }
+  },
+  "toast":{
+    "message":"Command Sent"
+  },
+  "modal":{
+    "text":"Connecting..."
+  }
+}
