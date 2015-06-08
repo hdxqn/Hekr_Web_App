@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-	var touchEvents={};
+	touchEvents={};
 	browserRedirect(touchEvents);
-	// init(1);
 	$('#sendBtn').bind(touchEvents.touchend,send);
 	$('#receiveBtn').bind(touchEvents.touchend,receive);
+	$('#slider').bind(touchEvents.touchstart,slider);
 	$('#slider').bind(touchEvents.touchend,sendSlider);
-	$('#slider').bind(touchEvents.touchmove,showSlider);
+	
 
 
 })
@@ -35,17 +35,10 @@ function browserRedirect(obj) {
     }
  }
 
-// function init(i){
-// 	if (i==1) {
-// 		var documentWidth=window.screen.availWidth;
-// 		var documentHeight=window.screen.availHeight;
-		
-// 	};
-// }
 function send(){
 	var i=$('#sendText').val();
 	
-	var code ='(@devcall "{tid}" (uartdata {args}) (lambda (x) x))'.format({
+	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
 			tid:tid,
 			args:i
 			});
@@ -54,33 +47,42 @@ function send(){
 	$('#sendText').val('');
 }
 
-function receive(i){
+function  receiveState(j,i){
 	$('#receiveText').val('');
 	if(i){
 		$('#receiveText').val(i);
 	}else{
 		$('#receiveText').val('接收数据错误！');
 	}
-	
+//i为返回的接收信息
+	if(j){
+		console.log(j);
+		$('#showNum').text(j);
+		var ret=0.2+(0.8*j/100);
+		$('#bulb').attr('data',ret);
+		$('#bulb').css('opacity',ret);
+		$('#slider').val(j);
+
+	}
+//j为接受到的亮度
 }
 
 function slider(){
-	var i=$('#slider').val();
-	if(i>0){
-		$('#slider').val(0);
-	}else if(i==0){
-		$('#slider').val(100)
-	}
+	showSlider();
+	$('#slider').bind(touchEvents.touchmove,showSlider);
 }
 
 function showSlider(){
-	$('#showNum').text($(this).val());
-	var ret=0.2+(0.8*$(this).val()/255);
+	$('#showNum').text($('#slider').val());
+	var ret=0.2+(0.8*$('#slider').val()/100);
 	$('#bulb').css('opacity',ret);
 }
 
 function sendSlider(){
+	$('#slider').unbind(touchEvents.touchmove);
 	$('#showNum').text('--');
+	var ret=$('#bulb').attr('data');
+	$('#bulb').css('opacity',ret);
 	var i=$(this).val();
 	var code ='(@devcall "{tid}" (control {args}) (lambda (x) x))'.format({
 			tid:tid,
@@ -109,7 +111,6 @@ var ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
   console.debug("[RESULT] " + e.data);
   SEXP.exec(e.data);
-  sreceive(e.data);
 }
 
 ws.onerror = function() {
@@ -122,6 +123,12 @@ ws.onopen = function() {
 }
 ws.onclose = function() {
   console.error("[CLOSED]");
+}
+window.changestate=function(data){
+	console.debug('[DATA]'+data);
+	console.debug('[DATA.UARTDATA]'+data.uartdata);
+	console.debug('[DATA.DUTY]'+data.duty)
+	receiveState(data.duty,data.uartdata);
 }
 
 

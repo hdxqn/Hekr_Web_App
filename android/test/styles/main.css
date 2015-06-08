@@ -81,41 +81,47 @@ html,body{
   border: none;
   line-height: 30px;
   padding: 0 0 0 40px;
+  color: #fff;
+  font-size: 16px;
 }
 #sendMes #send::before{
   content: '发送:';
-  width: 30px;
+  display: inline-block;
+  width: 40px;
   height: 30px;
   font-size: 16px;
   font-weight: normal;
-  line-height: 30px;
-  margin-right: -40px;
+  text-align: bottom;
+  margin:6px -40px 0 0;
   color: #B4C2CE;
 }
 #sendMes #send img{
   display: block;
   position: absolute; 
-  width: 90%;
+  width: 85%;
   height: 16px;
-  left: 5%;
+  left: 7%;
   top: 50%;
-  margin: -8px 0 0 0;
+  margin: 0 0 0 0;
 }
 #sendMes #receive::before{
   content: '接收:';
-  width: 30px;
+  display: inline-block;
+  width: 40px;
   height: 30px;
   font-size: 16px;
   font-weight: normal;
-  margin-right: -40px;
+  margin:6px -40px 0 0;
   color: #B4C2CE;
 }
 #sendMes #receive img{
-  display: block;
+ display: block;
   position: absolute; 
-  width: 70%;
-  left: 15%;
+  width: 85%;
+  height: 16px;
+  left: 7%;
   top: 50%;
+  margin: 0 0 0 0;
 }
 #sendMes #send #sendBtn{
   display: block;
@@ -123,9 +129,9 @@ html,body{
   width: 40px;
   height: 40px;
   top: 50%;
-  left: 96%;
+  left: 93%;
   padding: 8px 5px 8px 5px;
-  margin-top: -20px;
+  margin: -20px  0 0 0;
   border: 1px solid #C9D8E5;
   border-radius: 50%;
 }
@@ -135,7 +141,7 @@ html,body{
   width: 40px;
   height: 40px;
   top: 50%;
-  left: 86%;
+  left: 93%;
   padding: 8px 5px 8px 5px;
   margin-top: -20px;
   border: 1px solid #C9D8E5;

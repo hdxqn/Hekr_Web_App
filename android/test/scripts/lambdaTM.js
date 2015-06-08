@@ -535,7 +535,7 @@ LambdaTM.globalenv = new LambdaTM.Env();
 onmessage = function() {
     this.apply = function(env, args) {
         //var tids=['ESP_2M_1AFE349C3D01','ESP_2M_1AFE349C3D02','ESP_2M_1AFE349C3D03','ESP_2M_1AFE349C3D04','ESP_2M_1AFE349C3D05','ESP_2M_1AFE349C3D06'];
-        if (tids.indexOf(args.cdr.car)>-1) {
+       if (tid.indexOf(args.cdr.car)>-1) {
        // if (args.cdr.car === window.tid) {
             var tag = args.cdr.cdr.car;
             var f = eval(tag);
