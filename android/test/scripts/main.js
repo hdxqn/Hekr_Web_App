@@ -6,9 +6,10 @@ $(document).ready(function(){
 	$('#receiveBtn').bind(touchEvents.touchend,receive);
 	$('#slider').bind(touchEvents.touchstart,slider);
 	$('#slider').bind(touchEvents.touchend,sendSlider);
-	
-
-
+	$('#sendText').focus(clearText);
+	$('#sendText').keydown(submit);
+	$('#xian1').bind(touchEvents.touchstart,putFocus);
+	$('#xian2').bind(touchEvents.touchstart,putFocus);
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -35,6 +36,26 @@ function browserRedirect(obj) {
     }
  }
 
+ function clearText(){
+ 	$(this).val('');
+ }
+
+function putFocus(event){
+	var event=event||window.event;
+	event.preventDefault();
+	var id=$(this).attr('id');
+	if(id=='xian1'){
+		$('#sendText').focus();
+	}else if(id=='xian2'){
+		$('#receiveText').focus();
+	}
+}
+function submit(event){
+	if(event.keyCode==13){
+		send();
+	}
+}
+
 function send(){
 	var i=$('#sendText').val();
 	
@@ -44,7 +65,6 @@ function send(){
 			});
 		console.debug("[CODE] "+code);
 		ws.send(code);
-	$('#sendText').val('');
 }
 
 function  receiveState(j,i){
@@ -127,8 +147,8 @@ ws.onclose = function() {
 window.changestate=function(data){
 	console.debug('[DATA]'+data);
 	console.debug('[DATA.UARTDATA]'+data.uartdata);
-	console.debug('[DATA.DUTY]'+data.duty)
-	receiveState(data.duty,data.uartdata);
+	console.debug('[DATA.BRIGHTNESS]'+data.brightness)
+	receiveState(data.brightness,data.uartdata);
 }
 
 
