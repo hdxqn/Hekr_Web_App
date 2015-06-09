@@ -10,6 +10,9 @@ $(document).ready(function(){
 	$('#sendText').keydown(submit);
 	$('#xian1').bind(touchEvents.touchstart,putFocus);
 	$('#xian2').bind(touchEvents.touchstart,putFocus);
+	$('#back').bind(touchEvents.touchend,function(){
+		window.close();
+	});
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -130,8 +133,8 @@ function receive(){
  		'-moz-transform': 'rotate3d(0,0,1,180deg)',
  		'-ms-transform': 'rotate3d(0,0,1,180deg)',
  		'-o-transform': 'rotate3d(0,0,1,180deg)'
- 		$(this).attr('data',1);
-	})
+	});
+		$(this).attr('data',1);
 	}else if(i==1){
 		$(this).css({
 		 'transform': 'rotate3d(0,0,1,0)',

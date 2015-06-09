@@ -23,7 +23,13 @@ abbr, acronym {border: 0;}
  -webkit-user-select: none;
  以上设置用于手机端防止长按选中等问题*/
   cursor: pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
+
 
 html,body{
   width: 100%;
@@ -40,17 +46,27 @@ html,body{
 }
 #head{
   width: 100%;
-  height: 33%;
+  height: 20%;
+  min-height: 39px;
   position: relative;
 }
-#head img{
+#head #back{
+  display: block;
+  width: 17px;
+  height: 31px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin: -15px 0 0 20px;
+}
+#head #logo{
   display:block;
-  width: 270px;
-  height: 67px;
+  width: 124px;
+  height: 31px;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -34px 0 0 -135px;
+  margin: -15px 0 0 -62px;
   overflow: hidden;
 }
 #sendMes{
@@ -75,7 +91,7 @@ html,body{
 }
 #sendMes .sr input{
   display: inline-block;
-  width: 85%;
+  width: 75%;
   height: 30px;
   background-color:inherit;
   outline: none;
@@ -84,6 +100,7 @@ html,body{
   padding: 0 0 0 40px;
   color: #fff;
   font-size: 16px;
+  -webkit-user-select: text;
 }
 #sendMes #send::before{
   content: '发送:';
@@ -99,9 +116,9 @@ html,body{
 #sendMes #send img{
   display: block;
   position: absolute; 
-  width: 85%;
+  width: 75%;
   height: 16px;
-  left: 7%;
+  left: 12%;
   top: 50%;
   margin: 0 0 0 0;
 }
@@ -118,9 +135,9 @@ html,body{
 #sendMes #receive img{
  display: block;
   position: absolute; 
-  width: 85%;
+  width: 75%;
   height: 16px;
-  left: 7%;
+  left: 12%;
   top: 50%;
   margin: 0 0 0 0;
 }
@@ -130,7 +147,7 @@ html,body{
   width: 40px;
   height: 40px;
   top: 50%;
-  left: 93%;
+  left: 88%;
   padding: 8px 5px 8px 5px;
   margin: -20px  0 0 0;
   border: 1px solid #C9D8E5;
@@ -142,7 +159,7 @@ html,body{
   width: 40px;
   height: 40px;
   top: 50%;
-  left: 93%;
+  left: 88%;
   padding: 8px 2px 8px 2px;
   margin-top: -20px;
   border: 1px solid #C9D8E5;
