@@ -143,10 +143,17 @@ html,body{
   height: 40px;
   top: 50%;
   left: 93%;
-  padding: 8px 5px 8px 5px;
+  padding: 8px 2px 8px 2px;
   margin-top: -20px;
   border: 1px solid #C9D8E5;
   border-radius: 50%;
+  -webkit-transition:opacity 0.3s,-webkit-transform 0.3s;
+  transition:transform 0.3s;
+  transform: rotate3d(0,0,1,0);
+  -webkit-transform: rotate3d(0,0,1,0);
+  -moz-transform: rotate3d(0,0,1,0);
+  -ms-transform: rotate3d(0,0,1,0);
+  -o-transform: rotate3d(0,0,1,0);
 }
 #control{
   width: 100%;
@@ -202,4 +209,22 @@ html,body{
   transition:background .15s ease-in-out;
   box-shadow:0 0 4px 4px rgba(0,0,0,.2);
   border:none
+}
+#sendMes #remind{
+  position: relative;
+}
+#sendMes #remind #remindMes{
+  display: inline-block;
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  top: 50%;
+  left: 50%;
+  margin: -15px 0 0 -50px;
+  background-color: #000000;
+  font-size: 15px;
+  border-radius: 2px;
+  opacity: 0;
+  z-index: 99;
 }

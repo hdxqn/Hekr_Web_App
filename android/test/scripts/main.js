@@ -58,21 +58,30 @@ function submit(event){
 
 function send(){
 	var i=$('#sendText').val();
-	
-	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+	i=i.replace(/ /g,'');
+	if((i.length%2)==0){
+		var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
 			tid:tid,
 			args:i
 			});
 		console.debug("[CODE] "+code);
 		ws.send(code);
+	}else{
+		$('#remindMes').animate({
+			opacity:1
+		},1500);
+		$('#remindMes').animate({
+			opacity:0
+		},1500);
+		
+	}
+	
 }
 
 function  receiveState(j,i){
 	$('#receiveText').val('');
 	if(i){
 		$('#receiveText').val(i);
-	}else{
-		$('#receiveText').val('接收数据错误！');
 	}
 //i为返回的接收信息
 	if(j){
@@ -111,6 +120,32 @@ function sendSlider(){
 		console.debug("[CODE] "+code);
 		ws.send(code);
 }
+
+function receive(){
+	var i=$(this).attr('data');
+	if(i==0){
+		$(this).css({
+		 'transform': 'rotate3d(0,0,1,180deg)',
+ 		'-webkit-transform': 'rotate3d(0,0,1,180deg)',
+ 		'-moz-transform': 'rotate3d(0,0,1,180deg)',
+ 		'-ms-transform': 'rotate3d(0,0,1,180deg)',
+ 		'-o-transform': 'rotate3d(0,0,1,180deg)'
+ 		$(this).attr('data',1);
+	})
+	}else if(i==1){
+		$(this).css({
+		 'transform': 'rotate3d(0,0,1,0)',
+ 		'-webkit-transform': 'rotate3d(0,0,1,0)',
+ 		'-moz-transform': 'rotate3d(0,0,1,0)',
+ 		'-ms-transform': 'rotate3d(0,0,1,0)',
+ 		'-o-transform': 'rotate3d(0,0,1,0)'
+	});
+		$(this).attr('data',0);
+	}
+	
+}
+
+
 
 var tid = getUrlParam("tid");
 var host = getUrlParam("host") || "device.smartmatrix.mx";
@@ -151,7 +186,3 @@ window.changestate=function(data){
 	receiveState(data.brightness,data.uartdata);
 }
 
-
-	
-
-	
