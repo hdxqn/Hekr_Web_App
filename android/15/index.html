@@ -4,17 +4,34 @@
 	 <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>light</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <title>HEKR</title>
+    <link rel="stylesheet" href="styles/main.css?2">
 </head>
 <body>
 	<div id="head">
 		<img src="images/back.png" alt="" id="back">
 		<img src="images/hekr.png" alt="" id="logo">
 	</div>
+	
+	
+	<ul id="control">
+		<li>
+			<span>按键&PWM测试</span><br/>
+			<span>亮度 <span id="showNum">--</span>%</span>
+		</li>
+		<li id="con">
+			<img src="images/deng.png" alt="" id="bulb" style="opacity:0.2;" data=0.2>
+			<span id="container">
+				0
+				<input type=range value="0" min=0 max=100 id="slider">
+				100
+			</span>
+		</li>
+	</ul>
+	
 	<ul id="sendMes">
 
-		<li class="sr">
+		<li class="sr" id="show_url">
 		串口收发调试&nbsp;
 		<span>9600-8-N-1</span>
 		</li>
@@ -30,32 +47,18 @@
 			<img src="images/traingle.png" alt="" id="receiveBtn" data=0>
 		</li>
 		<li class="sr" id="remind">
-			<span id="remindMes">字符个数错误</span>
+			<span id="remindMes">请输入偶数个字符</span>
 			<!-- <div id="journal">
 				
 			</div> -->
 		</li>
 	</ul>
 	
-	<ul id="loginfo">
-	</ul>
+	<ul id="loginfo"></ul>
 
-	<ul id="control">
-		<li>
-			<span>按键&PWM测试</span><br/>
-			<span>亮度<span id="showNum">--</span></span>
-		</li>
-		<li id="con">
-			<img src="images/deng.png" alt="" id="bulb" style="opacity:0.2;" data=0.2>
-			<span id="container">
-				0
-				<input type=range value="0" min=0 max=100 id="slider">
-				100
-			</span>
-		</li>
-	</ul>
+ 	<div id="url">调试地址:<br/><br/><script>document.write(window.location.href);</script></div> 
 
-
+	<div id="bottom"></div>
  
    <script src="scripts/lambdaTM.js"></script>
   <script src="scripts/toast.js"></script>

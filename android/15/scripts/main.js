@@ -13,6 +13,12 @@ $(document).ready(function(){
 	$('#back').bind(touchEvents.touchend,function(){
 		window.close();
 	});
+	var loginfo_height=$(document.body).height()-$('#bottom').offset().top;
+	$('#loginfo').css('height', loginfo_height);
+	$("#show_url").on('click', function(e){ 
+		$('#url').toggle();
+		$('#loginfo').hide();
+	})
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -69,7 +75,7 @@ function send(){
 			});
 		console.debug("[CODE] "+code);
 		ws.send(code);
-		log(i,"send");
+		log(i,"Send");
 	}else{
 		$('#remindMes').animate({
 			opacity:1
@@ -85,8 +91,9 @@ function send(){
 function  receiveState(j,i){
 	$('#receiveText').val('');
 	if(i){
-		$('#receiveText').val(i);
-		log(i,"rev");
+		var formate_data=i.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,'');
+		$('#receiveText').val(formate_data);
+		log(i,"Receive");
 	}
 //i为返回的接收信息
 	if(j || j==0){
@@ -149,18 +156,17 @@ function receive(){
 	}
 	
 	$('#loginfo').toggle();
+	$('#url').hide();
 	
-
-
 }
 
 function getLocalTime() {
-
    return new Date().toLocaleString().replace(/:\d{1,2}$/,' ');       
 } 
 
-function log(data,type){
-	$('#loginfo').append('<li><span>'+getLocalTime()+'</span><br />'+type+':'+data+'</li>');
+function log(data,type){	
+	var formate_data=data.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,'');
+	$('#loginfo').append('<li><span>'+type+' ['+data.length+']  </span> '+getLocalTime()+'<br /><span>'+formate_data+'</span></li>');
 }
 
 

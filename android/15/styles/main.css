@@ -30,12 +30,16 @@ abbr, acronym {border: 0;}
   -webkit-tap-highlight-color:transparent;
 }
 
-
-html{
+html,body{
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  min-height: 430px;
+}
+body{
+  
   background:linear-gradient(#605DA1,#66ADC0);
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  margin:0;
   color:#FFF;
   text-shadow:1px 1px 0 rgba(0,0,0,.2)
 }
@@ -45,7 +49,7 @@ html{
 #head{
   width: 100%;
   height: 40px;
-  margin: 10px 0 0 0;
+  margin: 0;
   position: relative;
 }
 #head #back{
@@ -76,7 +80,7 @@ html{
 #sendMes .sr{
   display: inline-block;
   width: 90%;
-  height: 60px;
+ /* height: 60px;*/
   min-width: 180px;
   line-height: 60px;
   font-weight: bold;
@@ -138,6 +142,7 @@ html{
   height: 16px;
   left: 12%;
   top: 50%;
+  margin: 0 0 0 0;
 }
 #sendMes #send #sendBtn{
   display: block;
@@ -174,6 +179,7 @@ html{
   width: 100%;
   height: auto;
   text-align: center;
+  margin-top:20px;
 }
 #control li{
   display: inline-block;
@@ -231,7 +237,7 @@ html{
 #sendMes #remind #remindMes{
   display: inline-block;
   position: absolute;
-  width: 100px;
+  width: 140px;
   height: 30px;
   line-height: 30px;
   top: 50%;
@@ -248,10 +254,33 @@ html{
   display:none;
   width:90%;
   margin:0 auto;
-  text-align: center;
+  text-align: left;
+  overflow:auto;
+  height:40%;
 }
 #loginfo li{
+  color:#eee;
   display: inline-block;
   width: 100%;
+  height: auto;
   font-size: 12px;
+  border-bottom:1px solid #aaa;
+  -webkit-user-select:text;
+  margin-bottom:4px;
+  word-wrap:break-word;
 }
+#loginfo li span{
+	font-weight:bolder;
+	color:#fff
+}
+
+#url{
+ 
+  display:none;
+  width:90%;
+  word-wrap:break-word;
+  margin:0 auto;
+  -webkit-user-select:text;
+  font-size:10px;
+}
+ 
