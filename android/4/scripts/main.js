@@ -23,12 +23,28 @@ function toggle23(e) {
     return 2 === e ? 3 : 2
 }
 function setPowerState(e) {
-    3 == e && (e = 2),
-     $("#funcPower").data("power", e), 
-     $("#funcPower")[2 == e ? "removeClass" : "addClass"]("off"), 
-     $("#funcMode")[2 == e ? "removeClass" : "addClass"]("off"),
-      $("#funcMode").off("click", onFuncMode), 
-      $("#funcMode")[2 == e ? "on" : "off"]("click", onFuncMode)
+     if(3 == e){
+        e = 2,
+        $("#funcPower").data("power",e), 
+        $("#funcPower")[2 == e ? "removeClass" : "addClass"]("off"), 
+        $("#funcMode")[2 == e ? "removeClass" : "addClass"]("off"),
+         $("#funcMode").off("click", onFuncMode), 
+        $("#funcMode")[2 == e ? "on" : "off"]("click", onFuncMode)
+    }else if(e==1){
+        e=0,
+         $("#funcPower").data("power",e), 
+        $("#funcPower")[2 == e ? "removeClass" : "addClass"]("off"), 
+        $("#funcMode")[2 == e ? "removeClass" : "addClass"]("off"),
+         $("#funcMode").off("click", onFuncMode), 
+        $("#funcMode")[2 == e ? "on" : "off"]("click", onFuncMode)
+    }else if(e==2){
+        e=2,
+         $("#funcPower").data("power",e), 
+        $("#funcPower")[2 == e ? "removeClass" : "addClass"]("off"), 
+        $("#funcMode")[2 == e ? "removeClass" : "addClass"]("off"),
+         $("#funcMode").off("click", onFuncMode), 
+        $("#funcMode")[2 == e ? "on" : "off"]("click", onFuncMode)
+    }
 }
 function setModeState(e) {
     $("#stateMode").text(getModeText(e)), $("#funcMode").data("mode", e), $("#hcPanel")[3 == e ? "slideDown" : "slideUp"](1e3)
@@ -55,7 +71,11 @@ function setTemperatureState(e) {
 function setTimerState(e, t) {
     $("#timers>button").addClass("off");
     var n = $($("#timers>button")[e - 2]);
-    n.removeClass("off"), $("#funcTime").val(t), $("#timers").data("mode", e), $("#timerLabel").text(getTimerLabel(e, t)), 1 == e ? $("#cancleButton").hide() : $("#cancleButton").show()
+    n.removeClass("off"), 
+    $("#funcTime").val(t),
+     $("#timers").data("mode", e), 
+     $("#timerLabel").text(getTimerLabel(e, t)),
+      1 == e ? $("#cancleButton").hide() : $("#cancleButton").show()
 }
 var LambdaTM = {};
 Util = {}, Util.cons = function(e, t) {
@@ -454,8 +474,13 @@ Toast.prototype = {init: function() {
         e.push('<div id="toastMessage">'), e.push("<span>" + this.message + "</span>"), e.push("</div>"), msgEntity = $(e.join("")).appendTo(this.context);
         var t = null == this.left ? this.context.width() / 2 - msgEntity.find("span").width() / 2 : this.left, n = null == this.bottom ? "20px" : this.bottom;
         msgEntity.css({position: "fixed",bottom: n,"z-index": "99",left: t,"background-color": "#000000",color: "white","font-size": "14px",padding: "5px",margin: "0px","border-radius": "2px"}), msgEntity.hide()
-    },show: function() {
-        msgEntity.fadeIn(this.time / 2), msgEntity.fadeOut(this.time / 2)
+    },
+    show: function() {
+        if(msgEntity.css("display") == "none"){
+            msgEntity.fadeIn(this.time / 2);
+            msgEntity.fadeOut(this.time / 2) ;  
+        }
+       
     }}, String.prototype.format = function(e) {
     if (arguments.length > 0) {
         var t = this;
@@ -480,7 +505,8 @@ var tid = getUrlParam("tid"),
  token = getUrlParam("access_key"), 
  user = getUrlParam("user") || randomString(10),
   url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({host: host,user: user,token: token}), 
-  ws = new ReconnectingWebSocket(url);
+  ws = new ReconnectingWebSocket(url),
+  g_msgEntity_fade=undefined;
 ws.onmessage = function(e) {
     console.debug("[RESULT] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
@@ -508,7 +534,7 @@ ws.onmessage = function(e) {
             console.debug("[CODE] " + r), 
             ws.send(r), t.show()
         }, $("#funcWC").click(function(e) {
-            if($('#funcPower').attr('data-power')==2){
+            if($('#funcPower').data('power')==2){
                  var n = '(@devcall "{tid}" (controlWC {args}) (lambda (x) x))'.replace("{tid}", tid), 
                  a = 1 === parseInt($(this).data("wc")) ? 2 : 1,
                   r = n.replace("{args}", a);
@@ -517,7 +543,9 @@ ws.onmessage = function(e) {
            
             
         }), $("#funcUV").click(function(e) {
-            var n = '(@devcall "{tid}" (controlUV {args}) (lambda (x) x))'.replace("{tid}", tid), a = 1 == parseInt($(this).data("uv")) ? 0 : 1, r = n.replace("{args}", a);
+            var n = '(@devcall "{tid}" (controlUV {args}) (lambda (x) x))'.replace("{tid}", tid),
+             a = 1 == parseInt($(this).data("uv")) ? 0 : 1,
+              r = n.replace("{args}", a);
             console.debug("[CODE] " + r), ws.send(r), t.show()
         }),
          $("#funcH").bind('touchmove',function(){
@@ -533,24 +561,48 @@ ws.onmessage = function(e) {
             console.debug("[CODE] " + a),
              ws.send(a), t.show(); 
         }), $("#funcTime").change(function(e) {
-            var n = '(@devcall "{tid}" (controlSetTime {args}) (lambda (x) x))'.replace("{tid}", tid), a = $("#timers").data("mode"), r = $("#funcTime").val(), o = a + " " + r, i = n.replace("{args}", o);
-            console.debug("[CODE] " + i), ws.send(i), t.show(), $("#timerLabel").text(getTimerLabel(a, r))
+            var n = '(@devcall "{tid}" (controlSetTime {args}) (lambda (x) x))'.replace("{tid}", tid), 
+            a = $("#timers").data("mode"), 
+            r = $("#funcTime").val(),
+             o = a + " " + r, 
+             i = n.replace("{args}", o);
+            console.debug("[CODE] " + i), ws.send(i),
+             t.show(), 
+             $("#timerLabel").text(getTimerLabel(a, r))
         }), $("#timers>button").click(function(e) {
-            var t = $("#timers>button").index(this) + 2, n = $("#funcTime").val();
-            timerModeSwitchable(t) && ($("#timers>button").addClass("off"), $(this).removeClass("off"), $("#timers").data("mode", t), $("#timerLabel").text(getTimerLabel(t, n)))
+            var m = $("#timers>button").index(this) + 2, 
+            n = $("#funcTime").val();
+           if(timerModeSwitchable(m)){
+                $("#timers>button").addClass("off"), 
+                $(this).removeClass("off"), 
+                $("#timers").data("mode", m),
+                 $("#timerLabel").text(getTimerLabel(m, n)),
+                 e = '(@devcall "{tid}" (controlSetTime args 2) (lambda (x) x))'.replace("{tid}", tid),
+                i=e.replace("args",m),
+                console.debug("[CODE] " + i), 
+                ws.send(i),
+                 t.show()
+           }   
+                 
         }), $("#cancleButton").click(function() {
             var e = '(@devcall "{tid}" (controlSetTime 1 0) (lambda (x) x))'.replace("{tid}", tid);
             console.debug("[CODE] " + e), ws.send(e), t.show()
-        }), $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1}), window.getTimerLabel = function(t, n) {
+        }), $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1}),
+         window.getTimerLabel = function(t, n) {
             switch (t) {
                 case 1:
                     return e("panel.timerLabel.cancle");
+                    break;
                 case 2:
                     return e("panel.timerLabel.on", {hour: n});
+                    break;
                 case 3:
                     return e("panel.timerLabel.uvOn", {hour: n});
+                    break;
                 case 4:
-                    return e("panel.timerLabel.off", {hour: n})
+                    return e("panel.timerLabel.off", {hour: n});
+                    break;
+                    default: break;
             }
         }, window.getSpeedText = function(t) {
             return e(2 == t ? "status.speed.high" : "status.speed.low")
@@ -561,16 +613,22 @@ ws.onmessage = function(e) {
         }, window.getWaterText = function(t) {
             return e(1 == t ? "status.water.full" : "status.water.notFull")
         }, window.timerModeSwitchable = function(e) {
-            var t = 1 == $("#funcPower").data("power"), n = !t, a = 0 == $("#funcUV").data("uv");
+            var t = 2 == $("#funcPower").data("power"),
+             n = !t, 
+             a = 0 == $("#funcUV").data("uv");
             switch (e) {
                 case 2:
-                    return t;
+                    return n;
+                    break;
                 case 3:
                     return a;
+                    break;
                 case 4:
-                    return n;
+                    return t;
+                    break;
                 default:
                     return !1
+                    break;
             }
         }
     })
