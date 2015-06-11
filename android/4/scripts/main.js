@@ -507,9 +507,10 @@ var tid = getUrlParam("tid"),
   url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({host: host,user: user,token: token}), 
   ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
-    if(e.data==-1){
-        p.show();
-    }
+    // if(e.data==-1){
+    //     p.show();
+       
+    // }
     console.debug("[RESULT] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
     console.error("[ERROR]")
@@ -521,7 +522,7 @@ ws.onmessage = function(e) {
     i18n.init({detectLngQS: "lang",fallbackLng: "en"}, function(e) {
         $(document).i18n();
         var t = new Toast({message: e("toast.message")});
-        p=new Toast({message: e("toast.equiment-off-line")});
+        // p=new Toast({message: e("toast.equiment-off-line")});
         $("#back").click(function(e) {
             console.debug("[EVENT] back button clicked"), window.close()
         }), $("#funcPower").click(function(e) {
