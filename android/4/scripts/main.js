@@ -505,8 +505,7 @@ var tid = getUrlParam("tid"),
  token = getUrlParam("access_key"), 
  user = getUrlParam("user") || randomString(10),
   url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({host: host,user: user,token: token}), 
-  ws = new ReconnectingWebSocket(url),
-  g_msgEntity_fade=undefined;
+  ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
     console.debug("[RESULT] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
