@@ -507,6 +507,9 @@ var tid = getUrlParam("tid"),
   url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({host: host,user: user,token: token}), 
   ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
+    if(e.data==-1){
+        p.show();
+    }
     console.debug("[RESULT] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
     console.error("[ERROR]")
@@ -518,6 +521,7 @@ ws.onmessage = function(e) {
     i18n.init({detectLngQS: "lang",fallbackLng: "en"}, function(e) {
         $(document).i18n();
         var t = new Toast({message: e("toast.message")});
+        p=new Toast({message: e("toast.equiment-off-line")});
         $("#back").click(function(e) {
             console.debug("[EVENT] back button clicked"), window.close()
         }), $("#funcPower").click(function(e) {
@@ -533,7 +537,7 @@ ws.onmessage = function(e) {
             console.debug("[CODE] " + r), 
             ws.send(r), t.show()
         }, $("#funcWC").click(function(e) {
-            if($('#funcPower').data('power')==2){
+            if($('#funcF').data('power')==2||$('#funcUV').data('uv')==1){
                  var n = '(@devcall "{tid}" (controlWC {args}) (lambda (x) x))'.replace("{tid}", tid), 
                  a = 1 === parseInt($(this).data("wc")) ? 2 : 1,
                   r = n.replace("{args}", a);
@@ -614,16 +618,17 @@ ws.onmessage = function(e) {
         }, window.timerModeSwitchable = function(e) {
             var t = 2 == $("#funcPower").data("power"),
              n = !t, 
-             a = 0 == $("#funcUV").data("uv");
+             a = 0 == $("#funcUV").data("uv"),
+             b=!a;
             switch (e) {
                 case 2:
-                    return n;
+                    return n&&a;
                     break;
                 case 3:
                     return a;
                     break;
                 case 4:
-                    return t;
+                    return t||b;
                     break;
                 default:
                     return !1

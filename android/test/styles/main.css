@@ -52,6 +52,17 @@ html,body{
 }
 #head #back{
   display: block;
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  max-height: 100%;
+  max-width: 100px;
+  top: 50%;
+  left: 0;
+  margin:-20px 0 0 0;
+}
+#head #backimg{
+  display: block;
   width: 17px;
   height: 31px;
   position: absolute;

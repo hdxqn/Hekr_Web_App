@@ -46,7 +46,8 @@
     }
   },
   "toast":{
-    "message":"Command Sent"
+    "message":"Command Sent",
+    "equiment-off-line":"Off-line equipment"
   },
   "modal":{
     "text":"Connecting..."

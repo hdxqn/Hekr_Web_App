@@ -54,12 +54,23 @@ body{
 }
 #head #back{
   display: block;
-  width: 11px;
-  height: 20px;
   position: absolute;
-  top: 0;
+  width: 100px;
+  height: 40px;
+  max-height: 100%;
+  max-width: 100px;
+  top: 50%;
   left: 0;
-  margin: 10px 24.5px 10px 24.5px;
+  margin:-20px 0 0 0;
+}
+#head #backimg{
+  display: block;
+  width: 17px;
+  height: 31px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin: -15px 0 0 20px;
 }
 #head #logo{
   display:block;

@@ -70,13 +70,14 @@ function send(){
 		console.debug("[CODE] "+code);
 		ws.send(code);
 	}else{
-		$('#remindMes').animate({
+		if($('#remindMes').css('opacity')<0.1){
+			$('#remindMes').animate({
 			opacity:1
 		},1500);
 		$('#remindMes').animate({
 			opacity:0
 		},1500);
-		
+		}	
 	}
 	
 }
@@ -87,31 +88,33 @@ function  receiveState(j,i){
 		$('#receiveText').val(i);
 	}
 //i为返回的接收信息
-	if(j){
-		console.log(j);
+	if(j>=0){
 		$('#showNum').text(j);
+		$('#slider').val(j);
 		var ret=0.2+(0.8*j/100);
 		$('#bulb').attr('data',ret);
 		$('#bulb').css('opacity',ret);
-		$('#slider').val(j);
+		
 
 	}
 //j为接受到的亮度
 }
 
 function slider(){
-	showSlider();
+	// showSlider();
 	$('#slider').bind(touchEvents.touchmove,showSlider);
+	$('#slider').bind(touchEvents.touchstart,showSlider);
 }
 
 function showSlider(){
-	$('#showNum').text($('#slider').val());
-	var ret=0.2+(0.8*$('#slider').val()/100);
+	$('#showNum').text($(this).val());
+	var ret=0.2+(0.8*$(this).val()/100);
 	$('#bulb').css('opacity',ret);
 }
 
 function sendSlider(){
-	$('#slider').unbind(touchEvents.touchmove);
+	$(this).unbind(touchEvents.touchmove);
+	$(this).bind(touchEvents.touchstart);
 	$('#showNum').text('--');
 	var ret=$('#bulb').attr('data');
 	$('#bulb').css('opacity',ret);
@@ -183,9 +186,10 @@ ws.onclose = function() {
   console.error("[CLOSED]");
 }
 window.changestate=function(data){
+	receiveState(data.brightness,data.uartdata);
 	console.debug('[DATA]'+data);
 	console.debug('[DATA.UARTDATA]'+data.uartdata);
 	console.debug('[DATA.BRIGHTNESS]'+data.brightness)
-	receiveState(data.brightness,data.uartdata);
+
 }
 

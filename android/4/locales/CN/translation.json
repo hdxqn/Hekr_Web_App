@@ -46,7 +46,8 @@
     }
   },
   "toast":{
-    "message":"命令已发送"
+    "message":"命令已发送",
+    "equiment-off-line":"设备已离线"
   },
   "modal":{
     "text":"拼命连接中..."
