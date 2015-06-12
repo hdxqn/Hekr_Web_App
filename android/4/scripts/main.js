@@ -515,7 +515,8 @@ ws.onmessage = function(e) {
 }, ws.onerror = function() {
     console.error("[ERROR]")
 }, ws.onopen = function() {
-    console.debug("[CONNECTED]"), ws.send('(get-state "{tid}")'.format({tid: tid})), $.modal.close()
+    console.debug("[CONNECTED]"), ws.send('(get-state "{tid}")'.format({tid: tid})), 
+     $.modal.close()
 }, ws.onclose = function() {
     console.error("[CLOSED]")
 }, $(function() {
