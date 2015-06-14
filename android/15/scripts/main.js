@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	$("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
 	touchEvents={};
 	browserRedirect(touchEvents);
 	$('#sendBtn').bind(touchEvents.touchend,send);
@@ -19,6 +19,7 @@ $(document).ready(function(){
 		$('#url').toggle();
 		$('#loginfo').hide();
 	})
+	
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -199,6 +200,7 @@ ws.onerror = function() {
 
 ws.onopen = function() {
   console.debug("[CONNECTED]");
+  $.modal.close();
    ws.send('(get-state "{tid}")'.format({tid:tid}));
 }
 ws.onclose = function() {

@@ -5,6 +5,7 @@
      if (r != null) return unescape(r[2]);
      return null;
  }
+  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
 
  var toast = new Toast({
      message: "指令已发送"
@@ -31,6 +32,7 @@ ws.onerror=function(){
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
+	$.modal.close();
 	ws.send('(get-state "{tid}")'.replace("{tid}",tid));
 };
 ws.onclose=function(){

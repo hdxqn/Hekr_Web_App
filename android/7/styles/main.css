@@ -273,3 +273,11 @@ body {
 	border-style: solid dashed dashed;
 	border-color: transparent transparent rgba(0,0,0,.1)
 }
+.modal{
+  background:0 0;
+  -webkit-box-shadow: 0 0 10px #000;
+-moz-box-shadow: 0 0 10px #000;
+-o-box-shadow: 0 0 10px #000;
+-ms-box-shadow: 0 0 10px #000;
+box-shadow: 0 0 10px #000;
+}
