@@ -77,6 +77,9 @@ if (typeof UARTDATA !== 'object') {
 			frame+=frame_data;
 			frame+=get_check_code(frame,0)
 			frame_num++;
+			if(frame_num>0xff){
+				frame_num=0;
+			}
 			return frame; 
         };
     }
