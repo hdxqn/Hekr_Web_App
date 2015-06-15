@@ -18,25 +18,46 @@ abbr, acronym {border: 0;}
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   /*设置该属性表示，不希望任何元素生产的填充或边框影响盒子的大小*/ 
+   -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
-html,body{height:100%}
+html{
+  height:100%;
+ 
+}
 body{
-  background:#fafafa;
+  height:100%;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   margin:0;
   color:#FFF;
   text-shadow:1px 1px 0 rgba(0,0,0,.2)
 }
 .main{
-  height:180%;
+  height:auto;
   background:linear-gradient(#605DA1,#66ADC0);
   }
 .main .head{
-  height: 50px;
+  height: 70px;
   width: 100%;
   position: relative;
-  padding: 10px 0 0 20px;
   overflow: hidden;
+}
+.main .head #addtoucharea{
+  width: 70px;
+  height: 40px;
+  position: relative;
+}
+.main .head #addtoucharea img{
+  display: block;
+  width: 11px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -5.5px;
 }
 .main .head span{
   display: block;
@@ -44,28 +65,28 @@ body{
   top: 50%;
   left: 50%;
   width: 80px;
-  height: 30px;
-  line-height: 30px;
+  height: 20px;
+  line-height: 20px;
   font-size: 25px;
   text-align: center;
-  margin:-15px 0 0 -40px;
+  margin:-25px 0 0 -40px;
 }
 .main .circle{
   width: 250px;
   height: 250px;
-  background:linear-gradient(#CFA757,#CFAB59,#C4AD68);
-  margin:90px auto;
+  background:linear-gradient(#8189B9,#8298BE,#83A6C4);
+  margin:0 auto;
   border-radius: 50%;
   position: relative;
 }
 .main .circle #logo{
   display: block;
   position: absolute;
-  top: 50%;
+  bottom: 50%;
   left: 50%;
   width: 162px;
   height: 42px;
-  margin: -21px 0 0 -81px;
+  margin: 0 0 0 -81px;
 }
 .main .circle #power-on{
   display: block;
@@ -79,13 +100,20 @@ body{
   left: 50%;
   margin-left: -45px;
 }
-.main .power{
+.main #powerContainer{
+  width: 100%;
+  height: 80px;
+  position: relative;
+}
+.main #powerContainer .power{
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 58px;
   height:58px;
   border-radius: 50%;
   border: 2px solid #FEFEFE;
-  position: relative;
-  margin: 0 auto;
+  margin: -29px 0 0 -29px;
   opacity: 0.2;
   cursor: pointer;
 }
@@ -118,14 +146,17 @@ body{
   width: 80%;
   height:auto;
   margin: 0 auto;
-  padding: 60px 0 0 0;
-
 }
 .main ul li{
   display: block;
   width: 100%;
+  height: 60px;
+}
+.main ul li:nth-child(5){
+  height: 20px;
+}
+.main ul .useful{
   height: 100px;
-  margin:30px 0;
   background-color: #5B94A9;
   position: relative;
   border-radius: 6px;
@@ -134,31 +165,7 @@ body{
     -moz-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
     -o-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
 }
-.main ul li:nth-child(3){
-  text-align: center;
-  width: 100%;
-  height:40px;
-  background-color: transparent;
-  margin:0 0 -30px 0;
-  box-shadow: none;
-  -webkit-box-shadow:none;
-    -moz-box-shadow:none;
-    -o-box-shadow:none;
-}
 
-.main ul li:nth-child(3) .clock{
-  display:inline-block;
-  border: 1px solid #fff;
-  margin:0 50px 0 50px;
-  width: 80px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.main ul li:nth-child(3) .clock:nth-child(2){
-  opacity: 0.2;
-}
 .main ul li .timer{
   display: block;
   margin: 0 auto;
@@ -212,4 +219,44 @@ body{
   transition:background .15s ease-in-out;
   box-shadow:0 0 4px 4px rgba(0,0,0,.2);
   border:none
+}
+
+.popup{
+  width:100%;
+  padding:10px 0 20px;
+}
+.seprator{
+  margin:0;
+  border-width:1px 0 0 0;
+}
+.panel{
+  background-color:rgba(0,0,0,.1);
+  border-radius:5px;
+  width:90%;
+  height:125px;
+  margin:auto;
+  position:relative;
+}
+.fill{
+  width:100%;
+  height:100%;
+}
+.supper-center{
+  display:-webkit-flex;
+  display:flex;
+  vertical-align:baseline;
+  text-align:center;
+}
+.supper-center div,
+.supper-center span,
+.supper-center img{
+  margin:auto; 
+}
+.modal{
+  background:0 0;
+  -webkit-box-shadow: 0 0 10px #000;
+-moz-box-shadow: 0 0 10px #000;
+-o-box-shadow: 0 0 10px #000;
+-ms-box-shadow: 0 0 10px #000;
+box-shadow: 0 0 10px #000;
 }

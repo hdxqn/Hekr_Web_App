@@ -507,10 +507,6 @@ var tid = getUrlParam("tid"),
   url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({host: host,user: user,token: token}), 
   ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
-    // if(e.data==-1){
-    //     p.show();
-       
-    // }
     console.debug("[RESULT] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
     console.error("[ERROR]")
@@ -527,10 +523,22 @@ ws.onmessage = function(e) {
         $("#back").click(function(e) {
             console.debug("[EVENT] back button clicked"), window.close()
         }), $("#funcPower").click(function(e) {
+            if(($('#funcMode').data('mode')==3)&&($('#funcUV').data('uv')==1)){
+              var n = '(@devcall "{tid}" (control 1 255 0 255 255 255)(lambda (x) x))'.replace("{tid}", tid);
+                console.debug("[CODE] " + n); ws.send(n); t.show();
+                return;
+            };
+            if(($('#funcPower').data('power')==0)&&($('#funcUV').data('uv')==1)){
+               var n = '(@devcall "{tid}" (control 2 255 255 255 1 0)(lambda (x) x))'.replace("{tid}", tid);
+                console.debug("[CODE] " + n); ws.send(n); t.show();
+                return;
+            };
             var n = '(@devcall "{tid}" (controlModel {args}) (lambda (x) x))'.replace("{tid}", tid),
              a = $(this).data("power"), r = toggle12(a),
               o = n.replace("{args}", r);
-            console.debug("[CODE] " + o), ws.send(o), t.show()
+            console.debug("[CODE] " + o); ws.send(o); t.show();
+            
+
         }), window.onFuncMode = function() {
             var e = '(@devcall "{tid}" (controlModel {args}) (lambda (x) x))'.replace("{tid}", tid), 
             n = $("#funcMode").data("mode"), 
@@ -539,7 +547,8 @@ ws.onmessage = function(e) {
             console.debug("[CODE] " + r), 
             ws.send(r), t.show()
         }, $("#funcWC").click(function(e) {
-            if($('#funcF').data('power')==2||$('#funcUV').data('uv')==1){
+
+            if($('#funcPower').data('power')==2||$('#funcUV').data('uv')==1){
                  var n = '(@devcall "{tid}" (controlWC {args}) (lambda (x) x))'.replace("{tid}", tid), 
                  a = 1 === parseInt($(this).data("wc")) ? 2 : 1,
                   r = n.replace("{args}", a);
@@ -627,7 +636,7 @@ ws.onmessage = function(e) {
                     return n&&a;
                     break;
                 case 3:
-                    return a;
+                    return a&&n;
                     break;
                 case 4:
                     return t||b;

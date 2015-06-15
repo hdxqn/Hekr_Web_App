@@ -1,28 +1,42 @@
-$(document).ready(function(){
-	$(".power").bind({click:power,touchend:power});
-	$(".clock").bind({click:timer,touchend:timer});
-	$(".slider").bind({mouseup:setValue,mousemove:setValue,touchend:setValue,touchmove:setValue});
-	var documentWidth=window.screen.availWidth;
-	var documentHeight=window.screen.availHeight;
-	init();
-	function init(){
-		if(documentWidth>500){return;}else if(documentWidth<500){
-			$('.clock').css({
-				marginLeft:10,
-				marginRight:10
-			});
-			if(documentHeight<520){
-				$('.main').css('height',documentHeight*2.5);
-			console.log(documentHeight);
-			}else if(documentHeight<570){
-				$('.main').css('height',documentHeight*2);
-			console.log(documentHeight);
-			}
-			
-		}
-	}
 
-	function power(){
+$(document).ready(function(){
+	$("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+	touchEvents={};
+	browserRedirect(touchEvents);
+	$(".power").bind(touchEvents.touchend,power);
+	$("#brightness").bind(touchEvents.touchstart,showBrightness);
+	$("#brightness").bind(touchEvents.touchend,sendBrightness);
+	
+})
+
+
+function browserRedirect(obj) {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+         
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+         obj.touchstart="touchstart";
+            obj.touchmove= "touchmove";
+            obj.touchend= "touchend";
+         
+    } else {
+        
+                obj.touchstart = "mousedown";
+                obj.touchmove = "mousemove";
+                obj.touchend = "mouseup";
+         
+    }
+ }
+
+
+ function power(){
 		var on=$(this).css('opacity');
 		if(on<0.5){
 		$(this).animate({
@@ -51,60 +65,24 @@ $(document).ready(function(){
 	}
 	//开关点击效果
 
-	function timer(){
-		var on=$(this).css('opacity');
-		while(on<0.5){
-			$(".clock").css('opacity','0.2');
-			$(this).animate({
-				opacity:1
-			},200);
-		if($('.clock').eq(0).css('opacity')>0.5){
-			var code = '(@devcall "{tid}" (controltimer 1) (lambda (x) x))'.replace("{tid}", tid);
+function showBrightness(){
+	$('#showBrightness').text($(this).val()+'--');
+	$(this).bind(touchEvents.touchmove,moveSlider);
+}
+function moveSlider(){
+	$('#showBrightness').text($(this).val()+'--');
+}
+function sendBrightness(){
+	$(this).unbind(touchEvents.touchmove,moveSlider);
+	$('#showBrightness').text('--');
+	var i=$(this).val(),
+		code = '(@devcall "{tid}" (controlpower 1) (lambda (x) x))'.replace("{tid}", tid);
 
-			ws.send(code);
-		}else if($('.clock').eq(0).css('opacity')<0.5){
-			var code = '(@devcall "{tid}" (controltimer 0) (lambda (x) x))'.replace("{tid}", tid);
+		ws.send(code);
 
-			ws.send(code);
-		}
-		
-
-			return;
-		}
-		
-	}
-	//定时开关效果
-	function setValue(){
-		var id=$(this).attr('id');
-		switch(id){
-			case 'timer':
-			$('.timer i').text($(this).val());
-			var code = '(@devcall "{tid}" (controltimer 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
-
-			ws.send(code);
-
-			//定时器改变
-			break;
-			case 'brightness':
-			$('.timer').eq(0).text($(this).val()+'%');
-			//亮度调节改变
-			var code = '(@devcall "{tid}" (controlbrightness 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
-
-			ws.send(code);
-			break;
-			case 'temperature':
-			//色温调节改变
-			var code = '(@devcall "{tid}" (controltemperature 1{0}.format($(this).val());) (lambda (x) x))'.replace("{tid}", tid);
-
-			ws.send(code);
-			break;
-			default:
-			break;
-		}
-	}
+}
 
 
-})
 
 
 var tid = getUrlParam("tid");
