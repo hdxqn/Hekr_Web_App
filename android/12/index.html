@@ -34,7 +34,7 @@
 		<li class="useful">
 			<span class="brightness">亮度</span>
 			<span class="timer" id="showBrightness">--</span>
-			<span class="timer-num">&nbsp;0<input  type=range id="brightness" class="slider" value=0 min=40 max=80>100</span>
+			<span class="timer-num">&nbsp;0<input  type=range id="brightness" class="slider" value=0 min=1 max=100>100</span>
 		</li>
 
 		<li></li>
@@ -42,7 +42,7 @@
 		<li class="useful">
 		    <span class="temperature">色温</span>
 			<span class="timer" style="opacity:0;">色温</span>
-			<span class="timer-num">暖<input type=range id="temperature" class="slider" value=0 min=0 max=23>冷</span>
+			<span class="timer-num">冷<input type=range id="temperature" class="slider" value=0 min=0 max=255>暖</span>
 		</li>
 
 		<li></li>
@@ -64,6 +64,7 @@
     <script src="scripts/reconnecting-websocket.js"></script>
     <script src="scripts/util.js"></script>
     <script src="scripts/i18n.js"></script>
+	<script src="scripts/UARTDATA.js"></script>
 	<script src="scripts/main.js"></script>
 </body>
 </html>

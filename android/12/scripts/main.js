@@ -7,6 +7,9 @@ $(document).ready(function(){
 	$("#brightness").bind(touchEvents.touchstart,showBrightness);
 	$("#brightness").bind(touchEvents.touchend,sendBrightness);
 	
+	$("#temperature").bind(touchEvents.touchend,sendTemperature);
+	
+	
 })
 
 
@@ -39,14 +42,18 @@ function browserRedirect(obj) {
  function power(){
 		var on=$(this).css('opacity');
 		if(on<0.5){
-		$(this).animate({
-				opacity:1
-			},200,function(){
-				$(".circle b").text("开");
-			});
-		var code = '(@devcall "{tid}" (controlpower 1) (lambda (x) x))'.replace("{tid}", tid);
+			$(this).animate({
+					opacity:1
+				},200,function(){
+					$(".circle b").text("开");
+				});
+			var frame=set_power(1);
+			var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+					tid:tid,
+					args:frame
+					});
 
-		ws.send(code);
+			ws.send(code);
 
 		//开关开启
 		}else if(on>0.5){
@@ -56,7 +63,11 @@ function browserRedirect(obj) {
 				$(".circle b").text("关");
 			});
 
-		var code = '(@devcall "{tid}" (controlpower 0) (lambda (x) x))'.replace("{tid}", tid);
+			var frame=set_power(0);
+			var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+					tid:tid,
+					args:frame
+					});
 
 		ws.send(code);
 
@@ -66,23 +77,98 @@ function browserRedirect(obj) {
 	//开关点击效果
 
 function showBrightness(){
-	$('#showBrightness').text($(this).val()+'%');
+	$('#showBrightness').text($(this).val()+"%");
 	$(this).bind(touchEvents.touchmove,moveSlider);
 }
 function moveSlider(){
-	$('#showBrightness').text($(this).val()+'%');
+	$('#showBrightness').text($(this).val()+"%");
 }
 function sendBrightness(){
 	$(this).unbind(touchEvents.touchmove,moveSlider);
 	$('#showBrightness').text('--');
-	var i=$(this).val(),
-		code = '(@devcall "{tid}" (controlpower 1) (lambda (x) x))'.replace("{tid}", tid);
+	
+	
+	var i=$(this).val();
+	var frame=set_brightness(i);
+	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+			tid:tid,
+			args:frame
+			});
 
+	
+		ws.send(code);
+
+}
+
+function sendTemperature(){
+ 
+ 
+	var i=$(this).val();
+	var frame=set_temperature(i);
+	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+			tid:tid,
+			args:frame
+			});
+
+	
 		ws.send(code);
 
 }
 
 
+ 
+function set_power(value){
+//value: 1 open;2 close;
+	if(typeof(value)=="number"){
+		value = UARTDATA.hex2str(value);
+	}else{
+		value = parseInt(value,10);
+		value = UARTDATA.hex2str(value);
+	}
+	var data=value+"00000000000000"
+	var frame=UARTDATA.encode(0x02,data);
+
+ 
+	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+	
+	return frame;
+}
+
+
+function set_brightness(value){
+	if(typeof(value)=="number"){
+		value = UARTDATA.hex2str(value);
+	}else{
+		value = parseInt(value,10);
+		value = UARTDATA.hex2str(value);
+	}
+	var data="0301"+value+"0000000000"
+	var frame=UARTDATA.encode(0x02,data);
+ 
+	console.log("set_brightness :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+	
+	return frame;
+}
+
+
+function set_temperature(value){
+	if(typeof(value)=="number"){
+		value = UARTDATA.hex2str(value);
+	}else{
+		value = parseInt(value,10);
+		value = UARTDATA.hex2str(value);
+	}
+	var data="060100"+value+"00000000"
+	var frame=UARTDATA.encode(0x02,data);
+
+	console.log("set_temperature :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+	
+	return frame;
+}
+
+function format_frame(frame){ 
+	console.log("frame:"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+}
 
 
 var tid = getUrlParam("tid");
