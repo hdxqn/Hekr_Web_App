@@ -1,6 +1,13 @@
 /*
 HEKR UARTDATA Protocol analysis
+ 
+ 
+ 智能灯光示例帧：		
+ 0x48	0x0B	0x02	0x00	
 
+ 0x01	0x00	0x64	0x00	0x00	0x00	0x00	0x00
+
+ 0XBA
 
 */
 
@@ -69,17 +76,8 @@ if (typeof UARTDATA !== 'object') {
 			frame+=hex2str(frame_num);
 			frame+=frame_data;
 			frame+=get_check_code(frame,0)
-
-			return frame
-/*			
- 0x48	0x0B	0x02	0x00	
-
- 0x01	0x00	0x64	0x00	0x00	0x00	0x00	0x00
-
- 0XBA
-*/
 			frame_num++;
-            return str;
+			return frame; 
         };
     }
 
@@ -87,12 +85,24 @@ if (typeof UARTDATA !== 'object') {
 
 
     if (typeof UARTDATA.decode !== 'function') {
-        UARTDATA.decode = function (text, reviver) {
- 
-            var j;
+        UARTDATA.decode = function (frame) {
 
-
-            throw new SyntaxError('JSON.parse');
+			var data="";
+			if(frame.length<10){
+				return ''
+			}
+			
+			//校验合法性
+			var frame_check_code=get_check_code(frame,1);
+			
+			if(frame[frame.length-1]==frame_check_code[frame_check_code.length-1]){
+				data=frame.substring(8, frame.length-2)				
+				//48 0B 02 00 03 01 35 00 00 00 00 00 46 
+			}
+			
+			return data
+			
+            //throw new SyntaxError('JSON.parse');
         };
     }
 }());

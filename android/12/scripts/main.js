@@ -205,3 +205,5 @@ ws.onclose = function() {
   console.error("[CLOSED]");
 }
 
+
+//console.log(UARTDATA.decode("480B0200030135000000000046"))
