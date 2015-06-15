@@ -523,13 +523,13 @@ ws.onmessage = function(e) {
         $("#back").click(function(e) {
             console.debug("[EVENT] back button clicked"), window.close()
         }), $("#funcPower").click(function(e) {
-            if(($('#funcMode').data('mode')==3)&&($('#funcUV').data('uv')==1)){
+            if(($('#funcMode').data('mode')!=1)&&($('#funcUV').data('uv')==1)){
               var n = '(@devcall "{tid}" (control 1 255 0 255 255 255)(lambda (x) x))'.replace("{tid}", tid);
                 console.debug("[CODE] " + n); ws.send(n); t.show();
                 return;
             };
             if(($('#funcPower').data('power')==0)&&($('#funcUV').data('uv')==1)){
-               var n = '(@devcall "{tid}" (control 2 255 255 255 1 0)(lambda (x) x))'.replace("{tid}", tid);
+               var n = '(@devcall "{tid}" (control 2 255 0 255 1 0)(lambda (x) x))'.replace("{tid}", tid);
                 console.debug("[CODE] " + n); ws.send(n); t.show();
                 return;
             };
