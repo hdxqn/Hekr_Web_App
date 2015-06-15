@@ -66,11 +66,11 @@ function browserRedirect(obj) {
 	//开关点击效果
 
 function showBrightness(){
-	$('#showBrightness').text($(this).val()+'--');
+	$('#showBrightness').text($(this).val()+'%');
 	$(this).bind(touchEvents.touchmove,moveSlider);
 }
 function moveSlider(){
-	$('#showBrightness').text($(this).val()+'--');
+	$('#showBrightness').text($(this).val()+'%');
 }
 function sendBrightness(){
 	$(this).unbind(touchEvents.touchmove,moveSlider);
