@@ -3,6 +3,9 @@ $(document).ready(function(){
 	$("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
 	touchEvents={};
 	browserRedirect(touchEvents);
+	$('#addtoucharea').bind(touchEvents.touchstart,function(){
+		window.close();
+	});
 	$("#power").bind(touchEvents.touchend,power);
 	$("#brightness").bind(touchEvents.touchstart,showBrightness);
 	$("#brightness").bind(touchEvents.touchend,sendBrightness);
@@ -67,13 +70,14 @@ function browserRedirect(obj) {
 	//开关点击效果
 
 function setPowerState(e){
-	if(e==1){
+	var i=$('#power').attr('data');
+	if(e==1&&e!=i){
 		$('#power').attr('data',e);
 		$('#power').css('opacity','1');
 		$(".circle b").text("开");
 
 				
-	}else if(e==2){
+	}else if(e==2&&e!=i){
 		$('#power').attr('data',e);
 		$('#power').css('opacity','0.2');
 		$(".circle b").text("关");
@@ -107,6 +111,10 @@ function sendBrightness(){
 function setBrightnessState(e){
 	$('#brightness').attr('data',e);
 	$('#brightness').val(e);
+	$('#showBrightness').text(e+'%');
+	if(e>0){
+		setPowerState(1);
+	}
 }
 
 

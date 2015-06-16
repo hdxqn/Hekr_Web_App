@@ -529,7 +529,7 @@ ws.onmessage = function(e) {
                 return;
             };
             if(($('#funcPower').data('power')==0)&&($('#funcUV').data('uv')==1)){
-               var n = '(@devcall "{tid}" (control 2 255 255 255 1 0)(lambda (x) x))'.replace("{tid}", tid);
+               var n = '(@devcall "{tid}" (control 2 255 255 255 1 2)(lambda (x) x))'.replace("{tid}", tid);
                 console.debug("[CODE] " + n); ws.send(n); t.show();
                 return;
             };
