@@ -25,8 +25,8 @@ abbr, acronym {border: 0;}
   -webkit-tap-highlight-color:transparent;
 }
 html{
-  height:100%;
- 
+  background:linear-gradient(#605DA1,#66ADC0); 
+
 }
 body{
   height:100%;
@@ -34,10 +34,10 @@ body{
   margin:0;
   color:#FFF;
   text-shadow:1px 1px 0 rgba(0,0,0,.2)
-}
+}center
 .main{
-  height:auto;
-  background:linear-gradient(#605DA1,#66ADC0);
+  height:100%;
+ 
   }
 .main .head{
   height: 70px;
@@ -105,7 +105,7 @@ body{
   height: 80px;
   position: relative;
 }
-.main #powerContainer .power{
+.main #powerContainer #power{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -117,7 +117,7 @@ body{
   opacity: 0.2;
   cursor: pointer;
 }
-.main .power img{
+.main #power img{
   position: absolute;
   left: 50%;
   top: 50%;
@@ -127,7 +127,7 @@ body{
   max-width: 100%;
   max-height: 100%;
 }
-.main .power:after{
+.main #power:after{
   content: '开关';
 
   width: 70px;
@@ -157,13 +157,13 @@ body{
 }
 .main ul .useful{
   height: 100px;
-  background-color: #5B94A9;
+  background-color: rgba(0,0,0,0.1);
   position: relative;
   border-radius: 6px;
-  box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+ /* box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
     -webkit-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
     -moz-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
-    -o-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+    -o-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;*/
 }
 
 .main ul li .timer{
@@ -205,9 +205,18 @@ body{
   -webkit-appearance:none;
   height:6px;
   border-radius:5px;
-  background:#ccc;
   outline:none;
   cursor: pointer;
+}
+#brightness{
+background:-webkit-linear-gradient(to right,#707070,#B2B2B2,#F6F6F7);
+background:-o-linear-gradient(to right,#707070,#B2B2B2,#F6F6F7);
+background:linear-gradient(to right,#707070,#B2B2B2,#F6F6F7);
+}
+#temperature{
+background:-webkit-linear-gradient(to right,#F78D1F,#C3B18F,#B1DAED);
+background:-o-linear-gradient(to right,#F78D1F,#C3B18F,#B1DAED);
+background:linear-gradient(to right,#F78D1F,#C3B18F,#B1DAED);
 }
 .slider::-webkit-slider-thumb{
   -webkit-appearance:none;

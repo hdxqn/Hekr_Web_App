@@ -98,13 +98,18 @@ if (typeof UARTDATA !== 'object') {
 			//校验合法性
 			var frame_check_code=get_check_code(frame,1);
 			
-			if(frame[frame.length-1]==frame_check_code[frame_check_code.length-1]){
+			if(frame[frame.length-1].toUpperCase()==frame_check_code[frame_check_code.length-1].toUpperCase()){
 				data=frame.substring(8, frame.length-2)				
 				//48 0B 02 00 03 01 35 00 00 00 00 00 46 
 			}
 			
-			return data
 			
+			data=data.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,'').split(' ');
+			for(var i in data){ 
+				data[i]=parseInt(data[i],16);	
+			}
+
+			return data
             //throw new SyntaxError('JSON.parse');
         };
     }

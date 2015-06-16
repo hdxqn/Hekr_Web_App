@@ -22,7 +22,7 @@
  	</div>
 
  	<div id="powerContainer">
- 		<div class="power">
+ 		<div id="power" data=2>
  		<img src="images/power.png">
  		</div>
  	</div>
@@ -34,7 +34,7 @@
 		<li class="useful">
 			<span class="brightness">亮度</span>
 			<span class="timer" id="showBrightness">--</span>
-			<span class="timer-num">&nbsp;0<input  type=range id="brightness" class="slider" value=0 min=1 max=100>100</span>
+			<span class="timer-num">&nbsp;0<input  type=range id="brightness" class="slider" value=0 min=1 max=100 data=0>100</span>
 		</li>
 
 		<li></li>
@@ -42,7 +42,7 @@
 		<li class="useful">
 		    <span class="temperature">色温</span>
 			<span class="timer" style="opacity:0;">色温</span>
-			<span class="timer-num">冷<input type=range id="temperature" class="slider" value=0 min=0 max=255>暖</span>
+			<span class="timer-num">冷<input type=range id="temperature" class="slider" value=0 min=0 max=255 data=0>暖</span>
 		</li>
 
 		<li></li>

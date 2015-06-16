@@ -403,7 +403,7 @@ LambdaTM.LispEval.eval_func_args = function(env, code) {
     var current = root;
     for (var c = code;;) {
         var r = LambdaTM.LispEval.lisp_eval(env, c.car);
-        if (r instanceof LambdaTM.Error) {
+        if (r instanceof LambdaTM.Error) {6
             return r;
         }
         current.car = r;
