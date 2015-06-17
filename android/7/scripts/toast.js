@@ -28,6 +28,7 @@ Toast.prototype = {
 	},
 
 	show :function(){
+		msgEntity.stop(true);
 		msgEntity.fadeIn(this.time/2);
 		msgEntity.fadeOut(this.time/2);
 	}

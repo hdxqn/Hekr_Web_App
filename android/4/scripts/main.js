@@ -476,10 +476,10 @@ Toast.prototype = {init: function() {
         msgEntity.css({position: "fixed",bottom: n,"z-index": "99",left: t,"background-color": "#000000",color: "white","font-size": "14px",padding: "5px",margin: "0px","border-radius": "2px"}), msgEntity.hide()
     },
     show: function() {
-        if(msgEntity.css("display") == "none"){
+            msgEntity.stop(true);
             msgEntity.fadeIn(this.time / 2);
             msgEntity.fadeOut(this.time / 2) ;  
-        }
+        
        
     }}, String.prototype.format = function(e) {
     if (arguments.length > 0) {
