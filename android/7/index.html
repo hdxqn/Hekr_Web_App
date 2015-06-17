@@ -15,18 +15,18 @@
      <img src="images/back.png" />
     </div> 
     <div class="title supper-center">
-     <span>插座</span>
+     <span data-i18n="socket"></span>
     </div> 
    </div> 
    <div class="banner"> 
     <div class="status center"> 
      <img class="logo" src="images/logo.png" /> 
      <div class="desc"> 
-      <p>当前状态</p> 
-      <p id="powerState">关</p> 
+      <p data-i18n="state"></p> 
+      <p id="powerState" data-i18n="off"></p> 
       <span id="time1">0</span>
-      <span>h后</span>
-      <span id="timerState1">关闭</span> 
+      <span data-i18n="timer"></span>
+      <span id="timerState1" data-i18n="shutDown"></span> 
      </div> 
     </div> 
    </div> 
@@ -38,22 +38,22 @@
         <img class="icon" src="images/power.png" />
        </div> 
       </div> 
-      <p class="label">开关</p> 
+      <p class="label" data-i18n="power"></p> 
      </div> 
     </div> 
    </div> 
    <div class="popup"> 
     <div class="supper-center"> 
      <div class="tab"> 
-      <button class="kuang">定时</button> 
+      <button class="kuang" data-i18n="timing">定时</button> 
      </div> 
     </div> 
     <div class="panel tag"> 
      <div class="harf supper-center"> 
       <div> 
        <span id="time2">0</span> 
-       <span>h后</span>
-       <span id="timerState2">关闭</span> 
+       <span data-i18n="timer"></span>
+       <span id="timerState2" data-i18n="shutDown"></span> 
       </div>
      </div>
      <div class="harf slider-panel">
@@ -68,13 +68,15 @@
   <div id="modal" class="popup modal">
         <div class="panel">
             <div class="fill supper-center">
-                <span>拼命链接中...</span>
+                <span data-i18n="connecting">
+                  
+                </span>
             </div>
         </div>
     </div>
 
   <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/jquery.modal.min.js"></script>
+    <script src="scripts/i18n.js"></script>
 
     <script src="scripts/lambdaTM.js"></script>
     <script src="scripts/reconnecting-websocket.js"></script>

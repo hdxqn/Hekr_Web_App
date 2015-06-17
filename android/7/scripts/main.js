@@ -1,3 +1,61 @@
+$(document).ready(function(){
+
+		var lang=getUrlParam('lang');
+	if(lang===null){
+		lang='en-US';
+	}
+
+		i18n.init({
+        "lng": lang,
+        "resStore": resources,
+        "fallbackLng" : 'en'
+   	 }, function (t) {
+        $(document).i18n();
+    	});
+	
+   
+  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+
+
+});
+
+
+
+var resources={
+	"zh-CN":{
+		"translation":{
+			"socket":"插座",
+			"state":"当前状态",
+			"connecting":"拼命连接中...",
+			"off":"关",
+			"on":"开",
+			"shutDown":"关闭",
+			"turnOn":"开启",
+			"timer":"h后",
+			"power":"开关",
+			"timing":"定时",
+			"message":"指令已发送"
+		}
+	},
+	"en-US":{
+		"translation":{
+			"socket":"Outlet",
+			"state":"Current state",
+			"connecting":"connecting...",
+			"off":"off",
+			"on":"on",
+			"shutDown":"shut down",
+			"turnOn":"turn on",
+			"timer":"h to",
+			"power":"Power",
+			"timing":"timer",
+			"message":"sended"
+		}
+	}
+};
+
+
+
 
  function getUrlParam(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -5,10 +63,10 @@
      if (r != null) return unescape(r[2]);
      return null;
  }
-  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+  
 
  var toast = new Toast({
-     message: "指令已发送"
+     message:i18n.t("message")
  });
 
 var tid  = getUrlParam("tid");
@@ -41,12 +99,13 @@ ws.onclose=function(){
 
 $(function(){
 	$("#power").click(function(e){
+
 		var code ='(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
     .replace("{tid}",tid)
     .replace("{args}",isPowerOn()?0:1);
 		console.debug("[CODE] "+code);
 		ws.send(code);
-    toast.show();
+    	toast.show();
 	});
 
 	$("#timer").on("mouseup touchend",function(e){
@@ -57,6 +116,7 @@ $(function(){
 		timerChange(v);
 		console.debug("[CODE] "+code);
 		ws.send(code);
+		toast.show();
 	});
 
   $("#back").click(function(e) {
@@ -73,16 +133,16 @@ var isPowerOn=function(){
 
 var powerOn=function(){
 	$("#power").removeClass("off");
-	$("#powerState").text("开");
-	$("#timerState1").text("关闭");
-	$("#timerState2").text("关闭");
+	$("#powerState").text(i18n.t('on'));
+	$("#timerState1").text(i18n.t('shutDown'));
+	$("#timerState2").text(i18n.t('shutDown'));
 };
 
 var powerOff=function(){
 	$("#power").addClass("off");
-	$("#powerState").text("关");
-	$("#timerState1").text("开启");
-	$("#timerState2").text("开启");
+	$("#powerState").text(i18n.t('off'));
+	$("#timerState1").text(i18n.t('turnOn'));
+	$("#timerState2").text(i18n.t('turnOn'));
 };
 
 

@@ -31,9 +31,9 @@ if (typeof UARTDATA !== 'object') {
 		for(i in frame){ 
 			sum+=parseInt(frame[i],16);	
 		}
-		if(i){
-			sum=sum-0x48;
-		}
+		// if(i){
+		// 	sum=sum-0x48;
+		// }
 		if(option){
 			//console.log(frame[frame.length-1])
 			sum=sum-parseInt(frame[frame.length-1],16);
