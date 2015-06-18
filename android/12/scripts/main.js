@@ -219,8 +219,10 @@ Toast.prototype = {
         var t = null == this.left ? this.context.width() / 2 - msgEntity.find("span").width() / 2 : this.left, n = null == this.bottom ? "20px" : this.bottom;
         msgEntity.css({
         	position: "fixed",
-        	bottom: n,"z-index": "99",
-        	left: t,"background-color": "#000000",
+        	bottom: n,
+        	"z-index": "99",
+        	left: t+'px',
+        	"background-color": "#000000",
         	color: "white","font-size": "14px",
         	padding: "5px",
         	margin: "0px",
