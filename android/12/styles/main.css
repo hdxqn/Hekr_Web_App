@@ -221,13 +221,28 @@ background:linear-gradient(to left,#F78D1F,#C3B18F,#B1DAED);
 .slider::-webkit-slider-thumb{
   -webkit-appearance:none;
   width:20px;
+  height:60px;
+  background:transparent;
+  cursor:pointer;
+  transition:background .15s ease-in-out;
+  border:none;
+  position:relative;
+}
+.slider::-webkit-slider-thumb:before{
+  display: block;
+  content: '';
+  width:20px;
   height:20px;
   border-radius:50%;
   background:#FFF;
   cursor:pointer;
   transition:background .15s ease-in-out;
   box-shadow:0 0 4px 4px rgba(0,0,0,.2);
-  border:none
+  border:none;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  margin: -10px 0 0 -10px;
 }
 
 .popup{
