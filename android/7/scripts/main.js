@@ -12,9 +12,38 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
+
+  $("#power").click(function(e){
+
+		var code ='(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
+    .replace("{tid}",tid)
+    .replace("{args}",isPowerOn()?0:1);
+		console.debug("[CODE] "+code);
+		ws.send(code);
+    	t.show();
+	});
+
+	$("#timer").on("mouseup touchend",function(e){
+		var v = e.target.value;
+		console.debug("[EVENT] slider value is "+v);
+		var args = v*3600+" "+ (isPowerOn()?0:1);
+		var code ='(@devcall "{tid}" (controltimer {args}) (lambda (x) x))'.replace("{tid}",tid).replace("{args}",args);
+		timerChange(v);
+		console.debug("[CODE] "+code);
+		ws.send(code);
+		t.show();
+	});
+
+  $("#back").click(function(e) {
+        console.debug("[EVENT] back button clicked");
+        window.close();
+    });
 	
    
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+   t = new Toast({
+     			message:i18n.t("message")
+ 			});
 
 
 });
@@ -63,11 +92,57 @@ var resources={
      if (r != null) return unescape(r[2]);
      return null;
  }
+
+
+
+var Toast = function(config){
+	this.context = config.context || $('body');
+	this.message =config.message;
+	this.time = config.time || 3000;
+	this.init();
+}
+
+var msgEntity;
+Toast.prototype = {
+
+	init :function(){
+		$("#toastMessage").remove();
+
+		var msgDIV = new Array();
+		msgDIV.push('<div id="toastMessage">');
+		msgDIV.push('<span>'+this.message+'</span>');
+		msgDIV.push('</div>');
+		msgEntity = $(msgDIV.join('')).appendTo(this.context);
+
+		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
+
+		var bottom = '20px' ;
+		msgEntity.css({
+			position:'fixed',
+			bottom:bottom,
+			'z-index':'99',
+			left:left,
+			'background-color':'#000000',
+			color:'white',
+			'font-size':'14px',
+			padding:'5px',
+			margin:'0px',
+			'border-radius':'2px'
+		});
+		msgEntity.hide();
+	},
+
+	show :function(){
+		msgEntity.stop(true);
+		msgEntity.fadeIn(this.time/2);
+		msgEntity.fadeOut(this.time/2);
+		
+	}
+}
+
   
 
- var toast = new Toast({
-     message:i18n.t("message")
- });
+
 
 var tid  = getUrlParam("tid");
 var host = getUrlParam("host") || "device.hekr.me";
@@ -97,33 +172,7 @@ ws.onclose=function(){
 	console.error("[WEBSOCKET] connection closed");
 };
 
-$(function(){
-	$("#power").click(function(e){
 
-		var code ='(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
-    .replace("{tid}",tid)
-    .replace("{args}",isPowerOn()?0:1);
-		console.debug("[CODE] "+code);
-		ws.send(code);
-    	toast.show();
-	});
-
-	$("#timer").on("mouseup touchend",function(e){
-		var v = e.target.value;
-		console.debug("[EVENT] slider value is "+v);
-		var args = v*3600+" "+ (isPowerOn()?0:1);
-		var code ='(@devcall "{tid}" (controltimer {args}) (lambda (x) x))'.replace("{tid}",tid).replace("{args}",args);
-		timerChange(v);
-		console.debug("[CODE] "+code);
-		ws.send(code);
-		toast.show();
-	});
-
-  $("#back").click(function(e) {
-        console.debug("[EVENT] back button clicked");
-        window.close();
-    });
-});
 
 
 

@@ -33,9 +33,7 @@ abbr, acronym {border: 0;}
 
 html,body{
   width: 100%;
-  height: 100%;
-  min-height: 430px;
-  background:linear-gradient(#605DA1,#66ADC0);
+  min-height: 100%;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   margin:0;
   color:#FFF;
@@ -44,215 +42,23 @@ html,body{
 *:focus{
   outline: none;
 }
-#head{
+#header{
   width: 100%;
-  height: 20%;
-  min-height: 39px;
-  position: relative;
-}
-#head #back{
-  display: block;
-  position: absolute;
-  width: 100px;
-  height: 40px;
-  max-height: 100%;
-  max-width: 100px;
-  top: 50%;
-  left: 0;
-  margin:-20px 0 0 0;
-}
-#head #backimg{
-  display: block;
-  width: 17px;
-  height: 31px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  margin: -15px 0 0 20px;
-}
-#head #logo{
-  display:block;
-  width: 124px;
-  height: 31px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -15px 0 0 -62px;
   overflow: hidden;
+  position: relative;
 }
-#sendMes{
+#header .bgimge{
+  display: block;
   width: 100%;
-  height: 40%;
-  text-align: center;
+  z-index: 1;
 }
-#sendMes .sr{
-  display: inline-block;
-  width: 90%;
-  height: 60px;
-  min-width: 180px;
-  line-height: 60px;
-  font-weight: bold;
-  font-size: 16px;
-  position: relative;
-  text-align: center;
-}
-#sendMes .sr span{
-  font-size: 12px;
-  font-weight: normal;
-}
-#sendMes .sr input{
-  display: inline-block;
-  width: 75%;
+#header .logo{
+  display: block;
+  position: absolute;
+  width: 124px;
   height: 30px;
-  background-color:inherit;
-  outline: none;
-  border: none;
-  line-height: 30px;
-  padding: 0 0 0 40px;
-  color: #fff;
-  font-size: 16px;
-  -webkit-user-select: text;
-}
-#sendMes #send::before{
-  content: '发送:';
-  display: inline-block;
-  width: 40px;
-  height: 30px;
-  font-size: 16px;
-  font-weight: normal;
-  text-align: bottom;
-  margin:6px -40px 0 0;
-  color: #B4C2CE;
-}
-#sendMes #send img{
-  display: block;
-  position: absolute; 
-  width: 75%;
-  height: 16px;
-  left: 12%;
-  top: 50%;
-  margin: 0 0 0 0;
-}
-#sendMes #receive::before{
-  content: '接收:';
-  display: inline-block;
-  width: 40px;
-  height: 30px;
-  font-size: 16px;
-  font-weight: normal;
-  margin:6px -40px 0 0;
-  color: #B4C2CE;
-}
-#sendMes #receive img{
- display: block;
-  position: absolute; 
-  width: 75%;
-  height: 16px;
-  left: 12%;
-  top: 50%;
-  margin: 0 0 0 0;
-}
-#sendMes #send #sendBtn{
-  display: block;
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 50%;
-  left: 88%;
-  padding: 8px 5px 8px 5px;
-  margin: -20px  0 0 0;
-  border: 1px solid #C9D8E5;
-  border-radius: 50%;
-}
-#sendMes #receive #receiveBtn{
-  display: block;
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 50%;
-  left: 88%;
-  padding: 8px 2px 8px 2px;
-  margin-top: -20px;
-  border: 1px solid #C9D8E5;
-  border-radius: 50%;
-  -webkit-transition:opacity 0.3s,-webkit-transform 0.3s;
-  transition:transform 0.3s;
-  transform: rotate3d(0,0,1,0);
-  -webkit-transform: rotate3d(0,0,1,0);
-  -moz-transform: rotate3d(0,0,1,0);
-  -ms-transform: rotate3d(0,0,1,0);
-  -o-transform: rotate3d(0,0,1,0);
-}
-#control{
-  width: 100%;
-  height: 27%;
-  text-align: center;
-}
-#control li{
-  display: inline-block;
-  width: 90%;
-  height: 60px;
-   min-width: 220px;
-   line-height: 30px;
-  position: relative;
-}
-#control #con img{
-  display: block;
-  position: absolute;
-  width: 27px;
-  height: 40px;
-  top:50%;
-  left: 5%;
-  margin: -20px 0 0 0;
-}
-#control #con #container{
-  display: block;
-  width: 80%;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  margin:-20px 0 0 30px;
-  line-height: 40px;
-}
-
-#control #con #container #slider{
-  display: inline-block;
-  width:70%;
-  margin:auto 4px;
-  -webkit-appearance:none;
-  height:6px;
-  border-radius:5px;
-  background:#ccc;
-  outline:none;
-  cursor: pointer;
-}
-#control #con #container #slider::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:#FFF;
-  cursor:pointer;
-  transition:background .15s ease-in-out;
-  box-shadow:0 0 4px 4px rgba(0,0,0,.2);
-  border:none
-}
-#sendMes #remind{
-  position: relative;
-}
-#sendMes #remind #remindMes{
-  display: inline-block;
-  position: absolute;
-  width: 100px;
-  height: 30px;
-  line-height: 30px;
-  top: 50%;
-  left: 50%;
-  margin: -15px 0 0 -50px;
-  background-color: #000000;
-  font-size: 15px;
-  border-radius: 2px;
-  opacity: 0;
-  z-index: 99;
+  top: 5%;
+  left: 25%;
+  margin: 0 0 0 -62px;
+  z-index: 2;
 }
