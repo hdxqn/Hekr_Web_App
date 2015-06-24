@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 	touchEvents={};
 	browserRedirect(touchEvents);
+	changeMain_0();
+	changNav();
 	
 })
 function browserRedirect(obj) {
@@ -27,6 +29,38 @@ function browserRedirect(obj) {
                 obj.touchend = "mouseup";
          
     }
+ }
+ function changNav(){
+ 	var common=$(".common"),
+ 		main=null,
+ 		nav=$('#nav');
+ 	for(var i=0;i<common.length;i++){
+ 		if($(common[i]).css('top')=='0px'){
+ 			main=common[i].id.replace('main_','');
+ 			break;
+ 		}
+ 	}
+ 	switch(main){
+ 		case'0':
+ 			$(nav).css({
+ 				'background-color':'transparent',
+ 				'dispaly':'block'
+ 			});
+ 			break;
+ 		case'1':
+ 			$(nav).css('display','none');
+ 			break;
+ 		default:
+ 		break;
+ 	}
+ }
+
+ function changeMain_0(){
+ 	$('.hekrlogo').addClass('hekrlogo_0');
+ 	$('.title_1').addClass('title_0');
+ 	$('.title_2').addClass('title_0');
+ 	$('.title_3').addClass('title_0');
+ 	$('.more').addClass('more_0');
  }
 
 
