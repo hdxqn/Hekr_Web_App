@@ -327,7 +327,9 @@ Toast.prototype = {init: function() {
         msgEntity.css({position: "fixed",bottom: t,"z-index": "99",left: n,"background-color": "#000000",color: "white","font-size": "14px",padding: "5px",margin: "0px","border-radius": "2px"}), msgEntity.hide()
     },show: function() {
         msgEntity.fadeIn(this.time / 2), msgEntity.fadeOut(this.time / 2)
-    }}, function(e, n) {
+    }}, 
+
+    function(e, n) {
     "function" == typeof define && define.amd ? define([], n) : "undefined" != typeof module && module.exports ? module.exports = n() : e.ReconnectingWebSocket = n()
 }(this, function() {
     function e(n, t, a) {
@@ -365,7 +367,8 @@ Toast.prototype = {init: function() {
                 clearTimeout(o), (l.debug || e.debugAll) && console.debug("ReconnectingWebSocket", "onopen", l.url), l.protocol = c.protocol, l.readyState = WebSocket.OPEN, l.reconnectAttempts = 0;
                 var a = r("open");
                 a.isReconnect = n, n = !1, u.dispatchEvent(a)
-            }, c.onclose = function(t) {
+            }, 
+            c.onclose = function(t) {
                 if (clearTimeout(o), c = null, s)
                     l.readyState = WebSocket.CLOSED, u.dispatchEvent(r("close"));
                 else {
@@ -404,11 +407,15 @@ Toast.prototype = {init: function() {
 });
 
 
+   
+$("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
 
-    $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
-
-
-var toast = new Toast({message: "指令已发送"}), tid = getUrlParam("tid"), host = getUrlParam("host") || "device.hekr.me", token = getUrlParam("access_key"), user = Math.floor(100 * Math.random()), url = "ws://" + host + ":8080/websocket/t/" + user + "/code/" + token + "/user", ws = new ReconnectingWebSocket(url);
+var toast = new Toast({message: "指令已发送"}),
+ tid = getUrlParam("tid"), host = getUrlParam("host") || "device.hekr.me", 
+ token = getUrlParam("access_key"), 
+ user = Math.floor(100 * Math.random()),
+url = "ws://" + host + ":8080/websocket/t/" + user + "/code/" + token + "/user", 
+ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
     console.debug("[WEBSOCKET] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
@@ -426,10 +433,11 @@ ws.onmessage = function(e) {
         var n = e.target.value;
         console.debug("[EVENT] slider value is " + n);
         var t = 3600 * n + " " + (isPowerOn() ? 0 : 1), a = '(@devcall "{tid}" (controltimer {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", t);
-        timerChange(n), console.debug("[CODE] " + a), ws.send(a)
+        timerChange(n*3600), console.debug("[CODE] " + a), ws.send(a)
     }), $("#back").click(function(e) {
         console.debug("[EVENT] back button clicked"), window.close()
     })
+     
 });
 var isPowerOn = function() {
     return !$("#power").hasClass("off")
@@ -438,8 +446,10 @@ var isPowerOn = function() {
 }, powerOff = function() {
     $("#power").addClass("off"), $("#powerState").text("关"), $("#timerState1").text("开启"), $("#timerState2").text("开启")
 }, timerChange = function(e) {
-    $("#timer").val(e), $("#time1").text(e), $("#time2").text(e)
+    var h=Math.floor(e/3600),
+     m=e>=3600?Math.floor((e%3600)/60):Math.floor(e/60);
+    $("#timer").val(h), $("#time1").text(h), $("#time2").text(m),$("#time3").text(h), $("#time4").text(m)
 };
 window.changestate = function(e) {
-    void 0 !== e.power && (0 == e.power ? powerOff() : powerOn()), void 0 !== e.timer && timerChange(Math.floor(e.timer / 3600))
+    void 0 !== e.power && (0 == e.power ? powerOff() : powerOn()), void 0 !== e.timer && timerChange(e.timer)
 };
