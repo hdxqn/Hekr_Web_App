@@ -356,7 +356,7 @@ html,body{
   bottom: 23px;
   right: 23px;
 }
-#main_1 #circle .little img{
+#main_1 #circle .little .little_img{
   display: block;
   position: absolute;
   width: 60px;
@@ -376,12 +376,12 @@ html,body{
   transition:all 0.4s;
  
 }
-#main_1 #circle .little img:hover{
-  -webkit-transform: rotate3d(0,1,0,-360deg);
-  -ms-transform: rotate3d(0,1,0,-360deg);
-  -o-transform: rotate3d(0,1,0,-360deg);
-  -moz-transform: rotate3d(0,1,0,-360deg);
-  transform: rotate3d(0,1,0,-360deg);
+#main_1 #circle .little .little_img:hover{
+  -webkit-transform: rotate3d(0,1,0,180deg);
+  -ms-transform: rotate3d(0,1,0,180deg);
+  -o-transform: rotate3d(0,1,0,180deg);
+  -moz-transform: rotate3d(0,1,0,180deg);
+  transform: rotate3d(0,1,0,180deg);
   
 }
 #main_1 #circle .little span{
@@ -464,4 +464,41 @@ html,body{
   top: 5%;
   left:110%;
   /*margin: 0 0 0 120px;*/
+}
+/*第二张页面结束*/
+#main_2 .bgimg_2{
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+#main_2 .title_2{
+  display: block;
+  position: absolute;
+  width: 270px;
+  height: 50px;
+  top: 0;
+  left: 50%;
+  margin: 50px 0 0 -135px;
+  text-align: center;
+  z-index: 2;
+  font-family: '微软雅黑';
+  color: #fff;
+  font-size: 30px;
+}
+#main_2 .title_2 h1{
+  font-size: 40px;
+  margin: 0;
+}
+#main_2 .cloud{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  border: 2px solid #fff;
 }

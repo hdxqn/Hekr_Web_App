@@ -421,7 +421,12 @@ ws.onmessage = function(e) {
 }, ws.onerror = function() {
     console.error("[WEBSOCKET] connection error")
 }, ws.onopen = function() {
-    console.debug("[WEBSOCKET] connection opened"), ws.send('(get-state "{tid}")'.replace("{tid}", tid)),
+    console.log(ws.readyState);
+     console.debug("[WEBSOCKET] connection opened"),
+     setTimeout(function(){
+        // ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+     ws.send('(@devcall "{tid}" (display (getall) cloud-port) (lambda (x) x))'.replace("{tid}",tid));
+     },1000)
     $.modal.close()
 }, ws.onclose = function() {
     console.error("[WEBSOCKET] connection closed")
@@ -429,15 +434,20 @@ ws.onmessage = function(e) {
     $("#power").click(function(e) {
         var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", isPowerOn() ? 0 : 1);
         console.debug("[CODE] " + n), ws.send(n), toast.show()
+         // ws.send('(@devcall "ESP_2M_1AFE349C3E7A" (controltimer 60 1) (lambda (x) x))')
+
     }), $("#timer").on("mouseup touchend", function(e) {
+        clearKeep();
         var n = e.target.value;
         console.debug("[EVENT] slider value is " + n);
         var t = 3600 * n + " " + (isPowerOn() ? 0 : 1), a = '(@devcall "{tid}" (controltimer {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", t);
         timerChange(n*3600), console.debug("[CODE] " + a), ws.send(a)
+        resetKeep();
     }), $("#back").click(function(e) {
         console.debug("[EVENT] back button clicked"), window.close()
     })
-     
+   
+      
 });
 var isPowerOn = function() {
     return !$("#power").hasClass("off")
@@ -453,3 +463,16 @@ var isPowerOn = function() {
 window.changestate = function(e) {
     void 0 !== e.power && (0 == e.power ? powerOff() : powerOn()), void 0 !== e.timer && timerChange(e.timer)
 };
+
+
+    var keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+function clearKeep(){
+    clearInterval(keepconnecting);
+}
+function resetKeep(){
+     keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+}

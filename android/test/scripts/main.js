@@ -50,6 +50,9 @@ function browserRedirect(obj) {
  		case'1':
  			$(nav).css('display','none');
  			break;
+        case'2':
+            $(nav).css('display','none');
+            break;
  		default:
  		break;
  	}
