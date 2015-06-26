@@ -417,11 +417,16 @@ var toast = new Toast({message: "指令已发送"}),
 url = "ws://" + host + ":8080/websocket/t/" + user + "/code/" + token + "/user", 
 ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
+    if(!_count_){
+        _count_=false;
+         var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", isPowerOn() ? 1 : 0);
+        console.debug("[CODE] " + n), ws.send(n);
+    }
     console.debug("[WEBSOCKET] " + e.data), SEXP.exec(e.data)
 }, ws.onerror = function() {
     console.error("[WEBSOCKET] connection error")
 }, ws.onopen = function() {
-     console.debug("[WEBSOCKET] connection opened"),
+     console.debug("[WEBSOCKET] connection opened");
      setTimeout(function(){
          ws.send('(get-state "{tid}")'.replace("{tid}", tid));
      // ws.send('(@devcall "{tid}" (display (getall) cloud-port) (lambda (x) x))'.replace("{tid}",tid));
@@ -472,6 +477,7 @@ window.changestate = function(e) {
     var keepconnecting=setInterval(function(){
         ws.send('(ping)');
     },50000);
+
 function clearKeep(){
     clearInterval(keepconnecting);
 }
