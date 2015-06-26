@@ -417,12 +417,19 @@ var toast = new Toast({message: "指令已发送"}),
 url = "ws://" + host + ":8080/websocket/t/" + user + "/code/" + token + "/user", 
 ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
-    if(!_count_){
-        _count_=false;
-         var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", isPowerOn() ? 1 : 0);
-        console.debug("[CODE] " + n), ws.send(n);
+    console.debug("[WEBSOCKET] " + e.data);
+    var power=e.data.match("power")==null?false:(e.data.match('"power" 1')==null?0:1);
+    SEXP.exec(e.data);
+    if(power===1||power===0){
+        if(_count_){
+         _count_=false;
+         var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
+         .replace("{tid}", tid)
+         .replace("{args}",power);
+        console.debug("[CODE] " + n),
+          ws.send(n);
     }
-    console.debug("[WEBSOCKET] " + e.data), SEXP.exec(e.data)
+    }
 }, ws.onerror = function() {
     console.error("[WEBSOCKET] connection error")
 }, ws.onopen = function() {
@@ -445,7 +452,7 @@ ws.onmessage = function(e) {
         var n = e.target.value;
         console.debug("[EVENT] slider value is " + n);
         var t = 3600 * n + " " + (isPowerOn() ? 0 : 1), 
-        a = '(@devcall "{tid}" (begin (controlpower {args1})(controltimer {args2})) (lambda (x) x))'
+        a = '(@devcall "{tid}" (begin (controltimer {args2}) (controlpower {args1})) (lambda (x) x))'
         .replace("{tid}", tid)
         .replace("{args1}", isPowerOn() ? 1 : 0)
         .replace("{args2}", t);
@@ -477,7 +484,7 @@ window.changestate = function(e) {
     var keepconnecting=setInterval(function(){
         ws.send('(ping)');
     },50000);
-
+    var _count_=true;
 function clearKeep(){
     clearInterval(keepconnecting);
 }
