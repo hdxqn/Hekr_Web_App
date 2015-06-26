@@ -40,22 +40,13 @@ function browserRedirect(obj) {
  			break;
  		}
  	}
- 	switch(main){
- 		case'0':
- 			$(nav).css({
- 				'background-color':'transparent',
- 				'dispaly':'block'
- 			});
- 			break;
- 		case'1':
- 			$(nav).css('display','none');
- 			break;
-        case'2':
-            $(nav).css('display','none');
-            break;
- 		default:
- 		break;
- 	}
+    if(main==0){
+        $(nav).css('display','block');
+    }else{
+        $(nav).css('display','none');
+    }
+
+
  }
 
  function changeMain_0(){

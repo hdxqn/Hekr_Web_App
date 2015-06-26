@@ -14,16 +14,18 @@ $(document).ready(function(){
     	});
 
   $("#power").click(function(e){
-
+  		clearKeep();
 		var code ='(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
     .replace("{tid}",tid)
     .replace("{args}",isPowerOn()?0:1);
 		console.debug("[CODE] "+code);
 		ws.send(code);
+		resetKeep();
     	t.show();
 	});
 
 	$("#timer").on("mouseup touchend",function(e){
+		clearKeep();
 		var v = e.target.value;
 		console.debug("[EVENT] slider value is "+v);
 		var args = v*3600+" "+ (isPowerOn()?0:1);
@@ -31,6 +33,7 @@ $(document).ready(function(){
 		timerChange(v);
 		console.debug("[CODE] "+code);
 		ws.send(code);
+		resetKeep();
 		t.show();
 	});
 
@@ -160,13 +163,18 @@ ws.onmessage=function(e){
 };
 
 ws.onerror=function(){
+	setTimeout(function(){
+         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+     },100)
 	console.error("[WEBSOCKET] connection error");
 };
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
+	 setTimeout(function(){
+         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+     },100)
 	$.modal.close();
-	ws.send('(get-state "{tid}")'.replace("{tid}",tid));
 };
 ws.onclose=function(){
 	console.error("[WEBSOCKET] connection closed");
@@ -210,3 +218,16 @@ window.changestate=function(o){
 		timerChange(Math.floor(o.timer/3600));
 	}
 };
+
+var keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+var _count_=true;
+function clearKeep(){
+    clearInterval(keepconnecting);
+}
+function resetKeep(){
+     keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+}

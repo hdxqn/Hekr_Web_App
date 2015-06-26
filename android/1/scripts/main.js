@@ -443,7 +443,9 @@ ws.onmessage = function(e) {
     console.error("[WEBSOCKET] connection closed")
 }, $(function() {
     $("#power").click(function(e) {
-        var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", isPowerOn() ? 0 : 1);
+        var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
+        .replace("{tid}", tid)
+        .replace("{args}", isPowerOn() ? 0 : 1);
         console.debug("[CODE] " + n), ws.send(n), toast.show()
          // ws.send('(@devcall "ESP_2M_1AFE349C3E7A" (controltimer 60 1) (lambda (x) x))')
 
@@ -468,20 +470,29 @@ ws.onmessage = function(e) {
 var isPowerOn = function() {
     return !$("#power").hasClass("off")
 }, powerOn = function() {
-    $("#power").removeClass("off"), $("#powerState").text("开"), $("#timerState1").text("关闭"), $("#timerState2").text("关闭")
+    $("#power").removeClass("off"), $("#powerState").text("开")
 }, powerOff = function() {
-    $("#power").addClass("off"), $("#powerState").text("关"), $("#timerState1").text("开启"), $("#timerState2").text("开启")
+    $("#power").addClass("off"), $("#powerState").text("关") 
 }, timerChange = function(e) {
     var h=Math.floor(e/3600),
      m=e>=3600?Math.floor((e%3600)/60):Math.floor(e/60);
     $("#timer").val(h), $("#time1").text(h), $("#time2").text(m),$("#time3").text(h), $("#time4").text(m)
-};
+},timerCount = function(e){
+    if(e==1){
+        $("#timerState1").text("开启");
+        $("#timerState2").text("开启");
+    }else if(e==0){
+        $("#timerState1").text("关闭");
+        $("#timerState2").text("关闭");
+    }
+}
+;
 window.changestate = function(e) {
+    timerCount(e.timertodo);
     void 0 !== e.power && (0 == e.power ? powerOff() : powerOn()), void 0 !== e.timer && timerChange(e.timer)
 };
 
-
-    var keepconnecting=setInterval(function(){
+var keepconnecting=setInterval(function(){
         ws.send('(ping)');
     },50000);
     var _count_=true;
