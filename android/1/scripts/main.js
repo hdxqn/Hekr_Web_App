@@ -421,12 +421,11 @@ ws.onmessage = function(e) {
 }, ws.onerror = function() {
     console.error("[WEBSOCKET] connection error")
 }, ws.onopen = function() {
-    console.log(ws.readyState);
      console.debug("[WEBSOCKET] connection opened"),
      setTimeout(function(){
-        // ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-     ws.send('(@devcall "{tid}" (display (getall) cloud-port) (lambda (x) x))'.replace("{tid}",tid));
-     },1000)
+         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+     // ws.send('(@devcall "{tid}" (display (getall) cloud-port) (lambda (x) x))'.replace("{tid}",tid));
+     },100)
     $.modal.close()
 }, ws.onclose = function() {
     console.error("[WEBSOCKET] connection closed")
@@ -440,9 +439,14 @@ ws.onmessage = function(e) {
         clearKeep();
         var n = e.target.value;
         console.debug("[EVENT] slider value is " + n);
-        var t = 3600 * n + " " + (isPowerOn() ? 0 : 1), a = '(@devcall "{tid}" (controltimer {args}) (lambda (x) x))'.replace("{tid}", tid).replace("{args}", t);
+        var t = 3600 * n + " " + (isPowerOn() ? 0 : 1), 
+        a = '(@devcall "{tid}" (begin (controlpower {args1})(controltimer {args2})) (lambda (x) x))'
+        .replace("{tid}", tid)
+        .replace("{args1}", isPowerOn() ? 1 : 0)
+        .replace("{args2}", t);
         timerChange(n*3600), console.debug("[CODE] " + a), ws.send(a)
         resetKeep();
+        
     }), $("#back").click(function(e) {
         console.debug("[EVENT] back button clicked"), window.close()
     })
