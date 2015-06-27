@@ -442,14 +442,18 @@ ws.onmessage = function(e) {
 }, ws.onclose = function() {
     console.error("[WEBSOCKET] connection closed")
 }, $(function() {
+    browserRedirect(touchEvents);
     $("#power").click(function(e) {
+        clearKeep();
         var n = '(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
         .replace("{tid}", tid)
         .replace("{args}", isPowerOn() ? 0 : 1);
-        console.debug("[CODE] " + n), ws.send(n), toast.show()
+        console.debug("[CODE] " + n), ws.send(n), toast.show();
+        resetKeep();
          // ws.send('(@devcall "ESP_2M_1AFE349C3E7A" (controltimer 60 1) (lambda (x) x))')
 
-    }), $("#timer").on("mouseup touchend", function(e) {
+    }) , $("#timer").on("mouseup touchend", function(e) {
+        $(this).unbind(touchEvents.touchmove);
         clearKeep();
         var n = e.target.value;
         console.debug("[EVENT] slider value is " + n);
@@ -458,13 +462,17 @@ ws.onmessage = function(e) {
         .replace("{tid}", tid)
         .replace("{args1}", isPowerOn() ? 1 : 0)
         .replace("{args2}", t);
-        timerChange(n*3600), console.debug("[CODE] " + a), ws.send(a)
+        timerChange('--'), console.debug("[CODE] " + a), ws.send(a);
         resetKeep();
         
-    }), $("#back").click(function(e) {
+    }) 
+    , $("#back").click(function(e) {
         console.debug("[EVENT] back button clicked"), window.close()
+    }),$('#timer').bind(touchEvents.touchstart,function(){
+            $(this).bind(touchEvents.touchmove,function(e){
+                timerChange(e.target.value*3600);
+            })
     })
-   
       
 });
 var isPowerOn = function() {
@@ -474,6 +482,15 @@ var isPowerOn = function() {
 }, powerOff = function() {
     $("#power").addClass("off"), $("#powerState").text("关") 
 }, timerChange = function(e) {
+    if(e==0){
+        timerCancle();
+        return;
+    }else if(e=='--'){
+        timerStart();
+        $('#time1,#time2,#time3,#time4').text('--');
+        return;
+    }
+    timerStart();
     var h=Math.floor(e/3600),
      m=e>=3600?Math.floor((e%3600)/60):Math.floor(e/60);
     $("#timer").val(h), $("#time1").text(h), $("#time2").text(m),$("#time3").text(h), $("#time4").text(m)
@@ -485,8 +502,39 @@ var isPowerOn = function() {
         $("#timerState1").text("关闭");
         $("#timerState2").text("关闭");
     }
-}
-;
+},timerCancle = function(){
+    $('#timerOn').css('display','none');
+    $('#timerOff').css('display','block');
+    $('.desc span').css('opacity',0);
+},timerStart = function(){
+    $('#timerOff').css('display','none');
+    $('#timerOn').css('display','block');
+    $('.desc span').css('opacity',1);
+},browserRedirect = function(obj){
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+         
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+         obj.touchstart="touchstart";
+            obj.touchmove= "touchmove";
+            obj.touchend= "touchend";
+         
+    } else {
+        
+                obj.touchstart = "mousedown";
+                obj.touchmove = "mousemove";
+                obj.touchend = "mouseup";
+         
+    }
+},touchEvents={};
+
 window.changestate = function(e) {
     timerCount(e.timertodo);
     void 0 !== e.power && (0 == e.power ? powerOff() : powerOn()), void 0 !== e.timer && timerChange(e.timer)
