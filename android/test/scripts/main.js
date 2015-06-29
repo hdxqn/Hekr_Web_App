@@ -3,7 +3,8 @@ $(document).ready(function(){
 	touchEvents={};
 	browserRedirect(touchEvents);
 	changeMain_0();
-	changNav();
+    switchMain();
+    rollAnimation();
 	
 })
 function browserRedirect(obj) {
@@ -30,6 +31,22 @@ function browserRedirect(obj) {
          
     }
  }
+
+function mouseCenter(){
+
+}
+
+function rollAnimation(){
+    setInterval(function(){
+        $('#roll').addClass('roll_0');
+        setTimeout(function(){
+        $('#roll').removeClass('roll_0');
+        },1000);
+    },1500);
+  
+}
+
+
  function changNav(){
  	var common=$(".common"),
  		main=null,
@@ -45,8 +62,7 @@ function browserRedirect(obj) {
     }else{
         $(nav).css('display','none');
     }
-
-
+    return main;
  }
 
  function changeMain_0(){
@@ -55,6 +71,19 @@ function browserRedirect(obj) {
  	$('.title_2').addClass('title_0');
  	$('.title_3').addClass('title_0');
  	$('.more').addClass('more_0');
+ }
+ function removeMain_0(){
+    $('.hekrlogo').removeClass('hekrlogo_0');
+    $('.title_1').removeClass('title_0');
+    $('.title_2').removeClass('title_0');
+    $('.title_3').removeClass('title_0');
+    $('.more').removeClass('more_0');
+ }
+
+ function switchMain(){
+    var currentPage=changNav();
+
+
  }
 
 

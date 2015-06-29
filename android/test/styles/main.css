@@ -113,17 +113,43 @@ html,body{
   margin: -2px 0 0 -8px;
 }
 /*导航条以及面板样式设定完毕*/
+.roll{
+  display: block;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  z-index: 99;
+  bottom: 10%;
+  right: 10%;
+  cursor: pointer;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+.roll_0{
+  bottom: 12%;
+}
+/*切换页面提示设定样式完毕*/
 
 .common{
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
+  opacity: 1;
   background-color: transparent;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  
 }
 
 .common_0{
   top: 100%;
+  opacity: 0;
+  
 }
 #main_0 .bgimge_0{
   display: block;
@@ -135,28 +161,30 @@ html,body{
 
 #main_0 .hekrlogo{
   display: block;
-  width: 40%;
-  height: 26%;
+  width: 24%;
+  height: auto;
   z-index: 2;
   position: absolute;
-  top: 24%;
-  left: 30%;
+  top: 10%;
+  left: 38%;
   opacity: 0;
+  margin: 70px 0 0 0;
   transform: rotate3d(0,1,0,90deg);
   -webkit-transform: rotate3d(0,1,0,90deg);
   -moz-transform: rotate3d(0,1,0,90deg);
   -ms-transform: rotate3d(0,1,0,90deg);
   -o-transform: rotate3d(0,1,0,90deg);
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
+  -webkit-transition: all 1s 0.4s;
+  -o-transition: all 1s 0.4s;
+  -moz-transition: all 1s 0.4s;
+  transition: all 1s 0.4s;
 }
 #main_0 .title{
   display:block;
   position: absolute;
-  width: 342px;
+  width: 310px;
   height: 50px;
-  margin: 350px 0 0 -171px;
+  margin: 350px 0 0 -155px;
   opacity: 0;
   font-family: "Avenir Next";
   -webkit-font-smoothing:antialiased;
@@ -165,33 +193,37 @@ html,body{
   z-index: 2;
 }
 #main_0 .title_1{
-  margin:350px 0 0 -171px;
+  margin:350px 0 0 -155px;
   font-size: 50px;
   left:20%;
   top: 0;
-  -webkit-transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
-  -o-transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
-  transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
+  -webkit-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  -o-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  -moz-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
 }
 #main_0 .title_2{
-  margin:400px 0 0 -171px;
+  margin:400px 0 0 -155px;
   font-size: 30px;
   line-height: 70px;
   top: 0;
   left:80%;
-  -webkit-transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
-  -o-transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
-  transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
+   -webkit-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  -o-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  -moz-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
   
 }
 #main_0 .title_3{
-  margin:450px 0 0 -171px;
+  margin:450px 0 0 -155px;
   font-size: 20px;
   top:20%;
   left: 50%;
-  -webkit-transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
-  -o-transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
-  transition: left 0.6s 1s,top 0.6s 1s,opacity 0.6s 1s;
+  line-height: 26px;
+   -webkit-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  -o-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  -moz-transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
+  transition: left 0.6s 1.4s,top 0.6s 1s,opacity 0.6s 1.4s;
    
 }
 
@@ -229,10 +261,10 @@ html,body{
   -ms-transform: rotate3D(0,1,0,90deg);
   -o-transform: rotate3D(0,1,0,90deg);
   transform: rotate3D(0,1,0,90deg);
-  -webkit-transition: opacity 0.4s 1.6s,-webkit-transform 0.4s 1.6s;
-  -o-transition: opacity 0.4s 1.6s,-o-transform 0.4s 1.6s;
-  transition: opacity 0.4s 1.6s,transform 0.4s 1.6s,-webkit-transform 0.4s 1.6s,
-  -ms-transform 0.4s 1.6s,-o-transform 0.4s 1.6s;
+  -webkit-transition: opacity 0.4s 1.6s,-webkit-transform 0.4s 2s;
+  -o-transition: opacity 0.4s 2s,-o-transform 0.4s 1.6s;
+  transition: opacity 0.4s 2s,transform 0.4s 2s;
+  -moz-transition: opacity 0.4s 2s,-moz-transform 0.4s 2s;
 }
 #main_0 .more::before{
   content: '';
@@ -244,7 +276,7 @@ html,body{
   height: 0;
   border-width:12px 0 12px 12px;
   border-style:solid;
-  border-color:transparent transparent transparent #5BADD5 ;
+  border-color:transparent transparent transparent #fff;
   margin: -12px 0 0 0;
   -webkit-transition: margin 0.3s;
   -o-transition: margin 0.3s;
@@ -262,7 +294,7 @@ html,body{
   height: 0;
   border-width:10px 0 10px 10px;
   border-style:solid;
-  border-color:transparent transparent transparent #fff;
+  border-color:transparent transparent transparent #5BADD5;
   margin: -10px 0 0 0;
   -webkit-transition: margin 0.3s;
   -o-transition: margin 0.3s;
@@ -399,6 +431,7 @@ html,body{
   font-family: "helvetica neue",arial,sans-serif;
   font-weight: bold;
   text-shadow:none;
+  z-index: 10;
 }
 #main_1 #circle .little span h1{
   margin: 0;
@@ -487,7 +520,7 @@ html,body{
   margin: 60px 0 0 -135px;
   text-align: center;
   z-index: 2;
-  font-family: '微软雅黑';
+  font-family: "微软雅黑";
   color: #fff;
   font-size: 24px;
 }
@@ -589,7 +622,7 @@ html,body{
   margin: 10px 0 0 -90px;
   z-index: 2;
   text-align: center;
-  font-family: '微软雅黑';
+  font-family: "微软雅黑";
   font-size: 12px;
 }
 
@@ -597,4 +630,71 @@ html,body{
   font-size: 22px;
   line-height: 32px;
   margin: 0;
+}
+/*第三张页面结束*/
+#main_3  .partner_title{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  line-height: 90px;
+  text-align: center;
+  font-size: 36px;
+  color: #383736;
+  margin: 0 0 0 0;
+  text-shadow:none;
+  font-family: "微软雅黑";
+}
+#main_3 .partner{
+  display: block;
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 70%;
+  height: 60%;
+  top: 20%;
+  left: 15%;
+}
+#main_3 .partner .partner_logo{
+  width: 33%;
+  height: 100%;
+  position: absolute;
+  border: 1px solid red;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  margin: 0;
+}
+#main_3 .partner .partner_logo_1{
+  top: 0;
+  left: 0;
+}
+#main_3 .partner .partner_logo_1 .li_logo_1{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 49%;
+  top: 0;
+  left: 0;
+}
+#main_3 .partner .partner_logo_1 .li_logo_2{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 49%;
+  top: 51%;
+  left: 0;
+}
+#main_3 .partner .partner_logo_2{
+  top: 0;
+  left: 33%;
+  width: 34%;
+  padding: 0 2px 0 2px; 
+}
+#main_3 .partner .partner_logo_3{
+  top: 0;
+  left: 67%;
 }
