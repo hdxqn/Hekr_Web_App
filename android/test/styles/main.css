@@ -652,49 +652,306 @@ html,body{
   margin: 0;
   padding: 0;
   width: 70%;
-  height: 60%;
+  height:31.3vw;
   top: 20%;
   left: 15%;
 }
 #main_3 .partner .partner_logo{
-  width: 33%;
-  height: 100%;
-  position: absolute;
-  border: 1px solid red;
+  position: relative;
+  float: left;
   box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   margin: 0;
+  padding: 0;
 }
 #main_3 .partner .partner_logo_1{
-  top: 0;
-  left: 0;
+  width:33.3%;
 }
 #main_3 .partner .partner_logo_1 .li_logo_1{
   display: block;
-  position: absolute;
   width: 100%;
-  height: 49%;
-  top: 0;
-  left: 0;
+   -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
 }
 #main_3 .partner .partner_logo_1 .li_logo_2{
   display: block;
-  position: absolute;
   width: 100%;
-  height: 49%;
-  top: 51%;
-  left: 0;
+ -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
 }
 #main_3 .partner .partner_logo_2{
-  top: 0;
-  left: 33%;
-  width: 34%;
-  padding: 0 2px 0 2px; 
+  width: 33.3%;
+}
+#main_3 .partner .partner_logo_2 .li_logo_3{
+  display: block;
+  width: 100%;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
 }
 #main_3 .partner .partner_logo_3{
+  width: 33.2%;
+}
+#main_3 .partner .partner_logo_3 .li_logo_4{
+  display: block;
+  width: 100%;
+ -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
+}
+#main_3 .partner .partner_logo_3 .li_logo_5{
+  display: block;
+  width: 50%;
+   -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
+}
+#main_3 .partner .partner_logo_3 .li_logo_6{
+  display: block;
+  float: right;
+  width: 50%;
+  margin: -66.7% 0 0 0;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
+}
+#main_3 .partner .partner_logo img:hover{
+   -webkit-transform: scale3D(1.2,1.2,1.2);
+  -ms-transform: scale3D(1.2,1.2,1.2);
+  -o-transform: scale3D(1.2,1.2,1.2);
+  transform: scale3D(1.2,1.2,1.2);
+  -moz-transform: scale3D(1.2,1.2,1.2);
+  z-index: 99;
+  position: relative;
+}
+/*第四张页面结束*/
+#main_4 .switch_button{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  bottom: 15%;
+  left: 0;
+  text-align: center;
+  z-index: 99;
+}
+#main_4 .switch_button .little_button{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  text-align: center;
+  width: 90px;
+  height: 35px;
+  border: 2px solid #fff;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  border-radius:15px; 
+  font-size: 18px;
+  line-height: 35px;
+}
+/*#main_4 .switch_button .little_button:hover{
+  background-color: #5BADD5;
+}*/
+#main_4 .switch_button .little_button_selected{
+  background-color: #5BADD5;
+}
+#main_4 .switch_button .little_button a{
+  text-decoration: none;
+  color: #fff;
+}
+#main_4 .main_4_bm{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   top: 0;
-  left: 67%;
+  left: 0;
+  opacity: 1;
+  z-index: 9;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-transition:all 0.5s;
+}
+#main_4 #main_4_show_bg{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+#main_4 .main_4_bm_0{
+  left: -100%;
+  opacity: 0;
+}
+#main_4 .main_4_bm_1{
+  left: 100%;
+  opacity: 0;
+}
+#main_4 #fixed_hand{
+  display: block;
+  position: absolute;
+  height: 80%;
+  bottom: 0;
+  left: 60%;
+  z-index: 99;
+}
+#main_4::before{
+  content: '有家的地方就有氦氪有氦氪的地方就是家';
+  display: block;
+  position: absolute;
+  width: 220px;
+  height: 90px;
+  bottom: 50%;
+  left: 60%;
+  z-index: 90;
+  margin: 0 0 0 -220px;
+  background-color: rgba(255,255,255,0.3);
+  font-size: 1.4em;
+  color: black;
+  text-shadow:none;
+  text-align: center;
+  line-height: 1.8em;
+  border-radius: 20px;
+  font-family: "微软雅黑";
+}
+/*第五张页面结束*/
+#main_5 .main_5_switch{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  bottom: 15%;
+  left: 0;
+  text-align: center;
+}
+#main_5 .main_5_switch .main_5_button{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius:50%; 
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  margin: 0 10px 0 10px;
+  padding: 0;
+}
+#main_5 .main_5_switch .main_5_button a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #909195;
+  border-radius:50%; 
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+#main_5 .main_5_switch .main_5_button .main_5_button_selected{
+  background-color: #5BABD5;
+  border:2px solid transparent;
+}
+#main_5 .main_5_title{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  top: 10%;
+  left: 0;
+}
+#main_5 .main_5_title .main_5_tb{
+  display: block;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  height: 100%;
+  top: 0;
+  left: 30%;
+  opacity: 1;
+   -webkit-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s;
+  -moz-transition:all 0.8s;
+  opacity: 0;
+}
+#main_5 .main_5_title .main_5_tb_0{
+  opacity: 1;
+}
+#main_5 .main_5_title .main_5_tb a{
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  font-size: 28px;
+  text-align: center;
+  color: #797A7E;
+  text-shadow:none;
+}
+#main_5 .main_5_title .main_5_tb a span{
+  color: #85C2DF;
+  text-shadow:none;
+}
+#main_5  .main_5_img{
+  display: block;
+  position:absolute; 
+   -webkit-transition: all 1.2s;
+  -o-transition: all 1.2s;
+  transition: all 1.2s;
+  -moz-transition:all 1.2s;
+}
+#main_5  .main_5_img1{
+  width: 437px;
+  height: 198px;
+  top: 50%;
+  right: 51%;
+  margin: -99px 0 0 0;
+}
+#main_5  .main_5_img2{
+  width: 486px;
+  height: 198px;
+  bottom: 50%;
+  left: 51%;
+}
+#main_5  .main_5_img3{
+  width: 486px;
+  height: 198px;
+  bottom: 50%;
+  left: 51%;
+}
+#main_5  .main_5_img_l{
+  opacity: 0;
+  left: 90%;
+}
+#main_5  .main_5_img_r{
+  opacity: 0;
+  right: 90%;
 }

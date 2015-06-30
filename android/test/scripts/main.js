@@ -5,7 +5,7 @@ $(document).ready(function(){
 	changeMain_0();
     switchMain();
     rollAnimation();
-	
+	switchBg(1);
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -32,9 +32,6 @@ function browserRedirect(obj) {
     }
  }
 
-function mouseCenter(){
-
-}
 
 function rollAnimation(){
     setInterval(function(){
@@ -85,6 +82,54 @@ function rollAnimation(){
 
 
  }
+
+var switchBg = (function(){
+    var last_num = 1;
+    return function(num){
+        var showBg=$('#main_4_show_bg'),
+            testNum=Math.random();
+            if(testNum<0.5){
+                $('.main_4_bm').addClass('main_4_bm_0');
+                $('#main_4_show'+num).removeClass('main_4_bm_0').removeClass('main_4_bm_1');
+            }else if(testNum>=0.5){
+                $('.main_4_bm').addClass('main_4_bm_1');
+                $('#main_4_show'+num).removeClass('main_4_bm_0').removeClass('main_4_bm_1');
+            }
+        $('.main_4_bm').addClass('main_4_bm_0');
+        $('.little_button').removeClass('little_button_selected');
+        $('#main_4_show'+num).removeClass('main_4_bm_0');
+        $('#button_'+num).addClass('little_button_selected');
+        
+        switch(last_num){
+            case 1:
+            showBg.attr('src','images/livingroom.png');
+            break;
+            case 2:
+            showBg.attr('src','images/kitchen.png');
+            break;
+            case 3:
+            showBg.attr('src','images/bedroom.png');
+            break;
+            case 4:
+            showBg.attr('src','images/bathroom.png');
+            break;
+            case 5:
+            showBg.attr('src','images/yard.png');
+            break;
+            default:
+            break;
+        }
+        last_num = num;
+    };
+})();
+
+function showTechtitle(ts,num){
+    $('.main_5_bt_a').removeClass('main_5_button_selected');
+    $(ts).addClass('main_5_button_selected');
+    $('.main_5_tb').removeClass('main_5_tb_0');
+    $('#main_5_tb'+num).addClass('main_5_tb_0');
+}
+
 
 
 // var tid = getUrlParam("tid");
