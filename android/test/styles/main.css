@@ -137,6 +137,7 @@ html,body{
   height: 100%;
   position: absolute;
   top: 0;
+  bottom: 0;
   opacity: 1;
   background-color: transparent;
   -webkit-transition: all 0.3s;
@@ -146,10 +147,15 @@ html,body{
   
 }
 
-.common_0{
-  top: 100%;
+.common_up{
+  top: 0;
+  bottom: 100%;
   opacity: 0;
-  
+}
+.common_down{
+  top: 100%;
+  bottom: 0;
+  opacity: 0;
 }
 #main_0 .bgimge_0{
   display: block;
@@ -1045,3 +1051,4 @@ html,body{
   right: 90%;
   left: 0;
 }
+/*第六张页面设定样式结束*/

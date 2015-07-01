@@ -7,20 +7,24 @@ html{
 	margin: 0;
 	padding: 0;
   width: 100%;
-  min-height: 474px;
-  height: auto;
-  background:linear-gradient(#605DA1,#66ADC0);
+  min-height: 100%;
+height: 100%;
+  
 }
 body{
-margin: 0;
+	height: 100%;
+	background: transparent;
+	margin: 0;
 	padding: 0;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   margin:0;
   color:#FFF;
-  text-shadow:1px 1px 0 rgba(0,0,0,.2)
+  text-shadow:1px 1px 0 rgba(0,0,0,.2);
 }
 .main {
+	min-height: 100%;
 	height: 100%;
+	background:linear-gradient(#605DA1,#66ADC0 60%);
 }
 
 .navbar {
@@ -175,7 +179,20 @@ margin: 0;
 
 .popup {
 	width: 100%;
-	height: 20%
+	height: 20%;
+	position: relative;
+}
+.popup::after{
+	z-index: -10;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 140%;
+	min-height: 120px;
+	background-color: #66ADC0;
 }
 
 .seprator {
@@ -187,7 +204,7 @@ margin: 0;
 	background-color: rgba(0,0,0,.1);
 	border-radius: 5px;
 	width: 90%;
-	height: 70%;
+	height: 100%;
 	margin: 10px auto auto;
 	position: relative
 }
