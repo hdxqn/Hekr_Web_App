@@ -846,6 +846,7 @@ html,body{
   bottom: 15%;
   left: 0;
   text-align: center;
+  z-index: 99;
 }
 #main_5 .main_5_switch .main_5_button{
   display: inline-block;
@@ -923,35 +924,124 @@ html,body{
 #main_5  .main_5_img{
   display: block;
   position:absolute; 
-   -webkit-transition: all 1.2s;
-  -o-transition: all 1.2s;
-  transition: all 1.2s;
-  -moz-transition:all 1.2s;
+  height: 40%;
+   -webkit-transition: opacity 1.2s,right 1.2s,left 1.2s;
+  -o-transition: opacity 1.2s,right 1.2s,left 1.2s;
+  transition: opacity 1.2s,right 1.2s,left 1.2s;
+  -moz-transition:opacity 1.2s,right 1.2s,left 1.2s;
 }
 #main_5  .main_5_img1{
-  width: 437px;
-  height: 198px;
-  top: 50%;
+  top: 30%;
   right: 51%;
-  margin: -99px 0 0 0;
+  opacity: 1;
 }
 #main_5  .main_5_img2{
-  width: 486px;
-  height: 198px;
-  bottom: 50%;
+  bottom: 40%;
   left: 51%;
+  opacity: 1;
 }
 #main_5  .main_5_img3{
-  width: 486px;
-  height: 198px;
-  bottom: 50%;
+  top:30%;
   left: 51%;
+  opacity: 1;
+}
+#main_5  .main_5_img4{
+  top:30%;
+  right: 51%;
+  opacity: 1;
+}
+#main_5  .main_5_img5{
+  top:50%;
+  width: 12%;
+  height: auto;
+  left: 25%;
+  opacity: 1;
+}
+#main_5  .main_5_img6{
+  top:45%;
+  width: 12%;
+  height: auto;
+  left: 37.5%;
+  opacity: 1;
+}
+#main_5  .main_5_img7{
+  top:40%;
+  width: 12%;
+  height: auto;
+  left: 50%;
+  opacity: 1;
+}
+#main_5  .main_5_img8{
+  top:35%;
+  width: 12%;
+  height: auto;
+  left: 62.5%;
+  opacity: 1;
+}
+#main_5  .main_5_img9{
+  top:30%;
+  width: auto;
+  height: 45%;
+  left: 25%;
+  opacity: 1;
+}
+#main_5  .main_5_img10{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 37.5%;
+  opacity: 1;
+}
+#main_5  .main_5_img11{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 50%;
+  opacity: 1;
+}
+#main_5  .main_5_img12{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 62.5%;
+  opacity: 1;
+}
+#main_5  .main_5_img13{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 25%;
+  opacity: 1;
+}
+#main_5  .main_5_img14{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 37.5%;
+  opacity: 1;
+}
+#main_5  .main_5_img15{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 50%;
+  opacity: 1;
+}
+#main_5  .main_5_img16{
+  top:30%;
+  width: auto;
+  height: 40%;
+  left: 62.5%;
+  opacity: 1;
+}
+
+#main_5  .main_5_img_r{
+  opacity: 0;
+  left: 90%;
+  right: 0;
 }
 #main_5  .main_5_img_l{
   opacity: 0;
-  left: 90%;
-}
-#main_5  .main_5_img_r{
-  opacity: 0;
   right: 90%;
+  left: 0;
 }

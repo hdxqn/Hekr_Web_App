@@ -123,11 +123,15 @@ var switchBg = (function(){
     };
 })();
 
+
 function showTechtitle(ts,num){
     $('.main_5_bt_a').removeClass('main_5_button_selected');
     $(ts).addClass('main_5_button_selected');
     $('.main_5_tb').removeClass('main_5_tb_0');
     $('#main_5_tb'+num).addClass('main_5_tb_0');
+    // 标题切换
+    var elArr=$('.main_5_btn_'+num);
+    for(var i=0;i<elArr.length;)
 }
 
 

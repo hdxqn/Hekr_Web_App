@@ -1,6 +1,6 @@
 $(document).ready(function(){
-
-		var lang=getUrlParam('lang');
+	
+	var lang=getUrlParam('lang');
 	if(lang===null){
 		lang='en-US';
 	}
@@ -12,6 +12,7 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
+
 
   $("#power").click(function(e){
   		clearKeep();
@@ -50,6 +51,7 @@ $(document).ready(function(){
 
 
 });
+
 
 
 
