@@ -1,9 +1,18 @@
 $(document).ready(function(){
 	
 	var lang=getUrlParam('lang');
-	if(lang===null){
+	switch(lang){
+		case 'en-US':
 		lang='en-US';
+		break;
+		case 'zh-CN':
+		lang='zh-CN';
+		break;
+		default:
+		lang='en-US';
+		break;
 	}
+	
 
 		i18n.init({
         "lng": lang,
