@@ -4,7 +4,7 @@ html,body{
   margin: 0;
   padding: 0;
   width: 100%;
-  min-width: 945px;
+  /*min-width: 945px;*/
   height: 100%;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   color:#FFF;
@@ -151,9 +151,11 @@ html,body{
   top: 100%;
   
 }
-/*#main_0 {
-  background: url(../images/header.jpg) no-repeat center top;
-}*/
+#main_0 {
+  background: url(../images/header.jpg) no-repeat center center;
+  background-size:cover;
+  background-attachment: fixed;
+}
 #main_0 .bgimg_0{
   display: block;
   position: absolute;
