@@ -253,7 +253,6 @@ var startPos=0;
 
 function resetImg(num){
     var elArr=$('.main_5_btn_'+num);
-    console.debug(elArr);
         if(elArr.length>2){
             $(elArr[0]).addClass('main_5_img_l');
             $(elArr[1]).addClass('main_5_img_l');

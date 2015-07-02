@@ -512,6 +512,11 @@ html,body{
   /*margin: 0 0 0 120px;*/
 }
 /*第二张页面结束*/
+#main_2 {
+  background: url(../images/bg_2.jpg) no-repeat center center;
+  background-size:cover;
+  background-attachment: fixed;
+}
 #main_2 .bgimg_2{
   display: block;
   width: 100%;
