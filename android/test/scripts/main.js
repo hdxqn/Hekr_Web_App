@@ -51,7 +51,7 @@ function rollAnimation(){
  		main=null,
  		nav=$('#nav');
  	for(var i=0;i<common.length;i++){
- 		if($(common[i]).css('top')=='0px'&&$(common[i]).css('bottom')=='0px'){
+ 		if($(common[i]).css('top')=='0px'){
  			main=common[i].id.replace('main_','');
  			break;
  		}
@@ -81,32 +81,44 @@ function rollAnimation(){
 
 
 var switchMain=(function(){
-    var currentPage=changNav();
+    var currentPage=changNav(),
+        oldTime=new Date();
 
     return function(num){
         var nextDown=currentPage-1,
-            nextUp=currentPage-0+1;
+            nextUp=currentPage-0+1,
+            newTime=new Date();
 
    
     if(num<0){
-        if(nextUp>6){
+        if(nextUp>5){
             return;
         }
-        nextUp==0?$('#nav').css('display','block'):$('#nav').css('display','none');
+        var interVal=newTime-oldTime;
+        if(interVal>600){
+            nextUp==0?$('#nav').css('display','block'):$('#nav').css('display','none');
         $('#main_'+nextUp).removeClass('common_down');
         $('#main_'+nextUp).removeClass('common_up');
         $('#main_'+currentPage).addClass('common_up');
-        currentPage=currentPage>=5?currentPage-0:currentPage-0+1;   
+        currentPage=currentPage>=5?currentPage-0:currentPage-0+1;
+        oldTime=newTime;
+        }
+           
     }else if(num>0){
          if(nextDown<0){
             
             return;
         }
-        nextDown==0?$('#nav').css('display','block'):$('#nav').css('display','none');
+        var interVal=newTime-oldTime;
+        if(interVal>600){
+             nextDown==0?$('#nav').css('display','block'):$('#nav').css('display','none');
         $('#main_'+nextDown).removeClass('common_down');
         $('#main_'+nextDown).removeClass('common_up');
         $('#main_'+currentPage).addClass('common_down');
-       currentPage=currentPage<=0?currentPage:currentPage-1; 
+       currentPage=currentPage<=0?currentPage:currentPage-1;
+       oldTime=newTime;
+        }
+        
     }
     };
 })();
@@ -173,6 +185,30 @@ var showTechtitle=(function(){
         last_num=num;
     };
 })();
+
+// function debounce(func, wait, immediate) { 
+//     var timeout; 
+//     return function() { 
+//         var context = this, args = arguments; 
+//         var later = function() { 
+//             timeout = null; 
+//             if (!immediate) func.apply(context, args); 
+//         }; 
+//         var callNow = immediate && !timeout; 
+//         clearTimeout(timeout); 
+//         timeout = setTimeout(later, wait); 
+//         if (callNow) func.apply(context, args); 
+//     }; 
+// }; 
+ 
+
+ 
+// var myEfficientFn = debounce(function(delta) { 
+        
+//     switchMain(delta);
+ 
+// },600); 
+
 function resetImg(num){
     var elArr=$('.main_5_btn_'+num);
     console.debug(elArr);

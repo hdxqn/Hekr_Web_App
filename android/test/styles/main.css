@@ -138,13 +138,12 @@ html,body{
   height: 100%;
   position: absolute;
   top: 0;
-  bottom: 0;
   opacity: 1;
   background-color: transparent;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.6s;
+  -o-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  transition: all 0.6s;
   
 }
 
@@ -1052,6 +1051,9 @@ html,body{
   left: 0;
 }
 /*第六张页面设定样式结束*/
+#main_6{
+  display: none;
+}
 #main_6 #nav1{
   display: block;
   position: absolute;
