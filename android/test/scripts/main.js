@@ -8,6 +8,47 @@ $(document).ready(function(){
     $('#main').bind('mousewheel',function(event,delta){
         switchMain(delta);
     });
+    // $('#main').bind('touchstart',function(event){
+    //     startPos=event.touches[0].pageY;
+    // });
+    // $('#main').bind('touchmove',function(event){
+    //     var delta = event.touches[0].pageY-startPos;
+    //     if(delta>30){
+    //         switchMain(1);
+    //         startPos=event.touches[0].pageY;
+    //     }else if(delta<-30){
+    //         switchMain(-1);
+    //         startPos=event.touches[0].pageY;
+    //     }
+        
+    // });
+    // $('#main').bind('touchend',function(event){
+    //     var delta = event.touches[0].pageY-startPos;
+    //     if(delta>30){
+    //         switchMain(1);
+    //         startPos=event.touches[0].pageY;
+    //     }else if(delta<-30){
+    //         switchMain(-1);
+    //         startPos=event.touches[0].pageY;
+    //     }
+        
+    // });
+    document.getElementById('main').addEventListener("touchstart",function(event){
+        startPos=event.touches[0].pageY;
+    });
+     document.getElementById('main').addEventListener("touchmove",function(event){
+      // event.preventDefault();
+    });
+      document.getElementById('main').addEventListener("touchend",function(event){
+        var delta = event.changedTouches[0].pageY-startPos;
+        if(delta>30){
+            switchMain(1);
+            startPos=event.changedTouches[0].pageY;
+        }else if(delta<-30){
+            switchMain(-1);
+            startPos=event.changedTouches[0].pageY;
+        }
+    });
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -185,6 +226,7 @@ var showTechtitle=(function(){
         last_num=num;
     };
 })();
+var startPos=0;
 
 // function debounce(func, wait, immediate) { 
 //     var timeout; 
