@@ -4,8 +4,8 @@ html,body{
   margin: 0;
   padding: 0;
   width: 100%;
+  min-width: 945px;
   height: 100%;
-  min-width: 920px;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   color:#FFF;
   text-shadow:1px 1px 0 rgba(0,0,0,.2);
@@ -151,6 +151,9 @@ html,body{
   top: 100%;
   
 }
+/*#main_0 {
+  background: url(../images/header.jpg) no-repeat center top;
+}*/
 #main_0 .bgimg_0{
   display: block;
   position: absolute;
@@ -333,11 +336,13 @@ html,body{
 /*第一张完毕*/
 #main_1 #circle{
   position: absolute;
+  width: 70vh;
+  height: 70%;
   width: 500px;
   height: 500px;
-  top: 50%;
+  top: 15%;
   left: 50%;
-  margin:-250px 0 0 -250px;
+  margin:-0 0 0 -35vh;
    box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -425,7 +430,7 @@ html,body{
 #main_1 #circle .little span{
   display: block;
   position: absolute;
-  width: 180px;
+  width: 160%;
   height: 120px;
   color: #4A4E51;
   font-size: 16px;
@@ -751,7 +756,7 @@ html,body{
   z-index: 99;
 }
 #main_4 .switch_button .little_button{
-  margin: 0;
+  margin: 0 2px 0 2px;
   padding: 0;
   display: inline-block;
   text-align: center;
@@ -826,7 +831,7 @@ html,body{
   left: 60%;
   z-index: 90;
   margin: 0 0 0 -220px;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.7);
   font-size: 1.4em;
   color: black;
   text-shadow:none;
@@ -934,6 +939,7 @@ html,body{
 #main_5  .main_5_img1{
   top: 30%;
   right: 51%;
+  width: 
   max-width: 437px;
   max-height: 198px;
   opacity: 1;
@@ -941,20 +947,22 @@ html,body{
 #main_5  .main_5_img2{
   bottom: 40%;
   left: 51%;
-  max-width: 552px;
-  max-height: 306px;
+  max-width: 486px;
+  max-height: 198px;
   opacity: 1;
 }
 #main_5  .main_5_img3{
   top:30%;
   left: 51%;
   max-width: 522px;
-  max-height: 303px;
+  max-height: 306px;
   opacity: 1;
 }
 #main_5  .main_5_img4{
   top:30%;
   right: 51%;
+  max-width: 522px;
+  max-height: 303px;
   opacity: 1;
 }
 #main_5  .main_5_img5{
@@ -988,7 +996,7 @@ html,body{
 #main_5  .main_5_img9{
   top:30%;
   width: auto;
-  height: 45%;
+  height: 40%;
   left: 25%;
   opacity: 1;
 }
