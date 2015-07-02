@@ -184,7 +184,7 @@ ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
 	 setTimeout(function(){
          ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-     },100)
+     },500)
 	$.modal.close();
 };
 ws.onclose=function(){

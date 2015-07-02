@@ -81,25 +81,32 @@ function rollAnimation(){
 
 
 var switchMain=(function(){
-    var markPage=changNav();
+    var currentPage=changNav();
+
     return function(num){
         var nextDown=currentPage-1,
-            nextUp=currentPage+1;
+            nextUp=currentPage-0+1;
+
+   
     if(num<0){
-        if(num>=5){
+        if(nextUp>6){
             return;
         }
+        nextUp==0?$('#nav').css('display','block'):$('#nav').css('display','none');
         $('#main_'+nextUp).removeClass('common_down');
         $('#main_'+nextUp).removeClass('common_up');
-        $('#main_'+currentPage).addClass('common_up');   
+        $('#main_'+currentPage).addClass('common_up');
+        currentPage=currentPage>=5?currentPage-0:currentPage-0+1;   
     }else if(num>0){
-        if(currentPage<=0){
+         if(nextDown<0){
+            
             return;
         }
+        nextDown==0?$('#nav').css('display','block'):$('#nav').css('display','none');
         $('#main_'+nextDown).removeClass('common_down');
         $('#main_'+nextDown).removeClass('common_up');
         $('#main_'+currentPage).addClass('common_down');
-       
+       currentPage=currentPage<=0?currentPage:currentPage-1; 
     }
     };
 })();
