@@ -119,6 +119,28 @@ function rollAnimation(){
     $('.title_3').removeClass('title_0');
     $('.more').removeClass('more_0');
  }
+ function jumpTofour(){
+    // for(var i=0;i<4;i++){
+    //     setTimeout(function(){
+    //          $('#main_'+i).addClass('common_up');
+    //           $('#main_'+i).removeClass('common_down');
+    //     },200);
+    // }
+    var i=0;
+    var j=setInterval(function(){
+        $('#main_'+i).addClass('common_up');
+        $('#main_'+i).removeClass('common_down');
+       i<4?i+=1:i+=0;
+    },200);
+    setTimeout(function(){
+        $('#nav').css('display','none');
+     $('#main_4').removeClass('common_down');
+        $('#main_4').removeClass('common_up');
+        clearInterval(j);
+    },1000);
+    
+        switchMain(0);
+ }
 
 
 var switchMain=(function(){
@@ -160,6 +182,8 @@ var switchMain=(function(){
        oldTime=newTime;
         }
         
+    }else if(num==0){
+        currentPage=4;
     }
     };
 })();

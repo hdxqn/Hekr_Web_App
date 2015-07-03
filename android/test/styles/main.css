@@ -142,15 +142,13 @@ html,body{
   transition: all 0.6s;
   
 }
-
+.common_down{
+  top: 100%; 
+}
 .common_up{
   top: -100%;
-  
 }
-.common_down{
-  top: 100%;
-  
-}
+
 #main_0 {
   background: url(../images/header.jpg) no-repeat center center;
   background-size:cover;
