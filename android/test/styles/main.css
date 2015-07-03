@@ -411,6 +411,7 @@ html,body{
   overflow: hidden;
   margin:-30px 0 0 -30px;
   border-radius: 0;
+   -ms-interpolation-mode: bicubic; 
   -webkit-transform: rotate3d(1,1,1,0);
   -ms-transform: rotate3d(1,1,1,0);
   -o-transform: rotate3d(1,1,1,0);
