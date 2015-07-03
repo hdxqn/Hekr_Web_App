@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>插座</title>
+</head>
+<body>
+  <div id="nav">
+      <div id="back">
+          <img src="images/back.png" alt="">
+      </div>
+      <span class="title" data-i18n="socket"></span>
+  </div>
+
+  <div class="center">
+      <div class="circle">
+        <img src="images/logo.png" alt="" class="logo">
+        <span class="state" data-i18n="state"></span>
+        <span id="on" data-i18n="off"></span>
+        <div id="timerState">
+        <span id="hourState">--</span>h<span id="minState">--</span>m<span id="onMode" data-i18n="timeShut"></span>
+        </div>
+      </div>
+  </div>
+
+  <div class="ctrl">
+        <div id="power" data=0>
+          <img src="images/power.png" alt="" class="powerimg">
+          <span class="powerword" data-i18n="power"></span>
+        </div>
+
+        <ul class="panel">
+
+          <li id="timerPanel">
+          <span id="onTriangle"></span>
+            <span id="timerOn" data-i18n="timerOn"></span>
+            
+             <span id="timerOff" data-i18n="timerOff"></span>
+           <span id="offTriangle"></span>
+          </li>
+
+          <li class="slider1">
+          <span class="sliderCount" id="sliderCount1"></span>
+            <input type="range" class="slider hours" value="0" id="hours" min="0" max="23">
+          </li>
+
+          <li class="slider2">
+          <span class="sliderCount" id="sliderCount2"></span>
+            <input type="range" class="slider minute" value="0" id="minutes" min="0" max="59">
+          </li>
+
+        </ul>
+      
+  </div>
+
+
+  
+
+
+
+
+
+
+
+     <!-- <script src="scripts/jquery.min.js"></script>
+    // <script src="scripts/i18n.js"></script>
+    // <script src="scripts/lambdaTM.js"></script>
+    // <script src="scripts/reconnecting-websocket.js"></script>
+    // <script src="scripts/main.js"></script> -->
+  
+</body>
+</html>

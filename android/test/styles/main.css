@@ -417,6 +417,7 @@ html,body{
 
   -webkit-transition: all 0.4s;
   -o-transition:all 0.4s;
+  -moz-transition:all 0.4s;
   transition:all 0.4s;
  
 }
@@ -431,7 +432,7 @@ html,body{
 #main_1 #circle .little span{
   display: block;
   position: absolute;
-  width: 160%;
+  width: 180px;
   height: 120px;
   color: #4A4E51;
   font-size: 16px;
@@ -439,6 +440,18 @@ html,body{
   font-weight: bold;
   text-shadow:none;
   z-index: 10;
+}
+#main_1 #circle .little span p{
+  margin: 20px 0 0 0;
+  opacity: 0;
+   -webkit-transition: all 0.3s;
+  -o-transition:all 0.3s;
+  -moz-transition:all 0.3s;
+  transition:all 0.3s;
+}
+#main_1 #circle .little span:hover p{
+  margin: 0 0 0 0;
+  opacity: 1;
 }
 #main_1 #circle .little span h1{
   margin: 0;
