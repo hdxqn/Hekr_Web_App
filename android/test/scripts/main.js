@@ -132,7 +132,7 @@ var switchMain=(function(){
 
    
     if(num<0){
-        if(nextUp>5){
+        if(nextUp>6){
             return;
         }
         var interVal=newTime-oldTime;
@@ -141,7 +141,7 @@ var switchMain=(function(){
         $('#main_'+nextUp).removeClass('common_down');
         $('#main_'+nextUp).removeClass('common_up');
         $('#main_'+currentPage).addClass('common_up');
-        currentPage=currentPage>=5?currentPage-0:currentPage-0+1;
+        currentPage=currentPage>=6?currentPage-0:currentPage-0+1;
         oldTime=newTime;
         }
            
@@ -167,18 +167,18 @@ var switchMain=(function(){
 var switchBg = (function(){
     var last_num = 1;
     return function(num){
-        var showBg=$('#main_4_show_bg'),
+        var showBg=$('#main_5_show_bg'),
             testNum=Math.random();
             if(testNum<0.5){
-                $('.main_4_bm').addClass('main_4_bm_0');
-                $('#main_4_show'+num).removeClass('main_4_bm_0').removeClass('main_4_bm_1');
+                $('.main_5_bm').addClass('main_5_bm_0');
+                $('#main_5_show'+num).removeClass('main_5_bm_0').removeClass('main_5_bm_1');
             }else if(testNum>=0.5){
-                $('.main_4_bm').addClass('main_4_bm_1');
-                $('#main_4_show'+num).removeClass('main_4_bm_0').removeClass('main_4_bm_1');
+                $('.main_5_bm').addClass('main_5_bm_1');
+                $('#main_5_show'+num).removeClass('main_5_bm_0').removeClass('main_5_bm_1');
             }
-        $('.main_4_bm').addClass('main_4_bm_0');
+        $('.main_5_bm').addClass('main_5_bm_0');
         $('.little_button').removeClass('little_button_selected');
-        $('#main_4_show'+num).removeClass('main_4_bm_0');
+        $('#main_5_show'+num).removeClass('main_5_bm_0');
         $('#button_'+num).addClass('little_button_selected');
         
         switch(last_num){
@@ -207,21 +207,21 @@ var switchBg = (function(){
 var showTechtitle=(function(){
     var last_num=1;
     return function(ts,num){
-         $('.main_5_bt_a').removeClass('main_5_button_selected');
-        $(ts).addClass('main_5_button_selected');
-        $('.main_5_tb').removeClass('main_5_tb_0');
-        $('#main_5_tb'+num).addClass('main_5_tb_0');
+         $('.main_6_bt_a').removeClass('main_6_button_selected');
+        $(ts).addClass('main_6_button_selected');
+        $('.main_6_tb').removeClass('main_6_tb_0');
+        $('#main_6_tb'+num).addClass('main_6_tb_0');
         // 标题切换
         resetImg(last_num);
-        var elArr=$('.main_5_btn_'+num);
+        var elArr=$('.main_6_btn_'+num);
         if(elArr.length>2){
-            $(elArr[0]).removeClass('main_5_img_l');
-            $(elArr[1]).removeClass('main_5_img_l');
-            $(elArr[2]).removeClass('main_5_img_r');
-            $(elArr[3]).removeClass('main_5_img_r');
+            $(elArr[0]).removeClass('main_6_img_l');
+            $(elArr[1]).removeClass('main_6_img_l');
+            $(elArr[2]).removeClass('main_6_img_r');
+            $(elArr[3]).removeClass('main_6_img_r');
         }else if(elArr.length<=2){
-            $(elArr[0]).removeClass('main_5_img_l');
-            $(elArr[1]).removeClass('main_5_img_r');
+            $(elArr[0]).removeClass('main_6_img_l');
+            $(elArr[1]).removeClass('main_6_img_r');
         }
         last_num=num;
     };
@@ -252,15 +252,15 @@ var startPos=0;
 // },600); 
 
 function resetImg(num){
-    var elArr=$('.main_5_btn_'+num);
+    var elArr=$('.main_6_btn_'+num);
         if(elArr.length>2){
-            $(elArr[0]).addClass('main_5_img_l');
-            $(elArr[1]).addClass('main_5_img_l');
-            $(elArr[2]).addClass('main_5_img_r');
-            $(elArr[3]).addClass('main_5_img_r');
+            $(elArr[0]).addClass('main_6_img_l');
+            $(elArr[1]).addClass('main_6_img_l');
+            $(elArr[2]).addClass('main_6_img_r');
+            $(elArr[3]).addClass('main_6_img_r');
         }else if(elArr.length<=2){
-            $(elArr[0]).addClass('main_5_img_l');
-            $(elArr[1]).addClass('main_5_img_r');
+            $(elArr[0]).addClass('main_6_img_l');
+            $(elArr[1]).addClass('main_6_img_r');
         }
 }
 

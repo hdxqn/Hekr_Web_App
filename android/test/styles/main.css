@@ -749,8 +749,13 @@ html,body{
   z-index: 99;
   position: relative;
 }
+#main_4{
+   background: url(../images/process.png) no-repeat center center;
+  background-size:cover;
+  background-attachment: fixed;
+}
 /*第四张页面结束*/
-#main_4 .switch_button{
+#main_5 .switch_button{
   list-style: none;
   margin: 0;
   padding: 0;
@@ -763,7 +768,7 @@ html,body{
   text-align: center;
   z-index: 99;
 }
-#main_4 .switch_button .little_button{
+#main_5 .switch_button .little_button{
   margin: 0 2px 0 2px;
   padding: 0;
   display: inline-block;
@@ -780,17 +785,17 @@ html,body{
   font-size: 18px;
   line-height: 35px;
 }
-/*#main_4 .switch_button .little_button:hover{
+/*#main_5 .switch_button .little_button:hover{
   background-color: #5BADD5;
 }*/
-#main_4 .switch_button .little_button_selected{
+#main_5 .switch_button .little_button_selected{
   background-color: #5BADD5;
 }
-#main_4 .switch_button .little_button a{
+#main_5 .switch_button .little_button a{
   text-decoration: none;
   color: #fff;
 }
-#main_4 .main_4_bm{
+#main_5 .main_5_bm{
   display: block;
   position: absolute;
   width: 100%;
@@ -804,7 +809,7 @@ html,body{
   transition: all 0.5s;
   -moz-transition:all 0.5s;
 }
-#main_4 #main_4_show_bg{
+#main_5 #main_5_show_bg{
   display: block;
   position: absolute;
   width: 100%;
@@ -813,15 +818,15 @@ html,body{
   left: 0;
   z-index: 2;
 }
-#main_4 .main_4_bm_0{
+#main_5 .main_5_bm_0{
   left: -100%;
   opacity: 0;
 }
-#main_4 .main_4_bm_1{
+#main_5 .main_5_bm_1{
   left: 100%;
   opacity: 0;
 }
-#main_4 #fixed_hand{
+#main_5 #fixed_hand{
   display: block;
   position: absolute;
   height: 80%;
@@ -829,7 +834,7 @@ html,body{
   left: 60%;
   z-index: 99;
 }
-#main_4::before{
+#main_5::before{
   content: '有家的地方就有氦氪有氦氪的地方就是家';
   display: block;
   position: absolute;
@@ -849,7 +854,7 @@ html,body{
   font-family: "微软雅黑";
 }
 /*第五张页面结束*/
-#main_5 .main_5_switch{
+#main_6 .main_6_switch{
   list-style: none;
   margin: 0;
   padding: 0;
@@ -862,7 +867,7 @@ html,body{
   text-align: center;
   z-index: 99;
 }
-#main_5 .main_5_switch .main_5_button{
+#main_6 .main_6_switch .main_6_button{
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -875,7 +880,7 @@ html,body{
   margin: 0 10px 0 10px;
   padding: 0;
 }
-#main_5 .main_5_switch .main_5_button a{
+#main_6 .main_6_switch .main_6_button a{
   display: block;
   width: 100%;
   height: 100%;
@@ -887,11 +892,11 @@ html,body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
 }
-#main_5 .main_5_switch .main_5_button .main_5_button_selected{
+#main_6 .main_6_switch .main_6_button .main_6_button_selected{
   background-color: #5BABD5;
   border:2px solid transparent;
 }
-#main_5 .main_5_title{
+#main_6 .main_6_title{
   list-style: none;
   margin: 0;
   padding: 0;
@@ -902,7 +907,7 @@ html,body{
   top: 10%;
   left: 0;
 }
-#main_5 .main_5_title .main_5_tb{
+#main_6 .main_6_title .main_6_tb{
   display: block;
   position: absolute;
   margin: 0;
@@ -918,10 +923,10 @@ html,body{
   -moz-transition:all 0.8s;
   opacity: 0;
 }
-#main_5 .main_5_title .main_5_tb_0{
+#main_6 .main_6_title .main_6_tb_0{
   opacity: 1;
 }
-#main_5 .main_5_title .main_5_tb a{
+#main_6 .main_6_title .main_6_tb a{
   display: block;
   text-decoration: none;
   width: 100%;
@@ -931,11 +936,11 @@ html,body{
   color: #797A7E;
   text-shadow:none;
 }
-#main_5 .main_5_title .main_5_tb a span{
+#main_6 .main_6_title .main_6_tb a span{
   color: #85C2DF;
   text-shadow:none;
 }
-#main_5  .main_5_img{
+#main_6  .main_6_img{
   display: block;
   position:absolute; 
   height: 40%;
@@ -944,7 +949,7 @@ html,body{
   transition: opacity 1.2s,right 1.2s,left 1.2s;
   -moz-transition:opacity 1.2s,right 1.2s,left 1.2s;
 }
-#main_5  .main_5_img1{
+#main_6  .main_6_img1{
   top: 30%;
   right: 51%;
   width: 
@@ -952,105 +957,105 @@ html,body{
   max-height: 198px;
   opacity: 1;
 }
-#main_5  .main_5_img2{
+#main_6  .main_6_img2{
   bottom: 40%;
   left: 51%;
   max-width: 486px;
   max-height: 198px;
   opacity: 1;
 }
-#main_5  .main_5_img3{
+#main_6  .main_6_img3{
   top:30%;
   left: 51%;
   max-width: 522px;
   max-height: 306px;
   opacity: 1;
 }
-#main_5  .main_5_img4{
+#main_6  .main_6_img4{
   top:30%;
   right: 51%;
   max-width: 522px;
   max-height: 303px;
   opacity: 1;
 }
-#main_5  .main_5_img5{
+#main_6  .main_6_img5{
   top:50%;
   width: 12%;
   height: auto;
   left: 25%;
   opacity: 1;
 }
-#main_5  .main_5_img6{
+#main_6  .main_6_img6{
   top:45%;
   width: 12%;
   height: auto;
   left: 37.5%;
   opacity: 1;
 }
-#main_5  .main_5_img7{
+#main_6  .main_6_img7{
   top:40%;
   width: 12%;
   height: auto;
   left: 50%;
   opacity: 1;
 }
-#main_5  .main_5_img8{
+#main_6  .main_6_img8{
   top:35%;
   width: 12%;
   height: auto;
   left: 62.5%;
   opacity: 1;
 }
-#main_5  .main_5_img9{
+#main_6  .main_6_img9{
   top:30%;
   width: auto;
   height: 40%;
   left: 25%;
   opacity: 1;
 }
-#main_5  .main_5_img10{
+#main_6  .main_6_img10{
   top:30%;
   width: auto;
   height: 40%;
   left: 37.5%;
   opacity: 1;
 }
-#main_5  .main_5_img11{
+#main_6  .main_6_img11{
   top:30%;
   width: auto;
   height: 40%;
   left: 50%;
   opacity: 1;
 }
-#main_5  .main_5_img12{
+#main_6  .main_6_img12{
   top:30%;
   width: auto;
   height: 40%;
   left: 62.5%;
   opacity: 1;
 }
-#main_5  .main_5_img13{
+#main_6  .main_6_img13{
   top:30%;
   width: auto;
   height: 40%;
   left: 25%;
   opacity: 1;
 }
-#main_5  .main_5_img14{
+#main_6  .main_6_img14{
   top:30%;
   width: auto;
   height: 40%;
   left: 37.5%;
   opacity: 1;
 }
-#main_5  .main_5_img15{
+#main_6  .main_6_img15{
   top:30%;
   width: auto;
   height: 40%;
   left: 50%;
   opacity: 1;
 }
-#main_5  .main_5_img16{
+#main_6  .main_6_img16{
   top:30%;
   width: auto;
   height: 40%;
@@ -1058,21 +1063,21 @@ html,body{
   opacity: 1;
 }
 
-#main_5  .main_5_img_r{
+#main_6  .main_6_img_r{
   opacity: 0;
   left: 90%;
   right: 0;
 }
-#main_5  .main_5_img_l{
+#main_6  .main_6_img_l{
   opacity: 0;
   right: 90%;
   left: 0;
 }
 /*第六张页面设定样式结束*/
-#main_6{
+#main_7{
   display: none;
 }
-#main_6 #nav1{
+#main_7 #nav1{
   display: block;
   position: absolute;
   width: 50%;
@@ -1084,7 +1089,7 @@ html,body{
   text-align: left;
 }
 
-#main_6 #nav1  li{
+#main_7 #nav1  li{
   display: inline-block;
   width:90px;
   height:100%;
@@ -1093,7 +1098,7 @@ html,body{
   position: relative;
 }
 
-#main_6 #nav1  li a{
+#main_7 #nav1  li a{
   display: block;
   position: absolute;
   width: 100%;
@@ -1109,7 +1114,7 @@ html,body{
   text-shadow:none;
 }
 
-#main_6 #nav1  li a::after{
+#main_7 #nav1  li a::after{
   content: '';
   display: block;
   position: absolute;
@@ -1128,15 +1133,15 @@ html,body{
    transition: all 0.3s; 
 }
 
-#main_6 #nav1  li:hover a{
+#main_7 #nav1  li:hover a{
   color:#5CABD2;
 }
 
-#main_6 #nav1  li:hover a::after{
+#main_7 #nav1  li:hover a::after{
   opacity: 1;
   margin: 2px 0 0 -8px;
 }
-#main_6 .footer{
+#main_7 .footer{
   list-style: none;
   display: block;
   position: absolute;
@@ -1147,7 +1152,7 @@ html,body{
   padding: 0;
   background-color: #3B3738;
 }
-#main_6 .footer .footer_cm1{
+#main_7 .footer .footer_cm1{
   margin: 0;
   padding: 0;
   display: block;
@@ -1157,7 +1162,7 @@ html,body{
   top: 0;
   left: 25%;
 }
-#main_6 .footer .footer_cm1 img{
+#main_7 .footer .footer_cm1 img{
   display: block;
   position: absolute;
   height: 10vh;
@@ -1166,7 +1171,7 @@ html,body{
   left: 50%;
   margin: 0 0 0 -5vh;
 }
-#main_6 .footer .footer_cm1 span{
+#main_7 .footer .footer_cm1 span{
   display: block;
   position: absolute;
   width: 100%;
@@ -1176,7 +1181,7 @@ html,body{
   text-align: center;
   margin: 11vh 0 0 0;
 }
-#main_6 .footer .footer_cm2{
+#main_7 .footer .footer_cm2{
    margin: 0;
   padding: 0;
   display: block;
@@ -1186,7 +1191,7 @@ html,body{
   top: 0;
   left: 40%;
 }
-#main_6 .footer .footer_cm2 img{
+#main_7 .footer .footer_cm2 img{
   display: block;
   position: absolute;
   height: 10vh;
@@ -1195,7 +1200,7 @@ html,body{
   left: 50%;
   margin: 0 0 0 -5vh;
 }
-#main_6 .footer .footer_cm2 span{
+#main_7 .footer .footer_cm2 span{
  display: block;
   position: absolute;
   width: 100%;
@@ -1205,7 +1210,7 @@ html,body{
   text-align: center;
   margin: 11vh 0 0 0;
 }
-#main_6 .footer .footer_cm3{
+#main_7 .footer .footer_cm3{
    margin: 0;
   padding: 0;
   display: block;
@@ -1215,7 +1220,7 @@ html,body{
   top: 0;
   left: 55%;
 }
-#main_6 .footer .footer_cm3 img{
+#main_7 .footer .footer_cm3 img{
   display: block;
   position: absolute;
   width: 5vh;
@@ -1223,7 +1228,7 @@ html,body{
   top: 5%;
   left: 0;
 }
-#main_6 .footer .footer_cm3 h1{
+#main_7 .footer .footer_cm3 h1{
   display: block;
   position: absolute;
   top: 5%;
@@ -1234,7 +1239,7 @@ html,body{
   line-height: 5vh;
   margin: 0 0 0 5vh;
 }
-#main_6 .footer .footer_cm3 span{
+#main_7 .footer .footer_cm3 span{
   display: block;
   position: absolute;
   top: 5%;
@@ -1245,7 +1250,7 @@ html,body{
   line-height: 3vh;
   margin: 5vh 0 0 5vh;
 }
-#main_6 .main_6_cm{
+#main_7 .main_7_cm{
   list-style: none;
   display: block;
   position: absolute;
@@ -1256,7 +1261,7 @@ html,body{
   margin: 0;
   padding: 0;
 }
-#main_6 .main_6_cm .cm_li{
+#main_7 .main_7_cm .cm_li{
   list-style: none;
   display: block;
   position: absolute;
@@ -1273,13 +1278,13 @@ html,body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
 }
-#main_6 .main_6_cm .cm_li:hover{
+#main_7 .main_7_cm .cm_li:hover{
   border-top:1px solid #E9E9E9;
   border-bottom:1px solid #E9E9E9;
   border-right:1px solid #FFFFFF;   
   background-color: #FFFFFF;
 }
-#main_6 .main_6_cm .cm_li h1{
+#main_7 .main_7_cm .cm_li h1{
   margin: 0;
   padding: 0;
   font-size: 1em;
@@ -1287,36 +1292,36 @@ html,body{
   text-shadow:none;
   line-height: 150%;
 }
-#main_6 .main_6_cm .cm_li b{
+#main_7 .main_7_cm .cm_li b{
   margin: 0;
   padding: 0;
   font-size: 0.5em;
   color: #FB0707;
   text-shadow:none;
 }
-#main_6 .main_6_cm .cm_li span{
+#main_7 .main_7_cm .cm_li span{
   margin: 0;
   padding: 0;
   color: #3A3839;
   font-size: 0.5em;
   text-shadow:none;
 }
-#main_6 .main_6_cm .cm_li1{
+#main_7 .main_7_cm .cm_li1{
   top: 0;
 }
-#main_6 .main_6_cm .cm_li2{
+#main_7 .main_7_cm .cm_li2{
   top: 21%;
 }
-#main_6 .main_6_cm .cm_li3{
+#main_7 .main_7_cm .cm_li3{
   top: 42%;
 }
-#main_6 .main_6_cm .cm_li4{
+#main_7 .main_7_cm .cm_li4{
   top: 63%;
 }
-#main_6 .main_6_cm .cm_li5{
+#main_7 .main_7_cm .cm_li5{
   top: 84%;
 }
-#main_6 .main_9_detail{
+#main_7 .main_9_detail{
   position: absolute;
   height: 60%;
   width: 50%;
