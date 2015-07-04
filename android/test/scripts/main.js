@@ -119,7 +119,7 @@ function rollAnimation(){
     $('.title_3').removeClass('title_0');
     $('.more').removeClass('more_0');
  }
- function jumpTofour(){
+ function jumpToNum(num){
     // for(var i=0;i<4;i++){
     //     setTimeout(function(){
     //          $('#main_'+i).addClass('common_up');
@@ -130,14 +130,15 @@ function rollAnimation(){
     var j=setInterval(function(){
         $('#main_'+i).addClass('common_up');
         $('#main_'+i).removeClass('common_down');
-       i<4?i+=1:i+=0;
+       i<num?i+=1:i+=0;
+       console.debug(i);
     },200);
     setTimeout(function(){
         $('#nav').css('display','none');
-     $('#main_4').removeClass('common_down');
-        $('#main_4').removeClass('common_up');
+     $('#main_'+num).removeClass('common_down');
+        $('#main_'+num).removeClass('common_up');
         clearInterval(j);
-    },1000);
+    },200*num+200);
     
         switchMain(0);
  }
