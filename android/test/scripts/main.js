@@ -131,7 +131,6 @@ function rollAnimation(){
         $('#main_'+i).addClass('common_up');
         $('#main_'+i).removeClass('common_down');
        i<num?i+=1:i+=0;
-       console.debug(i);
     },200);
     setTimeout(function(){
         $('#nav').css('display','none');
@@ -140,7 +139,7 @@ function rollAnimation(){
         clearInterval(j);
     },200*num+200);
     
-        switchMain(0);
+        switchMain(num,1);
  }
 
 
@@ -148,13 +147,12 @@ var switchMain=(function(){
     var currentPage=changNav(),
         oldTime=new Date();
 
-    return function(num){
+    return function(num,jump){
         var nextDown=currentPage-1,
             nextUp=currentPage-0+1,
             newTime=new Date();
-
    
-    if(num<0){
+    if(num<0&&jump==undefined){
         if(nextUp>6){
             return;
         }
@@ -168,7 +166,7 @@ var switchMain=(function(){
         oldTime=newTime;
         }
            
-    }else if(num>0){
+    }else if(num>0&&jump==undefined){
          if(nextDown<0){
             
             return;
@@ -183,8 +181,8 @@ var switchMain=(function(){
        oldTime=newTime;
         }
         
-    }else if(num==0){
-        currentPage=4;
+    }else if(jump){
+        currentPage=num;
     }
     };
 })();
