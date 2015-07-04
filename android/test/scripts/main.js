@@ -206,19 +206,19 @@ var switchBg = (function(){
         
         switch(last_num){
             case 1:
-            showBg.attr('src','images/livingroom.png');
+            showBg.attr('src','images/livingroom.jpg');
             break;
             case 2:
-            showBg.attr('src','images/kitchen.png');
+            showBg.attr('src','images/kitchen.jpg');
             break;
             case 3:
-            showBg.attr('src','images/bedroom.png');
+            showBg.attr('src','images/bedroom.jpg');
             break;
             case 4:
-            showBg.attr('src','images/bathroom.png');
+            showBg.attr('src','images/bathroom.jpg');
             break;
             case 5:
-            showBg.attr('src','images/yard.png');
+            showBg.attr('src','images/yard.jpg');
             break;
             default:
             break;
