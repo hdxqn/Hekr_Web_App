@@ -335,14 +335,12 @@ html,body{
  } 
 /*第一张完毕*/
 #main_1 #circle{
-  position: absolute;
-  width: 70vh;
-  height: 70%;
-  width: 500px;
-  height: 500px;
-  top: 15%;
-  left: 50%;
-  margin:-0 0 0 -35vh;
+  position: relative;
+  width: 80vh;
+  height: 80vh;
+/*  top: 15%;
+  left: 50%;*/
+  margin:10vh auto 10vh auto;
    box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
