@@ -336,11 +336,11 @@ html,body{
 /*第一张完毕*/
 #main_1 #circle{
   position: relative;
-  width: 80vh;
-  height: 80vh;
+  width: 70vh;
+  height: 70vh;
 /*  top: 15%;
   left: 50%;*/
-  margin:10vh auto 10vh auto;
+  margin:15vh auto 15vh auto;
    box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -352,13 +352,33 @@ html,body{
 }
 #main_1 #circle img{
   display: block;
-  width: 380px;
-  height: 380px;
+/*  width: 380px;
+  height: 380px;*/
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 20%;
+  left:20%;
+  border-radius: 50%;
+/*  margin: -190px 0 0 -190px;*/
+}
+#main_1 #circle .circle_title{
+  display: block;
+/*  width: 380px;
+  height: 380px;*/
+  width: 100%;
+  height: 50px;
   position: absolute;
   top: 50%;
-  left:50%;
+  left:0;
+  text-align: center;
   border-radius: 50%;
-  margin: -190px 0 0 -190px;
+  margin: -25px 0 0 0;
+  line-height: 50px;
+  font-size: 32px;
+  color: #fff;
+  /*font-family: "微软雅黑";*/
+/*  margin: -190px 0 0 -190px;*/
 }
 #main_1 #circle .little{
   position: absolute;
