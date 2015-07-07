@@ -211,7 +211,8 @@ function setSliderState(num){
 		minute=Math.floor((num%3600)/60);
 		$('#hours').val(hour);
 		$('#minutes').val(minute);
-
+		$('#hourState').text(hour);
+		$('#minState').text(minute);
 }
 function setTimerState(num){
 	if(num==1){
