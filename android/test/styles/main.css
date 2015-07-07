@@ -27,7 +27,7 @@ html,body{
   display: none;
   position: fixed;
   width: 100%;
-  height: 30px;
+  height: 40px;
   top:0;
   left:0;
   z-index: 9999;
@@ -69,11 +69,11 @@ html,body{
   display: block;
   position: absolute;
   width: 100%;
-  height: 30px;
+  height: 40px;
   top: 50%;
-  margin: -15px 0 0 0;
+  margin: -20px 0 0 0;
   text-align: center;
-  line-height: 30px;
+  line-height: 40px;
   text-decoration: none;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   color:#fff; 
@@ -678,7 +678,9 @@ html,body{
   display: block;
   position: absolute;
   width: 100%;
-  height: 20%;
+  height: 90px;
+  top: 50px;
+  left:0; 
   line-height: 90px;
   text-align: center;
   font-size: 36px;
@@ -695,7 +697,9 @@ html,body{
   padding: 0;
   width: 70vw;
   height:31.5vw;
-  top: 20%;
+  max-height: 500px;
+  max-width:1111px; 
+  top: 25%;
   left: 15%;
 }
 #main_3 .partner .partner_logo{
@@ -708,33 +712,84 @@ html,body{
   -o-box-sizing:border-box;
   margin: 0;
   padding: 0;
+  width:33.3%;
+  height: 100%;
 }
 #main_3 .partner .partner_logo_1{
-  width:33.3%;
-  border:1px solid red;
+ 
 }
-#main_3 .partner .partner_logo_1 .turn_box{
-  position: relative;
-  width:100%;
-}
-#main_3 .partner .partner_logo_1 .turn_box .turn_img{
+#main_3 .partner .partner_logo_1 .turn_box1{
   position: absolute;
   width:100%;
+  height: 50%;
+}
+
+#main_3 .partner .partner_logo_1 .turn_box2 {
+  position: absolute;
+  width:100%;
+  height: 50%;
+  top: 50%;
+  left: 0;
+}
+#main_3 .partner .partner_logo_2 .turn_box3 {
+  position: absolute;
+  width:100%;
+  height: 100%;
   top: 0;
   left: 0;
-  -webkit-transition:all 0.225s;
-  -o-transition:all 0.225s;
-  transition:all 0.225s;
-  -moz-transition:all 0.225s;
 }
-#main_3 .partner .partner_logo_1 .turn_box .out{
+#main_3 .partner .partner_logo_3 .turn_box4 {
+  position: absolute;
+  width:100%;
+  height:50%;
+  top: 0;
+  left: 0;
+}
+#main_3 .partner .partner_logo_3 .turn_box5 {
+  position: absolute;
+  width:50%;
+  height:50%;
+  top: 50%;
+  left: 0;
+}
+#main_3 .partner .partner_logo_3 .turn_box6 {
+  position: absolute;
+  width:50%;
+  height:50%;
+  top: 50%;
+  left: 50%;
+}
+#main_3 .partner .partner_logo .turn_box .turn_img{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+ /* -webkit-transition:width 0.6s,height 0.6s,transform 0.225s;
+  -o-transition:width 0.6s,height 0.6s,transform 0.225s;
+  transition:width 0.6s,height 0.6s,transform 0.225s;
+  -moz-transition:width 0.6s,height 0.6s,transform 0.225s;*/
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+#main_3 .partner .partner_logo .turn_box:hover .turn_img{
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  z-index: 99;
+}
+#main_3 .partner .partner_logo .turn_box .out{
  transform:rotate3d(0,1,0,90deg);
   -webkit-transform:rotate3d(0,1,0,90deg);
   -moz-transform:rotate3d(0,1,0,90deg);
     -ms-transform:rotate3d(0,1,0,90deg);
   -o-transform:rotate3d(0,1,0,90deg);
 }
-#main_3 .partner .partner_logo_1 .turn_box .in{
+#main_3 .partner .partner_logo .turn_box .in{
  transform:rotate3d(0,1,0,0);
   -webkit-transform:rotate3d(0,1,0,0);
   -moz-transform:rotate3d(0,1,0,0);
@@ -743,30 +798,6 @@ html,body{
 }
 
 
-
-
-
-#main_3 .partner .partner_logo_2{
-  width: 33.3%;
-  height: 100px;
-  border:1px solid red;
-}
-
-#main_3 .partner .partner_logo_3{
-  width: 33.3%;
-  height: 100px;
-  border:1px solid red;
-}
-
-#main_3 .partner .partner_logo img:hover{
-   -webkit-transform: scale3D(1.2,1.2,1.2);
-  -ms-transform: scale3D(1.2,1.2,1.2);
-  -o-transform: scale3D(1.2,1.2,1.2);
-  transform: scale3D(1.2,1.2,1.2);
-  -moz-transform: scale3D(1.2,1.2,1.2);
-  z-index: 99;
-  position: relative;
-}
 #main_4{
    background: url(../images/process.png) no-repeat center center;
   background-size:cover;

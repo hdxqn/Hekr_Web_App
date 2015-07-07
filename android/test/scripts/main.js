@@ -3,11 +3,12 @@ $(document).ready(function(){
 	touchEvents={};
 	browserRedirect(touchEvents);
 	changeMain_0();
-    rollAnimation();
+    // rollAnimation();
 	switchBg(1);
     $('#main').bind('mousewheel',function(event,delta){
         switchMain(delta);
     });
+    $('.turn_box').bind(touchEvents.touchend,flip);
     // $('#main').bind('touchstart',function(event){
     //     startPos=event.touches[0].pageY;
     // });
@@ -73,6 +74,24 @@ function browserRedirect(obj) {
                 obj.touchend = "mouseup";
          
     }
+ }
+
+ function flip(){
+    var elef=null,
+        eleb=null;
+    $(this).find('.turn_img').each(function(){
+        if ($(this).hasClass('out')) {
+            eleb=$(this);
+        }else{
+            elef=$(this);
+        }
+    });
+
+     $(elef).addClass("out").removeClass("in");
+    setTimeout(function() {
+        $(eleb).addClass("in").removeClass("out");
+    }, 300);
+
  }
 
 
