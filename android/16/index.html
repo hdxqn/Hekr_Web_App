@@ -1,67 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	 <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="description" content="">
+    <meta name="keyword" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title>light</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>插座</title>
 </head>
 <body>
-	<div id="head">
-		<span>智能灯矩阵</span>
-	</div>
+  <div id="nav">
+      <div id="back">
+          <img src="images/back.png" alt="">
+      </div>
+      <span class="title" data-i18n="socket"></span>
+  </div>
 
-	<ul id="bulb">
-		<li>
-			<span class="lt1">
-			<img src="images/deng.png" id="dp1" class="dp" data=1>
-			<img src="images/circle.png" alt="" id="choice1" class="choice" data=1>
-			</span>
-			<span class="lt2">
-			<img src="images/deng.png" id="dp2" class="dp" data=1>
-			<img src="images/circle.png" alt="" id="choice2" class="choice" data=1>
-			</span>
-			<span class="lt3">
-			<img src="images/deng.png" id="dp3" class="dp" data=1>
-			<img src="images/circle.png" alt="" id="choice3" class="choice" data=1>
-			</span>
-		</li>
-		<li>
-			<span class="lt1">
-			<img src="images/deng.png" id="dp4" class="dp" data=1>
-			<img src="images/circle.png" alt="" id="choice4" class="choice" data=1>
-			</span>
-			<span class="lt2">
-			<img src="images/deng.png" id="dp5" class="dp" data=1>
-			<img src="images/circle.png" alt="" id="choice5" class="choice" data=1>
-			</span>
-			<span class="lt3">
-			<img src="images/deng.png" id="dp6" class="dp" data=1>
-			<img src="images/circle.png" alt="" id="choice6" class="choice" data=1>
-			</span>
-		</li>
-	</ul>
+  <div class="center">
+      <div class="circle">
+        <img src="images/cz.png" alt="" class="logo">
+        <span class="state" data-i18n="state"></span>
+        <span id="on" data-i18n="off"></span>
+        <div id="timerState">
+        <span id="hourState">--</span>h<span id="minState">--</span>m<span id="onMode" data-i18n="timeShut"></span>
+        </div>
+      </div>
+  </div>
 
-	<ul id="bulb2">
-		<li id="btn1">
-			<img src="images/saved.png" alt="" id="cancle">
-		</li>
-		<li id="btn2">
-			<img src="images/powerOn.png" alt="" id="btn" data=1>
-		</li>
-		<li id="btn3">
-			<img src="images/unpressed.png" alt="" id="editor" data=1>
-		</li>
-	</ul>
-	
+  <div class="ctrl">
+        <div id="power" data=1>
+          <img src="images/power.png" alt="" class="powerimg">
+          <span class="powerword" data-i18n="power"></span>
+        </div>
 
- 
- <script src="scripts/lambdaTM.js"></script>
- <script src="scripts/toast.js"></script>
- <script src="scripts/reconnecting-websocket.js"></script>
- <script src="scripts/util.js"></script>
- <script src="scripts/jquery-2.1.3.min.js"></script>
-	<script src="scripts/main.js"></script>
+        <ul class="panels">
+
+          <li id="timerpanels">
+          <span id="onTriangle" data=1></span>
+            <span id="timerOn" data-i18n="timerOn"></span>
+            
+             <span id="timerOff" data-i18n="timerOff"></span>
+           <span id="offTriangle" data=0></span>
+          </li>
+
+          <li class="slider1">
+          <span class="sliderCount" id="sliderCount1"></span>
+            <input type="range" class="slider hours" value="0" id="hours" min="0" max="23">
+          </li>
+
+          <li class="slider2">
+          <span class="sliderCount" id="sliderCount2"></span>
+            <input type="range" class="slider minute" value="0" id="minutes" min="0" max="59">
+          </li>
+
+        </ul>
+      
+  </div>
+
+
+
+ <div id="modal" class="popup modal">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting">
+                  
+                </span>
+            </div>
+        </div>
+    </div>
+  
+
+
+
+
+
+
+
+     <script src="scripts/jquery.min.js"></script>
+     <script src="scripts/i18n.js"></script>
+      <script src="scripts/lambdaTM.js"></script>
+      <script src="scripts/reconnecting-websocket.js"></script>
+     <script src="scripts/main.js"></script>
+  
 </body>
 </html>

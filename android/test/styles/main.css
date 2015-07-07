@@ -9,6 +9,7 @@ html,body{
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   color:#FFF;
   text-shadow:1px 1px 0 rgba(0,0,0,.2);
+  background-color: #fafafa;
 }
 
 *:focus{
@@ -26,19 +27,18 @@ html,body{
   display: none;
   position: fixed;
   width: 100%;
-  height: 10%;
-  min-width: 770px;
-  min-height: 40px;
+  height: 20px;
   top:0;
   left:0;
-  z-index: 2;
+
+  z-index: 9999;
 }
 
 #nav .logo{
   display: block;
   position: absolute;
   width: 124px;
-  height: 30px;
+  height: 20px;
   top: 50%;
   left: 25%;
   margin: -15px 0 0 -62px;
@@ -70,14 +70,14 @@ html,body{
   display: block;
   position: absolute;
   width: 100%;
-  height: 30px;
+  height: 20px;
   top: 50%;
   margin: -15px 0 0 0;
   text-align: center;
   line-height: 200%;
   text-decoration: none;
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-  color:#FFF;
+  color:#2e3033; 
   text-shadow:1px 1px 0 rgba(0,0,0,.2)
 }
 
@@ -346,7 +346,7 @@ html,body{
   -moz-box-sizing:border-box;
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
-  border: 2px solid #C2C2C2;
+  border: 2px solid #5BACD5;
   border-radius:50%;
   z-index: 1; 
 }
@@ -390,7 +390,7 @@ html,body{
   -moz-box-sizing:border-box;
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
-  border: 2px solid #C2C2C2;
+  border: 2px solid #5BACD5;
   z-index: 2;
   background-color: #fff;
 }
@@ -694,8 +694,8 @@ html,body{
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 70%;
-  height:31.3vw;
+  width: 70vw;
+  height:31.5vw;
   top: 20%;
   left: 15%;
 }
@@ -712,63 +712,53 @@ html,body{
 }
 #main_3 .partner .partner_logo_1{
   width:33.3%;
+  border:1px solid red;
 }
-#main_3 .partner .partner_logo_1 .li_logo_1{
-  display: block;
-  width: 100%;
-   -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  -moz-transition:all 0.5s;
+#main_3 .partner .partner_logo_1 .turn_box{
+  position: relative;
+  width:100%;
 }
-#main_3 .partner .partner_logo_1 .li_logo_2{
-  display: block;
-  width: 100%;
- -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  -moz-transition:all 0.5s;
+#main_3 .partner .partner_logo_1 .turn_box .turn_img{
+  position: absolute;
+  width:100%;
+  top: 0;
+  left: 0;
+  -webkit-transition:all 0.225s;
+  -o-transition:all 0.225s;
+  transition:all 0.225s;
+  -moz-transition:all 0.225s;
 }
+#main_3 .partner .partner_logo_1 .turn_box .out{
+ transform:rotate3d(0,1,0,90deg);
+  -webkit-transform:rotate3d(0,1,0,90deg);
+  -moz-transform:rotate3d(0,1,0,90deg);
+    -ms-transform:rotate3d(0,1,0,90deg);
+  -o-transform:rotate3d(0,1,0,90deg);
+}
+#main_3 .partner .partner_logo_1 .turn_box .in{
+ transform:rotate3d(0,1,0,0);
+  -webkit-transform:rotate3d(0,1,0,0);
+  -moz-transform:rotate3d(0,1,0,0);
+    -ms-transform:rotate3d(0,1,0,0);
+  -o-transform:rotate3d(0,1,0,0); 
+}
+
+
+
+
+
 #main_3 .partner .partner_logo_2{
   width: 33.3%;
+  height: 100px;
+  border:1px solid red;
 }
-#main_3 .partner .partner_logo_2 .li_logo_3{
-  display: block;
-  width: 100%;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  -moz-transition:all 0.5s;
-}
+
 #main_3 .partner .partner_logo_3{
-  width: 33.2%;
+  width: 33.3%;
+  height: 100px;
+  border:1px solid red;
 }
-#main_3 .partner .partner_logo_3 .li_logo_4{
-  display: block;
-  width: 100%;
- -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  -moz-transition:all 0.5s;
-}
-#main_3 .partner .partner_logo_3 .li_logo_5{
-  display: block;
-  width: 50%;
-   -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  -moz-transition:all 0.5s;
-}
-#main_3 .partner .partner_logo_3 .li_logo_6{
-  display: block;
-  float: right;
-  width: 50%;
-  margin: -66.7% 0 0 0;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  -moz-transition:all 0.5s;
-}
+
 #main_3 .partner .partner_logo img:hover{
    -webkit-transform: scale3D(1.2,1.2,1.2);
   -ms-transform: scale3D(1.2,1.2,1.2);
@@ -858,10 +848,12 @@ html,body{
 #main_5 #fixed_hand{
   display: block;
   position: absolute;
-  height: 80%;
-  bottom: 0;
-  left: 60%;
+  height: 70%;
+  bottom: 7%;
+  right: 7%;
   z-index: 99;
+  max-width: 314px;
+  max-height: 583px;
 }
 #main_5::before{
   content: '有家的地方就有氦氪有氦氪的地方就是家';
@@ -981,7 +973,6 @@ html,body{
 #main_6  .main_6_img1{
   top: 30%;
   right: 51%;
-  width: 
   max-width: 437px;
   max-height: 198px;
   opacity: 1;

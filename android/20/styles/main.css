@@ -150,7 +150,7 @@ body{
 	left: 0;
 	text-align: center;
 }
-.ctrl .panel{
+.ctrl .panels{
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -163,7 +163,7 @@ body{
 	background-color: rgba(0,0,0,0.1);
 	border-radius: 5px;
 }
-.ctrl .panel #timerPanel{
+.ctrl .panels #timerpanels{
 	display: block;
 	position: absolute;
 	width: 100%;
@@ -174,7 +174,7 @@ body{
 	margin: -50px 0 0 0;
 	text-align: center;
 }
-.ctrl .panel #timerPanel #timerOn{
+.ctrl .panels #timerpanels #timerOn{
 	display: block;
 	position: absolute;
 	top: 0;
@@ -190,7 +190,7 @@ body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
 }
-.ctrl .panel #timerPanel #timerOff{
+.ctrl .panels #timerpanels #timerOff{
 	display: block;
 	position: absolute;
 	top: 0;
@@ -200,6 +200,7 @@ body{
 	border: 1px solid #fff;
 	border-radius:5px;
 	line-height: 30px; 
+	opacity: 0.2;
 	 box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -207,7 +208,7 @@ body{
   -o-box-sizing:border-box;
 }
 
-.ctrl .panel #timerPanel #onTriangle{
+.ctrl .panels #timerpanels #onTriangle{
 	display: block;
 	position: absolute;
   	width: 0;
@@ -220,7 +221,7 @@ body{
   	margin:0 23px 0 0;
   	opacity: 1;
 }
-.ctrl .panel #timerPanel #offTriangle{
+.ctrl .panels #timerpanels #offTriangle{
 	display: block;
 	position: absolute;
   	width: 0;
@@ -233,7 +234,7 @@ body{
   	margin:0 0 0 23px;
   	opacity: 0;
 }
-.ctrl .panel .slider1{
+.ctrl .panels .slider1{
 	display: block;
 	position: absolute;
 	width: 100%;
@@ -242,7 +243,7 @@ body{
 	left: 0;
 	text-align: center;
 }
-.ctrl .panel .slider2{
+.ctrl .panels .slider2{
 	display: block;
 	position: absolute;
 	width: 100%;
@@ -251,7 +252,7 @@ body{
 	left: 0;
 	text-align: center;
 }
-.ctrl .panel li .slider{
+.ctrl .panels li .slider{
   	display: block;
   	position: absolute;
 	left: 10%;
@@ -263,14 +264,14 @@ body{
   	outline:none;
   	cursor: pointer;
 }
-.ctrl .panel li .hours{
+.ctrl .panels li .hours{
 	top: 75%;
 }
-.ctrl .panel li .minute{
+.ctrl .panels li .minute{
 	top: 50%;
 }
 
-.ctrl .panel li .slider::-webkit-slider-thumb{
+.ctrl .panels li .slider::-webkit-slider-thumb{
   -webkit-appearance:none;
   width:20px;
   height:60px;
@@ -280,7 +281,7 @@ body{
   border:none;
   position:relative;
 }
-.ctrl .panel li .slider::-webkit-slider-thumb:before{
+.ctrl .panels li .slider::-webkit-slider-thumb:before{
   display: block;
   content: '';
   width:20px;
@@ -296,17 +297,56 @@ body{
   left:50%;
   margin: -10px 0 0 -10px;
 }
-.ctrl .panel li .sliderCount{
+.ctrl .panels li .sliderCount{
 	display: block;
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	left: 10%;
 	top: 50%;
-	margin: -30px 0 0 0;
+	margin: -30px 0 0 -20px;
 }
-.ctrl .panel li  #sliderCount1{
+.ctrl .panels li  #sliderCount1{
 	top: 75%;
+}
+
+
+
+.popup{
+  width:100%;
+  padding:10px 0 20px;
+}
+
+.panel{
+  background-color:rgba(0,0,0,.1);
+  border-radius:5px;
+  width:90%;
+  height:125px;
+  margin:auto;
+  position:relative;
+}
+.fill{
+  width:100%;
+  height:100%;
+}
+.supper-center{
+  display:-webkit-flex;
+  display:flex;
+  vertical-align:baseline;
+  text-align:center;
+}
+.supper-center div,
+.supper-center span,
+.supper-center img{
+  margin:auto; 
+}
+.modal{
+  background:0 0;
+  -webkit-box-shadow: 0 0 10px #000;
+-moz-box-shadow: 0 0 10px #000;
+-o-box-shadow: 0 0 10px #000;
+-ms-box-shadow: 0 0 10px #000;
+box-shadow: 0 0 10px #000;
 }
 
 
