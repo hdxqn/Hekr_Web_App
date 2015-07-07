@@ -35,7 +35,6 @@ $(document).ready(function(){
    t = new Toast({
      			message:i18n.t("message")
  			});
- 	$.modal.close();
 
 });
 

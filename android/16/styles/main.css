@@ -316,7 +316,10 @@ body{
   width:100%;
   padding:10px 0 20px;
 }
-
+.seprator{
+  margin:0;
+  border-width:1px 0 0 0;
+}
 .panel{
   background-color:rgba(0,0,0,.1);
   border-radius:5px;
@@ -348,6 +351,8 @@ body{
 -ms-box-shadow: 0 0 10px #000;
 box-shadow: 0 0 10px #000;
 }
+
+
 
 
 
