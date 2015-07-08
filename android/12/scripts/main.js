@@ -147,7 +147,7 @@ function set_power(value){
 		value = parseInt(value,10);
 		value = UARTDATA.hex2str(value);
 	}
-	var data=value+"00000000000000",
+	var data="02"+value+"00000000000000",
 	    frame=UARTDATA.encode(0x02,data);
 
  
@@ -164,7 +164,7 @@ function set_brightness(value){
 		value = parseInt(value,10);
 		value = UARTDATA.hex2str(value);
 	}
-	var data="0301"+value+"0000000000"
+	var data="030101"+value+"0000000000"
 	var frame=UARTDATA.encode(0x02,data);
  
 	console.log("set_brightness :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
@@ -180,7 +180,7 @@ function set_temperature(value){
 		value = parseInt(value,10);
 		value = UARTDATA.hex2str(value);
 	}
-	var data="060100"+value+"00000000"
+	var data="06010001"+value+"00000000"
 	var frame=UARTDATA.encode(0x02,data);
 
 	console.log("set_temperature :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))

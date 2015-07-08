@@ -69,7 +69,7 @@ if (typeof UARTDATA !== 'object') {
  
         UARTDATA.encode = function (frame_type,frame_data) {
 			var frame='48';	
-			var frame_length=(frame_data.length/2+3);
+			var frame_length=(frame_data.length/2+5);
  
 			frame+=hex2str(frame_length);
 			frame+=hex2str(frame_type);
