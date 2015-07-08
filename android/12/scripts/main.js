@@ -112,9 +112,7 @@ function setBrightnessState(e){
 	$('#brightness').attr('data',e);
 	$('#brightness').val(e);
 	$('#showBrightness').text(e+'%');
-	if(e>0){
-		setPowerState(1);
-	}
+
 }
 
 
@@ -267,21 +265,10 @@ window.changestate=function(e){
      console.debug(e.uartdata);
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
-     	console.debug(mes);
-     	switch(mes[0]){
-     		case 1:
-     		 setPowerState(mes[0]);
-     		 break;
-     		case 2:
-     		 setPowerState(mes[0]);
-     		 break;
-     		case 3:
-     		 setBrightnessState(mes[2]);
-     		 break;
-     		 case 6:
-     		 setTemperatureState(mes[3]);
-     		 break;
-     	} 	
+     		console.debug(mes);
+     		 setPowerState(mes[1]);	
+     		 setBrightnessState(mes[3]);
+     		 setTemperatureState(mes[4]); 	
      }
 }
 	
