@@ -55,7 +55,7 @@ function browserRedirect(obj) {
 
 		//开关开启
 		}else if(state==1){
-			var frame=set_power(0);
+			var frame=set_power(2);
 			var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
 					tid:tid,
 					args:frame
@@ -192,7 +192,7 @@ function format_frame(frame){
 
 
 var tid = getUrlParam("tid");
-var host = getUrlParam("host") || "device.smartmatrix.mx";
+var host = getUrlParam("host") || "device.hekr.me";
 
 var token = getUrlParam("access_key");
 

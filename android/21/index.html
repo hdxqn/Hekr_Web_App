@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>油烟机</title>
+</head>
+<body>
+  <div id="nav">
+      <div id="back">
+          <img src="images/back.png" alt="">
+      </div>
+      <span class="title" data-i18n="title"></span>
+  </div>
+
+  <div class="center">
+      <div class="circle">
+        <img src="images/mechine.png" alt="" class="logo">
+        <span class="state" data-i18n="state"></span>
+        <span id="on" data-i18n="off"></span>
+        <div id="timerState">
+       	<span id="light" data-i18n="light"></span>
+       	<span id="speed" data-i18n="lowSpeed"></span>
+        </div>
+      </div>
+  </div>
+
+	<ul class="ctrl">
+		<li class="ctrl_li ctrl_li1">
+			<div id="li_power">
+				<img src="images/power.png" alt="" class="powerImg">
+				<span class="powerword" data-i18n="power"></span>
+			</div>
+
+			<div id="li_light">
+				<img src="images/light.png" alt="" class="lightImg">
+				<span class="lightword" data-i18n="light"></span>
+			</div>
+		</li>
+
+		<li class="ctrl_li ctrl_li2">
+			<div id="li_lowspeed">
+				<img src="images/lowspeed.png" alt="" class="lowspeedImg">
+				<span class="lowspeedword" data-i18n="lowSpeed"></span>
+			</div>
+			<div id="li_midspeed">
+				<img src="images/midspeed.png" alt="" class="midspeedImg">
+				<span class="midspeedword" data-i18n="midspeed"></span>
+			</div>
+			<div id="li_highspeed">
+				<img src="images/highspeed.png" alt="" class="highspeedImg">
+				<span class="highspeedword" data-i18n="highspeed"></span>
+			</div>
+			<div id="li_delay">
+				<img src="images/delay.png" alt="" class="delayImg">
+				<span class="delayword" data-i18n="delay"></span>
+			</div>
+
+		</li>
+		<li class="ctrl_li ctrl_li3">
+			<div class="timer">
+				<img src="images/timer.png" alt="" class="timerImg">
+				<span class="time">
+					<span id="hour">00</span>:<span id="minute">00</span>
+				</span>
+			</div>
+		</li>
+	</ul>
+  
+
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+     <script src="scripts/jquery.min.js"></script>
+     <script src="scripts/i18n.js"></script>
+       <!-- <script src="scripts/lambdaTM.js"></script>
+      // <script src="scripts/reconnecting-websocket.js"></script> -->
+     <script src="scripts/main.js"></script>
+  
+</body>
+</html>
