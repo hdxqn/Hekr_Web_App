@@ -21,6 +21,7 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
+    	
   $("#back").click(function() {
         console.debug("[EVENT] back button clicked");
         window.close();
@@ -215,26 +216,26 @@ function setSliderState(num){
 		$('#minState').text(minute);
 
 }
-function setTimerState(num){
-	if(num==1){
-		$('#timerOn').css('opacity','1');
-		$('#onTriangle').css('opacity','1');
-		$('#onTriangle').attr('data','1');
-		$('#timerOff').css('opacity','0.2');
-		$('#offTriangle').css('opacity','0');
-		$('#offTriangle').attr('data','0');
-		$('#onMode').text(i18n.t("timeTurn"));
-	}else if(num==0){
-		$('#timerOn').css('opacity','0.2');
-		$('#onTriangle').css('opacity','0');
-		$('#onTriangle').attr('data','0');
-		$('#timerOff').css('opacity','1');
-		$('#offTriangle').css('opacity','1');
-		$('#offTriangle').attr('data','1');
-		$('#onMode').text(i18n.t("timeShut"));
-	}
+// function setTimerState(num){
+// 	if(num==1){
+// 		$('#timerOn').css('opacity','1');
+// 		$('#onTriangle').css('opacity','1');
+// 		$('#onTriangle').attr('data','1');
+// 		$('#timerOff').css('opacity','0.2');
+// 		$('#offTriangle').css('opacity','0');
+// 		$('#offTriangle').attr('data','0');
+// 		$('#onMode').text(i18n.t("timeTurn"));
+// 	}else if(num==0){
+// 		$('#timerOn').css('opacity','0.2');
+// 		$('#onTriangle').css('opacity','0');
+// 		$('#onTriangle').attr('data','0');
+// 		$('#timerOff').css('opacity','1');
+// 		$('#offTriangle').css('opacity','1');
+// 		$('#offTriangle').attr('data','1');
+// 		$('#onMode').text(i18n.t("timeShut"));
+// 	}
 
-}
+// }
 
 
 
@@ -333,7 +334,7 @@ ws.onclose=function(){
 window.changestate=function(o){
 	setPowerState(o.power);
 	setSliderState(o.timer);
-	setTimerState(o.timertodo);
+	// setTimerState(o.timertodo);
 };
 
 var keepconnecting=setInterval(function(){
