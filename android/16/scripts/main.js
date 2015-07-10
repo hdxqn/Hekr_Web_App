@@ -21,6 +21,7 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
+    	
   $("#back").click(function() {
         console.debug("[EVENT] back button clicked");
         window.close();
@@ -141,35 +142,43 @@ function powerClick(){
 function sliderStart(event){
 	  $(this).bind(touchEvents.touchmove,sliderMove);
 
-	var lt=($(this).val()/this.max)*80+10;
+	var lt=($(this).val()/this.max)*80+10,
+			state=$('#onTriangle').attr('data')==1?'timeTurn':'timeShut';
+			$('#onMode').text(i18n.t(state));
 	if(this.id=='hours'){
 		$('#sliderCount1').css({
 			'opacity':'1',
 			'left':lt+'%'
 		});
 		$('#sliderCount1').text($(this).val());
+		$('#hourState').text($(this).val());
 	}else if(this.id=='minutes'){
 		$('#sliderCount2').css({
 			'opacity':'1',
 			'left':lt+'%'
 		});
 		$('#sliderCount2').text($(this).val());
+		$('#minState').text($(this).val());
 	}
 }
 function sliderMove(event){
-		var lt=($(this).val()/this.max)*80+10;
+		var lt=($(this).val()/this.max)*80+10,
+			state=$('#onTriangle').attr('data')==1?'timeTurn':'timeShut';
+			$('#onMode').text(i18n.t(state));
 	if(this.id=='hours'){
 		$('#sliderCount1').css({
 			'opacity':'1',
 			'left':lt+'%'
 		});
 		$('#sliderCount1').text($(this).val());
+		$('#hourState').text($(this).val());
 	}else if(this.id=='minutes'){
 		$('#sliderCount2').css({
 			'opacity':'1',
 			'left':lt+'%'
 		});
 		$('#sliderCount2').text($(this).val());
+		$('#minState').text($(this).val());
 	}
 }
 function sliderEnd(event){
@@ -213,27 +222,28 @@ function setSliderState(num){
 		$('#minutes').val(minute);
 		$('#hourState').text(hour);
 		$('#minState').text(minute);
-}
-// function setTimerState(num){
-// 	if(num==1){
-// 		$('#timerOn').css('opacity','1');
-// 		$('#onTriangle').css('opacity','1');
-// 		$('#onTriangle').attr('data','1');
-// 		$('#timerOff').css('opacity','0.2');
-// 		$('#offTriangle').css('opacity','0');
-// 		$('#offTriangle').attr('data','0');
-// 		$('#onMode').text(i18n.t("timeTurn"));
-// 	}else if(num==0){
-// 		$('#timerOn').css('opacity','0.2');
-// 		$('#onTriangle').css('opacity','0');
-// 		$('#onTriangle').attr('data','0');
-// 		$('#timerOff').css('opacity','1');
-// 		$('#offTriangle').css('opacity','1');
-// 		$('#offTriangle').attr('data','1');
-// 		$('#onMode').text(i18n.t("timeShut"));
-// 	}
 
-// }
+}
+function setTimerState(num){
+	if(num==1){
+		$('#timerOn').css('opacity','1');
+		$('#onTriangle').css('opacity','1');
+		$('#onTriangle').attr('data','1');
+		$('#timerOff').css('opacity','0.2');
+		$('#offTriangle').css('opacity','0');
+		$('#offTriangle').attr('data','0');
+		$('#onMode').text(i18n.t("timeTurn"));
+	}else if(num==0){
+		$('#timerOn').css('opacity','0.2');
+		$('#onTriangle').css('opacity','0');
+		$('#onTriangle').attr('data','0');
+		$('#timerOff').css('opacity','1');
+		$('#offTriangle').css('opacity','1');
+		$('#offTriangle').attr('data','1');
+		$('#onMode').text(i18n.t("timeShut"));
+	}
+
+}
 
 
 
@@ -332,7 +342,7 @@ ws.onclose=function(){
 window.changestate=function(o){
 	setPowerState(o.power);
 	setSliderState(o.timer);
-	// setTimerState(o.timertodo);
+	setTimerState(o.timertodo);
 };
 
 var keepconnecting=setInterval(function(){

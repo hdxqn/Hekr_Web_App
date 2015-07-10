@@ -126,6 +126,7 @@ function sendTemperature(){
 			args:frame
 			});
 		ws.send(code);
+
 		t.show();
 
 }
@@ -147,7 +148,6 @@ function set_power(value){
 	}
 	var data="02"+value+"00000000000000",
 	    frame=UARTDATA.encode(0x02,data);
-
  
 	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
 	

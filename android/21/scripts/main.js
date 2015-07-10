@@ -26,6 +26,14 @@ $(document).ready(function(){
         console.debug("[EVENT] back button clicked");
         window.close();
     });
+  $('#li_power').bind(touchEvents.touchend,powerSend);
+  $('#li_light').bind(touchEvents.touchend,lightSend);
+  // $('#li_timer').bind(touchEvents.touchend,timerSend);
+  $('#li_lowspeed').bind(touchEvents.touchend,speedSend);
+  $('#li_midspeed').bind(touchEvents.touchend,speedSend);
+  $('#li_highspeed').bind(touchEvents.touchend,speedSend);
+  $('#li_delay').bind(touchEvents.touchend,delaySend);
+
    
   // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
   //  t = new Toast({
@@ -59,13 +67,11 @@ function browserRedirect(obj) {
     }
  }
 
-
-
-
-
 var resources={
 	"zh-CN":{
 		"translation":{
+			"confirm":"确认",
+			"timerSet":"时间设置",
 			"light":"照明",
 			"lowSpeed":"低速",
 			"midspeed":"中速",
@@ -82,7 +88,7 @@ var resources={
 			"on":"开",
 			"shutDown":"关闭",
 			"turnOn":"开启",
-			"timer":"h后",
+			"timer":"时间",
 			"power":"开关",
 			"timing":"定时",
 			"message":"指令已发送"
@@ -90,6 +96,8 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
+			"confirm":"confirm",
+			"timerSet":"timerSet",
 			"light":"Lighting",
 			"lowSpeed":"lowspeed",
 			"midspeed":"midspeed",
@@ -106,13 +114,92 @@ var resources={
 			"on":"on",
 			"shutDown":"shut down",
 			"turnOn":"turn on",
-			"timer":"h to",
+			"timer":"timer",
 			"power":"Power",
 			"timing":"timer",
 			"message":"sended"
 		}
 	}
 };
+
+function powerSend(){
+	var i=$(this).attr('data')==1?2:1;
+
+	var data="020"+i+"0000000000000000",
+	    frame=UARTDATA.encode(0x02,data);
+	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+
+		// ws.send(code);
+
+		// t.show();
+}
+function lightSend(){
+	var i=$(this).attr('data')==1?2:1;
+
+
+	var data="0401000"+i+"000000000000",
+	    frame=UARTDATA.encode(0x02,data);
+	console.log("set_light     :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+
+		// ws.send(code);
+
+		// t.show();
+}
+
+function speedSend(){
+	var speed=$(this).attr('id'),
+		i=null;
+		switch(speed){
+			case 'li_lowspeed':
+			i=2;
+			break;
+			case 'li_midspeed':
+			i=3;
+			break;
+			case 'li_highspeed':
+			i=4;
+			break;
+			default: 
+			i=1;
+			break;
+		}
+	var data="050100000"+i+"0000000000",
+	    frame=UARTDATA.encode(0x02,data);
+	console.log("set_speed     :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+
+		// ws.send(code);
+
+		// t.show();
+}
+
+function delaySend(){
+	var i=$(this).attr('data')==1?2:1;
+
+
+	var data="03000"+i+"00000000000000",
+	    frame=UARTDATA.encode(0x02,data);
+	console.log("set_delay     :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+
+		// ws.send(code);
+
+		// t.show();
+}
 
 
 
