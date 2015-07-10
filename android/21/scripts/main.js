@@ -33,6 +33,7 @@ $(document).ready(function(){
   $('#li_midspeed').bind(touchEvents.touchend,speedSend);
   $('#li_highspeed').bind(touchEvents.touchend,speedSend);
   $('#li_delay').bind(touchEvents.touchend,delaySend);
+  $('#li3').bind(touchEvents.touchend,timerSlide);
 
    
   // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
@@ -201,6 +202,137 @@ function delaySend(){
 		// t.show();
 }
 
+function timerSlide(event){
+	event=event||window.event;
+	var id=$(this).attr('id'),
+	    posY=event.originalEvent.changedTouches[0].clientY||event.clientY,
+	    posX=event.originalEvent.changedTouches[0].clientX||event.clientX,
+	    top=getScrollTop(),
+	    deltaY=posY-$('#'+id).offset().top+top,
+	    deltaX=posX-$(this).width()/2;
+	    if(deltaY>=120&&deltaX<=0){
+	    	//左上角
+	    	
+	    	hourSlideDown();
+	    }else if(deltaY>120&&deltaX>0){
+	    	
+	    }else if(deltaY<120&&deltaX<=0){
+	    	//左下角
+	    	hourSlideUp();
+	    }else if(deltaY>120&&deltaX>0){
+	  
+	    }
+}
+function getScrollTop() {  
+        var scrollPos;  
+        if (window.pageYOffset) {  
+        scrollPos = window.pageYOffset; }  
+        else if (document.compatMode && document.compatMode != 'BackCompat')  
+        { scrollPos = document.documentElement.scrollTop; }  
+        else if (document.body) { scrollPos = document.body.scrollTop; }   
+        return scrollPos;   
+}  
+function hourSlideDown(){
+	var eles=$('#numContainerH').find('.num');
+	var num=null;
+	eles.each(function(){
+		if($(this).hasClass('show')){
+		num=$(this).attr('data');
+		num-=0;
+		}
+	});
+	for(var i=0;i<eles.length;i++){
+		if($(eles[i]).hasClass('show')){
+			$(eles[i]).addClass('down').removeClass('show');
+		}else if($(eles[i]).hasClass('up')){
+			$(eles[i]).removeClass('up').addClass('show');
+		}else if($(eles[i]).hasClass('down')){
+			$(eles[i]).removeClass('down').addClass('hideup');
+		}else{
+			var str=null;
+			if(num<2){
+				num+=22;
+				str=num+'';
+			}else if(num>=2&&num<12){
+				num-=2;
+				str = '0'+num;
+					
+			}else if(num>=12){
+				num-=2;
+				str=num;
+			}
+			$(eles[i]).text(str);
+			$(eles[i]).removeClass('hidedown hideup').addClass('up').attr('data',num);
+		}
+	}
+}
+
+function hourSlideUp(){
+	var eles=$('#numContainerH').find('.num');
+	var num=null;
+	eles.each(function(){
+		if($(this).hasClass('show')){
+		num=$(this).attr('data');
+		num-=0;
+		}
+	});
+	for(var i=0;i<eles.length;i++){
+		if($(eles[i]).hasClass('show')){
+			$(eles[i]).addClass('up').removeClass('show');
+		}else if($(eles[i]).hasClass('up')){
+			$(eles[i]).removeClass('up').addClass('hidedown');
+		}else if($(eles[i]).hasClass('down')){
+			$(eles[i]).removeClass('down').addClass('show');
+		}else{
+			var str=null;
+			if(num>21){
+				num-=22;
+				str='0'+num;
+			}else if(num<8){
+				num+=2;
+		 		str = '0'+num;	
+			}else if(num>=8&&num<=21){
+				num+=2;
+				str=num+'';
+			}
+			$(eles[i]).text(str);
+			$(eles[i]).removeClass('hidedown hideup').addClass('down').attr('data',num);
+		}
+	}
+}
+function minuteSlideUp(){
+	var eles=$('#numContainerM').find('.num1');
+	var num=null;
+	eles.each(function(){
+		if($(this).hasClass('show')){
+		num=$(this).attr('data');
+		num-=0;
+		}
+	});
+	for(var i=0;i<eles.length;i++){
+		if($(eles[i]).hasClass('show')){
+			$(eles[i]).addClass('up').removeClass('show');
+		}else if($(eles[i]).hasClass('up')){
+			$(eles[i]).removeClass('up').addClass('hidedown');
+		}else if($(eles[i]).hasClass('down')){
+			$(eles[i]).removeClass('down').addClass('show');
+		}else{
+			var str=null;
+			if(num>57){
+				num-=58;
+				str='0'+num;
+			}else if(num<8){
+				num+=2;
+		 		str = '0'+num;	
+			}else if(num>=8&&num<=57){
+				num+=2;
+				str=num+'';
+			}
+			$(eles[i]).text(str);
+			$(eles[i]).removeClass('hidedown hideup').addClass('down').attr('data',num);
+		}
+	}
+}
 
 
 
