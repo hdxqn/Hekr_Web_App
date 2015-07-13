@@ -205,6 +205,7 @@ function delaySend(){
 function timerSlide(event){
 	event=event||window.event;
 	var id=$(this).attr('id'),
+	
 	    posY=event.originalEvent.changedTouches[0].clientY||event.clientY,
 	    posX=event.originalEvent.changedTouches[0].clientX||event.clientX,
 	    top=getScrollTop(),
@@ -212,15 +213,16 @@ function timerSlide(event){
 	    deltaX=posX-$(this).width()/2;
 	    if(deltaY>=120&&deltaX<=0){
 	    	//左上角
-	    	
 	    	hourSlideDown();
 	    }else if(deltaY>120&&deltaX>0){
-	    	
+	    	//右下角
+	    	minuteSlideDown();
 	    }else if(deltaY<120&&deltaX<=0){
 	    	//左下角
 	    	hourSlideUp();
-	    }else if(deltaY>120&&deltaX>0){
-	  
+	    }else if(deltaY<120&&deltaX>0){
+	  		//右上角
+	  		minuteSlideUp();
 	    }
 }
 function getScrollTop() {  
@@ -333,6 +335,43 @@ function minuteSlideUp(){
 		}
 	}
 }
+
+function minuteSlideDown(){
+	var eles=$('#numContainerM').find('.num1');
+	var num=null;
+	eles.each(function(){
+		if($(this).hasClass('show')){
+		num=$(this).attr('data');
+		num-=0;
+		}
+	});
+	for(var i=0;i<eles.length;i++){
+		if($(eles[i]).hasClass('show')){
+			$(eles[i]).addClass('down').removeClass('show');
+		}else if($(eles[i]).hasClass('up')){
+			$(eles[i]).removeClass('up').addClass('show');
+		}else if($(eles[i]).hasClass('down')){
+			$(eles[i]).removeClass('down').addClass('hidedown');
+		}else{
+			var str=null;
+			if(num>11){
+				num-=2;
+				str=''+num;
+			}else if(num<=11&&num>=2){
+				num-=2;
+		 		str = '0'+num;	
+			}else if(num<2){
+				num+=58;
+				str=num+'';
+			}
+			$(eles[i]).text(str);
+			$(eles[i]).removeClass('hidedown hideup').addClass('up').attr('data',num);
+
+		}
+	}
+	
+}
+
 
 
 

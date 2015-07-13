@@ -70,6 +70,7 @@ function browserRedirect(obj) {
 	//开关点击效果
 
 function setPowerState(e){
+	console.debug(e);
 	var i=$('#power').attr('data');
 	if(e==1&&e!=i){
 		$('#power').attr('data',e);
@@ -252,7 +253,10 @@ ws.onerror = function() {
 
 ws.onopen = function() {
   console.debug("[CONNECTED]");
-   ws.send('(get-state "{tid}")'.format({tid:tid}));
+  var data="000000000000000000",
+	    frame=UARTDATA.encode(0x02,data); 
+   ws.send(frame);
+   console.debug('OPEN SEND   '+frame);
   $.modal.close();
 }
 ws.onclose = function() {
@@ -266,9 +270,24 @@ window.changestate=function(e){
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
-     		 setPowerState(mes[1]);	
+     		switch(mes[0]){
+     			case 0:
+     			setPowerState(mes[1]);	
+     		 	setBrightnessState(mes[3]);
+     		 	setTemperatureState(mes[4]); 
+     		 	break;
+     		 case 2:
+     		  setPowerState(mes[1]);
+     		  break;
+     		 case 3:
      		 setBrightnessState(mes[3]);
-     		 setTemperatureState(mes[4]); 	
+     		 break;
+     		 case 6:
+     		  setTemperatureState(mes[4]);
+     		  break;
+     		  default: 
+     		  break;
+     		} 	
      }
 }
 	
