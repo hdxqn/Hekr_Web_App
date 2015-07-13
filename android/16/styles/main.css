@@ -317,7 +317,7 @@ body{
 .ctrl .panels li .slider::-webkit-slider-thumb{
   -webkit-appearance:none;
   width:20px;
-  height:60px;
+  height:40px;
   background:transparent;
   cursor:pointer;
   transition:background .15s ease-in-out;
