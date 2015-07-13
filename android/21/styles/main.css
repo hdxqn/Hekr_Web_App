@@ -125,7 +125,7 @@ body{
 	min-width: 340px;
 	bottom: 0;
 	left: 0;
-	margin: 0;
+	margin: 30px 0 0 0;
 	padding: 0 0 0 0;
 }
 /*.ctrl::after{
