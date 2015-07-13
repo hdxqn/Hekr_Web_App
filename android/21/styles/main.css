@@ -159,6 +159,7 @@ body{
 	margin: 0 0 0 0;
 }
 .ctrl .ctrl_li3{
+	display: none;
 	top: 75%;
 	left: 0;
 	height: 200px;

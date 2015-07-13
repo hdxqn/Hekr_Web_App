@@ -263,11 +263,7 @@ ws.onclose = function() {
   console.error("[CLOSED]");
 }
 window.changestate=function(e){
-	console.debug("[STATE] ================");
-     console.debug(e); 
-     console.debug("[STATE] ================");
-     console.debug(e.uartdata);
-     if(e.tid===tid){
+	if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
      		switch(mes[0]){
@@ -288,8 +284,9 @@ window.changestate=function(e){
      		  default: 
      		  break;
      		} 	
-     }
 }
+
+
 	
 
 

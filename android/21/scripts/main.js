@@ -34,12 +34,15 @@ $(document).ready(function(){
   $('#li_highspeed').bind(touchEvents.touchend,speedSend);
   $('#li_delay').bind(touchEvents.touchend,delaySend);
   $('#li3').bind(touchEvents.touchend,timerSlide);
+  $('#li_timer').bind(touchEvents.touchend,timeSetSend);
+  // $('#confirm').bind(touchEvents.touchend,timerSend);
+  
 
    
-  // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
-  //  t = new Toast({
-  //    			message:i18n.t("message")
- 	// 		});
+  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+   t = new Toast({
+     			message:i18n.t("message")
+ 			});
 
 });
 
@@ -134,9 +137,19 @@ function powerSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
+}
+
+function setPowerState(e){
+	if(e==1){
+		$('#li_power').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+		$('#on').text(i18n.t('on'));
+	}else if (e==2) {
+		$('#li_power').attr('data',0).css('background-color','transparent');
+		$('#on').text(i18n.t('off'));
+	};
 }
 function lightSend(){
 	var i=$(this).attr('data')==1?2:1;
@@ -150,9 +163,17 @@ function lightSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
+}
+
+function setLightingState(e){
+	if(e==1){
+		$('#li_light').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+	}else if (e==2) {
+		$('#li_light').attr('data',0).css('background-color','transparent');
+	};
 }
 
 function speedSend(){
@@ -180,9 +201,31 @@ function speedSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
+}
+
+function setSpeedState(e){
+	var str=null;
+	switch(e){
+		case 2:
+		str='li_lowspeed';
+		break;
+		case 3:
+		str='li_midspeed';
+		break;
+		case 4:
+		str='li_highspeed';
+		break;
+		default: 
+		break;
+	}
+	$('#li_lowspeed').attr('data',0).css('background-color','transparent');
+	$('#li_midspeed').attr('data',0).css('background-color','transparent');
+	$('#li_highspeed').attr('data',0).css('background-color','transparent');
+	$('#'+str).attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+
 }
 
 function delaySend(){
@@ -197,9 +240,42 @@ function delaySend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		 ws.send(code);
 
-		// t.show();
+		 t.show();
+}
+
+function setDelayState(e){
+	if(e==1){
+		$('#li_delay').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+	}else if (e==2) {
+		$('#li_delay').attr('data',0).css('background-color','transparent');
+	};
+}
+
+
+
+function timeSetSend(){
+	var time = new Date(),
+		arr=new Array(time.getHours(),time.getMinutes());
+
+		$.each(arr,function(i){
+			arr[i]="0123456789ABCDEF"[(arr[i]%256)>>>4]+"0123456789ABCDEF"[arr[i]%16];
+		});
+		console.debug(arr[0]+'    '+arr[1]);
+
+
+	var data="0601000000"+arr[0]+arr[1]+"000000",
+	    frame=UARTDATA.encode(0x02,data);
+	console.log("timeSet     :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+			 ws.send(code);
+
+
+		 t.show();
 }
 
 function timerSlide(event){
@@ -385,104 +461,132 @@ function minuteSlideDown(){
 
 
 
-// var Toast = function(config){
-// 	this.context = config.context || $('body');
-// 	this.message =config.message;
-// 	this.time = config.time || 3000;
-// 	this.init();
-// }
+var Toast = function(config){
+	this.context = config.context || $('body');
+	this.message =config.message;
+	this.time = config.time || 3000;
+	this.init();
+}
 
-// var msgEntity;
-// Toast.prototype = {
+var msgEntity;
+Toast.prototype = {
 
-// 	init :function(){
-// 		$("#toastMessage").remove();
+	init :function(){
+		$("#toastMessage").remove();
 
-// 		var msgDIV = new Array();
-// 		msgDIV.push('<div id="toastMessage">');
-// 		msgDIV.push('<span>'+this.message+'</span>');
-// 		msgDIV.push('</div>');
-// 		msgEntity = $(msgDIV.join('')).appendTo(this.context);
+		var msgDIV = new Array();
+		msgDIV.push('<div id="toastMessage">');
+		msgDIV.push('<span>'+this.message+'</span>');
+		msgDIV.push('</div>');
+		msgEntity = $(msgDIV.join('')).appendTo(this.context);
 
-// 		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
+		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
 
-// 		var bottom = '20px' ;
-// 		msgEntity.css({
-// 			position:'fixed',
-// 			bottom:bottom,
-// 			'z-index':'99',
-// 			left:left,
-// 			'background-color':'#000000',
-// 			color:'white',
-// 			'font-size':'14px',
-// 			padding:'5px',
-// 			margin:'0px',
-// 			'border-radius':'2px'
-// 		});
-// 		msgEntity.hide();
-// 	},
+		var bottom = '20px' ;
+		msgEntity.css({
+			position:'fixed',
+			bottom:bottom,
+			'z-index':'99',
+			left:left,
+			'background-color':'#000000',
+			color:'white',
+			'font-size':'14px',
+			padding:'5px',
+			margin:'0px',
+			'border-radius':'2px'
+		});
+		msgEntity.hide();
+	},
 
-// 	show :function(){
-// 		msgEntity.stop(true);
-// 		msgEntity.fadeIn(this.time/2);
-// 		msgEntity.fadeOut(this.time/2);
+	show :function(){
+		msgEntity.stop(true);
+		msgEntity.fadeIn(this.time/2);
+		msgEntity.fadeOut(this.time/2);
 		
-// 	}
-// }
+	}
+}
 
   
 
 
 
-// var tid  = getUrlParam("tid");
-// var host = getUrlParam("host") || "device.hekr.me";
+var tid  = getUrlParam("tid");
+var host = getUrlParam("host") || "device.hekr.me";
 
-// var token =getUrlParam("access_key") ;
+var token =getUrlParam("access_key") ;
 
-// var user = Math.floor(Math.random()*100);
-// var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
-// var ws   = new ReconnectingWebSocket(url);
+var user = Math.floor(Math.random()*100);
+var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
+var ws   = new ReconnectingWebSocket(url);
 
 
-// ws.onmessage=function(e){
-// 	console.debug("[WEBSOCKET] "+e.data);
-// 	SEXP.exec(e.data);
-// };
+ws.onmessage=function(e){
+	console.debug("[WEBSOCKET] "+e.data);
+	SEXP.exec(e.data);
+};
 
-// ws.onerror=function(){
-// 	setTimeout(function(){
-//          ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-//      },100)
-// 	console.error("[WEBSOCKET] connection error");
-// };
+ws.onerror=function(){
+	setTimeout(function(){
+         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+     },100)
+	console.error("[WEBSOCKET] connection error");
+};
 
-// ws.onopen=function(){
-// 	console.debug("[WEBSOCKET] connection opened");
-// 	 setTimeout(function(){
-//          ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-//      },500)
-// 	$.modal.close();
-// };
-// ws.onclose=function(){
-// 	console.error("[WEBSOCKET] connection closed");
-// };
+ws.onopen=function(){
+	console.debug("[CONNECTED]");
+  var data="00000000000000000000",
+	    frame=UARTDATA.encode(0x02,data); 
+   ws.send(frame);
+   console.debug('OPEN SEND   '+frame);
+  $.modal.close();
+};
+ws.onclose=function(){
+	console.error("[WEBSOCKET] connection closed");
+};
 
-// window.changestate=function(o){
-// 	setPowerState(o.power);
-// 	setSliderState(o.timer);
-// 	// setTimerState(o.timertodo);
-// };
+window.changestate=function(o){
+	console.debug("[STATE] ================");
+     console.debug(e); 
+     console.debug("[STATE] ================");
+     console.debug(e.uartdata);
+     if(e.tid===tid){
+     	var mes=UARTDATA.decode(e.uartdata);
+     		console.debug(mes);
+     		switch(mes[0]){
+     			case 0:
+     			setPowerState(mes[1]);
+     			setDelayState(mes[2]); 	
+     		 	setLightingState(mes[3]);
+     		 	setSpeedState(mes[4]); 
+     		 	break;
+     		 case 2:
+     		  setPowerState(mes[1]);
+     		  break;
+     		 case 3:
+     		 setDelayState(mes[2]);
+     		 break;
+     		 case 4:
+     		  setLightingState(mes[3]);
+     		  break;
+     		 case 5:
+     		 setSpeedState(mes[4]);
+     		 break;
+     		  default: 
+     		  break;
+     		} 	
+     }
+};
 
-// var keepconnecting=setInterval(function(){
-//         ws.send('(ping)');
-//     },50000);
+var keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
 
-// function clearKeep(){
-//     clearInterval(keepconnecting);
-// }
+function clearKeep(){
+    clearInterval(keepconnecting);
+}
 
-// function resetKeep(){
-//      keepconnecting=setInterval(function(){
-//         ws.send('(ping)');
-//     },50000);
-// }
+function resetKeep(){
+     keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+}
