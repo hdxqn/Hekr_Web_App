@@ -147,15 +147,15 @@ function sliderStart(event){
 			$('#onMode').text(i18n.t(state));
 	if(this.id=='hours'){
 		$('#sliderCount1').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount1').text($(this).val());
 		$('#hourState').text($(this).val());
 	}else if(this.id=='minutes'){
 		$('#sliderCount2').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount2').text($(this).val());
 		$('#minState').text($(this).val());
@@ -167,15 +167,15 @@ function sliderMove(event){
 			$('#onMode').text(i18n.t(state));
 	if(this.id=='hours'){
 		$('#sliderCount1').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount1').text($(this).val());
 		$('#hourState').text($(this).val());
 	}else if(this.id=='minutes'){
 		$('#sliderCount2').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount2').text($(this).val());
 		$('#minState').text($(this).val());
@@ -186,7 +186,7 @@ function sliderEnd(event){
 		hour=$('#hours').val(),
 		minute=$('#minutes').val();
 	$(this).unbind(touchEvents.touchmove,sliderMove);
-	$('.sliderCount').css('opacity','0');
+	$('.sliderCount').css("opacity","0");
 			clearKeep();
 			var code ='(@devcall "{tid}" (controltimer {args} {args2}) (lambda (x) x))'
     		.replace("{tid}",tid)

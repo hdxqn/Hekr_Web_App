@@ -27,7 +27,7 @@ $(document).ready(function(){
         window.close();
     });
   $('#power').bind(touchEvents.touchend,powerClick);
-  $('.slider').bind(touchEvents.touchstart,sliderStart);
+   $('.slider').bind(touchEvents.touchstart,sliderStart);
   $('.slider').bind(touchEvents.touchend,sliderEnd);
   $('#timerOn').bind(touchEvents.touchend,timerSwitch);
   $('#timerOff').bind(touchEvents.touchend,timerSwitch);
@@ -140,22 +140,22 @@ function powerClick(){
 }
 
 function sliderStart(event){
-	  $(this).bind(touchEvents.touchmove,sliderMove);
+	$(this).bind(touchEvents.touchmove,sliderMove);
 
 	var lt=($(this).val()/this.max)*80+10,
 			state=$('#onTriangle').attr('data')==1?'timeTurn':'timeShut';
 			$('#onMode').text(i18n.t(state));
 	if(this.id=='hours'){
 		$('#sliderCount1').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount1').text($(this).val());
 		$('#hourState').text($(this).val());
 	}else if(this.id=='minutes'){
 		$('#sliderCount2').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount2').text($(this).val());
 		$('#minState').text($(this).val());
@@ -167,26 +167,26 @@ function sliderMove(event){
 			$('#onMode').text(i18n.t(state));
 	if(this.id=='hours'){
 		$('#sliderCount1').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount1').text($(this).val());
 		$('#hourState').text($(this).val());
 	}else if(this.id=='minutes'){
 		$('#sliderCount2').css({
-			'opacity':'1',
-			'left':lt+'%'
+			"opacity":"1",
+			"left":lt+"%"
 		});
 		$('#sliderCount2').text($(this).val());
 		$('#minState').text($(this).val());
 	}
 }
 function sliderEnd(event){
+	$(this).unbind(touchEvents.touchmove,sliderMove);
 	var powerstate=$('#onTriangle').attr('data'),
 		hour=$('#hours').val(),
 		minute=$('#minutes').val();
-	$(this).unbind(touchEvents.touchmove,sliderMove);
-	$('.sliderCount').css('opacity','0');
+	$('.sliderCount').css("opacity","0");
 			clearKeep();
 			var code ='(@devcall "{tid}" (controltimer {args} {args2}) (lambda (x) x))'
     		.replace("{tid}",tid)

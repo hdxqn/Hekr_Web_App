@@ -255,8 +255,12 @@ ws.onopen = function() {
   console.debug("[CONNECTED]");
   var data="000000000000000000",
 	    frame=UARTDATA.encode(0x02,data); 
-   ws.send(frame);
-   console.debug('OPEN SEND   '+frame);
+   var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+					tid:tid,
+					args:frame
+					});
+   ws.send(code);
+   console.debug(code);
   $.modal.close();
 }
 ws.onclose = function() {
@@ -284,6 +288,7 @@ window.changestate=function(e){
      		  default: 
      		  break;
      		} 	
+}
 }
 
 
