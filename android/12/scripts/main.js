@@ -259,7 +259,9 @@ ws.onopen = function() {
 					tid:tid,
 					args:frame
 					});
-   ws.send(code);
+   		setTimeout(function(){
+			 ws.send(code);
+			},500);	
    console.debug(code);
   $.modal.close();
 }

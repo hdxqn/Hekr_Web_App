@@ -539,7 +539,9 @@ ws.onopen=function(){
 	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
+		setTimeout(function(){
 			 ws.send(code);
+			},500);	
    console.debug(code);
   $.modal.close();
 };
