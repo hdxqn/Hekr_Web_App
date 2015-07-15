@@ -265,7 +265,6 @@ var Toast = function(config){
 
 var msgEntity;
 Toast.prototype = {
-
 	init :function(){
 		$("#toastMessage").remove();
 
@@ -275,21 +274,8 @@ Toast.prototype = {
 		msgDIV.push('</div>');
 		msgEntity = $(msgDIV.join('')).appendTo(this.context);
 
-		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
-
-		var bottom = '20px' ;
-		msgEntity.css({
-			position:'fixed',
-			bottom:bottom,
-			'z-index':'99',
-			left:left,
-			'background-color':'#000000',
-			color:'white',
-			'font-size':'14px',
-			padding:'5px',
-			margin:'0px',
-			'border-radius':'2px'
-		});
+		var left = msgEntity.find('span').width()/2 ;
+		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.hide();
 	},
 

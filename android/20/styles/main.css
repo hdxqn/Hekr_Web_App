@@ -450,5 +450,17 @@ body{
 box-shadow: 0 0 10px #000;
 }
 
+#toastMessage{
+	position: fixed;
+	bottom: 20px;
+	z-index: 99;
+	left: 50%;
+	background-color: #000000;
+	font-size: 14px;
+	padding: 5px;
+	border-radius:2px; 
+}
+
+
 
 
