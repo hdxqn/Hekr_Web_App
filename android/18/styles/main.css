@@ -1,0 +1,190 @@
+*{
+-webkit-touch-callout:none;
+-webkit-tap-highlight-color: transparent;
+-webkit-user-select: none;
+}
+html{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background:linear-gradient(#605DA1,#66ADC0);
+}
+ 
+body{
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+  	font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  	margin:0;
+  	color:#FFF;
+  	text-shadow:1px 1px 0 rgba(0,0,0,.2);
+}
+#nav{
+	position: relative;
+	height: 40px;
+	font-size: 20px;
+}
+#nav #back{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60px;
+	height: 100%
+}
+#nav #back img{
+	display: block;
+	position: absolute;
+	width: 11px;
+	height: 20px;
+	top: 50%;
+	left: 50%;
+	margin: -10px 0 0 -5.5px;
+}
+#nav .title{
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 24px;
+	top: 50%;
+	left: 0;
+	margin: -12px 0 0 0;
+	text-align: center;
+	line-height: 24px;
+}
+.main{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 40px 0 0 0;
+	 box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+	width: 100%;
+	height: 100%;
+}
+.main .center{
+	position: relative;
+	width: 100%;
+	height: 50%;
+	top: 0;
+	left: 0;
+	min-height: 260px;
+	min-width: 250px;
+	margin: 0 0 0 0;
+}
+.main .center .circle{
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	margin: -125px 0 0 -125px;
+	background-color: rgba(255,255,255,.2);
+}
+.main .center .circle .logo{
+	display: block;
+	position: absolute;
+	width: 62px;
+	height: 150px;
+	top: 50%;
+	left: 50%;
+	margin: -75px 0 0 -31px;
+}
+.main .btn{
+	margin: 0;
+	padding: 0;
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 50%;
+	text-align: center;
+}
+.main .btn .btns{
+	list-style: none;
+	margin: 30% 20px 0 20px;
+	padding: 0;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	position: relative;
+}
+.main .btn .btns img{
+	display: block;
+	position:absolute;
+	width: 100%;
+	height: 100%;
+}
+.main .btn .btns span{
+	display: block;
+	position:absolute;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	top: 100%;
+	left: 0;
+	line-height: 30px;
+	font-size: 18px;
+}
+
+.main_0{
+	width: 40%;
+	height:40%;
+	background-color: rgba(255,255,255,0.3);
+	-webkit-box-shadow:0 0 3px rgba(0,0,0,0.7);
+	 -moz-box-shadow:0 0 3px rgba(0,0,0,0.7); 
+	 -o-box-shadow:0 0 3px rgba(0,0,0,0.7); 
+	 -ms-box-shadow:0 0 3px rgba(0,0,0,0.7); 
+	 box-shadow:0 0 3px rgba(0,0,0,0.7); 
+}
+
+
+.popup{
+  width:100%;
+  padding:10px 0 20px;
+}
+.seprator{
+  margin:0;
+  border-width:1px 0 0 0;
+}
+.panel{
+  background-color:rgba(0,0,0,.1);
+  border-radius:5px;
+  width:90%;
+  height:125px;
+  margin:auto;
+  position:relative;
+}
+.fill{
+  width:100%;
+  height:100%;
+}
+.supper-center{
+  display:-webkit-flex;
+  display:flex;
+  vertical-align:baseline;
+  text-align:center;
+}
+.supper-center div,
+.supper-center span,
+.supper-center img{
+  margin:auto; 
+}
+.modal{
+  background:0 0;
+  -webkit-box-shadow: 0 0 10px #000;
+-moz-box-shadow: 0 0 10px #000;
+-o-box-shadow: 0 0 10px #000;
+-ms-box-shadow: 0 0 10px #000;
+box-shadow: 0 0 10px #000;
+}
+
+
+

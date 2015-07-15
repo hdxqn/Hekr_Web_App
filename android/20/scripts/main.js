@@ -22,8 +22,7 @@ $(document).ready(function(){
         $(document).i18n();
     	});
     	
-  $("#back").click(function() {
-        console.debug("[EVENT] back button clicked");
+  $("#back").bind(touchEvents.touchend,function() {
         window.close();
     });
   $('#power').bind(touchEvents.touchend,powerClick);
@@ -141,7 +140,7 @@ function powerClick(){
 
 function sliderStart(event){
 	$(this).bind(touchEvents.touchmove,sliderMove);
-
+	$('#timerState').css('opacity','1');
 	var lt=($(this).val()/this.max)*80+10,
 			state=$('#onTriangle').attr('data')==1?'timeTurn':'timeShut';
 			$('#onMode').text(i18n.t(state));
@@ -213,9 +212,9 @@ function setPowerState(num){
 function setSliderState(num){
 	if (num==0) {
 		$('#timerState').css('opacity','0');
-		return;
+	}else if(num==1){
+		$('#timerState').css('opacity','1');
 	}
-	$('#timerState').css('opacity','1');
 	var hour=Math.floor(num/3600),
 		minute=Math.floor((num%3600)/60);
 		$('#hours').val(hour);
@@ -226,20 +225,20 @@ function setSliderState(num){
 }
 function setTimerState(num){
 	if(num==1){
-		$('#timerOn').css('opacity','1');
-		$('#onTriangle').css('opacity','1');
-		$('#onTriangle').attr('data','1');
-		$('#timerOff').css('opacity','0.2');
-		$('#offTriangle').css('opacity','0');
-		$('#offTriangle').attr('data','0');
+		// $('#timerOn').css('opacity','1');
+		// $('#onTriangle').css('opacity','1');
+		// $('#onTriangle').attr('data','1');
+		// $('#timerOff').css('opacity','0.2');
+		// $('#offTriangle').css('opacity','0');
+		// $('#offTriangle').attr('data','0');
 		$('#onMode').text(i18n.t("timeTurn"));
 	}else if(num==0){
-		$('#timerOn').css('opacity','0.2');
-		$('#onTriangle').css('opacity','0');
-		$('#onTriangle').attr('data','0');
-		$('#timerOff').css('opacity','1');
-		$('#offTriangle').css('opacity','1');
-		$('#offTriangle').attr('data','1');
+		// $('#timerOn').css('opacity','0.2');
+		// $('#onTriangle').css('opacity','0');
+		// $('#onTriangle').attr('data','0');
+		// $('#timerOff').css('opacity','1');
+		// $('#offTriangle').css('opacity','1');
+		// $('#offTriangle').attr('data','1');
 		$('#onMode').text(i18n.t("timeShut"));
 	}
 

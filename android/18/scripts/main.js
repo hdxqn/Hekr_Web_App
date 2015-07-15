@@ -22,19 +22,20 @@ $(document).ready(function(){
         $(document).i18n();
     	});
     	
-  $("#back").bind(touchEvents.touchend,function() {
+  $("#back").click(function() {
+        console.debug("[EVENT] back button clicked");
         window.close();
     });
   $('#power').bind(touchEvents.touchend,powerClick);
-  $('.slider').bind(touchEvents.touchstart,sliderStart);
+   $('.slider').bind(touchEvents.touchstart,sliderStart);
   $('.slider').bind(touchEvents.touchend,sliderEnd);
   $('#timerOn').bind(touchEvents.touchend,timerSwitch);
   $('#timerOff').bind(touchEvents.touchend,timerSwitch);
    
-  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
-   t = new Toast({
-     			message:i18n.t("message")
- 			});
+  // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+  //  t = new Toast({
+  //    			message:i18n.t("message")
+ 	// 		});
 
 });
 
@@ -70,6 +71,11 @@ function browserRedirect(obj) {
 var resources={
 	"zh-CN":{
 		"translation":{
+			"btn1":"按钮1",
+			"btn2":"按钮2",
+			"btn3":"按钮3",
+			"btn4":"按钮4",
+			"totalSwitch":"总开关",
 			"timerOn":"定时 开",
 			"timerOff":"定时 关",
 			"timeShut":"后 关闭",
@@ -89,6 +95,11 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
+			"btn1":"button1",
+			"btn2":"button2",
+			"btn3":"button3",
+			"btn4":"button4",
+			"totalSwitch":"Total switch",
 			"timerOn":"timeOn",
 			"timerOff":"timeOff",
 			"timeShut":" to Shut down",
@@ -139,8 +150,8 @@ function powerClick(){
 }
 
 function sliderStart(event){
-	  $(this).bind(touchEvents.touchmove,sliderMove);
-	  $('#timerState').css('opacity','1');
+	$(this).bind(touchEvents.touchmove,sliderMove);
+
 	var lt=($(this).val()/this.max)*80+10,
 			state=$('#onTriangle').attr('data')==1?'timeTurn':'timeShut';
 			$('#onMode').text(i18n.t(state));
@@ -181,10 +192,10 @@ function sliderMove(event){
 	}
 }
 function sliderEnd(event){
+	$(this).unbind(touchEvents.touchmove,sliderMove);
 	var powerstate=$('#onTriangle').attr('data'),
 		hour=$('#hours').val(),
 		minute=$('#minutes').val();
-	$(this).unbind(touchEvents.touchmove,sliderMove);
 	$('.sliderCount').css("opacity","0");
 			clearKeep();
 			var code ='(@devcall "{tid}" (controltimer {args} {args2}) (lambda (x) x))'
@@ -210,34 +221,35 @@ function setPowerState(num){
 	}
 }
 function setSliderState(num){
-if (num==0) {
+	if (num==0) {
 		$('#timerState').css('opacity','0');
-	}else if(num==1){
-		$('#timerState').css('opacity','1');
+		return;
 	}
+	$('#timerState').css('opacity','1');
 	var hour=Math.floor(num/3600),
 		minute=Math.floor((num%3600)/60);
 		$('#hours').val(hour);
 		$('#minutes').val(minute);
 		$('#hourState').text(hour);
 		$('#minState').text(minute);
+
 }
 function setTimerState(num){
 	if(num==1){
-		// $('#timerOn').css('opacity','1');
-		// $('#onTriangle').css('opacity','1');
-		// $('#onTriangle').attr('data','1');
-		// $('#timerOff').css('opacity','0.2');
-		// $('#offTriangle').css('opacity','0');
-		// $('#offTriangle').attr('data','0');
+		$('#timerOn').css('opacity','1');
+		$('#onTriangle').css('opacity','1');
+		$('#onTriangle').attr('data','1');
+		$('#timerOff').css('opacity','0.2');
+		$('#offTriangle').css('opacity','0');
+		$('#offTriangle').attr('data','0');
 		$('#onMode').text(i18n.t("timeTurn"));
 	}else if(num==0){
-		// $('#timerOn').css('opacity','0.2');
-		// $('#onTriangle').css('opacity','0');
-		// $('#onTriangle').attr('data','0');
-		// $('#timerOff').css('opacity','1');
-		// $('#offTriangle').css('opacity','1');
-		// $('#offTriangle').attr('data','1');
+		$('#timerOn').css('opacity','0.2');
+		$('#onTriangle').css('opacity','0');
+		$('#onTriangle').attr('data','0');
+		$('#timerOff').css('opacity','1');
+		$('#offTriangle').css('opacity','1');
+		$('#offTriangle').attr('data','1');
 		$('#onMode').text(i18n.t("timeShut"));
 	}
 
@@ -255,104 +267,104 @@ function setTimerState(num){
 
 
 
-var Toast = function(config){
-	this.context = config.context || $('body');
-	this.message =config.message;
-	this.time = config.time || 3000;
-	this.init();
-}
+// var Toast = function(config){
+// 	this.context = config.context || $('body');
+// 	this.message =config.message;
+// 	this.time = config.time || 3000;
+// 	this.init();
+// }
 
-var msgEntity;
-Toast.prototype = {
+// var msgEntity;
+// Toast.prototype = {
 
-	init :function(){
-		$("#toastMessage").remove();
+// 	init :function(){
+// 		$("#toastMessage").remove();
 
-		var msgDIV = new Array();
-		msgDIV.push('<div id="toastMessage">');
-		msgDIV.push('<span>'+this.message+'</span>');
-		msgDIV.push('</div>');
-		msgEntity = $(msgDIV.join('')).appendTo(this.context);
+// 		var msgDIV = new Array();
+// 		msgDIV.push('<div id="toastMessage">');
+// 		msgDIV.push('<span>'+this.message+'</span>');
+// 		msgDIV.push('</div>');
+// 		msgEntity = $(msgDIV.join('')).appendTo(this.context);
 
-		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
+// 		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
 
-		var bottom = '20px' ;
-		msgEntity.css({
-			position:'fixed',
-			bottom:bottom,
-			'z-index':'99',
-			left:left,
-			'background-color':'#000000',
-			color:'white',
-			'font-size':'14px',
-			padding:'5px',
-			margin:'0px',
-			'border-radius':'2px'
-		});
-		msgEntity.hide();
-	},
+// 		var bottom = '20px' ;
+// 		msgEntity.css({
+// 			position:'fixed',
+// 			bottom:bottom,
+// 			'z-index':'99',
+// 			left:left,
+// 			'background-color':'#000000',
+// 			color:'white',
+// 			'font-size':'14px',
+// 			padding:'5px',
+// 			margin:'0px',
+// 			'border-radius':'2px'
+// 		});
+// 		msgEntity.hide();
+// 	},
 
-	show :function(){
-		msgEntity.stop(true);
-		msgEntity.fadeIn(this.time/2);
-		msgEntity.fadeOut(this.time/2);
+// 	show :function(){
+// 		msgEntity.stop(true);
+// 		msgEntity.fadeIn(this.time/2);
+// 		msgEntity.fadeOut(this.time/2);
 		
-	}
-}
+// 	}
+// }
 
   
 
 
 
-var tid  = getUrlParam("tid");
-var host = getUrlParam("host") || "device.hekr.me";
+// var tid  = getUrlParam("tid");
+// var host = getUrlParam("host") || "device.hekr.me";
 
-var token =getUrlParam("access_key") ;
+// var token =getUrlParam("access_key") ;
 
-var user = Math.floor(Math.random()*100);
-var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
-var ws   = new ReconnectingWebSocket(url);
+// var user = Math.floor(Math.random()*100);
+// var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
+// var ws   = new ReconnectingWebSocket(url);
 
 
-ws.onmessage=function(e){
-	console.debug("[WEBSOCKET] "+e.data);
-	SEXP.exec(e.data);
-};
+// ws.onmessage=function(e){
+// 	console.debug("[WEBSOCKET] "+e.data);
+// 	SEXP.exec(e.data);
+// };
 
-ws.onerror=function(){
-	setTimeout(function(){
-         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-     },100)
-	console.error("[WEBSOCKET] connection error");
-};
+// ws.onerror=function(){
+// 	setTimeout(function(){
+//          ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+//      },100)
+// 	console.error("[WEBSOCKET] connection error");
+// };
 
-ws.onopen=function(){
-	console.debug("[WEBSOCKET] connection opened");
-	 setTimeout(function(){
-         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-     },500)
-	$.modal.close();
-};
-ws.onclose=function(){
-	console.error("[WEBSOCKET] connection closed");
-};
+// ws.onopen=function(){
+// 	console.debug("[WEBSOCKET] connection opened");
+// 	 setTimeout(function(){
+//          ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+//      },500)
+// 	$.modal.close();
+// };
+// ws.onclose=function(){
+// 	console.error("[WEBSOCKET] connection closed");
+// };
 
-window.changestate=function(o){
-	setPowerState(o.power);
-	setSliderState(o.timer);
-	setTimerState(o.timertodo);
-};
+// window.changestate=function(o){
+// 	setPowerState(o.power);
+// 	setSliderState(o.timer);
+// 	setTimerState(o.timertodo);
+// };
 
-var keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
+// var keepconnecting=setInterval(function(){
+//         ws.send('(ping)');
+//     },50000);
 
-function clearKeep(){
-    clearInterval(keepconnecting);
-}
+// function clearKeep(){
+//     clearInterval(keepconnecting);
+// }
 
-function resetKeep(){
-     keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-}
+// function resetKeep(){
+//      keepconnecting=setInterval(function(){
+//         ws.send('(ping)');
+//     },50000);
+// }
