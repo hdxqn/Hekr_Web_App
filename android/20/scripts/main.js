@@ -212,7 +212,7 @@ function setPowerState(num){
 function setSliderState(num){
 	if (num==0) {
 		$('#timerState').css('opacity','0');
-	}else if(num==1){
+	}else{
 		$('#timerState').css('opacity','1');
 	}
 	var hour=Math.floor(num/3600),
