@@ -6,11 +6,14 @@
 html{
 	margin: 0;
 	padding: 0;
-	min-height: 100%;
 	background:linear-gradient(#605DA1,#66ADC0);
+	min-width: 340px;
+	min-height: 150vw;
 }
  
 body{
+	width: 100%;
+	height: 100%;
 	position: relative;
 	background: transparent;
 	margin: 0;
@@ -54,22 +57,35 @@ body{
 	text-align: center;
 	line-height: 24px;
 }
-.main{
+.main_0{
 	/*display: none;*/
 	position: relative;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: -10;
+	/*tranform:scale3D(0.4,0.4,0.4);*/
+}
+/*.main1{
+	top: 50px;
+	left: 4%;
+}*/
+/*.main2{
+		/*display: none;*/
+	/*position: absolute;
+	width: 100%;
+	height: 100%;
 	top: 0;
 	left: 0;
-	padding: 40px 0 0 0;
-	 box-sizing:border-box;
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -ms-box-sizing:border-box;
-  -o-box-sizing:border-box;
-	/*width: 100%;
-	height: 100%;*/
-	transform:scale3D(0.5,0.5,0.5); 
-}
-.main .center{
+	background-color: rgba(255,255,255,0.2);
+	opacity: 1;
+	tranform:scale3D(0.4,0.4,0.4);
+	-webkit-tranform:scale3D(0.4,0.4,0.4);
+	-moz-tranform:scale3D(0.4,0.4,0.4);
+	-o-tranform:scale3D(0.4,0.4,0.4);
+	-ms-tranform:scale3D(0.4,0.4,0.4);*/
+
+.main_0 .center{
 	position: relative;
 	width: 100%;
 	height: 50%;
@@ -79,7 +95,7 @@ body{
 	min-width: 250px;
 	margin: 0 0 0 0;
 }
-.main .center .circle{
+.main_0 .center .circle{
 	position: absolute;
 	width: 250px;
 	height: 250px;
@@ -89,7 +105,7 @@ body{
 	margin: -125px 0 0 -125px;
 	background-color: rgba(255,255,255,.2);
 }
-.main .center .circle .logo{
+.main_0 .center .circle .logo{
 	display: block;
 	position: absolute;
 	width: 62px;
@@ -98,7 +114,7 @@ body{
 	left: 50%;
 	margin: -75px 0 0 -31px;
 }
-.main .btn{
+.main_0 .btn{
 	margin: 0;
 	padding: 0;
 	display: block;
@@ -107,7 +123,7 @@ body{
 	height: 50%;
 	text-align: center;
 }
-.main .btn .btns{
+.main_0 .btn .btns{
 	list-style: none;
 	margin: 30% 10px 0 10px;
 	padding: 0;
@@ -116,13 +132,13 @@ body{
 	height: 90px;
 	position: relative;
 }
-.main .btn .btns img{
+.main_0 .btn .btns img{
 	display: block;
 	position:absolute;
 	width: 100%;
 	height:60px;
 }
-.main .btn .btns span{
+.main_0 .btn .btns span{
 	display: block;
 	position:absolute;
 	width: 100%;
@@ -134,36 +150,89 @@ body{
 	font-size: 18px;
 }
 
-.main_0{
-	display: none;
-	position: absolute;
-	width: 45%;
-	height:40%;
+.little{
+	width: 40vw;
+	height: 62vw;
 	background-color: rgba(255,255,255,0.2);
-	-webkit-box-shadow:0 0 10px 3px rgba(0,0,0,0.1);
-	 -moz-box-shadow:0 0 10px 3px rgba(0,0,0,0.1); 
-	 -o-box-shadow:0 0 10px 3px rgba(0,0,0,0.1); 
-	 -ms-box-shadow:0 0 10px 3px rgba(0,0,0,0.1); 
-	 box-shadow:0 0 10px 3px rgba(0,0,0,0.1); 
+	position: absolute;
+	box-shadow: 0 0 3px rgba(0,0,0,0.3);	
 }
-.main1{
+.little1{
 	top: 50px;
-	left: 4%;
+	left: 9vw; 
 }
-.main2{
+.little2{
 	top: 50px;
-	left: 51%;
+	left: 51vw; 
 }
-.main3{
-	top: 47%;
-	left: 4%;
-	margin: 20px 0 0 0;
+.little3{
+	top:62vw;
+	left: 9vw;
+	margin: 55px 0 0 0; 
 }
-.main4{
-	top: 47%;
-	left: 51%;
-	margin: 20px 0 0 0;
+.little4{
+	top:62vw;
+	left: 51vw;
+	margin: 55px 0 0 0; 
 }
+.little .center{
+ 	position: absolute;
+ 	width: 26vw;
+ 	height: 26vw;
+ 	border-radius: 50%;
+ 	background-color: rgba(255,255,255,0.4);
+ 	top: 5vw;
+ 	left: 50%;
+ 	margin: 0 0 0 -13vw;
+}
+.little .center img{
+	display: block;
+	position: absolute;
+	width: 8vw;
+	height: 20vw;
+	top: 50%;
+	left: 50%;
+	margin: -10vw 0 0 -4vw;
+}
+.little .lbtn{
+	display: block;
+	position: absolute;
+	width: 40vw;
+	height: 30vw;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+.little .lbtn .lbtns{
+	list-style: none;
+	display: inline-block;
+	width: 6vw;
+	height: 10vw;
+	margin: 16vw 1vw 0 1vw;
+	position: relative;
+}
+.little .lbtn .lbtns img{
+	display: block;
+	position: absolute;
+	width:6vw;
+	height: 6.25vw; 
+}
+.little .lbtn .lbtns span{
+	display: block;
+	position: absolute;
+	top: 7vw;
+	left: 50%;
+	width:12vw;
+	height: 2vw; 
+	font-size: 1px;
+	margin: 0 0 0 -6vw;
+}
+
+
+
+
 
 .popup{
   width:100%;

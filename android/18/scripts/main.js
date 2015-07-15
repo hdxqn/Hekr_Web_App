@@ -71,6 +71,10 @@ function browserRedirect(obj) {
 var resources={
 	"zh-CN":{
 		"translation":{
+			"one":"1",
+			"two":"2",
+			"three":"3",
+			"four":"4",
 			"btn1":"按钮1",
 			"btn2":"按钮2",
 			"btn3":"按钮3",
@@ -95,6 +99,10 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
+			"one":"1",
+			"two":"2",
+			"three":"3",
+			"four":"4",
 			"btn1":"button1",
 			"btn2":"button2",
 			"btn3":"button3",
