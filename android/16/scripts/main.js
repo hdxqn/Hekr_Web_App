@@ -273,13 +273,12 @@ Toast.prototype = {
 		msgDIV.push('<span>'+this.message+'</span>');
 		msgDIV.push('</div>');
 		msgEntity = $(msgDIV.join('')).appendTo(this.context);
-
-		var left = msgEntity.find('span').width()/2 ;
-		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.hide();
 	},
 
 	show :function(){
+		var left = msgEntity.find('span').width()/2 ;
+		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.stop(true);
 		msgEntity.fadeIn(this.time/2);
 		msgEntity.fadeOut(this.time/2);
