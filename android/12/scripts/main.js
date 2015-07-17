@@ -76,7 +76,14 @@ function setPowerState(e){
 		$('#power').attr('data',e);
 		$('#power').css('opacity','1');
 		$(".circle b").text("开");
-
+		var data="000000000000000000",
+	    frame=UARTDATA.encode(0x02,data); 
+   var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'.format({
+					tid:tid,
+					args:frame
+					});
+			 ws.send(code);
+   console.debug(code);
 				
 	}else if(e==2&&e!=i){
 		$('#power').attr('data',e);

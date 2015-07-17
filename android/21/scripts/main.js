@@ -28,14 +28,20 @@ $(document).ready(function(){
     });
   $('#li_power').bind(touchEvents.touchend,powerSend);
   $('#li_light').bind(touchEvents.touchend,lightSend);
-  // $('#li_timer').bind(touchEvents.touchend,timerSend);
   $('#li_lowspeed').bind(touchEvents.touchend,speedSend);
   $('#li_midspeed').bind(touchEvents.touchend,speedSend);
   $('#li_highspeed').bind(touchEvents.touchend,speedSend);
   $('#li_delay').bind(touchEvents.touchend,delaySend);
   $('#li3').bind(touchEvents.touchend,timerSlide);
-  $('#li_timer').bind(touchEvents.touchend,timeSetSend);
-  // $('#confirm').bind(touchEvents.touchend,timerSend);
+  $('#li_timer').bind(touchEvents.touchend,timeSetShow);
+  $("#cancle").bind(touchEvents.touchend,timeSetHide);
+  $("#confirm").bind(touchEvents.touchend,timeSetSend);
+  $("#numContainerH").bind(touchEvents.touchstart,slideTimerStart);
+  $("#numContainerH").bind(touchEvents.touchend,slideTimerEnd);
+  $("#numContainerM").bind(touchEvents.touchstart,slideTimerStart);
+  $("#numContainerM").bind(touchEvents.touchend,slideTimerEnd);
+
+  
   
 
    
@@ -254,10 +260,45 @@ function setDelayState(e){
 }
 
 
+function timeSetShow(){
+
+	$("#li3").css("display","block");
+	var elesH=$("#numContainerH").find(".num"),
+		elesM=$("#numContainerM").find(".num1"),
+		time=new Date(),
+		hour=time.getHours(),
+		minute=time.getMinutes();
+		for(var i=0;i<elesH.length;i++){
+		
+			timeSetNow(elesH[i],hour,24);
+			timeSetNow(elesM[i],minute,60);
+		}
+}
+
+function timeSetHide(){
+	$("#li3").css("display","none");
+}
+
+function timeSetNow(obj,n,t){
+	if($(obj).hasClass("show")){
+		
+	}else if($(obj).hasClass("up")){
+		n=n-1<0?n+(t-1):n-1;
+	}else if($(obj).hasClass("down")){
+		n=n+1>=t?(n+1)-t:n+1;
+	}else{return;}
+	   $(obj).attr('data',n);
+		var str=n<10?'0'+n:n;
+		$(obj).text(str);
+}
+
+
 
 function timeSetSend(){
-	var time = new Date(),
-		arr=new Array(time.getHours(),time.getMinutes());
+	timeSetHide();
+	var hour =$("#numContainerH").find(".show").attr("data"),
+		minute =$("#numContainerM").find(".show").attr("data"),
+		arr=new Array(hour,minute);
 
 		$.each(arr,function(i){
 			arr[i]="0123456789ABCDEF"[(arr[i]%256)>>>4]+"0123456789ABCDEF"[arr[i]%16];
@@ -427,7 +468,7 @@ function minuteSlideDown(){
 		}else if($(eles[i]).hasClass('up')){
 			$(eles[i]).removeClass('up').addClass('show');
 		}else if($(eles[i]).hasClass('down')){
-			$(eles[i]).removeClass('down').addClass('hidedown');
+			$(eles[i]).removeClass('down').addClass('hideup');
 		}else{
 			var str=null;
 			if(num>11){
@@ -447,6 +488,42 @@ function minuteSlideDown(){
 	}
 	
 }
+function slideTimerStart(event){
+	event=event||window.event;
+	startPosY=event.originalEvent.touches[0].pageY;
+	$(this).bind(touchEvents.touchmove,slideTimerMove);
+}
+
+function slideTimerEnd(event){
+	event=event||window.event;
+	$(this).unbind(touchEvents.touchmove,slideTimerMove);
+	event.stopPropagation();
+}
+
+
+var slideTimerMove = (function(){
+	var oldTime=new Date();
+	return function(event){
+		event=event||window.event;
+		event.preventDefault();
+		var newTime=new Date(),
+			endPosY=event.originalEvent.touches[0].pageY,
+			deltaTime=newTime-oldTime,
+			deltaY=endPosY-startPosY;
+			if(deltaTime<=500||Math.abs(deltaY)<30){
+				return;
+			}else if(deltaY>0){
+				var id=$(this).attr("id");
+				id=="numContainerH"?hourSlideDown():minuteSlideDown();
+				oldTime=newTime;
+			}else if(deltaY<0){
+				var id=$(this).attr("id");
+				id=="numContainerH"?hourSlideUp():minuteSlideUp();
+				
+				oldTime=newTime;
+			}
+	};
+})();
 
 
 
@@ -518,7 +595,7 @@ var token =getUrlParam("access_key") ;
 var user = Math.floor(Math.random()*100);
 var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
 var ws   = new ReconnectingWebSocket(url);
-
+var startPosY=null;
 
 ws.onmessage=function(e){
 	console.debug("[WEBSOCKET] "+e.data);
