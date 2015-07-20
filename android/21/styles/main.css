@@ -295,7 +295,6 @@ body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   border-radius: 50%;
-  opacity: 1;
   margin: 10px 10px 0 10px;
 }
 
@@ -329,7 +328,6 @@ body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   border-radius: 50%;
-  opacity: 1;
   margin: 10px 10px 0 10px;
 }
 .ctrl .ctrl_li2 #li_midspeed .midspeedImg{
@@ -362,7 +360,6 @@ body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   border-radius: 50%;
-  opacity: 1;
   margin: 10px 10px 0 10px;
 }
 .ctrl .ctrl_li2 #li_highspeed .highspeedImg{
@@ -395,7 +392,6 @@ display: block;
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   border-radius: 50%;
-  opacity: 1;
   margin: 10px 10px 0 10px;
 }
 .ctrl .ctrl_li2 #li_delay .delayImg{
@@ -416,6 +412,9 @@ display: block;
 	left: 0;
 	text-align: center;
 }
+.ctrl .ctrl_li2 .powerRelated{
+	opacity: 0.3;
+}
 .ctrl .ctrl_li3 .li_timerPanel{
 	position: absolute;
 	width: 100%;
@@ -426,6 +425,8 @@ display: block;
 	border-style:solid;
 	border-color:#9EC4D3;   
 }
+
+
 .ctrl .ctrl_li3 .li_timerPanel .timeset{
 	display: block;
 	position: absolute;
@@ -558,6 +559,74 @@ display: block;
 	top: -40px;
 	opacity: 0;
 	color: transparent;
+}
+
+#remind{
+	position: fixed;
+	display: none;
+	width: 60%;
+	top: 50%;
+	left: 20%;
+	height: 200px;
+	background-color: #E7E7E7;
+	margin: -100px 0 0 0;
+	border-radius: 5px;
+	text-align: center;
+	color: black;
+}
+#remind .reTitle{
+	position: absolute;
+	width: 100%;
+	text-shadow:none;
+	font-weight: bold;
+}
+#remind .reTitle0{
+	height: 80px;
+	left: 0;
+	font-size: 24px;
+	line-height: 80px;
+}
+#remind .reTitle1{
+	height: 60px;
+	font-size: 16px;
+	line-height: 30px;
+	top: 80px;
+	left: 0;
+}
+#remind .reTitle2{
+	width: 50%;
+	height: 60px;
+	font-size: 16px;
+	line-height: 60px;
+	top: 140px;
+	left: 0;
+	color: #C0DCE1;
+	 box-sizing:content-box;
+  -webkit-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -ms-box-sizing:content-box;
+  -o-box-sizing:content-box;
+  border-width: 1px 1px 0 0 ;
+  border-style:solid;
+  border-color:#B6B6B5;
+}
+#remind .reTitle3{
+	width: 50%;
+	height: 60px;
+	font-size: 16px;
+	line-height: 60px;
+	top: 140px;
+	left: 50%;
+	color: #C0DCE1;
+	 box-sizing:content-box;
+  -webkit-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -ms-box-sizing:content-box;
+  -o-box-sizing:content-box;
+  border-width: 1px 1px 0 0 ;
+  border-style:solid;
+  border-color:#B6B6B5;
+
 }
 
 .popup{

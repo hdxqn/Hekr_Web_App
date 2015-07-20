@@ -40,7 +40,8 @@ $(document).ready(function(){
   $("#numContainerH").bind(touchEvents.touchend,slideTimerEnd);
   $("#numContainerM").bind(touchEvents.touchstart,slideTimerStart);
   $("#numContainerM").bind(touchEvents.touchend,slideTimerEnd);
-
+  $("#clear").bind(touchEvents.touchend,clearUseTime);
+  $("#next").bind(touchEvents.touchend,clearUseTime);
   
   
 
@@ -80,10 +81,14 @@ function browserRedirect(obj) {
 var resources={
 	"zh-CN":{
 		"translation":{
+			"remind":"温馨提示",
+			"usedtime":"已使用小时，请清理油烟机。",
+			"cleared":"已清理",
+			"nexttime":"下次提醒",
 			"confirm":"确认",
 			"timerSet":"时间设置",
 			"light":"照明",
-			"lowSpeed":"低速",
+			"lowspeed":"低速",
 			"midspeed":"中速",
 			"highspeed":"高速",
 			"delay":"延时",
@@ -106,10 +111,14 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
+			"remind":"reminder",
+			"usedtime":"The hood has been used for hours. Please clean it.",
+			"cleared":"cleared",
+			"nexttime":"next time",
 			"confirm":"confirm",
 			"timerSet":"timerSet",
 			"light":"Lighting",
-			"lowSpeed":"lowspeed",
+			"lowspeed":"lowspeed",
 			"midspeed":"midspeed",
 			"highspeed":"highspeed",
 			"delay":"delay",
@@ -133,7 +142,9 @@ var resources={
 };
 
 function powerSend(){
-	var i=$(this).attr('data')==1?2:1;
+	var dt=$(this).attr("data"),
+		 i=dt==1?2:1;
+	if(dt==3){return;}
 
 	var data="020"+i+"0000000000000000",
 	    frame=UARTDATA.encode(0x02,data);
@@ -149,6 +160,8 @@ function powerSend(){
 }
 
 function setPowerState(e){
+	var op=e==1?1:0.3,
+		dt=e==1?0:3;
 	if(e==1){
 		$('#li_power').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
 		$('#on').text(i18n.t('on'));
@@ -156,6 +169,7 @@ function setPowerState(e){
 		$('#li_power').attr('data',0).css('background-color','transparent');
 		$('#on').text(i18n.t('off'));
 	};
+	$(".powerRelated").css("opacity",op).attr("data",dt);
 }
 function lightSend(){
 	var i=$(this).attr('data')==1?2:1;
@@ -177,8 +191,10 @@ function lightSend(){
 function setLightingState(e){
 	if(e==1){
 		$('#li_light').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+		$("#light").text(i18n.t("light"));
 	}else if (e==2) {
 		$('#li_light').attr('data',0).css('background-color','transparent');
+		$("#light").text("--");
 	};
 }
 
@@ -227,16 +243,20 @@ function setSpeedState(e){
 		default: 
 		break;
 	}
+	var str1=str.replace("li_",""),
+		dt=$("#"+str).attr("data");
+		if(dt==3){return;}
 	$('#li_lowspeed').attr('data',0).css('background-color','transparent');
 	$('#li_midspeed').attr('data',0).css('background-color','transparent');
 	$('#li_highspeed').attr('data',0).css('background-color','transparent');
 	$('#'+str).attr('data',1).css('background-color','rgba(255,255,255,0.3)');
-
+	$("#speed").text(i18n.t(str1));
 }
 
 function delaySend(){
-	var i=$(this).attr('data')==1?2:1;
-
+	var dt=$(this).attr("data"),
+	 i=dt==1?2:1;
+	if(dt==3){return;}
 
 	var data="03000"+i+"00000000000000",
 	    frame=UARTDATA.encode(0x02,data);
@@ -252,6 +272,8 @@ function delaySend(){
 }
 
 function setDelayState(e){
+	var dt=$("#li_delay").attr("data");
+	if(dt==3){return;}
 	if(e==1){
 		$('#li_delay').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
 	}else if (e==2) {
@@ -500,6 +522,20 @@ function slideTimerEnd(event){
 	event.stopPropagation();
 }
 
+function clearUseTime(){
+	$("#remind").css("display","none");
+	var id=$(this).attr("id");
+	if(id!="clear"){return;}
+	var data="07000000000000000000",
+	    frame=UARTDATA.encode(0x02,data);
+	console.log("timeSet     :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+			 ws.send(code);
+}
+
 
 var slideTimerMove = (function(){
 	var oldTime=new Date();
@@ -524,6 +560,19 @@ var slideTimerMove = (function(){
 			}
 	};
 })();
+
+var remindState = (function(){
+	var state=true;
+	return function(num){
+		if(num>=100&&state){
+			$("#remind").css("display","block");
+			$("#reTime").text(num);
+			state=false;
+		}else if(!state){return;}
+	};
+})();
+
+
 
 
 
@@ -634,6 +683,7 @@ window.changestate=function(o){
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
+
      		switch(mes[0]){
      			case 0:
      			setPowerState(mes[1]);
@@ -656,19 +706,7 @@ window.changestate=function(o){
      		  default: 
      		  break;
      		} 	
+     		remindState(mes[8]);
      }
 };
 
-var keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-
-function clearKeep(){
-    clearInterval(keepconnecting);
-}
-
-function resetKeep(){
-     keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-}
