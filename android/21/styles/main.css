@@ -136,7 +136,6 @@ body{
 	width: 100%;
 	height: 46%;
 	min-height: 250px;
-	min-width: 340px;
 	bottom: 0;
 	left: 0;
 	margin: 30px 0 0 0;
@@ -197,6 +196,7 @@ body{
   opacity: 1;
   margin: 10px 10px 0 10px;
 }
+
 .ctrl .ctrl_li1 #li_power .powerImg{
 	display: block;
 	position: absolute;
@@ -276,11 +276,19 @@ body{
 .ctrl .ctrl_li1 #li_timer .timerword{
 	display: block;
 	position: absolute;
-	width: 100%;
+	width: 160%;
 	height: 18px;
 	top: 65px;
-	left: 0;
+	left: -30%;
 	text-align: center;
+}
+@media screen and (max-width: 340px){
+	.ctrl .ctrl_li1 #li_power,
+	.ctrl .ctrl_li1 #li_light,
+	.ctrl .ctrl_li1 #li_timer{
+		margin: 10px 3px 0 3px;
+		font-size: 10px;
+	}
 }
 
 .ctrl .ctrl_li2 #li_lowspeed{
@@ -415,6 +423,16 @@ display: block;
 .ctrl .ctrl_li2 .powerRelated{
 	opacity: 0.3;
 }
+
+@media screen and (max-width: 340px){
+	.ctrl .ctrl_li2 #li_lowspeed,
+	.ctrl .ctrl_li2 #li_midspeed,
+	.ctrl .ctrl_li2 #li_highspeed,
+	.ctrl .ctrl_li2 #li_delay{
+		margin: 10px 3px 0 3px;
+		font-size: 10px;
+	}
+}
 .ctrl .ctrl_li3 .li_timerPanel{
 	position: absolute;
 	width: 100%;
@@ -431,7 +449,7 @@ display: block;
 	display: block;
 	position: absolute;
 	height: 50px;
-	width: 20%;
+	width: 100%;
 	top: 0;
 	left: 40%;
 	min-width: 40px;
@@ -448,6 +466,7 @@ display: block;
 	left: 7%;
 	font-size: 24px;
 	line-height: 50px;
+	z-index: 999;
 }
 .ctrl .ctrl_li3 .li_timerPanel #cancle{
 	display: block;
@@ -458,6 +477,7 @@ display: block;
 	right: 7%;
 	font-size: 24px;
 	line-height: 50px;
+	z-index: 999;
 }
 .ctrl .ctrl_li3 #numContainerH{
 	margin: 0;
