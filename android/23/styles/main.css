@@ -11,7 +11,12 @@ html{
 	width: 100%;
 	min-height: 150vw;
 }
- 
+@media(max-device-aspect-ratio:2/3){
+	html{
+		min-height:200vw;
+
+	}
+}
 body{
 	width: 100%;
 	height: 100%;
