@@ -636,10 +636,3 @@ SEXP.exec = function(sExprString) {
     return LambdaTM.LispEval.lisp_eval( LambdaTM.globalenv , sexp );
 }
 
-Array.prototype.toObj = function() {
-    var rv = {};
-    if (this.length % 2 != 0) return;
-    for (var i = 0; i < this.length; i += 2)
-        rv[this[i]] = this[i + 1];
-    return rv;
-};

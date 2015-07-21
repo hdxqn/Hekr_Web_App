@@ -675,7 +675,7 @@ ws.onclose=function(){
 	console.error("[WEBSOCKET] connection closed");
 };
 
-window.changestate=function(o){
+window.changestate=function(e){
 	console.debug("[STATE] ================");
      console.debug(e); 
      console.debug("[STATE] ================");

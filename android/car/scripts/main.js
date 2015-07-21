@@ -38,11 +38,19 @@ function browserRedirect(obj) {
  	var src=$(this).attr("src"),
  		newSrc=src.replace("B","A");
  		$(this).attr("src",newSrc);
+        sendMes()
  }
  function release(){
  	var src=$(this).attr("src"),
+        dt=$(this).attr("data"),
  		newSrc=src.replace("A","B");
  		$(this).attr("src",newSrc);
+        if(mode==1){
+            return;
+        }else if(mode==2){
+            console.log(dt);
+            appendContent(dt);
+        }
  }
  function chooseMode(){
  	$(".btn").attr("src","images/Btn.png");
@@ -53,8 +61,62 @@ function browserRedirect(obj) {
  	}else if(id=="m2"){
  		mode=2;
  	}
+    console.log(id+"   "+mode);
  }
+
+function sendMes(mes,bh){
+    if(bh==1){
+        clearInterval(timer);
+        var timer = setInterval(function(){
+            console.log("我执行了一次"+str);
+        },1000);
+    }else if(bh==0){
+        clearInterval(timer);
+    }
+}
+
 var mode=1;
+var appendContent = (function(){
+
+    var htmlstr="<i class=\"iconfont\" data={{num}}>{{text}}</i>";
+    var eles= document.createElement("i");
+    eles.className="iconfont";
+    return function(num){
+        var str=null;
+        switch(num){
+            case "1":
+            str="&#xe70c;";
+            break;
+            case "2":
+            str="&#xe701;";
+            break;
+            case "3":
+            str="&#xe700;";
+            break;
+            case "4":
+            str="&#xe70b;";
+            break;
+            case "5":
+            str="抬";
+            break;
+            case "6":
+            str="落";
+            break;
+            case "7":
+            str="左";
+            break;
+            case "8":
+            str="右";
+            break;
+            default:
+            break;
+        }
+        var newcode=htmlstr.replace("{{text}}",str)
+                            .replace("{{num}}",num);
+        $("#show").append(newcode);
+        console.log(newcode);
+    };
+})();
 
 
 
