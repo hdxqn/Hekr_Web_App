@@ -29,6 +29,7 @@ $(document).ready(function(){
  $(".little").bind(touchEvents.touchend,chooseMain);
  $(".btns").bind(touchEvents.touchstart,press);
   $(".btns").bind(touchEvents.touchend,release);
+  $("#return").bind(touchEvents.touchend,returnChoose);
   // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
   //  t = new Toast({
   //    			message:i18n.t("message")
@@ -136,8 +137,20 @@ function chooseMain(){
 	for(var i=1;i<eles.length+1;i++){
 			$("#btn"+i).css("display","inline-block");
 	}
-	
+	$("#return").css("opacity","1").attr("data","1");
 }
+
+function returnChoose(){
+	var i=$(this).attr("data");
+	if(i==0){return;}
+	$(".little").css("display","block");
+	$(".main1").css({
+		"opacity":"0",
+		"z-index":"-10"
+	});
+	$(this).attr("data",0).css("opacity","0");
+}
+
 
 function press(){
 	$(this).find("img").attr("src","images/press.png");

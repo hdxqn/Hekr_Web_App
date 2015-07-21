@@ -63,6 +63,23 @@ body{
 	text-align: center;
 	line-height: 24px;
 }
+#nav #return{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60px;
+	height: 100%;
+	z-index: 999;
+	opacity: 0;
+}
+#nav #return img{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 50%;
+	left: 50%;
+	margin: -10px 0 0 -10px;
+}
 .main_0{
 	/*display: none;*/
 	position: relative;
@@ -72,24 +89,7 @@ body{
 	z-index: -10;
 	/*tranform:scale3D(0.4,0.4,0.4);*/
 }
-/*.main1{
-	top: 50px;
-	left: 4%;
-}*/
-/*.main2{
-		/*display: none;*/
-	/*position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background-color: rgba(255,255,255,0.2);
-	opacity: 1;
-	tranform:scale3D(0.4,0.4,0.4);
-	-webkit-tranform:scale3D(0.4,0.4,0.4);
-	-moz-tranform:scale3D(0.4,0.4,0.4);
-	-o-tranform:scale3D(0.4,0.4,0.4);
-	-ms-tranform:scale3D(0.4,0.4,0.4);*/
+
 
 .main_0 .center{
 	position: relative;
