@@ -6,7 +6,8 @@ $(document).ready(function(){
 	$("#operate img").bind(touchEvents.touchstart,press);
 	$("#operate img").bind(touchEvents.touchend,release);
 	$(".btn").bind(touchEvents.touchstart,chooseMode);
-
+    $(".m2").bind(touchEvents.touchstart,operatePress);
+    $(".m2").bind(touchEvents.touchend,operateChoose);
 });
 
 function browserRedirect(obj) {
@@ -34,17 +35,71 @@ function browserRedirect(obj) {
     }
  }
 
- function press(){
+ function operatePress(event){
+     event=event||window.event;
+    event.preventDefault();
+    var src=$(this).attr("src"),
+        newSrc=src.replace("B","A");
+        $(this).attr("src",newSrc);
+
+ }
+ function operateChoose(event){
+     event=event||window.event;
+    event.preventDefault();
+    var src=$(this).attr("src"),
+        id=$(this).attr("id"),
+        newSrc=src.replace("A","B");
+        $(this).attr("src",newSrc);
+        if(id=="canSend"){
+            $("#show").find(".iconfont").remove();
+            $(".m2").css("display","none");
+            return;
+        }else if(id=="conSend"){
+            var eles=$("#show").find(".iconfont"),
+                arr=[];
+                if(eles.length<=0){return;}
+                for(var i=0;i<eles.length;i++){
+                    var str="0"+$(eles[i]).attr("data");
+                    arr.push(str);
+                }
+                var command=arr.join("");
+                 var frame=UARTDATA.encode(0x02,command);
+
+         var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+            .replace('{tid}',tid)
+            .replace('{args}',frame);
+            console.debug(code);
+            ws.send(code);
+             $("#show").find(".iconfont").remove();
+             $(".m2").css("display","none");
+        }
+
+
+ }
+
+ function press(event){
+    event=event||window.event;
+    event.preventDefault();
  	var src=$(this).attr("src"),
+        dt="0"+$(this).attr("data"),
  		newSrc=src.replace("B","A");
  		$(this).attr("src",newSrc);
-        sendMes()
+        if(mode==2){return;}
+
+    var frame=UARTDATA.encode(0x02,dt);
+
+         var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+            .replace('{tid}',tid)
+            .replace('{args}',frame);
+            console.debug(code);
+        sendMes(code,1);
  }
  function release(){
  	var src=$(this).attr("src"),
         dt=$(this).attr("data"),
  		newSrc=src.replace("A","B");
  		$(this).attr("src",newSrc);
+         sendMes(src,0);
         if(mode==1){
             return;
         }else if(mode==2){
@@ -58,8 +113,10 @@ function browserRedirect(obj) {
  	var id=$(this).attr("id");
  	if(id=="m1"){
  		mode=1;
+        $(".m2").css("display","none");
  	}else if(id=="m2"){
  		mode=2;
+        $(".m2").css("display","block");
  	}
     console.log(id+"   "+mode);
  }
@@ -67,8 +124,9 @@ function browserRedirect(obj) {
 function sendMes(mes,bh){
     if(bh==1){
         clearInterval(timer);
-        var timer = setInterval(function(){
-            console.log("我执行了一次"+str);
+         timer = setInterval(function(){
+            ws.send(mes);
+            console.debug(mes);
         },1000);
     }else if(bh==0){
         clearInterval(timer);
@@ -76,6 +134,7 @@ function sendMes(mes,bh){
 }
 
 var mode=1;
+var timer=null;
 var appendContent = (function(){
 
     var htmlstr="<i class=\"iconfont\" data={{num}}>{{text}}</i>";
@@ -118,6 +177,100 @@ var appendContent = (function(){
     };
 })();
 
+function getUrlParam(name) {
+     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if (r != null) return unescape(r[2]);
+     return null;
+ }
+
+
+
+var Toast = function(config){
+    this.context = config.context || $('body');
+    this.message =config.message;
+    this.time = config.time || 3000;
+    this.init();
+}
+
+var msgEntity;
+Toast.prototype = {
+
+    init :function(){
+        $("#toastMessage").remove();
+
+        var msgDIV = new Array();
+        msgDIV.push('<div id="toastMessage">');
+        msgDIV.push('<span>'+this.message+'</span>');
+        msgDIV.push('</div>');
+        msgEntity = $(msgDIV.join('')).appendTo(this.context);
+
+        var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
+
+        var bottom = '20px' ;
+        msgEntity.css({
+            position:'fixed',
+            bottom:bottom,
+            'z-index':'99',
+            left:left,
+            'background-color':'#000000',
+            color:'white',
+            'font-size':'14px',
+            padding:'5px',
+            margin:'0px',
+            'border-radius':'2px'
+        });
+        msgEntity.hide();
+    },
+
+    show :function(){
+        msgEntity.stop(true);
+        msgEntity.fadeIn(this.time/2);
+        msgEntity.fadeOut(this.time/2);
+        
+    }
+}
+
+  
+
+
+
+var tid  = getUrlParam("tid");
+var host = getUrlParam("host") || "device.hekr.me";
+
+var token =getUrlParam("access_key") ;
+
+var user = Math.floor(Math.random()*100);
+var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
+var ws   = new ReconnectingWebSocket(url);
+var startPosY=null;
+
+ws.onmessage=function(e){
+    console.debug("[WEBSOCKET] "+e.data);
+    SEXP.exec(e.data);
+};
+
+ws.onerror=function(){
+    setTimeout(function(){
+         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
+     },100)
+    console.error("[WEBSOCKET] connection error");
+};
+
+ws.onopen=function(){
+    console.debug("[CONNECTED]");
+};
+ws.onclose=function(){
+    console.error("[WEBSOCKET] connection closed");
+};
+
+window.changestate=function(e){
+    console.debug("[STATE] ================");
+     console.debug(e); 
+     console.debug("[STATE] ================");
+     console.debug(e.uartdata);
+    
+};
 
 
 

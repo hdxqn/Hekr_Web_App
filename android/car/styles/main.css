@@ -125,6 +125,20 @@ body{
 	height: 100%;
 	z-index: -10;
 }
+#show .m2{
+	display: none;
+	top: 50%;
+	left: -5%;
+	width: 50px;
+	height:24px; 
+	margin: -12px 0 0 -50px;
+	z-index: 999;
+}
+
+#show #canSend{
+	left: 105%;
+	margin: -12px 0 0 0;
+}
 .model1{
 	position: absolute;
 	width: 10vw;
