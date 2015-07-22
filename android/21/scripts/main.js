@@ -168,8 +168,13 @@ function setPowerState(e){
 	}else if (e==2) {
 		$('#li_power').attr('data',0).css('background-color','transparent');
 		$('#on').text(i18n.t('off'));
+		$("#speed").text("--");
+		$("#light").text("--");
 	};
-	$(".powerRelated").css("opacity",op).attr("data",dt);
+	$(".powerRelated").css({
+		"opacity":op,
+		"background-color":"transparent"
+	}).attr("data",dt);
 }
 function lightSend(){
 	var i=$(this).attr('data')==1?2:1;
@@ -199,6 +204,8 @@ function setLightingState(e){
 }
 
 function speedSend(){
+	var dt=$(this).attr(data);
+		if(dt==3){return;}
 	var speed=$(this).attr('id'),
 		i=null;
 		switch(speed){
