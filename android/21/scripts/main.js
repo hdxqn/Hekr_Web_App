@@ -204,7 +204,7 @@ function setLightingState(e){
 }
 
 function speedSend(){
-	var dt=$(this).attr(data);
+	var dt=$(this).attr("data");
 		if(dt==3){return;}
 	var speed=$(this).attr('id'),
 		i=null;
