@@ -8,6 +8,7 @@ $(document).ready(function(){
     //     // switchMain(delta);
     // });
 $("#jump_main_1").bind(touchEvents.touchend,mainOneAnimation);
+$(".turn_box").bind(touchEvents.touchend,flip);
   mainOneAnimation();
   
 })
@@ -38,6 +39,7 @@ function browserRedirect(obj) {
 
  (function($){
         var Calendar = function(unit){
+            this.endAnimation();
             this.unit = unit;
             this.topFont = unit.find(".top").eq(1);
             this.topBack = unit.find(".top").eq(0);
@@ -162,4 +164,21 @@ function mainOneAnimation(){
     setTimeout(function(){
          Calendar.init($(".unit"));
     },700);
+ }
+ function flip(){
+    var elef=null,
+        eleb=null;
+    $(this).find('img').each(function(){
+        if ($(this).hasClass('out')) {
+            eleb=$(this);
+        }else{
+            elef=$(this);
+        }
+    });
+
+     $(elef).addClass("out").removeClass("in");
+    setTimeout(function() {
+        $(eleb).addClass("in").removeClass("out");
+    }, 300);
+
  }

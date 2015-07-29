@@ -615,7 +615,7 @@ html,body{
   border:2px solid #5AACD4;
   background-color: #FAFAFA;
   z-index: 10;
-      box-sizing:border-box;
+  box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   -ms-box-sizing:border-box;
@@ -677,4 +677,442 @@ html,body{
   color:#FAFAFA;
   font-size: 16px;
 }
+.container #view_scroll #main_2 .main_2_circle div > span{
+  position: absolute;
+  width: 200%;
+  height: 120px;
+  top: 50%;
+  margin: -60px 0 0 0;
+  font-size: 18px;
+  color: #4B4D51;
+   font-family: "Microsoft YaHei" ! important;
+}
+.container #view_scroll #main_2 .main_2_circle div > span h1{
+  padding: 0;
+  margin: 0;
+  line-height: 60px;
+   font-family: "Microsoft YaHei" ! important;
+}
+.container #view_scroll #main_2 .main_2_circle div:nth-child(2n+1) > span{
+  right: 100%;
+  text-align: left;
+}
+.container #view_scroll #main_2 .main_2_circle div:nth-child(2n) > span{
+  left:100%;
+  text-align: right;
+}
+
 /*第二页结束*/
+
+/*第三页开始*/
+.container #view_scroll #main_3{
+  background: url(../images/main3bg.jpg) no-repeat center center;
+  background-size:cover;
+  background-attachment: scroll;
+}
+.container #view_scroll #main_3 > div{
+  position: absolute;
+  width: 20%;
+  top: 8%;
+  left: 40%;
+  height: 100px;
+  color: #E0E1E0;
+  text-align: center;
+}
+.container #view_scroll #main_3 > div h1{
+  padding: 0;
+  margin: 0;
+  line-height: 60px;
+  color: #5BACD4;
+}
+.container #view_scroll #main_3 > div::before{
+  content: '';
+  position: absolute;
+  width: 150%;
+  right: 100%;
+  top: 0;
+  margin: 30px 0 0 0;
+  height: 1px;
+  background-color: #5BACD4;
+}
+.container #view_scroll #main_3 > div::after{
+  content: '';
+  position: absolute;
+  width: 150%;
+  left: 100%;
+  top: 0;
+  margin: 30px 0 0 0;
+  height: 1px;
+  background-color: #5BACD4;
+}
+.container #view_scroll #main_3 > ul{
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+}
+.container #view_scroll #main_3 > ul li{
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  bottom: 50%;
+  border-radius: 50%;
+  background-color: #5BACD4;
+}
+.container #view_scroll #main_3 > ul li span{
+  position: absolute;
+  width: 300px;
+  height: 120px;
+  top: 150px;
+  left: -80px;
+  text-align: center;
+  color: #E4E4E9;
+}
+.container #view_scroll #main_3 > ul li span h1{
+  margin: 0;
+  padding: 0;
+  line-height: 50px;
+}
+.container #view_scroll #main_3 > ul li:nth-child(1){
+  left: 0;
+  margin: 0 0 0 0;
+}
+.container #view_scroll #main_3 > ul li:nth-child(2){
+  left: 50%;
+  margin: 0 0 0 -70px;
+}
+.container #view_scroll #main_3 > ul li:nth-child(3){
+  right: 0;
+  margin: 0 0 0 0;
+}
+/*第三页结束*/
+/*第四页开始*/
+.container #view_scroll #main_4{
+  text-align: center;
+}
+.container #view_scroll #main_4 >input[type=radio]{
+  display: inline-block;
+  position: relative;
+  top: 75%;
+  cursor: pointer;
+  visibility: hidden;
+  margin: 0;
+  width: 100px;
+  height: 40px;
+}
+.container #view_scroll #main_4 >input[type=radio]::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  visibility: visible;
+  color: #646464;
+  font-size: 18px;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+.container #view_scroll #main_4 #mainFourOne::before{
+  content: '无线模块';
+}
+.container #view_scroll #main_4 #mainFourTwo::before{
+  content: '云端服务';
+}
+.container #view_scroll #main_4 #mainFourThree::before{
+  content: '数据平台';
+}
+.container #view_scroll #main_4 #mainFourFour::before{
+  content: '虚拟机系统';
+}
+.container #view_scroll #main_4 #mainFourFive::before{
+  content: '移动APP';
+}
+.container #view_scroll #main_4  #mainFourTitleOne{
+  position: absolute;
+}
+.container #view_scroll #main_4 >input[type=radio]:checked::before{
+  color: #5BACD5;
+  border:2px solid #5BACD5;
+  height: 40px;
+  border-radius: 40px;
+  line-height: 36px;
+   box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+.container #view_scroll #main_4 > span{
+  position: absolute;
+  width: 80%;
+  height: 70px;
+  bottom: 100%;
+  left: 10%;
+  opacity: 0;
+  text-align: center;
+  color: #515558;
+  font-size: 20px;
+  -webkit-transition: bottom 1.4s ease-out,opacity 2s ease-in;
+  -moz-transition: bottom 1.4s ease-out,opacity 2s ease-in;
+  -o-transition: bottom 1.4s ease-out,opacity 2s ease-in;
+  -ms-transition: bottom 1.4s ease-out,opacity 2s ease-in;
+  transition: bottom 1.4s ease-out,opacity 2s ease-in;  
+}
+.container #view_scroll #main_4 > span i{
+  font-style: normal;
+  color: #5BACD5;
+}
+
+.container #view_scroll #main_4 #mainFourOne:checked ~ #titleone{
+   bottom: 80%;
+   opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourTwo:checked ~ #titletwo{
+   bottom: 80%;
+   opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourThree:checked ~ #titlethree{
+   bottom: 80%;
+   opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourFour:checked ~ #titlefour{
+   bottom: 80%;
+   opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourFive:checked ~ #titlefive{
+   bottom: 80%;
+   opacity: 1;
+}
+.container #view_scroll #main_4 #MainFourContent{
+  position: absolute;
+  width: 132vh;
+  height: 55%;
+  top: 17%;
+  left: 50%;
+  margin: 0 0 0 -66vh;
+  overflow: hidden;
+  -webkit-backface-visibility:hidden;
+}
+.container #view_scroll #main_4 #MainFourContent #MainFourScroll{
+  position: relative;
+  width: 500%;
+  height:100%;
+  top: 0;
+   -webkit-transition: left 1.4s ease-in;
+  -moz-transition: left 1.4s ease-in;
+  -o-transition: left 1.4s ease-in;
+  -ms-transition: left 1.4s ease-in;
+  transition: left 1.4s ease-in;  
+}
+.container #view_scroll #main_4 #MainFourContent #MainFourScroll > div{
+  width: 20%;
+  height: 100%;
+  position: relative;
+  float: left;
+  opacity: 0.1;
+   -webkit-transition:opacity 4s;
+  -moz-transition:opacity 4s;
+  -o-transition:opacity 4s;
+  -ms-transition:opacity 4s;
+  transition:opacity 4s; 
+}
+.container #view_scroll #main_4 #MainFourContent #MainFourScroll > div img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.container #view_scroll #main_4 #mainFourOne:checked ~ #MainFourContent #MainFourScroll{
+  left: 0;
+}
+.container #view_scroll #main_4 #mainFourOne:checked ~ #MainFourContent #MainFourScroll > div:nth-child(1){
+  opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourTwo:checked ~ #MainFourContent #MainFourScroll{
+  left: -100%;
+}
+.container #view_scroll #main_4 #mainFourTwo:checked ~ #MainFourContent #MainFourScroll > div:nth-child(2){
+  opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourThree:checked ~ #MainFourContent #MainFourScroll{
+  left: -200%;
+}
+.container #view_scroll #main_4 #mainFourThree:checked ~ #MainFourContent #MainFourScroll > div:nth-child(3){
+  opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourFour:checked ~ #MainFourContent #MainFourScroll{
+  left: -300%;
+}
+.container #view_scroll #main_4 #mainFourFour:checked ~ #MainFourContent #MainFourScroll > div:nth-child(4){
+  opacity: 1;
+}
+.container #view_scroll #main_4 #mainFourFive:checked ~ #MainFourContent #MainFourScroll{
+  left: -400%;
+}
+.container #view_scroll #main_4 #mainFourFive:checked ~ #MainFourContent #MainFourScroll > div:nth-child(5){
+  opacity: 1;
+}
+/*第四页结束*/
+/*第五页开始*/
+
+/*第五页结束*/
+/*第六页开始*/
+
+/*第六页结束*/
+/*第七页开始*/
+.container #view_scroll #main_7 > div{
+  position: absolute;
+  width: 20%;
+  top: 8%;
+  left: 40%;
+  height: 100px;
+  color: #E0E1E0;
+  text-align: center;
+}
+.container #view_scroll #main_7 > div h1{
+  padding: 0;
+  margin: 0;
+  line-height: 60px;
+  color: #5BACD4;
+}
+.container #view_scroll #main_7 > div::before{
+  content: '';
+  position: absolute;
+  width: 150%;
+  right: 100%;
+  top: 0;
+  margin: 30px 0 0 0;
+  height: 1px;
+  background-color: #5BACD4;
+}
+.container #view_scroll #main_7 > div::after{
+  content: '';
+  position: absolute;
+  width: 150%;
+  left: 100%;
+  top: 0;
+  margin: 30px 0 0 0;
+  height: 1px;
+  background-color: #5BACD4;
+}
+.container #view_scroll #main_7 > ul{
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  width: 120.8vh;
+  height: 60vh;
+  top: 50%;
+  left: 50%;
+  margin:-30vh 0 0 -60.4vh;
+  max-width: 1002px;
+  max-height: 498px;
+}
+.container #view_scroll #main_7 > ul li{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 33.3333%;
+  height: 100%;
+  top: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(1){
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(2){
+  left: 33.3333%;
+}
+.container #view_scroll #main_7 > ul li:nth-child(3){
+  left: 66.6666%;
+}
+.container #view_scroll #main_7 > ul li div{
+  position: absolute;
+}
+.container #view_scroll #main_7 > ul li div img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+   -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+   -ms-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.container #view_scroll #main_7 > ul li div:hover img{
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  z-index: 99;
+}
+.container #view_scroll #main_7 > ul li:nth-child(1) div:nth-child(1){
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(1) div:nth-child(2){
+  width: 100%;
+  height: 50%;
+  top: 50%;
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(2) div{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(3) div:nth-child(1){
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(3) div:nth-child(2){
+  width: 50%;
+  height: 25%;
+  top: 50%;
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(3) div:nth-child(3){
+  width: 50%;
+  height: 25%;
+  top: 75%;
+  left: 0;
+}
+.container #view_scroll #main_7 > ul li:nth-child(3) div:nth-child(4){
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+}
+.container #view_scroll #main_7 > ul li div .out{
+ transform:rotate3d(0,1,0,90deg);
+  -webkit-transform:rotate3d(0,1,0,90deg);
+  -moz-transform:rotate3d(0,1,0,90deg);
+  -ms-transform:rotate3d(0,1,0,90deg);
+  -o-transform:rotate3d(0,1,0,90deg);
+}
+.container #view_scroll #main_7 > ul li div .in{
+ transform:rotate3d(0,1,0,0);
+  -webkit-transform:rotate3d(0,1,0,0);
+  -moz-transform:rotate3d(0,1,0,0);
+  -ms-transform:rotate3d(0,1,0,0);
+  -o-transform:rotate3d(0,1,0,0); 
+}
+/*第七页结束*/
+/*第八页开始*/
+
+/*第八页结束*/
+
