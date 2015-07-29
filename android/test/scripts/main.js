@@ -3,12 +3,12 @@ $(document).ready(function(){
 	touchEvents={};
 	browserRedirect(touchEvents);
 
-    // rollAnimation();
-    // $('#main').bind('mousewheel',function(event,delta){
-    //     // switchMain(delta);
-    // });
-$("#jump_main_1").bind(touchEvents.touchend,mainOneAnimation);
+    
+    $('#view_scroll').bind('mousewheel',function(event,delta){
+        scrollMain(delta);
+    });
 $(".turn_box").bind(touchEvents.touchend,flip);
+$(".nav_radio").bind(touchEvents.touchend,radioClicked);
   mainOneAnimation();
   
 })
@@ -39,7 +39,6 @@ function browserRedirect(obj) {
 
  (function($){
         var Calendar = function(unit){
-            this.endAnimation();
             this.unit = unit;
             this.topFont = unit.find(".top").eq(1);
             this.topBack = unit.find(".top").eq(0);
@@ -158,7 +157,7 @@ function browserRedirect(obj) {
         });
     };
     window["Calendar"]=Calendar;
-    })(jQuery);
+})(jQuery);
 
 function mainOneAnimation(){
     setTimeout(function(){
@@ -181,4 +180,35 @@ function mainOneAnimation(){
         $(eleb).addClass("in").removeClass("out");
     }, 300);
 
+ }
+ function positionSet(ts) {
+     var h=ts.clientHeight,
+         w=ts.clientWidth;
+         $(ts).css("margin","0 0 0 -"+w/2+"px");
+ }
+ var scrollMain = (function() {
+     var currentPage=1,
+        oldTime=new Date();
+     return function(delta,num){
+        var newTime=new Date(),
+            time=newTime-oldTime;
+        if(!delta){
+            currentPage=num;
+            return;
+        }else if(delta<0&&time>1000){
+            currentPage=currentPage>=8?currentPage:currentPage+1;
+            $("#jump_main_"+currentPage).click();
+            oldTime=newTime;
+        }else if(delta>0&&time>1000){
+            currentPage=currentPage<=1?currentPage:currentPage-1;
+             $("#jump_main_"+currentPage).click();
+             oldTime=newTime;
+        }
+     };
+ })();
+ function radioClicked(){
+    var dt=$(this).attr("data"),
+        num=dt-0,
+        arg=false;
+        scrollMain(arg,num);
  }
