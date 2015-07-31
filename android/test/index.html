@@ -285,9 +285,9 @@
 				</div>
 				<!-- 标题结束 -->
 				<!-- 表单开始 -->
-				<form action="#" method="post" name="contact">
-				    <div>
-				    	产品类别
+				<form action="http://www.hekr.me/savelog.php?category=1&tel=15869012345&name=test" method="post" name="contact">
+				    <div id="category">
+				    	<span>产品类别</span>
 				    	<ul>
 				    		<li>卫浴家电</li>
 				    		<li>厨房家电</li>
@@ -300,7 +300,8 @@
 				    	</ul>
 				    </div>
 					<input type="text" name="phoneNum" placeholder="联系电话" required />
-					<input type="text" name="phoneNum" placeholder="姓名" required />
+					<input type="text" name="name" placeholder="姓名" required />
+					<input type="text" name="category"/ id="categoryText">
 					<button class="submit" type="submit">提交</button>
 				</form>
 				<!-- 表单结束 -->

@@ -746,6 +746,7 @@ html,body{
   height: 100px;
   color: #E0E1E0;
   text-align: center;
+  min-width: 194px;
 }
 .container #view_scroll #main_3 > div h1{
   padding: 0;
@@ -1016,6 +1017,7 @@ html,body{
   height: 100px;
   color: #E0E1E0;
   text-align: center;
+  min-width: 194px;
 }
 .container #view_scroll #main_5 > div h1{
   padding: 0;
@@ -1067,6 +1069,18 @@ html,body{
   -moz-box-sizing:border-box;
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
+}
+.container #view_scroll #main_5 > form div span{
+  position: absolute;
+  width: 70%;
+  height: 22px;
+  top: 50%;
+  left: 20px;
+  margin: -11px 0 0 0;
+  overflow: hidden;
+  line-height: 22px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 .container #view_scroll #main_5 > form div::before{
   content: '>';
@@ -1133,6 +1147,8 @@ html,body{
   -ms-box-sizing:border-box;
   -o-box-sizing:border-box;
   cursor: pointer;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 .container #view_scroll #main_5 > form div ul li:hover{
   color: #5BACD5;
@@ -1162,6 +1178,14 @@ html,body{
 .container #view_scroll #main_5 > form input:nth-child(2){
   left:30%;
 }
+.container #view_scroll #main_5 > form #categoryText{
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  top: 0;
+  right: 0;
+}
 .container #view_scroll #main_5 > form button{
   position: absolute;
   width: 60px;
@@ -1177,6 +1201,10 @@ html,body{
   font-size: 14px;
   font-weight: 600; 
   left: 90%;
+  cursor: pointer;
+}
+.container #view_scroll #main_5 > form button:hover{
+   background-color:#517298;
 }
 /*第五页结束*/
 /*第六页开始*/
@@ -1195,6 +1223,7 @@ html,body{
   height: 100px;
   color: #E0E1E0;
   text-align: center;
+  min-width: 194px;
 }
 .container #view_scroll #main_7 > div h1{
   padding: 0;
