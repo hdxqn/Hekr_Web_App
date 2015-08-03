@@ -10,6 +10,7 @@ $(document).ready(function(){
 $(".turn_box").bind(touchEvents.touchend,flip);
 $(".nav_radio").bind(touchEvents.touchend,radioClicked);
 $("#category").find("li").bind(touchEvents.touchend,chooseCategory);
+$("button").bind(touchEvents.touchend,PostMessage);
 
      document.getElementById('view_scroll').addEventListener("touchstart",function(event){
         startPos=event.touches[0].pageY;
@@ -234,5 +235,20 @@ function mainOneAnimation(){
     var str=$(this).text();
     $("#category").find("span").text(str);
     $("#categoryText").text(str);
+ }
+ function PostMessage(){
+    event.preventDefault();
+    
+    var num=encodeURIComponent($("input[name=phoneNum]").val()),
+        name=encodeURIComponent($("input[name=name]").val()),
+        ct=encodeURIComponent($("input[name=category]").text()),
+        url="http://www.hekr.me/savelog.php?category={{ct}}&tel={{num}}&name={{name}}",
+        code=url.replace("{{ct}}",ct)
+            .replace("{{num}}",num)
+            .replace("{{name}}",name);
+        console.log(code);
+        $.get(code,function(data,status){
+    alert("恭喜您！提交成功！");
+  });
  }
  var startPos=null;
