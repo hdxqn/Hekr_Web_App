@@ -1263,6 +1263,18 @@ html,body{
   max-width: 1002px;
   max-height: 498px;
 }
+@media screen and(min-width: 1002px){
+  .container #view_scroll #main_7 > ul{
+    width: 1002px;
+    margin-left:-501px;
+  }
+}
+@media screen and(min-height: 830px){
+  .container #view_scroll #main_7 > ul{
+    height:498px;
+    margin-top:-249px;
+  }
+}
 .container #view_scroll #main_7 > ul li{
   position: absolute;
   margin: 0;
