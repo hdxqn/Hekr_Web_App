@@ -701,6 +701,62 @@ html,body{
   color: #4B4D51;
    font-family: "Microsoft YaHei" ! important;
 }
+.container #view_scroll #main_2 .main_2_circle div:nth-child(2n) > span::before{
+  content: '';
+  position: absolute;
+  width:40px; 
+  height:2px;
+  top: 30px;
+  left: 0;
+  background-color: #5AACD4;
+  -webkit-transform:rotate3D(0,0,1,-45deg);
+  -moz-transform:rotate3D(0,0,1,-45deg);
+  -o-transform:rotate3D(0,0,1,-45deg);
+  -ms-transform:rotate3D(0,0,1,-45deg);
+  transform:rotate3D(0,0,1,-45deg);
+  -webkit-transform-origin:right center;
+      -ms-transform-origin:right center;
+      -moz-transform-origin:right center;
+      -o-transform-origin:right center;
+      transform-origin:right center;
+}
+.container #view_scroll #main_2 .main_2_circle div:nth-child(2n) > span::after{
+  content: '';
+  position: absolute;
+  width:60px; 
+  height:2px;
+  top: 30px;
+  left: 40px;
+  background-color: #5AACD4;
+}
+.container #view_scroll #main_2 .main_2_circle div:nth-child(2n+1) > span::before{
+  content: '';
+  position: absolute;
+  width:40px; 
+  height:2px;
+  top: 30px;
+  right: 0;
+  background-color: #5AACD4;
+  -webkit-transform:rotate3D(0,0,1,45deg);
+  -moz-transform:rotate3D(0,0,1,45deg);
+  -o-transform:rotate3D(0,0,1,45deg);
+  -ms-transform:rotate3D(0,0,1,45deg);
+  transform:rotate3D(0,0,1,45deg);
+  -webkit-transform-origin:left center;
+      -ms-transform-origin:left center;
+      -moz-transform-origin:left center;
+      -o-transform-origin:left center;
+      transform-origin:left center;
+}
+.container #view_scroll #main_2 .main_2_circle div:nth-child(2n+1) > span::after{
+  content: '';
+  position: absolute;
+  width:60px; 
+  height:2px;
+  top: 30px;
+  right: 40px;
+  background-color: #5AACD4;
+}
 .container #view_scroll #main_2 .main_2_circle div > i{
   position: absolute;
   width: 80px;
