@@ -231,7 +231,7 @@ html,body{
   -webkit-transform:translate3D(0,0,0);
   -moz-transform:translate3D(0,0,0);
   -o-transform:translate3D(0,0,0);
-  -ms-transform:translate3D(0,0,0);
+  -ms-transform:translateY(0,0,0);
   transform:translate3D(0,0,0);
   -webkit-backface-visibility:hidden;
   -webkit-transition: all 1s ease-in-out;
@@ -244,56 +244,56 @@ html,body{
    -webkit-transform:translate3D(0,0,0);
   -moz-transform:translate3D(0,0,0);
   -o-transform:translate3D(0,0,0);
-  -ms-transform:translate3D(0,0,0);
+  -ms-transform:translateY(0,0,0);
   transform:translate3D(0,0,0);
 }
 .container #jump_main_2:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-100%,0);
   -moz-transform:translate3D(0,-100%,0);
   -o-transform:translate3D(0,-100%,0);
-  -ms-transform:translate3D(0,-100%,0);
+  -ms-transform:translateY(-100%);
   transform:translate3D(0,-100%,0);
 }
 .container #jump_main_3:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-200%,0);
   -moz-transform:translate3D(0,-200%,0);
   -o-transform:translate3D(0,-200%,0);
-  -ms-transform:translate3D(0,-200%,0);
+  -ms-transform:translateY(-200%);
   transform:translate3D(0,-200%,0);
 }
 .container #jump_main_4:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-300%,0);
   -moz-transform:translate3D(0,-300%,0);
   -o-transform:translate3D(0,-300%,0);
-  -ms-transform:translate3D(0,-300%,0);
+  -ms-transform:translateY(-300%);
   transform:translate3D(0,-300%,0);
 }
 .container #jump_main_5:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-400%,0);
   -moz-transform:translate3D(0,-400%,0);
   -o-transform:translate3D(0,-400%,0);
-  -ms-transform:translate3D(0,-400%,0);
+  -ms-transform:translateY(-400%);
   transform:translate3D(0,-400%,0);
 }
 .container #jump_main_6:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-500%,0);
   -moz-transform:translate3D(0,-500%,0);
   -o-transform:translate3D(0,-500%,0);
-  -ms-transform:translate3D(0,-500%,0);
+  -ms-transform:translateY(-500%);
   transform:translate3D(0,-500%,0);
 }
 .container #jump_main_7:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-600%,0);
   -moz-transform:translate3D(0,-600%,0);
   -o-transform:translate3D(0,-600%,0);
-  -ms-transform:translate3D(0,-600%,0);
+  -ms-transform:translateY(-600%);
   transform:translate3D(0,-600%,0);
 }
 .container #jump_main_8:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,-700%,0);
   -moz-transform:translate3D(0,-700%,0);
   -o-transform:translate3D(0,-700%,0);
-  -ms-transform:translate3D(0,-700%,0);
+  -ms-transform:translateY(-700%);
   transform:translate3D(0,-700%,0);
 }
 /*导航样式以及页面跳转功能结束*/
