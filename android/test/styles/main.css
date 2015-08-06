@@ -54,7 +54,6 @@ html,body{
   -webkit-transition: all 0.6s;
   -moz-transition: all 0.6s;
   -o-transition: all 0.6s;
-  -ms-transition: all 0.6s;
   transition: all 0.6s;
 }
 .container  .nav_radio,
@@ -84,7 +83,6 @@ html,body{
    -webkit-transition: all 0.6s;
   -moz-transition: all 0.6s;
   -o-transition:all 0.6s;
-  -ms-transition: all 0.6s;
   transition: all 0.6s;
 }
 .container  #jump_main_1,
@@ -139,7 +137,7 @@ html,body{
   -webkit-transform:scale3D(1,0,1);
   -moz-transform:scale3D(1,0,1);
   -o-transform:scale3D(1,0,1);
-  -ms-transform:scale3D(1,0,1);
+  -ms-transform:scaleY(0);
   transform:scale3D(1,0,1);
   -webkit-transform-origin:top top;
   -moz-transform-origin:top top;
@@ -149,7 +147,6 @@ html,body{
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
-  -ms-transition: all 1s ease-in;
   transition: all 0.3s ease-in;  
 }
 .container #nav #trapezoid span{
@@ -171,7 +168,6 @@ html,body{
    -webkit-transition: border-color 0.3s ease-in;
   -moz-transition: border-color 0.3s ease-in;
   -o-transition: border-color 0.3s ease-in;
-  -ms-transition: border-color 1s ease-in;
   transition: border-color 0.3s ease-in;  
 }
 .container #nav #trapezoid .trapezoid_left{
@@ -199,14 +195,14 @@ html,body{
     -webkit-transform:scale3D(1,1,1);
       -moz-transform:scale3D(1,1,1);
       -o-transform:scale3D(1,1,1);
-      -ms-transform:scale3D(1,1,1);
+      -ms-transform:scaleY(1);
       transform:scale3D(1,1,1);
 }
 .container #nav #trapezoid:hover{
     -webkit-transform:scale3D(1,1,1);
       -moz-transform:scale3D(1,1,1);
       -o-transform:scale3D(1,1,1);
-      -ms-transform:scale3D(1,1,1);
+      -ms-transform:scaleY(1);
       transform:scale3D(1,1,1);
 }
 .container  #jump_main_1:checked ,
@@ -231,20 +227,19 @@ html,body{
   -webkit-transform:translate3D(0,0,0);
   -moz-transform:translate3D(0,0,0);
   -o-transform:translate3D(0,0,0);
-  -ms-transform:translateY(0,0,0);
+  -ms-transform:translateY(0);
   transform:translate3D(0,0,0);
   -webkit-backface-visibility:hidden;
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
-  -ms-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;  
 }
 .container #jump_main_1:checked ~ #view_scroll{
    -webkit-transform:translate3D(0,0,0);
   -moz-transform:translate3D(0,0,0);
   -o-transform:translate3D(0,0,0);
-  -ms-transform:translateY(0,0,0);
+  -ms-transform:translateY(0);
   transform:translate3D(0,0,0);
 }
 .container #jump_main_2:checked ~ #view_scroll{
@@ -1120,6 +1115,7 @@ html,body{
   background-color: rgba(45,56,68,1);
   margin:0;
   border-radius: 10px;
+   box-shadow: 0 0 6px rgba(0,0,0,0.5);
   box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -1222,6 +1218,7 @@ html,body{
   border-radius: 10px;
   outline: none;
   border: none;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
   box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -1265,10 +1262,225 @@ html,body{
 /*第五页结束*/
 /*第六页开始*/
 .container #view_scroll #main_6{
-  background: url(../images/main6bg.jpg) no-repeat center center;
+ /* background: url(../images/main6bg.jpg) no-repeat center center;
   background-size:cover;
-  background-attachment: scroll;
+  background-attachment: scroll;*/
 }
+.container #view_scroll #main_6 > div{
+   position: absolute;
+  width:140vh;
+  height:72vh;
+  top: 14vh;
+  left: 50%;
+  margin: 0 0 0 -70vh;
+  max-width:1403px;
+  max-height: 720px;
+  background: url(../images/main6img.jpg) no-repeat center center;
+   background-size:100% 100%;
+}
+@media screen and(min-height: 1000px){
+  .container #view_scroll #main_6 > div{
+     width:1403px;
+     height: 720px;
+     top: 50%;
+     left: 50%;
+     margin:-360px 0 0 -701px; 
+  }
+}
+.container #view_scroll #main_6 > div .mainSixIcon{
+  position: absolute;
+  overflow: hidden;
+  color: #fff;
+  background-color:#5AACD4;
+   width: 40px;
+  height: 40px;
+  border-radius: 40px;
+   margin: -20px 0 0 -20px;
+  -webkit-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  transition: width 0.3s; 
+}
+.container #view_scroll #main_6 > div .mainSixIcon i{
+  position: absolute;
+  text-align: center;
+   width: 30px;
+  height: 30px;
+  top: 5px;
+  left: 5px;
+  line-height: 30px;
+  font-size: 20px;
+}
+.container #view_scroll #main_6 > div .mainSixIcon span{
+  position: relative;
+  text-align: left;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  height: 30px;
+  width: 40px;
+  top: 5px;
+  left: 40px;
+  line-height: 30px;
+  -webkit-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+    transition: width 0.3s; 
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(1){
+  top: 15.2%;
+  left: 28%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(1):hover{
+  width: 180px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(2){
+  top: 46.1%;
+  left: 13.6%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(2):hover{
+  width: 120px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(3){
+  top: 64.5%;
+  left: 17.6%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(3):hover{
+  width: 140px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(4){
+  top: 59.4%;
+  left: 20.9%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(4):hover{
+  width: 140px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(5){
+  top: 40.4%;
+  left: 34.4%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(5):hover{
+  width: 120px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(6){
+  top: 47.5%;
+  left: 29.2%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(6):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(7){
+  top: 61.2%;
+  left: 29.6%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(7):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(8){
+  top: 75%;
+  left: 31.6%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(8):hover{
+  width: 160px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(9){
+  top: 29.3%;
+  left: 46.7%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(9):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(10){
+  top: 42.7%;
+  left: 45.9%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(10):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(11){
+  top: 58.6%;
+  left: 39.9%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(11):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(12){
+  top: 62.7%;
+  left: 47.6%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(12):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(13){
+  top: 26.9%;
+  left: 55.4%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(13):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(14){
+  top: 33.3%;
+  left: 61%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(14):hover{
+  width: 120px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(15){
+  top: 47.9%;
+  left: 56.1%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(15):hover{
+  width: 120px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(16){
+  top: 57.5%;
+  left: 61.2%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(16):hover{
+  width: 130px;
+  z-index: 999;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(17){
+  top: 66.9%;
+  left: 65.3%;
+}
+.container #view_scroll #main_6 > div .mainSixIcon:nth-child(17):hover{
+  width: 130px;
+  z-index: 999;
+}
+/*.container #view_scroll #main_6 > img{
+  position: absolute;
+  width:140vh;
+  height:72vh;
+  top: 14vh;
+  left: 50%;
+  margin: 0 0 0 -70vh;
+  max-width:1403px;
+  max-height: 720px; 
+}
+@media screen and(min-height: 1000px){
+  .container #view_scroll #main_6 > img{
+     width:1403px;
+     height: 720px;
+     top: 50%;
+     left: 50%;
+     margin:-360px 0 0 -701px; 
+  }
+}*/
 /*第六页结束*/
 /*第七页开始*/
 .container #view_scroll #main_7 > div{
@@ -1360,7 +1572,6 @@ html,body{
    -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   -moz-transition: all 0.3s;
-   -ms-transition: all 0.3s;
     transition: all 0.3s;
 }
 .container #view_scroll #main_7 > ul li div:hover img{
@@ -1416,14 +1627,14 @@ html,body{
  transform:rotate3d(0,1,0,90deg);
   -webkit-transform:rotate3d(0,1,0,90deg);
   -moz-transform:rotate3d(0,1,0,90deg);
-  -ms-transform:rotate3d(0,1,0,90deg);
+  -ms-transform:rotateY(90deg);
   -o-transform:rotate3d(0,1,0,90deg);
 }
 .container #view_scroll #main_7 > ul li div .in{
  transform:rotate3d(0,1,0,0);
   -webkit-transform:rotate3d(0,1,0,0);
   -moz-transform:rotate3d(0,1,0,0);
-  -ms-transform:rotate3d(0,1,0,0);
+  -ms-transform:rotateY(0);
   -o-transform:rotate3d(0,1,0,0); 
 }
 /*第七页结束*/

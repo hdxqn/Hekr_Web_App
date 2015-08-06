@@ -16,12 +16,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-qiyeyun:before { content: "\e661"; }
-.icon-dashuju:before { content: "\e611"; }
-.icon-10:before { content: "\f00b6"; }
 .icon-shouji:before { content: "\e679"; }
-.icon-suo4:before { content: "\e644"; }
-.icon-diqiu:before { content: "\e606"; }
+.icon-icon58:before { content: "\e604"; }
+.icon-iosworldoutline:before { content: "\e6df"; }
 .icon-zhuzhuangtu:before { content: "\e657"; }
-.icon-iconfontxiaolian1:before { content: "\e609"; }
-.icon-danxingshensuonew:before { content: "\e60b"; }
 .icon-shujuguanli:before { content: "\e6af"; }
+.icon-danxingshensuonew:before { content: "\e60b"; }
+.icon-iconreshuiqi:before { content: "\e62f"; }
+.icon-kongdiao:before { content: "\e617"; }
+.icon-dianyuan:before { content: "\e651"; }
+.icon-iconjichengyouyanjihui:before { content: "\e618"; }
+.icon-deng:before { content: "\e600"; }
+.icon-taideng:before { content: "\e670"; }
+.icon-electricteapot:before { content: "\e600"; }
+.icon-saodijiqiren:before { content: "\e65d"; }
+.icon-kafeiting:before { content: "\e639"; }
+.icon-men:before { content: "\e66b"; }
+.icon-dianfengshan:before { content: "\f005d"; }
+.icon-hongganji:before { content: "\e616"; }
+.icon-unie60f:before { content: "\e606"; }
+.icon-xiaolian:before { content: "\e601"; }
+.icon-diannaoshuju:before { content: "\e614"; }
+.icon-10:before { content: "\f00b6"; }
+.icon-wifi:before { content: "\e626"; }

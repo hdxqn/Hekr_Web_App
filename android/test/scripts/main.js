@@ -215,7 +215,7 @@ function mainOneAnimation(){
             currentPage=num;
             return;
         }else if(delta<0&&time>1000){
-            currentPage=currentPage>=8?currentPage:currentPage+1;
+            currentPage=currentPage>=7?currentPage:currentPage+1;
             $("#jump_main_"+currentPage).click();
             oldTime=newTime;
         }else if(delta>0&&time>1000){
