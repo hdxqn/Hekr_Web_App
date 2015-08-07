@@ -1254,19 +1254,80 @@ html,body{
   font-size: 14px;
   font-weight: 600; 
   left: 90%;
+  z-index: 999;
   cursor: pointer;
 }
 .container #view_scroll #main_5 > form button:hover{
    background-color:#517298;
 }
-.container #view_scroll #main_5 .mainFiveAd{
+.container #view_scroll #main_5 > ul{
   position: absolute;
+  list-style: none;
+  margin: 0 0 70px 0;
+  padding: 0;
   width: 80%;
   bottom: 0;
   left: 10%;
   height: 95px;
-  border:1px solid red;
 }
+.container #view_scroll #main_5 > ul li{
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  line-height: 30px;
+  color: #CACDCF;
+  text-align: center;
+   white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.container #view_scroll #main_5 > ul li:nth-child(1){
+  top: 0;
+  left: 0;
+}
+.container #view_scroll #main_5 > ul li:nth-child(2){
+  top: 32px;
+  left: 0;
+}
+.container #view_scroll #main_5 > ul li:nth-child(3){
+  top: 64px;
+  left: 0;
+}
+.container #view_scroll #main_5 > ul li i{
+  font-style:normal;
+  color: #4E84A2;
+  font-weight: 700;
+  }
+  .container #view_scroll #main_5 > span{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: 190px;
+    right: 5%;
+    visibility: hidden;
+  }
+  .container #view_scroll #main_5 > span i{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+    color: #4E84A2;
+    font-size: 58px;
+    text-align: center;
+  }
+   .container #view_scroll #main_5 > span::before{
+    content: '提交成功!';
+    position: absolute;
+    width: 140px;
+    height: 30px;
+    top: 100%;
+    left: -20px;
+    line-height: 30px;
+    color: #4E84A2;
+    font-size: 22px;
+    text-align: center;
+   }
 /*第五页结束*/
 /*第六页开始*/
 .container #view_scroll #main_6{

@@ -173,15 +173,15 @@ function setPowerState(e){
 		on.text(i18n.t('off'));
 		$("#speed").text("--");
 		$("#light").text("--");
+		$("#li_delay").attr('data',dt).css({
+			"background-color":"transparent",
+			"opacity":op
+		});
 	};
 	$(".powerRelated").css({
 		"opacity":op,
 		"background-color":"transparent"
 	}).attr("data",dt);
-	$("#li_delay").attr('data',dt).css({
-			"background-color":"transparent",
-			"opacity":op
-		});
 }
 function lightSend(){
 	var i=$(this).attr('data')==1?2:1;
@@ -250,6 +250,7 @@ function setSpeedState(e){
 	switch(e){
 		case 1:
 		str=false;
+		break;
 		case 2:
 		str='li_lowspeed';
 		break;
@@ -264,10 +265,15 @@ function setSpeedState(e){
 	}
 	if(!str){
 		for( var index in eles){
-			 var dt =eles.eq(index).atrr("data")-0;
+			 var dt =eles.eq(index).attr("data")-0;
 			 if(dt==3){continue;}
 			 eles.eq(index).attr('data',0).css('background-color','transparent');
 		}
+		// for(var i=0;i<eles.length;i++){
+		// 	var dt =$(eles[i]).attr("data")-0;
+		// 	 if(dt==3){continue;}
+		// 	 $(eles[i]).attr('data',0).css('background-color','transparent');
+		// }
 		$("#li_delay").attr('data',3).css({
 			"background-color":"transparent",
 			"opacity":"0.3"
@@ -619,16 +625,16 @@ var remindState = (function(){
 
 
 
+
+
+var msgEntity;
 var Toast = function(config){
 	this.context = config.context || $('body');
 	this.message =config.message;
 	this.time = config.time || 3000;
 	this.init();
 }
-
-var msgEntity;
 Toast.prototype = {
-
 	init :function(){
 		$("#toastMessage").remove();
 
@@ -637,27 +643,13 @@ Toast.prototype = {
 		msgDIV.push('<span>'+this.message+'</span>');
 		msgDIV.push('</div>');
 		msgEntity = $(msgDIV.join('')).appendTo(this.context);
-
-		var left =  this.context.width()/2-msgEntity.find('span').width()/2 ;
-
-		var bottom = '20px' ;
-		msgEntity.css({
-			position:'fixed',
-			bottom:bottom,
-			'z-index':'99',
-			left:left,
-			'background-color':'#000000',
-			color:'white',
-			'font-size':'14px',
-			padding:'5px',
-			margin:'0px',
-			'border-radius':'2px'
-		});
 		msgEntity.hide();
 	},
 
 	show :function(){
 		msgEntity.stop(true);
+		var left = msgEntity.find('span').width()/2 ;
+		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.fadeIn(this.time/2);
 		msgEntity.fadeOut(this.time/2);
 		

@@ -248,7 +248,14 @@ function mainOneAnimation(){
             .replace("{{name}}",name);
         console.log(code);
         $.get(code,function(data,status){
-    alert("恭喜您！提交成功！");
+           var obj=$.parseJSON(data),
+               img= $("#submitImg");
+           if(obj.code==200){
+           img.css("visibility","visible");
+           }
+           setTimeout(function(){
+            img.css("visibility","hidden");
+           }.3500);
   });
  }
  var startPos=null;
