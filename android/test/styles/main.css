@@ -1259,6 +1259,14 @@ html,body{
 .container #view_scroll #main_5 > form button:hover{
    background-color:#517298;
 }
+.container #view_scroll #main_5 .mainFiveAd{
+  position: absolute;
+  width: 80%;
+  bottom: 0;
+  left: 10%;
+  height: 95px;
+  border:1px solid red;
+}
 /*第五页结束*/
 /*第六页开始*/
 .container #view_scroll #main_6{
