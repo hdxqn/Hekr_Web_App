@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	touchEvents={};
 	browserRedirect(touchEvents);
 	var lang=getUrlParam('lang');
