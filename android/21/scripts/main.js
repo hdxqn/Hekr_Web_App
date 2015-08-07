@@ -177,6 +177,10 @@ function setPowerState(e){
 		"opacity":op,
 		"background-color":"transparent"
 	}).attr("data",dt);
+	$("#li_delay").attr('data',dt).css({
+			"background-color":"transparent",
+			"opacity":op
+		});
 }
 function lightSend(){
 	var i=$(this).attr('data')==1?2:1;
@@ -208,7 +212,7 @@ function setLightingState(e){
 }
 
 function speedSend(){
-	var dt=$(this).attr("data");
+	var dt=$(this).attr("data")-0;
 		if(dt==3){return;}
 	var speed=$(this).attr('id'),
 		i=null;
@@ -223,9 +227,9 @@ function speedSend(){
 			i=4;
 			break;
 			default: 
-			i=1;
 			break;
 		}
+		if (dt==1) {i=1};
 	var data="050100000"+i+"0000000000",
 	    frame=UARTDATA.encode(0x02,data);
 	console.log("set_speed     :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
