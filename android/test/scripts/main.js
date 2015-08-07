@@ -246,7 +246,6 @@ function mainOneAnimation(){
         code=url.replace("{{ct}}",ct)
             .replace("{{num}}",num)
             .replace("{{name}}",name);
-        console.log(code);
         $.get(code,function(data,status){
            var obj=$.parseJSON(data),
                img= $("#submitImg");
@@ -255,7 +254,7 @@ function mainOneAnimation(){
            }
            setTimeout(function(){
             img.css("visibility","hidden");
-           }.3500);
+           },3500);
   });
  }
  var startPos=null;
