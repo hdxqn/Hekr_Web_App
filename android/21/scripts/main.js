@@ -161,13 +161,15 @@ function powerSend(){
 
 function setPowerState(e){
 	var op=e==1?1:0.3,
-		dt=e==1?0:3;
+		dt=e==1?0:3,
+		power=$('#li_power'),
+		on=$('#on');
 	if(e==1){
-		$('#li_power').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
-		$('#on').text(i18n.t('on'));
+		power.attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+		on.text(i18n.t('on'));
 	}else if (e==2) {
-		$('#li_power').attr('data',0).css('background-color','transparent');
-		$('#on').text(i18n.t('off'));
+		power.attr('data',0).css('background-color','transparent');
+		on.text(i18n.t('off'));
 		$("#speed").text("--");
 		$("#light").text("--");
 	};
@@ -194,12 +196,14 @@ function lightSend(){
 }
 
 function setLightingState(e){
+	var light=$('#li_light'),
+		lightWord=$("#light");
 	if(e==1){
-		$('#li_light').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
-		$("#light").text(i18n.t("light"));
+		light.attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+		lightWord.text(i18n.t("light"));
 	}else if (e==2) {
-		$('#li_light').attr('data',0).css('background-color','transparent');
-		$("#light").text("--");
+		light.attr('data',0).css('background-color','transparent');
+		lightWord.text("--");
 	};
 }
 
@@ -236,8 +240,11 @@ function speedSend(){
 }
 
 function setSpeedState(e){
-	var str=null;
+	var str=null,
+	    eles=$(".powerRelated");
 	switch(e){
+		case 1:
+		str=false;
 		case 2:
 		str='li_lowspeed';
 		break;
@@ -247,16 +254,28 @@ function setSpeedState(e){
 		case 4:
 		str='li_highspeed';
 		break;
-		default: 
+		default:
 		break;
 	}
+	if(!str){
+		for( var index in eles){
+			 var dt =eles.eq(index).atrr("data")-0;
+			 if(dt==3){continue;}
+			 eles.eq(index).attr('data',0).css('background-color','transparent');
+		}
+		$("#li_delay").attr('data',3).css({
+			"background-color":"transparent",
+			"opacity":"0.3"
+		});
+		$("#speed").text("--");
+		return;
+	}
 	var str1=str.replace("li_",""),
-		dt=$("#"+str).attr("data");
+		dt=$("#"+str).attr("data")-0;
 		if(dt==3){return;}
-	$('#li_lowspeed').attr('data',0).css('background-color','transparent');
-	$('#li_midspeed').attr('data',0).css('background-color','transparent');
-	$('#li_highspeed').attr('data',0).css('background-color','transparent');
+	eles.attr('data',0).css('background-color','transparent');
 	$('#'+str).attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+	$("#li_delay").attr('data',0).css("opacity","1");
 	$("#speed").text(i18n.t(str1));
 }
 
@@ -279,12 +298,13 @@ function delaySend(){
 }
 
 function setDelayState(e){
-	var dt=$("#li_delay").attr("data");
+	var delay=$("#li_delay"),
+	 	dt=delay.attr("data")-0;
 	if(dt==3){return;}
 	if(e==1){
-		$('#li_delay').attr('data',1).css('background-color','rgba(255,255,255,0.3)');
+		delay.attr('data',1).css('background-color','rgba(255,255,255,0.3)');
 	}else if (e==2) {
-		$('#li_delay').attr('data',0).css('background-color','transparent');
+		delay.attr('data',0).css('background-color','transparent');
 	};
 }
 
