@@ -26,10 +26,6 @@ $(document).ready(function(){
         console.debug("[EVENT] back button clicked");
         window.close();
     });
-  $("html").bind(touchEvents.touchstart,function(event){
-  	event=event||window.event;
-  	event.preventDefault();
-  });
   $(".rebound").bind(touchEvents.touchstart,reboundPress);
    $(".rebound").bind(touchEvents.touchend,reboundUnPress);
    $(".lightsGroup div").bind(touchEvents.touchend,lightSwitch);
