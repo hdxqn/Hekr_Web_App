@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>恒成微电子WiFi转2.4G盒子</title>
+</head>
+<body>
+  <div id="nav">
+      <div id="back">
+          <img src="images/back.png" alt="">
+      </div>
+      <span class="title" data-i18n="remoteControl"></span>
+  </div>
+  <ul class="state">
+    <li>
+      <div id="allOn" class="rebound" data="1">
+        <img src="images/allOn.png" alt="">
+        <span data-i18n="allOn"></span>
+      </div>
+      <div id="allOff" class="rebound" data="2">
+        <img src="images/allOff.png" alt="">
+        <span data-i18n="allOff"></span>
+      </div>
+    </li>
+    <li>
+      <div id="nightLight" class="rebound" data="3">
+        <img src="images/nightlight.png" alt="">
+        <span data-i18n="nightLight"></span>
+      </div>
+      <div id="mode" class="rebound" data="4">
+        <img src="images/mode.png" alt="">
+        <span data-i18n="mode"></span>
+      </div>
+    </li>
+  </ul>
+  
+
+  <ul class="adjust">
+    <li>
+      <div class="decrease rebound" data="5">
+        <span data-i18n="cold"></span>
+        <img src="images/jianhao.png" alt="">
+      </div>
+      <div class="addition rebound" data="6">
+        <span data-i18n="warm"></span>
+        <img src="images/jiahao.png" alt="">
+      </div>
+    </li>
+    <li>
+    <div class="decrease rebound" data="7">
+        <span data-i18n="dark"></span>
+        <img src="images/jianhao.png" alt="">
+      </div>
+      <div class="addition rebound" data="8">
+        <span data-i18n="brightness"></span>
+         <img src="images/jiahao.png" alt="">
+      </div>
+    </li>
+  </ul>
+
+  <ul class="switch">
+    <li data=0 class="lightsGroup" num=1>
+      <div data=0>
+        <span data-i18n="on"></span>
+      </div>
+      <div data=3 state=0>
+        <span>A</span>
+      </div>
+      <div data=1>
+        <span data-i18n="off"></span>
+      </div>
+    </li>
+    <li data=0 class="lightsGroup" num=2>
+      <div data=0>
+        <span data-i18n="on"></span>
+      </div>
+      <div data=3 state=0>
+        <span>B</span>
+      </div>
+      <div data=1>
+        <span data-i18n="off"></span>
+      </div>
+    </li>
+    <li data=0 class="lightsGroup" num=3>
+      <div data=0>
+        <span data-i18n="on"></span>
+      </div>
+      <div data=3 state=0>
+        <span>C</span>
+      </div>
+      <div data=1>
+        <span data-i18n="off"></span>
+      </div>
+    </li>
+    <li data=0 class="lightsGroup" num=4>
+      <div data=0>
+        <span data-i18n="on"></span>
+      </div>
+      <div data=3 state=0>
+        <span>D</span>
+      </div>
+      <div data=1>
+        <span data-i18n="off"></span>
+      </div>
+    </li>
+  </ul>
+
+ 
+
+
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+     <script src="scripts/jquery.min.js"></script>
+     <script src="scripts/i18n.js"></script>
+    <script src="scripts/lambdaTM.js"></script>
+    <script src="scripts/reconnecting-websocket.js"></script>
+    <script src="scripts/UARTDATA.js"></script>
+     <script src="scripts/main.js"></script>
+  
+</body>
+</html>

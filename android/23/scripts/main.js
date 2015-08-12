@@ -30,10 +30,10 @@ $(document).ready(function(){
  $(".btns").bind(touchEvents.touchstart,press);
   $(".btns").bind(touchEvents.touchend,release);
   $("#return").bind(touchEvents.touchend,returnChoose);
-  // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
-  //  t = new Toast({
-  //    			message:i18n.t("message")
- 	// 		});
+  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+   t = new Toast({
+     			message:i18n.t("message")
+ 			});
 
 });
 
