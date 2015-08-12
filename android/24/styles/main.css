@@ -128,6 +128,10 @@ ul{
 	font-size: 20px;
 	z-index: 10;
 }
+.state li:nth-child(2) div:nth-child(2) span{
+	width: 160%;
+	left: -30%;
+}
 .state li #allOn{
 	left: 25%;
 }
@@ -148,6 +152,11 @@ ul{
 @media screen and (max-width: 430px){
 	.state li div span{
 		font-size: 16px;
+	}
+}
+@media screen and (max-width: 320px){
+	.state li div span{
+		font-size: 14px;
 	}
 }
 .adjust{
@@ -247,6 +256,19 @@ ul{
 		padding: 0 10px 0 0;
 	}
 }
+@media screen and (max-width: 350px){
+	.adjust li div span{
+		font-size: 16px;
+	}
+	.adjust li div:nth-child(2n) span{
+		text-align: left;
+		padding: 0 0 0 4px;
+	}
+	.adjust li div:nth-child(2n+1) span{
+		text-align: right;
+		padding: 0 4px 0 0;
+	}
+}
 .switch{
 	height: 64vw;
 }
@@ -329,6 +351,16 @@ ul{
 	line-height: 30px;
 	font-size: 20px;
 	font-weight: 600;
+}
+@media screen and (max-width: 430px){
+	.switch li div span{
+		font-size: 16px;
+	}
+}
+@media screen and (max-width: 320px){
+	.switch li div span{
+		font-size: 14px;
+	}
 }
 .lightSelected{
 	border: 2px solid transparent !important;

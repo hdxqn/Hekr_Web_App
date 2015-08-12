@@ -100,8 +100,8 @@ var resources={
 			"mode":"Profiles",
 			"remoteControl":"Remote Control",
 			"connecting":"拼命连接中...",
-			"off":"关",
-			"on":"开",
+			"off":"off",
+			"on":"on",
 			"message":"指令已发送"
 		}
 	}
