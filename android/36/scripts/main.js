@@ -76,7 +76,7 @@ var resources={
 		"translation":{
 			"purifier":"Water Purifier",
 			"filter":"filter",
-			"usefulTime":"useful hours",
+			"usefulTime":"hours can be used",
 			"connecting":"connecting...",
 			"off":"off",
 			"on":"on",
@@ -183,6 +183,7 @@ console.debug("[STATE] ================");
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
+     		setState(mes);
      	}
      
      	

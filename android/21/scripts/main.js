@@ -246,7 +246,10 @@ function speedSend(){
 
 function setSpeedState(e){
 	var str=null,
-	    eles=$(".powerRelated");
+	    eles=$(".powerRelated"),
+	    delay=$("#li_delay"),
+	    delayDt=delay.attr("data")-0,
+	    speed=$("#speed");
 	switch(e){
 		case 1:
 		str=false;
@@ -274,11 +277,11 @@ function setSpeedState(e){
 		// 	 if(dt==3){continue;}
 		// 	 $(eles[i]).attr('data',0).css('background-color','transparent');
 		// }
-		$("#li_delay").attr('data',3).css({
+		delay.attr('data',3).css({
 			"background-color":"transparent",
 			"opacity":"0.3"
 		});
-		$("#speed").text("--");
+		speed.text("--");
 		return;
 	}
 	var str1=str.replace("li_",""),
@@ -286,8 +289,10 @@ function setSpeedState(e){
 		if(dt==3){return;}
 	eles.attr('data',0).css('background-color','transparent');
 	$('#'+str).attr('data',1).css('background-color','rgba(255,255,255,0.3)');
-	$("#li_delay").attr('data',0).css("opacity","1");
-	$("#speed").text(i18n.t(str1));
+	if(delayDt==3){
+		delay.attr('data',0).css("opacity","1");
+	}
+	speed.text(i18n.t(str1));
 }
 
 function delaySend(){
