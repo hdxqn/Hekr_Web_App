@@ -160,6 +160,12 @@ ws.onmessage=function(e){
 };
 
 ws.onerror=function(){
+	
+	console.error("[WEBSOCKET] connection error");
+};
+
+ws.onopen=function(){
+	console.debug("[WEBSOCKET] connection opened");
 	 var data="000000000000",
 	    frame=UARTDATA.encode(0x02,data); 
 	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
@@ -169,11 +175,6 @@ ws.onerror=function(){
 			 ws.send(code);
 			},500);	
    console.debug(code);
-	console.error("[WEBSOCKET] connection error");
-};
-
-ws.onopen=function(){
-	console.debug("[WEBSOCKET] connection opened");
 	$.modal.close();
 };
 ws.onclose=function(){
