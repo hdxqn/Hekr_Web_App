@@ -160,9 +160,15 @@ ws.onmessage=function(e){
 };
 
 ws.onerror=function(){
-	setTimeout(function(){
-         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-     },100)
+	 var data="000000000000",
+	    frame=UARTDATA.encode(0x02,data); 
+	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+		setTimeout(function(){
+			 ws.send(code);
+			},500);	
+   console.debug(code);
 	console.error("[WEBSOCKET] connection error");
 };
 
