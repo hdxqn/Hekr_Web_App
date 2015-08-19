@@ -37,10 +37,10 @@ $(document).ready(function(){
   $("#timer").bind(touchEvents.touchmove,timerShow);
   $(".timerSwitch").bind(touchEvents.touchend,timerSwitch);
   $(".reimndBtn").bind(touchEvents.touchend,remindCancle);
-  // $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
-  //  t = new Toast({
-  //    			message:i18n.t("message")
- 	// 		});
+  $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
+   t = new Toast({
+     			message:i18n.t("message")
+ 			});
 
 });
 
@@ -146,9 +146,9 @@ function powerSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
 }
 function modeSend(){
 	var mode=$("#mode"),
@@ -165,9 +165,9 @@ function modeSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
 }
 function drainageSend(){
 	var drainage=$("#drainage"),
@@ -182,9 +182,9 @@ function drainageSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
 
 		
 
@@ -202,9 +202,9 @@ function humiditySend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
 		
 }
 function timerSend(){
@@ -223,9 +223,9 @@ function timerSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		// ws.send(code);
+		ws.send(code);
 
-		// t.show();
+		t.show();
 }
 
 
