@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>欧伦除湿机</title>
+</head>
+<body>
+  <div id="nav">
+      <div id="back">
+          <img src="images/back.png" alt="">
+      </div>
+      <span class="title" data-i18n="Desiccant"></span>
+  </div>
+  
+ 
+  <div class="center">
+    <div class="circle">
+      <span><i id="temperatureNum">--</i><i>&#8451;</i></span>
+      <span>
+       <i id="modeShow" data-i18n="Continuous"></i>
+      </span>
+      <span>
+         <i data-i18n="Defrost"></i><i id="defrostState" data-i18n="on"></i>
+      </span>
+      <span>
+        <i id="HumidityShow">--</i>
+        <i data-i18n="currentHumidity"></i>
+      </span>
+      <span>
+        <i id="timerHours">--</i><i data-i18n="hoursLater"></i><i id="timerState" data-i18n="shutDown"></i>
+      </span>
+      <span>
+        <i data-i18n="noTimer"></i>
+      </span>
+    </div>
+  </div>
+  <ul>
+    <li>
+      <div id="power" data=0>
+        <i class="iconfont">&#xe829;</i>
+        <span data-i18n="Switch"></span>
+      </div>
+      <div id="mode" data=1>
+        <i class="iconfont">&#xe603;</i>
+        <span data-i18n="Mode"></span>
+      </div>
+      <div id="drainage" data=0>
+        <i class="iconfont">&#xe611;</i>
+        <span data-i18n="Drainage"></span>
+      </div>
+    </li>
+    <li id="humidityContainer" data=0 class="heightCtrl">
+      <i data-i18n="humidity"></i>
+      <i>20</i>
+      <i>90</i>
+      <input type="range" class="slider" value="20" id="humidity" min="20" max="90" step="5">
+      <span id="humidityNum"></span>
+    </li>
+    <li>
+      <div>
+        <span id="onTriangle" class="timerTriangle"></span>
+        <span id="offTriangle" class="timerTriangle"></span>
+        <span data-i18n="timerOn" id="timeron" class="timerSwitch" data=1></span>
+        <span data-i18n="timerOff" id="timeroff" class="timerSwitch" data=0></span>
+        <span data-i18n="cancleTimer"></span>
+        <span>0</span>
+        <span>23</span>
+         <input type="range" class="slider" value="0" id="timer" min="0" max="23">
+         <span id="timerNum"></span>
+      </div>
+    </li>
+  </ul>
+
+   <div id="remind">
+      <span  data-i18n="remindMesOne"></span>
+      <span data-i18n="remindMesTwo"></span>
+      <span   class="reimndBtn" data-i18n="Determine"></span>
+      <span  class="reimndBtn" data-i18n="nexttime"></span>
+    </div>
+
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+      <script src="scripts/jquery.min.js"></script> 
+      <script src="scripts/i18n.js"></script>
+      <script src="scripts/lambdaTM.js"></script>
+       <script src="scripts/reconnecting-websocket.js"></script>
+      <script src="scripts/UARTDATA.js"></script>
+      <script src="scripts/main.js?v=2015_08_19_01"></script>
+  
+</body>
+</html>

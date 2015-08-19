@@ -326,6 +326,7 @@ Toast.prototype = {init: function() {
         var n = null == this.left ? this.context.width() / 2 - msgEntity.find("span").width() / 2 : this.left, t = null == this.bottom ? "20px" : this.bottom;
         msgEntity.css({position: "fixed",bottom: t,"z-index": "99",left: n,"background-color": "#000000",color: "white","font-size": "14px",padding: "5px",margin: "0px","border-radius": "2px"}), msgEntity.hide()
     },show: function() {
+        msgEntity.stop(true),
         msgEntity.fadeIn(this.time / 2), msgEntity.fadeOut(this.time / 2)
     }}, 
 
@@ -537,6 +538,7 @@ var isPowerOn = function() {
 
 window.changestate = function(e) {
     timerCount(e.timertodo);
+    // console.log("接收到的开关命令是：   "+e.power);
     void 0 !== e.power && (0 == e.power ? powerOff() : powerOn()), void 0 !== e.timer && timerChange(e.timer)
 };
 
