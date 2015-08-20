@@ -197,7 +197,8 @@ function drainageSend(){
 function humiditySend(){
 	var humidityNum=$("#humidityNum"),
 		self=$(this),
-		i=self.val(),
+		j=self.val(),
+		i=numTransformate(j),
 		data="04000000"+i+"0000000000",
 		frame=UARTDATA.encode(0x02,data);
 		humidityNum.css("opacity",0);
@@ -218,7 +219,8 @@ function timerSend(){
 		tm=timeron.attr("data")-0,
 		k=tm==1?"01":"02",
 		self=$(this),
-		i=self.val()>=10?self.val():"0"+self.val(),
+		j=self.val(),
+		i=numTransformate(j),
 		data="01"+k+"000000000000"+i+"00",
 		frame=UARTDATA.encode(0x02,data);
 		timerNum.css("opacity",0);
@@ -357,7 +359,8 @@ function setHumidityState(e){
 }
 
 function setTemperatureState(e){
-	var temperatureNum=$("#temperatureNum");
+	var temperatureNum=$("#temperatureNum"),
+		e=parseInt(e,16);
 	temperatureNum.text(e);
 }
 
@@ -405,7 +408,15 @@ function setTimerState(a,b,c){
 	$("#timerHours").text(k);
 	$("#timer").val(k);
 }
-
+function numTransformate(value){
+	if(typeof(value)=="number"){
+		value = UARTDATA.hex2str(value);
+	}else{
+		value = parseInt(value,10);
+		value = UARTDATA.hex2str(value);
+	}
+	return value;
+}
  function getUrlParam(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
      var r = window.location.search.substr(1).match(reg);
