@@ -93,7 +93,9 @@ var resources={
 			"cancleTimer":"时间拖至最左边为取消定时",
 			"remind":"温馨提示",
 			"remindMesOne":"温湿度传感器故障",
-			"remindMesTwo":"请及时联系维修人员",
+			"remindMesTwo":"盘管温度传感器故障",
+			"remindMesThree":"水泵故障",
+			"contactWorker":"请及时联系维修人员",
 			"Determine":"确定",
 			"nexttime":"下次提醒",
 			"connecting":"拼命连接中...",
@@ -123,7 +125,9 @@ var resources={
 			"cancleTimer":"move to the left to cancle timer",
 			"remind":"remind",
 			"remindMesOne":"Temperature and humidity sensor error",
-			"remindMesTwo":"Please contact the maintenance worker in time",
+			"remindMesTwo":"Coil and Temperature sensor error",
+			"remindMesThree":"Water pump error",
+			"contactWorker":"Please contact the maintenance worker in time",
 			"Determine":"determine",
 			"nexttime":"next time",
 			"connecting":"connecting...",
@@ -145,9 +149,9 @@ function powerSend(){
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
-
+		clearKeep();
 		ws.send(code);
-
+		resetKeep();
 		t.show();
 }
 function modeSend(){
@@ -165,15 +169,16 @@ function modeSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
+		clearKeep();
 		ws.send(code);
-
+		resetKeep();
 		t.show();
 }
 function drainageSend(){
 	var drainage=$("#drainage"),
 		power=$("power"),
 		dt=power.attr("data")-0,
-		data="020001000000000000",
+		data="02000100000000000000",
 		frame=UARTDATA.encode(0x02,data);
 		if(dt==0){return;}
 		console.log("set_drainage      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
@@ -182,10 +187,10 @@ function drainageSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
+		clearKeep();
 		ws.send(code);
-
+		resetKeep();
 		t.show();
-
 		
 
 }
@@ -201,9 +206,9 @@ function humiditySend(){
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
-
+		clearKeep();
 		ws.send(code);
-
+		resetKeep();
 		t.show();
 		
 }
@@ -214,7 +219,7 @@ function timerSend(){
 		k=tm==1?"01":"02",
 		self=$(this),
 		i=self.val()>=10?self.val():"0"+self.val(),
-		data=k+"00000000000000"+i+"00",
+		data="01"+k+"000000000000"+i+"00",
 		frame=UARTDATA.encode(0x02,data);
 		timerNum.css("opacity",0);
 	console.log("set_timer      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
@@ -223,8 +228,9 @@ function timerSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
+		clearKeep();
 		ws.send(code);
-
+		resetKeep();
 		t.show();
 }
 
@@ -344,9 +350,10 @@ function setModeState(e){
 
 function setHumidityState(e){
 	var humidity=$("#humidity"),
-		HumidityShow=$("#HumidityShow");
-		humidity.val(e);
-		HumidityShow.text(e+"%");
+		HumidityShow=$("#HumidityShow"),
+		v=parseInt(e,16);
+		humidity.val(v);
+		HumidityShow.text(v+"%");
 }
 
 function setTemperatureState(e){
@@ -363,8 +370,19 @@ function setDefrostState(e){
 	}
 }
 function reminder(e){
-	var remind=$("#remind");
+	
 	if(e==0||remindState){return;}
+	var str=null,
+	    remind=$("#remind"),
+	    remindText=$("#remindText");
+	 if(e==1){
+		str="remindMesOne";
+	}else if(e==2){
+		str="remindMesTwo";
+	}else if(e==3){
+		str="remindMesThree";
+	}
+	remindText.text(i18n.t(str));
 	remind.css("display","block");
 }
 function remindCancle(){
@@ -382,9 +400,10 @@ function setTimerState(a,b,c){
 	}else if(b==2){
 		$("#timeroff").click();
 		$("#timerState").text(i18n.t("shutDown"));
-	}
-	$("#timerHours").text(c);
-	$("#timer").val(c);
+	}else{return;}
+	var k=parseInt(c,16);
+	$("#timerHours").text(k);
+	$("#timer").val(k);
 }
 
  function getUrlParam(name) {
@@ -503,9 +522,19 @@ console.debug("[STATE] ================");
 					default:
 					break;	
 				}
-     	}
-     
-     	
-     
+     	}	
 };
+var keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+
+function clearKeep(){
+    clearInterval(keepconnecting);
+}
+
+function resetKeep(){
+     keepconnecting=setInterval(function(){
+        ws.send('(ping)');
+    },50000);
+}
 
