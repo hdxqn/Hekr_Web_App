@@ -112,7 +112,7 @@ var resources={
 			"Ordinary":"Ordinary",
 			"Defrost":"Defrost",
 			"currentHumidity":"Current Humidity",
-			"hoursLater":"hours later",
+			"hoursLater":"h later",
 			"shutDown":" to shut Down",
 			"turnOn":"to turn On",
 			"noTimer":"no Timer",
@@ -263,19 +263,23 @@ function timerSwitch(){
 	var self=$(this),
 		id=self.attr("id"),
 		dt=self.attr("data")-0,
-		str=null;
+		str=null,
+		powerdt=$("#power").attr("data")-0,
+		num=null;
 		if(dt==1){return;}
 		switch(id){
 			case "timeron":
 			str="onTriangle";
+			num=1;
 			break;
 			case "timeroff":
 			str="offTriangle";
+			num=0;
 			break;
 			default:
 			break;
 		}
-		if(str==null){return;}
+		if(str==null||num==null||num!=powerdt){return;}
 		$(".timerSwitch").attr("data","0").css("opacity","0.2");
 		$(".timerTriangle").css("opacity","0");
 		self.attr("data","1").css("opacity","1");
@@ -283,16 +287,18 @@ function timerSwitch(){
 
 }
 
-function setPowerState(e){
+function setPowerState(e,b){
 	var power=$("#power"),
 		mode=$("#mode");
-	    if(e==0){return;}
+	    if(e==0||b!=0){return;}
 	    else if(e==1){
 	    	power.attr("data","1").css("opacity","1");
 	    	mode.css("opacity","1");
+	    	 $("#timeroff").click();
 	    }else if(e==2){
 	    	power.attr("data","0").css("opacity","0.2");
 	    	mode.css("opacity","0.2");
+	    	 $("#timeron").click();
 	    }
 
 }
@@ -352,15 +358,13 @@ function setModeState(e){
 
 function setHumidityState(e){
 	var humidity=$("#humidity"),
-		HumidityShow=$("#HumidityShow"),
-		v=parseInt(e,16);
-		humidity.val(v);
-		HumidityShow.text(v+"%");
+		HumidityShow=$("#HumidityShow");
+		humidity.val(e);
+		HumidityShow.text(e+"%");
 }
 
 function setTemperatureState(e){
-	var temperatureNum=$("#temperatureNum"),
-		e=parseInt(e,16);
+	var temperatureNum=$("#temperatureNum");
 	temperatureNum.text(e);
 }
 
@@ -396,17 +400,22 @@ function remindCancle(){
 var remindState=false;
 
 function setTimerState(a,b,c){
-	if(a!=1){return;}
+	// if(a!=1){return;}
+	var arr=["turnOn","shutDown"];
+	if(c==0){
+		arr=arr.reverse();
+	}
 	if(b==1){
-		$("#timeron").click();
-		$("#timerState").text(i18n.t("turnOn"));
+		// $("#timeron").click();
+		$("#timerState").text(i18n.t(arr[0]));
 	}else if(b==2){
-		$("#timeroff").click();
-		$("#timerState").text(i18n.t("shutDown"));
-	}else{return;}
-	var k=parseInt(c,16);
-	$("#timerHours").text(k);
-	$("#timer").val(k);
+		// $("#timeroff").click();
+		$("#timerState").text(i18n.t(arr[1]));
+	}else{
+		return;
+	}
+	$("#timerHours").text(c);
+	$("#timer").val(c);
 }
 function numTransformate(value){
 	if(typeof(value)=="number"){
@@ -508,18 +517,18 @@ console.debug("[STATE] ================");
      		console.debug(mes);
      		switch(mes[0]){
 					case 0:
-					setPowerState(mes[1]);
+					setPowerState(mes[1],mes[8]);
 					setDrainageState(mes[2],mes[0]);
 					setModeState(mes[3]);
 					setHumidityState(mes[4]);
 					setTemperatureState(mes[5]);
 					reminder(mes[6]);
 					setDefrostState(mes[7]);
-					setTimerState(mes[0],mes[1],mes[7]);
+					setTimerState(mes[0],mes[1],mes[8]);
 					break;
 					case 1:
-					setPowerState(mes[1]);
-					setTimerState(mes[0],mes[1],mes[7]);
+					setPowerState(mes[1],mes[8]);
+					setTimerState(mes[0],mes[1],mes[8]);
 					break;
 					case 2:
 					setDrainageState(mes[2],mes[0]);
