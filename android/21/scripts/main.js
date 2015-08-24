@@ -393,6 +393,7 @@ function timerSlide(event){
 	    top=getScrollTop(),
 	    deltaY=posY-$('#'+id).offset().top+top,
 	    deltaX=posX-$(this).width()/2;
+	    event.preventDefault();
 	    if(deltaY>=120&&deltaX<=0){
 	    	//左上角
 	    	hourSlideDown();
