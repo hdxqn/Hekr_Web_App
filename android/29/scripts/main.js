@@ -270,11 +270,11 @@ function timerSwitch(){
 		switch(id){
 			case "timeron":
 			str="onTriangle";
-			num=1;
+			num=0;
 			break;
 			case "timeroff":
 			str="offTriangle";
-			num=0;
+			num=1;
 			break;
 			default:
 			break;
