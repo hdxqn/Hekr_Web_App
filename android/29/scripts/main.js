@@ -257,6 +257,7 @@ function timerShow(){
 			"opacity":"1",
 			"left":num+"%"
 		});
+		$("#timerShowMes").css("opacity","1");
 }
 function timerSwitch(){
 
@@ -351,6 +352,7 @@ function setModeState(e){
 	    	modeShow.text(i18n.t("Ordinary"));
 	    	if(hdt==0){
 	    		humidityContainer.removeClass("heightCtrl").attr("data","1");
+	    		document.getElementsByTagName('BODY')[0].scrollTop=document.getElementsByTagName('BODY')[0].scrollHeight;
 	    	}
 	    }
 	    mode.attr("data",e);
@@ -404,6 +406,8 @@ function setTimerState(a,b,c){
 	var arr=["turnOn","shutDown"];
 	if(c==0){
 		arr=arr.reverse();
+	}else if(c!=0){
+		$("#timerShowMes").css("opacity","1");
 	}
 	if(b==1){
 		// $("#timeron").click();
