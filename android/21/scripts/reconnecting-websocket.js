@@ -296,14 +296,15 @@
          * @param data a text string, ArrayBuffer or Blob to send to the server.
          */
         this.send = function(data) {
-            if (ws) {
+                if (ws) {
                 if (self.debug || ReconnectingWebSocket.debugAll) {
                     console.debug('ReconnectingWebSocket', 'send', self.url, data);
                 }
                 return ws.send(data);
-            } else {
+                 } else {
                 throw 'INVALID_STATE_ERR : Pausing to reconnect websocket';
-            }
+                }
+            
         };
 
         /**

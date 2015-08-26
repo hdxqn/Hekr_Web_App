@@ -155,7 +155,7 @@ function powerSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		ws.send(code);
+		messageSendInterval&&ws.send;(code);
 
 		t.show();
 }
@@ -195,7 +195,7 @@ function lightSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		ws.send(code);
+		messageSendInterval&&ws.send;(code);
 
 		t.show();
 }
@@ -239,7 +239,7 @@ function speedSend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		ws.send(code);
+		messageSendInterval&&ws.send;(code);
 
 		t.show();
 }
@@ -308,7 +308,7 @@ function delaySend(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 
-		 ws.send(code);
+		 messageSendInterval&&ws.send;(code);
 
 		 t.show();
 }
@@ -378,7 +378,7 @@ function timeSetSend(){
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
-			 ws.send(code);
+			 messageSendInterval&&ws.send;(code);
 
 
 		 t.show();
@@ -577,7 +577,7 @@ function clearUseTime(){
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
-			 ws.send(code);
+			 messageSendInterval&&ws.send;(code);
 }
 
 
@@ -616,6 +616,19 @@ var remindState = (function(){
 	};
 })();
 
+var messageSendInterval=(function(){
+	var oldTime=new Date();
+	return function(){
+		var newTime=new Date(),
+			deltaTime=newTime-oldTime;
+		if(deltaTime<400){
+			return false;
+		}else if(deltaTime>=400){
+			oldTime=newTime;
+			return true;
+		}
+	}
+})();
 
 
 
@@ -682,9 +695,6 @@ ws.onmessage=function(e){
 };
 
 ws.onerror=function(){
-	setTimeout(function(){
-         ws.send('(get-state "{tid}")'.replace("{tid}", tid));
-     },100)
 	console.error("[WEBSOCKET] connection error");
 };
 
@@ -696,7 +706,7 @@ ws.onopen=function(){
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
 		setTimeout(function(){
-			 ws.send(code);
+			 ws.send;(code);
 			},500);	
    console.debug(code);
   $.modal.close();
