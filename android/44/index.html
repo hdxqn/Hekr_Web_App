@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>RGB调光shield</title>
+</head>
+<body>
+  <div class="nav">
+    <span data-i18n="hekr">HEKR</span>
+    <span data-i18n="about">
+      <a href="#">about</a>
+    </span>
+  </div>
+
+  <div class="center">
+    <div>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+      <span class="rgbColor"></span>
+    </div>
+    <p data-i18n="diming">RGB diming</p>
+  </div>
+
+  <div class="switch">
+      <div id="power" data=0>
+        <i class="iconfont">&#xe829;</i>
+        <span data-i18n="Switch">Switch</span>
+      </div>
+  </div>
+  <ul>
+    <li>
+      <span data-i18n="red">Red</span>
+      <span>0</span>
+      <span>255</span>
+      <input type="range" class="slider" value="0"  min="0" max="255">
+    </li>
+    <li>
+    <span data-i18n="green">Green</span>
+      <span>0</span>
+      <span>255</span>
+      <input type="range" class="slider" value="0"  min="0" max="255">
+    </li>
+    <li>
+    <span data-i18n="blue">Blue</span>
+      <span>0</span>
+      <span>255</span>
+      <input type="range" class="slider" value="0"  min="0" max="255">
+    </li>
+  </ul>
+
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--   // <script src="scripts/jquery.min.js"></script> 
+      // <script src="scripts/i18n.js"></script>
+      // <script src="scripts/lambdaTM.js"></script>
+      //  <script src="scripts/reconnecting-websocket.js"></script>
+      // <script src="scripts/UARTDATA.js"></script>
+      // <script src="scripts/main.js?v=2015_08_21_01"></script> -->
+  
+</body>
+</html>
