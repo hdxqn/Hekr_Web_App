@@ -317,6 +317,14 @@ ul li input::-webkit-slider-thumb:before{
   left:50%;
   margin: -10px 0 0 -10px;
 }
+.press{
+	background: -moz-radial-gradient(center center,rgba(255,255,255,.3),transparent 70%);
+ 	background: -webkit-radial-gradient(center center,rgba(255,255,255,.3),transparent 70%);
+}
+.powerOn{
+	background-color: rgba(255,255,255,0.2) !important;
+	border:none !important;
+}
 .popup{
   width:100%;
   padding:10px 0 20px;

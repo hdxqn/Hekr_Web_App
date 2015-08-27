@@ -9,10 +9,10 @@
   <title>RGB调光shield</title>
 </head>
 <body>
-  <div class="nav">
-    <span data-i18n="hekr">HEKR</span>
-    <span data-i18n="about">
-      <a href="#">about</a>
+ <div class="nav">
+    <span data-i18n="hekr"></span>
+    <span>
+      <a href="#" data-i18n="about"></a>
     </span>
   </div>
 
@@ -31,33 +31,33 @@
       <span class="rgbColor"></span>
       <span class="rgbColor"></span>
     </div>
-    <p data-i18n="diming">RGB diming</p>
+    <p data-i18n="diming"></p>
   </div>
 
   <div class="switch">
       <div id="power" data=0>
-        <i class="iconfont">&#xe829;</i>
-        <span data-i18n="Switch">Switch</span>
+        <i class="iconfont">&#xe60d;</i>
+        <span data-i18n="Switch"></span>
       </div>
   </div>
   <ul>
     <li>
-      <span data-i18n="red">Red</span>
+      <span data-i18n="Red"></span>
       <span>0</span>
       <span>255</span>
-      <input type="range" class="slider" value="0"  min="0" max="255">
+      <input type="range" class="slider" value="255"  min="0" max="255" data=0 id="redSlider">
     </li>
     <li>
-    <span data-i18n="green">Green</span>
+    <span data-i18n="Green"></span>
       <span>0</span>
       <span>255</span>
-      <input type="range" class="slider" value="0"  min="0" max="255">
+      <input type="range" class="slider" value="246"  min="0" max="255" data=1 id="greenSlider">
     </li>
     <li>
-    <span data-i18n="blue">Blue</span>
+    <span data-i18n="Blue"></span>
       <span>0</span>
       <span>255</span>
-      <input type="range" class="slider" value="0"  min="0" max="255">
+      <input type="range" class="slider" value="105"  min="0" max="255" data=2 id="blueSlider">
     </li>
   </ul>
 
@@ -76,12 +76,12 @@
 
 
 
-    <!--   // <script src="scripts/jquery.min.js"></script> 
-      // <script src="scripts/i18n.js"></script>
-      // <script src="scripts/lambdaTM.js"></script>
-      //  <script src="scripts/reconnecting-websocket.js"></script>
-      // <script src="scripts/UARTDATA.js"></script>
-      // <script src="scripts/main.js?v=2015_08_21_01"></script> -->
+       <script src="scripts/jquery.min.js"></script> 
+       <script src="scripts/i18n.js"></script>
+       <script src="scripts/lambdaTM.js"></script>
+        <script src="scripts/reconnecting-websocket.js"></script>
+       <script src="scripts/UARTDATA.js"></script>
+       <script src="scripts/main.js?v=2015_08_21_01"></script>
   
 </body>
 </html>
