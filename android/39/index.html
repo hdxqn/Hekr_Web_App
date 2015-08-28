@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	 <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no"/>
+    <title>HEKR</title>
+    <link rel="stylesheet" href="styles/main.css?t=2">
+</head>
+<body>
+	<div id="head">
+		<span id="back">
+			<img src="images/back.png" alt="" id="backimg">
+		</span>
+		<img src="images/hekr.png" alt="" id="logo">
+	</div>
+	
+	
+	<ul id="control" style="display:none;">
+		<li>
+			<span>按键&PWM测试</span><br/>
+			<span>亮度 <span id="showNum">--</span>%</span>
+		</li>
+		<li id="con">
+			<img src="images/deng.png" alt="" id="bulb" style="opacity:0.2;" data=0.2>
+			<span id="container">
+				0
+				<input type=range value="0" min=0 max=100 id="slider">
+				100
+			</span>
+		</li>
+	</ul>
+	
+	<ul id="sendMes">
+
+		<li class="sr" id="show_url">
+		SDK收发调试&nbsp;
+		<span>9600-8-N-1</span>
+		</li>
+
+		<li class="sr" id="send">
+			<input type="text" id="sendText">
+			<img src="images/xian.png" alt="" id="xian1">
+			<img src="images/fasongx.png" alt="" id="sendBtn">
+		</li>
+		<li class="sr" id="receive">
+			<input type="text" id="receiveText">
+			<img src="images/xian.png" alt="" id="xian2">
+			<img src="images/traingle.png" alt="" id="receiveBtn" data=0>
+		</li>
+		<li class="sr" id="remind">
+			<span id="remindMes">请输入偶数个字符</span>
+			<!-- <div id="journal">
+				
+			</div> -->
+		</li>
+	</ul>
+	
+	<ul id="loginfo"></ul>
+
+ 	<div id="url">调试地址:<br/><br/><script>document.write(window.location.href);</script></div> 
+
+	<div id="bottom"></div>
+
+	    <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span>拼命链接中...</span>
+            </div>
+        </div>
+    </div>
+ 
+   <script src="scripts/lambdaTM.js"></script>
+  <script src="scripts/toast.js"></script>
+  <script src="scripts/reconnecting-websocket.js"></script>
+  <script src="scripts/util.js"></script> 
+  <script src="scripts/jquery-2.1.3.min.js"></script>
+  <script src="scripts/i18n.js"></script>
+  <script src="scripts/main.js"></script> 
+</body>
+</html>

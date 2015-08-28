@@ -500,10 +500,16 @@ Toast.prototype = {init: function() {
     }
     return this
 };
+
+/*	iotss_vm_eval_noret(g_vm, NULL, "(define controlModel   (lambda (m)  (control  m 255 255 255 255 255)))");
+	iotss_vm_eval_noret(g_vm, NULL, "(define controlWC      (lambda (m)  (control 255 m 255 255 255 255)))");
+	iotss_vm_eval_noret(g_vm, NULL, "(define controlUV      (lambda (m)  (control 255 255 m 255 255 255)))");
+	iotss_vm_eval_noret(g_vm, NULL, "(define controlH       (lambda (m)  (control 255 255 255  m 255 255)))");
+	iotss_vm_eval_noret(g_vm, NULL, "(define controlSetTime (lambda (m t)(control 255 255 255 255  m	 t)))");*/
 var tid = getUrlParam("tid"),
  host = getUrlParam("host") || "device.hekr.me", 
  token = getUrlParam("access_key"), 
- user = getUrlParam("user") || randomString(10),
+ user = getUrlParam("user") || ("APP_"+Math.random().toString(36).substr(2)),
   url = "ws://{host}:8080/websocket/t/{user}/code/{token}/user".format({host: host,user: user,token: token}), 
   ws = new ReconnectingWebSocket(url);
 ws.onmessage = function(e) {
@@ -533,14 +539,14 @@ ws.onmessage = function(e) {
                 console.debug("[CODE] " + n); ws.send(n); t.show();
                 return;
             };
-            var n = '(@devcall "{tid}" (controlModel {args}) (lambda (x) x))'.replace("{tid}", tid),
+            var n = '(@devcall "{tid}" (control {args} 255 255 255 255 255) (lambda (x) x))'.replace("{tid}", tid),
              a = $(this).data("power"), r = toggle12(a),
               o = n.replace("{args}", r);
             console.debug("[CODE] " + o); ws.send(o); t.show();
             
 
         }), window.onFuncMode = function() {
-            var e = '(@devcall "{tid}" (controlModel {args}) (lambda (x) x))'.replace("{tid}", tid), 
+            var e = '(@devcall "{tid}" (control {args} 255 255 255 255 255) (lambda (x) x))'.replace("{tid}", tid), 
             n = $("#funcMode").data("mode"), 
             a = toggle23(n),
              r = e.replace("{args}", a);
@@ -549,7 +555,7 @@ ws.onmessage = function(e) {
         }, $("#funcWC").click(function(e) {
 
             if($('#funcPower').data('power')==2||$('#funcUV').data('uv')==1){
-                 var n = '(@devcall "{tid}" (controlWC {args}) (lambda (x) x))'.replace("{tid}", tid), 
+                 var n = '(@devcall "{tid}" (control 255 {args} 255 255 255 255) (lambda (x) x))'.replace("{tid}", tid), 
                  a = 1 === parseInt($(this).data("wc")) ? 2 : 1,
                   r = n.replace("{args}", a);
             console.debug("[CODE] " + r), ws.send(r), t.show()
@@ -557,7 +563,7 @@ ws.onmessage = function(e) {
            
             
         }), $("#funcUV").click(function(e) {
-            var n = '(@devcall "{tid}" (controlUV {args}) (lambda (x) x))'.replace("{tid}", tid),
+            var n = '(@devcall "{tid}" (control 255 255 {args} 255 255 255) (lambda (x) x))'.replace("{tid}", tid),
              a = 1 == parseInt($(this).data("uv")) ? 0 : 1,
               r = n.replace("{args}", a);
             console.debug("[CODE] " + r), ws.send(r), t.show()
@@ -570,12 +576,12 @@ ws.onmessage = function(e) {
         }),
        
          $("#funcH").change(function(e) {
-            var n = '(@devcall "{tid}" (controlH {args}) (lambda (x) x))'.replace("{tid}", tid),
+            var n = '(@devcall "{tid}" (control 255 255 255 {args} 255 255) (lambda (x) x))'.replace("{tid}", tid),
              a = n.replace("{args}", e.target.value);
             console.debug("[CODE] " + a),
              ws.send(a), t.show(); 
         }), $("#funcTime").change(function(e) {
-            var n = '(@devcall "{tid}" (controlSetTime {args}) (lambda (x) x))'.replace("{tid}", tid), 
+            var n = '(@devcall "{tid}" (control 255 255 255 255 {args}) (lambda (x) x))'.replace("{tid}", tid), 
             a = $("#timers").data("mode"), 
             r = $("#funcTime").val(),
              o = a + " " + r, 
@@ -591,7 +597,7 @@ ws.onmessage = function(e) {
                 $(this).removeClass("off"), 
                 $("#timers").data("mode", m),
                  $("#timerLabel").text(getTimerLabel(m, n)),
-                 e = '(@devcall "{tid}" (controlSetTime args 2) (lambda (x) x))'.replace("{tid}", tid),
+                 e = '(@devcall "{tid}" (control 255 255 255 255 args 2) (lambda (x) x))'.replace("{tid}", tid),
                 i=e.replace("args",m),
                 console.debug("[CODE] " + i), 
                 ws.send(i),
@@ -599,7 +605,7 @@ ws.onmessage = function(e) {
            }   
                  
         }), $("#cancleButton").click(function() {
-            var e = '(@devcall "{tid}" (controlSetTime 1 0) (lambda (x) x))'.replace("{tid}", tid);
+            var e = '(@devcall "{tid}" (control 255 255 255 255 1 0) (lambda (x) x))'.replace("{tid}", tid);
             console.debug("[CODE] " + e), ws.send(e), t.show()
         }), $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1}),
          window.getTimerLabel = function(t, n) {
