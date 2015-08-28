@@ -15,6 +15,6 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-icon:before { content: "\e611"; }
-.icon-moshi:before { content: "\e603"; }
-.icon-power:before { content: "\e829"; }
+.icon-fengwo2:before { content: "\e610"; }
+.icon-power:before { content: "\e630"; }
+.icon-kaiguan:before { content: "\e60d"; }

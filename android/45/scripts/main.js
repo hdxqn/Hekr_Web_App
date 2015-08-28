@@ -98,7 +98,7 @@ var resources={
 };
 
 function touchSt(){
-	$(this).addClass(".press");
+	$(this).addClass("press");
 }
 function powerSend(){
 	var self=$("this"),
@@ -107,7 +107,7 @@ function powerSend(){
 		data="02"+i+"00000000000000",
 	    frame=UARTDATA.encode(0x02,data);
 	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		self.removeClass(".press");
+		self.removeClass("press");
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
@@ -171,15 +171,19 @@ function setPowerState(e){
 			power.addClass("powerOn");
 		}else if(e==2){
 			power.removeClass("powerOn");
-		}
+		}else{return;}
 		power.attr("data",i);
 }
 function setBrightnessState(e){
 	lOfHsl=e;
+	$("#brightnessSlider").val(e);
 	render();
+	
 }
 function setColorTemperature(e){
+	e=Math.floor(e*20/51);
 	sOfHsl=e;
+	$("#temperatureSlider").val(e);
 	render();
 }
  function getUrlParam(name) {
@@ -248,7 +252,7 @@ ws.onerror=function(){
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
-	 var data="00000000000000000000",
+	 var data="000000000000000000",
 	    frame=UARTDATA.encode(0x02,data); 
 	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)

@@ -22,25 +22,16 @@ $(document).ready(function(){
         $(document).i18n();
     	});
     	
-  $("#back").click(function() {
-        console.debug("[EVENT] back button clicked");
-        window.close();
-    });
-  $("#power").bind(touchEvents.touchend,powerSend);
-  $("#mode").bind(touchEvents.touchend,modeSend);
-  $("#drainage").bind(touchEvents.touchend,drainageSend);
-  $("#humidity").bind(touchEvents.touchend,humiditySend);
-  $("#humidity").bind(touchEvents.touchstart,humidityShow);
-  $("#humidity").bind(touchEvents.touchmove,humidityShow);
-  $("#timer").bind(touchEvents.touchend,timerSend);
-  $("#timer").bind(touchEvents.touchstart,timerShow);
-  $("#timer").bind(touchEvents.touchmove,timerShow);
-  $(".timerSwitch").bind(touchEvents.touchend,timerSwitch);
-  $(".reimndBtn").bind(touchEvents.touchend,remindCancle);
+  
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
      			message:i18n.t("message")
  			});
+   $("#power").bind(touchEvents.touchstart,touchSt);
+   $("#power").bind(touchEvents.touchend,powerSend);
+   $(".slider").bind(touchEvents.touchstart,adjustColor);
+   $(".slider").bind(touchEvents.touchmove,adjustColor);
+   $(".slider").bind(touchEvents.touchend,colorValueSend);
 
 });
 
@@ -74,30 +65,13 @@ function browserRedirect(obj) {
 var resources={
 	"zh-CN":{
 		"translation":{
-			"Desiccant":"除湿机",
-			"Automatic":"自动",
-			"Continuous":"连续",
-			"Ordinary":"普通",
-			"Defrost":"除霜",
-			"currentHumidity":"当前湿度",
-			"hoursLater":"小时后",
-			"shutDown":"关闭",
-			"turnOn":"开启",
-			"noTimer":"暂无定时",
+			"hekr":"HEKR",
+			"about":"关于",
+			"diming":"RGB调光",
 			"Switch":"开关",
-			"Mode":"模式",
-			"Drainage":"排水",
-			"humidity":"湿度",
-			"timerOn":"定时 开",
-			"timerOff":"定时关",
-			"cancleTimer":"时间拖至最左边为取消定时",
-			"remind":"温馨提示",
-			"remindMesOne":"温湿度传感器故障",
-			"remindMesTwo":"盘管温度传感器故障",
-			"remindMesThree":"水泵故障",
-			"contactWorker":"请及时联系维修人员",
-			"Determine":"确定",
-			"nexttime":"下次提醒",
+			"Red":"红",
+			"Green":"绿",
+			"Blue":"蓝",
 			"connecting":"拼命连接中...",
 			"off":"关",
 			"on":"开",
@@ -106,30 +80,13 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
-			"Desiccant":"Desiccant",
-			"Automatic":"Automatic",
-			"Continuous":"Continuous",
-			"Ordinary":"Ordinary",
-			"Defrost":"Defrost",
-			"currentHumidity":"Current Humidity",
-			"hoursLater":"h later",
-			"shutDown":" to shut Down",
-			"turnOn":"to turn On",
-			"noTimer":"no Timer",
+			"hekr":"HEKR",
+			"about":"about",
+			"diming":"RGB diming",
 			"Switch":"Switch",
-			"Mode":"Mode",
-			"Drainage":"Drainage",
-			"humidity":"humidity",
-			"timerOn":"timeOn",
-			"timerOff":"timeOff",
-			"cancleTimer":"move to the left to cancle timer",
-			"remind":"remind",
-			"remindMesOne":"Temperature and humidity sensor error",
-			"remindMesTwo":"Coil and Temperature sensor error",
-			"remindMesThree":"Water pump error",
-			"contactWorker":"Please contact the maintenance worker in time",
-			"Determine":"determine",
-			"nexttime":"next time",
+			"Red":"Red",
+			"Green":"Green",
+			"Blue":"Blue",
 			"connecting":"connecting...",
 			"off":"off",
 			"on":"on",
@@ -138,289 +95,64 @@ var resources={
 	}
 };
 
+function touchSt(){
+	$(this).addClass("press");
+}
 function powerSend(){
-	var power=$("#power"),
-		dt=power.attr("data")-0,
-		i=dt==0?1:2,
-		data="010"+i+"0000000000000000",
+	var self=$("this"),
+		dt=self.attr("data")-0,
+		i=dt==0?"01":"02",
+		data="02"+i+"00000000000000",
 	    frame=UARTDATA.encode(0x02,data);
 	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-
+		self.removeClass("press");
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);
-		clearKeep();
-		ws.send(code);
-		resetKeep();
+			ws.send(code);
 		t.show();
-}
-function modeSend(){
-	var mode=$("#mode"),
-		power=$("power"),
-		powerdt=power.attr("data")-0,
-		dt=mode.attr("data")-0,
-		i=dt>2?1:dt+1,
-		data="0300000"+i+"000000000000",
-		frame=UARTDATA.encode(0x02,data);
-		if(powerdt==0){return;}
-		console.log("set_mode      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-
-		clearKeep();
-		ws.send(code);
-		resetKeep();
-		t.show();
-}
-function drainageSend(){
-	var drainage=$("#drainage"),
-		power=$("power"),
-		dt=power.attr("data")-0,
-		data="02000100000000000000",
-		frame=UARTDATA.encode(0x02,data);
-		if(dt==0){return;}
-		console.log("set_drainage      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-
-		clearKeep();
-		ws.send(code);
-		resetKeep();
-		t.show();
-		
 
 }
-function humiditySend(){
-	var humidityNum=$("#humidityNum"),
-		self=$(this),
-		j=self.val(),
-		i=numTransformate(j),
-		data="04000000"+i+"0000000000",
-		frame=UARTDATA.encode(0x02,data);
-		humidityNum.css("opacity",0);
-	console.log("set_humidity      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-		clearKeep();
-		ws.send(code);
-		resetKeep();
-		t.show();
-		
-}
-function timerSend(){
-	var timerNum=$("#timerNum"),
-		timeron=$("#timeron"),
-		tm=timeron.attr("data")-0,
-		k=tm==1?"01":"02",
-		self=$(this),
-		j=self.val(),
-		i=numTransformate(j),
-		data="01"+k+"000000000000"+i+"00",
-		frame=UARTDATA.encode(0x02,data);
-		timerNum.css("opacity",0);
-	console.log("set_timer      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-
-		clearKeep();
-		ws.send(code);
-		resetKeep();
-		t.show();
-}
-
-
-function humidityShow(){
-	var humidityNum=$("#humidityNum"),
-		self=$(this),
-		i=self.val(),
-		num=Math.floor((i-20)/7*8+10);
-		humidityNum.text(i).css({
-			"opacity":"1",
-			"left":num+"%"
-		});
-
-}
-function timerShow(){
-	var timerNum=$("#timerNum"),
-		self=$(this),
-		i=self.val(),
-		num=Math.floor(i/24*80+10);
-		timerNum.text(i).css({
-			"opacity":"1",
-			"left":num+"%"
-		});
-		$("#timerShowMes").css("opacity","1");
-}
-function timerSwitch(){
-
-	var self=$(this),
-		id=self.attr("id"),
+function adjustColor(self){
+	var self=$(this)||self,
 		dt=self.attr("data")-0,
-		str=null,
-		powerdt=$("#power").attr("data")-0,
-		num=null;
-		if(dt==1){return;}
-		switch(id){
-			case "timeron":
-			str="onTriangle";
-			num=0;
-			break;
-			case "timeroff":
-			str="offTriangle";
-			num=1;
-			break;
-			default:
-			break;
+		value=self.val();
+		if(dt==0){
+			rOfRgb=value;
+		}else if(dt==1){
+			gOfRgb=value;
+		}else if(dt==2){
+			bOfRgb=value;
 		}
-		if(str==null||num==null||num!=powerdt){return;}
-		$(".timerSwitch").attr("data","0").css("opacity","0.2");
-		$(".timerTriangle").css("opacity","0");
-		self.attr("data","1").css("opacity","1");
-		$("#"+str).css("opacity","1");
+	render();
+}
+function colorValueSend(){
+	var self=$(this),
+		dt=self.attr("data")-0,
+		value=self.val(),
+		i=numTransformate(value),
+		data=null;
+		if(dt==0){
+			data="0700000000"+i+"000000";
+		}else if(dt==1){
+			data="070000000000"+i+"0000";
+		}else if(dt==2){
+			data="07000000000000"+i+"00";
+		}else{
+			return;
+		}
+	   var frame=UARTDATA.encode(0x02,data);
+	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+		adjustColor(self);
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+			ws.send(code);
+		t.show();
+
 
 }
 
-function setPowerState(e,b){
-	var power=$("#power"),
-		mode=$("#mode");
-	    if(e==0||b!=0){return;}
-	    else if(e==1){
-	    	power.attr("data","1").css("opacity","1");
-	    	mode.css("opacity","1");
-	    	 $("#timeroff").click();
-	    }else if(e==2){
-	    	power.attr("data","0").css("opacity","0.2");
-	    	mode.css("opacity","0.2");
-	    	 $("#timeron").click();
-	    }
-
-}
-function setDrainageState(e,b){
-	var power=$("#power"),
-		dt=power.attr("data")-0,
-	    drainage=$("#drainage");
-	    if(dt==0){return;}
-	    if(b==0&&e==0){
-	    	drainage.css({
-			"background-color":"transparent",
-			"border-color":"#fff"
-		});
-		drainage.find("i").css("color","#fff");
-	    }else if(b==0&&e==1){
-	    	drainage.css({
-			"background-color":"transparent",
-			"border-color":"#fff"
-		});
-		drainage.find("i").css("color","#D35E67");
-	    }else if(b==2&&e==1){
-	    	drainage.css({
-			"background-color":"#D35E67",
-			"border-color":"#D35E67"
-		});
-		drainage.find("i").css("color","#fff");
-	}
-
-}
-function setModeState(e){
-	var power=$("#power"),
-		dt=power.attr("data")-0,
-	    mode=$("#mode"),
-	    humidityContainer=$("#humidityContainer")
-	    hdt=humidityContainer.attr("data")-0,
-	    modeShow=$("#modeShow");
-	    if(dt==0){return;}
-
-	    if(e==0){return;}else if(e==1){
-	    	modeShow.text(i18n.t("Continuous"));
-	    	if(hdt==1){
-	    		humidityContainer.addClass("heightCtrl").attr("data","0");
-	    	}
-	    }else if(e==2){
-	    	modeShow.text(i18n.t("Automatic"));
-	    	if(hdt==1){
-	    		humidityContainer.addClass("heightCtrl").attr("data","0");
-	    	}
-	    }else if(e==3){
-	    	modeShow.text(i18n.t("Ordinary"));
-	    	if(hdt==0){
-	    		humidityContainer.removeClass("heightCtrl").attr("data","1");
-	    		document.getElementsByTagName('BODY')[0].scrollTop=document.getElementsByTagName('BODY')[0].scrollHeight;
-	    	}
-	    }
-	    mode.attr("data",e);
-}
-
-function setHumidityState(e){
-	var humidity=$("#humidity"),
-		HumidityShow=$("#HumidityShow");
-		humidity.val(e);
-		HumidityShow.text(e+"%");
-}
-
-function setTemperatureState(e){
-	var temperatureNum=$("#temperatureNum");
-	temperatureNum.text(e);
-}
-
-function setDefrostState(e){
-	var defrostState=$("#defrostState");
-	if(e==0){
-		defrostState.text(i18n.t("off"));
-	}else if(e==1){
-		defrostState.text(i18n.t("on"));
-	}
-}
-function reminder(e){
-	
-	if(e==0||remindState){return;}
-	var str=null,
-	    remind=$("#remind"),
-	    remindText=$("#remindText");
-	 if(e==1){
-		str="remindMesOne";
-	}else if(e==2){
-		str="remindMesTwo";
-	}else if(e==3){
-		str="remindMesThree";
-	}
-	remindText.text(i18n.t(str));
-	remind.css("display","block");
-}
-function remindCancle(){
-	var remind=$("#remind");
-	remind.css("display","none");
-	remindState=true;
-}
-var remindState=false;
-
-function setTimerState(a,b,c){
-	// if(a!=1){return;}
-	var arr=["turnOn","shutDown"];
-	if(c==0){
-		arr=arr.reverse();
-	}else if(c!=0){
-		$("#timerShowMes").css("opacity","1");
-	}
-	if(b==1){
-		// $("#timeron").click();
-		$("#timerState").text(i18n.t(arr[0]));
-	}else if(b==2){
-		// $("#timeroff").click();
-		$("#timerState").text(i18n.t(arr[1]));
-	}else{
-		return;
-	}
-	$("#timerHours").text(c);
-	$("#timer").val(c);
-}
 function numTransformate(value){
 	if(typeof(value)=="number"){
 		value = UARTDATA.hex2str(value);
@@ -430,6 +162,39 @@ function numTransformate(value){
 	}
 	return value;
 }
+function render(){
+	$(".rgbColor").css("background-color","rgb("+rOfRgb+","+gOfRgb+","+bOfRgb+")");
+}
+function setPowerState(e){
+	var power=$("#power"),
+		i=e==1?1:0;
+		if(e==1){
+			power.addClass("powerOn");
+		}else if(e==2){
+			power.removeClass("powerOn");
+		}
+		power.attr("data",i);
+}
+
+function setRedValue(e){
+	if (e==0) {return}
+		rOfRgb=e;
+	$("#redSlider").val(e);
+	render();
+}
+function setGreenValue(e){
+	if (e==0) {return}
+		gOfRgb=e;
+	$("#greenSlider").val(e);
+	render();
+}
+function setBlueValue(e){
+	if (e==0) {return}
+		bOfRgb=e;
+	$("#blueSlider").val(e);
+	render();
+}
+
  function getUrlParam(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
      var r = window.location.search.substr(1).match(reg);
@@ -437,8 +202,9 @@ function numTransformate(value){
      return null;
  }
 
-
-
+var rOfRgb=255;
+var gOfRgb=246;
+var bOfRgb=105;
 var Toast = function(config){
 	this.context = config.context || $('body');
 	this.message =config.message;
@@ -495,7 +261,7 @@ ws.onerror=function(){
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
-	 var data="00000000000000000000",
+	 var data="000000000000000000",
 	    frame=UARTDATA.encode(0x02,data); 
 	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
@@ -521,27 +287,24 @@ console.debug("[STATE] ================");
      		console.debug(mes);
      		switch(mes[0]){
 					case 0:
-					setPowerState(mes[1],mes[8]);
-					setDrainageState(mes[2],mes[0]);
-					setModeState(mes[3]);
-					setHumidityState(mes[4]);
-					setTemperatureState(mes[5]);
-					reminder(mes[6]);
-					setDefrostState(mes[7]);
-					setTimerState(mes[0],mes[1],mes[8]);
+					setPowerState(mes[1]);
+					setRedValue(mes[5]);
+					setGreenValue(mes[6]);
+					setBlueValue(mes[7]);
 					break;
 					case 1:
-					setPowerState(mes[1],mes[8]);
-					setTimerState(mes[0],mes[1],mes[8]);
+					setPowerState(mes[1]);
+					setRedValue(mes[5]);
+					setGreenValue(mes[6]);
+					setBlueValue(mes[7]);
 					break;
 					case 2:
-					setDrainageState(mes[2],mes[0]);
+					setPowerState(mes[1]);
 					break;
-					case 3:
-					setModeState(mes[3]);
-					break;
-					case 4:
-					setHumidityState(mes[4]);
+					case 7:
+					setRedValue(mes[5]);
+					setGreenValue(mes[6]);
+					setBlueValue(mes[7]);
 					break;
 					default:
 					break;	
