@@ -1,0 +1,238 @@
+*{
+-webkit-tap-highlight-color: transparent;
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none; 
+}
+html{
+	margin: 0;
+	padding: 0;
+	background:linear-gradient(#605ca1,#58a2a7);
+	width: 100%;
+	min-height: 100%;
+}
+
+body{
+	width: 100%;
+	position: relative;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+  	font-family:"Microsoft YaHei";
+  	margin:0;
+  	color:#FFF;
+  	overflow: hidden;
+}
+@font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.nav{
+	position: relative;
+	width: 100%;
+	height: 70px;
+}
+.nav span{
+	position: absolute;
+	text-align:center;
+}
+.nav span:nth-child(1){
+	width: 100%;
+	height: 50px;
+	top: 10px;
+	font-size: 24px;
+	line-height: 50px; 
+}
+.nav span:nth-child(2){
+	width: 40px;
+	height: 18px;
+	line-height: 18px;
+	font-size: 16px;
+	top: 26px;
+	right: 30px;
+}
+.nav span:nth-child(2) a{
+	text-decoration: none;
+	color: #A7A6C8;
+}
+.nav span:nth-child(2)::after{
+	content:'>';
+	position: absolute;
+	height: 18px;
+	line-height: 18px;
+	width: 24px;
+	text-align: center;
+	font-size: 14px;
+	color: #A7A6C8;
+	top: 0;
+	left: 100%;
+}
+.center{
+	position: relative;
+	width: 100%;
+	height: 50vh;
+}
+.center i,
+.center span{
+	position: absolute;
+	color: #70323B;
+	text-align: center;
+}
+.center i:nth-child(1),
+.center span:nth-child(3){
+	width:40vh;
+	height: 30vh;
+	top: 5vh;
+	left: 50%;
+	margin:0 0 0 -20vh;
+	font-size: 40vh;
+	line-height: 30vh; 
+}
+.center i:nth-child(2),
+.center span:nth-child(4){
+	width: 10vh;
+	height: 10vh;
+	top: 33vh;
+	left: 50%;
+	margin: 0 0 0 13vh;
+	line-height: 10vh;
+	font-size: 10vh;
+}
+.center span:nth-child(3){
+	font-size: 5vh;
+	line-height: 36vh;
+	color: #fff;
+}
+.center span:nth-child(4){
+	font-size: 3vh;
+	color: #fff;
+	line-height: 11vh;
+}
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position:relative;
+	display: block;
+	width: 100%;
+	height: 64vh;
+}
+ul li{
+	position: absolute;
+	width: 100%;
+	height: 12vh;
+}
+ul li:nth-child(1){
+	top: 2vh;
+}
+ul li:nth-child(2){
+	top: 14vh;
+}
+ul li:nth-child(3){
+	top: 26vh;
+}
+ul li:nth-child(4){
+	top: 38vh;
+}
+ul li:nth-child(5){
+	top: 50vh;
+}
+ul li input{
+	position: absolute;
+	right: 100%;
+
+}
+ul li i,
+ul li span{
+	position: absolute;
+	height: 100%;
+	line-height: 12vh;
+	top: 0;
+	box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box; 
+}
+ul li span{
+	width: 70%;
+	left: 30%;
+	font-size: 3vh;
+	padding: 0 0 0 10px;
+	opacity: 0.2;
+}
+ul li i{
+	width: 30%;
+	left: 0;
+	font-size: 4vh !important;
+	text-align: right;
+	padding: 0 10px 0 0;
+	opacity: 0;
+}
+ul li input:checked + i,
+ul li input:checked ~ span{
+	opacity: 1 !important;
+}
+
+.popup{
+  width:100%;
+  padding:10px 0 20px;
+}
+.seprator{
+  margin:0;
+  border-width:1px 0 0 0;
+}
+.panel{
+  background-color:rgba(0,0,0,.1);
+  border-radius:5px;
+  width:90%;
+  height:125px;
+  margin:auto;
+  position:relative;
+}
+.fill{
+  width:100%;
+  height:100%;
+}
+.supper-center{
+  display:-webkit-flex;
+  display:flex;
+  vertical-align:baseline;
+  text-align:center;
+}
+.supper-center div,
+.supper-center span,
+.supper-center img{
+  margin:auto; 
+}
+.modal{
+  background:0 0;
+  -webkit-box-shadow: 0 0 10px #000;
+-moz-box-shadow: 0 0 10px #000;
+-o-box-shadow: 0 0 10px #000;
+-ms-box-shadow: 0 0 10px #000;
+box-shadow: 0 0 10px #000;
+}
+#toastMessage{
+	position: fixed;
+	bottom: 20px;
+	z-index: 99;
+	left: 50%;
+	background-color: #000000;
+	font-size: 14px;
+	padding: 5px;
+	border-radius:2px; 
+}
