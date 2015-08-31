@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>温湿度传感器</title>
+</head>
+<body>
+  <div class="nav">
+    <span data-i18n="hekr">HEKR</span>
+    <span>
+      <a href="#" data-i18n="about">about</a>
+    </span>
+  </div>
+  <div class="center">
+    <div class="Temperature">
+      <span>&#8451;</span>
+      <div class="post">
+        <div id="Temperature"></div>
+      </div>
+      <div class="circle"></div>
+      <div class="scale">
+         <img src="images/left.png" alt="">
+      </div>
+    </div>
+    <div class="Humidity">
+    <span>%</span>
+        <div class="post">
+          <div id="Humidity"></div>
+        </div>
+        <div class="circle"></div>
+        <div class="scale">
+          <img src="images/right.png" alt="">
+        </div>
+    </div>
+  </div>
+
+<div class="showArea">
+  <div id="TemperatureNum"></div>
+  <div id="HumidityNum"></div>
+</div>
+  
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<!--        // <script src="../common/js/jquery.min.js"></script> 
+       //   <script src="../common/js/i18n.js"></script>
+       //   <script src="../common/js/lambdaTM.js"></script>
+       //    <script src="../common/js/reconnecting-websocket.min.js"></script>
+       // <script src="../common/js/UARTDATA.js"></script>
+       //   <script src="scripts/main.js?v=2015_08_21_01"></script> -->
+  
+</body>
+</html>
