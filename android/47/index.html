@@ -10,9 +10,9 @@
 </head>
 <body>
   <div class="nav">
-    <span data-i18n="hekr">HEKR</span>
+    <span data-i18n="hekr"></span>
     <span>
-      <a href="#" data-i18n="about">about</a>
+      <a href="#" data-i18n="about"></a>
     </span>
   </div>
   <div class="center">
@@ -39,11 +39,18 @@
   </div>
 
 <div class="showArea">
-  <div id="TemperatureNum"></div>
-  <div id="HumidityNum"></div>
+  <div>
+    <span id="TemperatureNum">--</span>
+    <span>&#8451;</span>
+    <span data-i18n="Temperature"></span>
+  </div>
+  <div>
+    <span  id="HumidityNum">--</span>
+    <span>%</span>
+    <span data-i18n="Humidity"></span>
+  </div>
 </div>
   
-
 
   <div id="modal" class="popup modal"  style="display:none;">
         <div class="panel">
@@ -58,12 +65,12 @@
 
 
 
-<!--        // <script src="../common/js/jquery.min.js"></script> 
-       //   <script src="../common/js/i18n.js"></script>
-       //   <script src="../common/js/lambdaTM.js"></script>
-       //    <script src="../common/js/reconnecting-websocket.min.js"></script>
-       // <script src="../common/js/UARTDATA.js"></script>
-       //   <script src="scripts/main.js?v=2015_08_21_01"></script> -->
+        <script src="../common/js/jquery.min.js"></script> 
+          <script src="../common/js/i18n.js"></script>
+          <script src="../common/js/lambdaTM.js"></script>
+           <script src="../common/js/reconnecting-websocket.min.js"></script>
+        <script src="../common/js/UARTDATA.js"></script>
+          <script src="scripts/main.js?v=2015_08_21_01"></script>
   
 </body>
 </html>

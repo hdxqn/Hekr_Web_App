@@ -27,10 +27,6 @@ $(document).ready(function(){
    t = new Toast({
      			message:i18n.t("message")
  			});
-   $("#power").bind(touchEvents.touchstart,touchSt);
-   $("#power").bind(touchEvents.touchend,powerSend);
-   $(".wind").bind(touchEvents.touchstart,touchSt);
-   $(".wind").bind(touchEvents.touchend,windSend);
 });
 
 function browserRedirect(obj) {
@@ -65,11 +61,8 @@ var resources={
 		"translation":{
 			"hekr":"HEKR",
 			"about":"关于",
-			"diming":"智能风扇",
-			"Switch":"开关",
-			"Slow":"风速一",
-			"Medium":"风速二",
-			"Fast":"风速三",
+			"Temperature":"温度",
+			"Humidity":"湿度",
 			"connecting":"拼命连接中...",
 			"off":"关",
 			"on":"开",
@@ -80,11 +73,8 @@ var resources={
 		"translation":{
 			"hekr":"HEKR",
 			"about":"about",
-			"diming":"Smart fan",
-			"Switch":"Switch",
-			"Slow":"Slow",
-			"Medium":"Medium",
-			"Fast":"Fast",
+			"Temperature":"Temperature",
+			"Humidity":"Humidity",
 			"connecting":"connecting...",
 			"off":"off",
 			"on":"on",
@@ -93,54 +83,6 @@ var resources={
 	}
 };
 
-function touchSt(){
-	$(this).addClass("press");
-}
-function powerSend(){
-	var self=$(this),
-		dt=self.attr("data")-0,
-		i=dt==0?"01":"02",
-		data=i+i+"0000",
-	    frame=UARTDATA.encode(0x02,data);
-	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		self.removeClass("press");
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
-
-}
-function windSend(){
-	$(".wind").removeClass("press");
-	var self=$(this),
-		id=self.attr("data"),
-		str=null,
-		powerDT=$("#power").attr("data")-0;
-	switch(id){
-		case "Slow":
-		str="01";
-		break;
-		case "Medium":
-		str="02";
-		break;
-		case "Fast":
-		str="03";
-		break;
-		default:
-		break;
-	}
-	if(str==null||powerDT==0){return;}
-	 var data="0101"+i+"00",
-	    frame=UARTDATA.encode(0x02,data);
-	console.log("set_wind      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
-
-}
 
 
 function numTransformate(value){
@@ -152,38 +94,7 @@ function numTransformate(value){
 	}
 	return value;
 }
-function setPowerState(e){
-	var power=$("#power"),
-		i=e==1?1:0;
-		if(e==1){
-			power.addClass("powerOn");
-		}else if(e==2){
-			power.removeClass("powerOn");
-			$(".wind").removeClass("powerOn");
-		}else{return;}
-		power.attr("data",i);
-}
-function setWindState(e){
-	$(".wind").removeClass("powerOn");
-	var i=$("#power").attr("data")-0,
-		str=null;
-	if(i==0){return;}
-	switch(e){
-		case 1: 
-		str="Slow";
-		break;
-		case 2: 
-		str="Medium";
-		break;
-		case 3: 
-		str="Fast";
-		break;
-		default:
-		break;
-	}
-	if(str==null){return;}
-	$("#"+str).addClass("powerOn");
-}
+
 
  function getUrlParam(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -220,6 +131,15 @@ Toast.prototype = {
 		
 	}
 }
+function setTemperatureState(e){
+	$("#TemperatureNum").text(e);
+	$("#Temperature").css("height",Math.floor(24*(e+30)/80)+"vh");
+}
+function setHumidityState(e){
+	$("#HumidityNum").text(e);
+	$("#Humidity").css("height",Math.floor(30*e/100)+"vh");
+}
+
 
   
 
@@ -271,21 +191,8 @@ console.debug("[STATE] ================");
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
-     		setPowerState(mes[0]);
-     		setWindState(mes[2]);
+     		setTemperatureState(mes[1]);
+     		setHumidityState(mes[2]);
      	}	
 };
-var keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-
-function clearKeep(){
-    clearInterval(keepconnecting);
-}
-
-function resetKeep(){
-     keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-}
 

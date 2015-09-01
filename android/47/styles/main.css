@@ -211,9 +211,47 @@ body{
 }
 .center .Temperature #Temperature{
 	background-color:#d84444;
+	-webkit-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -o-transition: all 0.6s;
+  transition: all 0.6s;
 }
 .center .Humidity  #Humidity{
 	background-color:#44b0d8;
+	-webkit-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -o-transition: all 0.6s;
+  transition: all 0.6s;
+}
+.showArea{
+	position: relative;
+	width: 100%;
+	height: 24vh;
+}
+.showArea > div{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	top: 0;
+	text-align: center;
+}
+.showArea > div:nth-child(2){
+	left: 50%;
+}
+.showArea > div span:nth-child(1){
+	display: inline-block;
+	font-size: 26px;
+}
+.showArea > div span:nth-child(2){
+	display: inline-block;
+	font-size: 18px;
+}
+.showArea > div span:nth-child(3){
+	position: absolute;
+	width: 100%;
+	top: 52px;
+	font-size: 18px;
+	left: 0;
 }
 .popup{
   width:100%;
