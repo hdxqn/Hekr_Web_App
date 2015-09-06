@@ -116,7 +116,7 @@ function powerSend(){
 function adjustColor(self){
 	var self=$(this)||self,
 		dt=self.attr("data")-0,
-		value=self.val();
+		value=self[0].value;
 		if(dt==0){
 			rOfRgb=value;
 		}else if(dt==1){
@@ -124,7 +124,6 @@ function adjustColor(self){
 		}else if(dt==2){
 			bOfRgb=value;
 		}
-		console.log(self);
 		
 	render();
 }
@@ -145,7 +144,7 @@ function colorValueSend(){
 		}
 	   var frame=UARTDATA.encode(0x02,data);
 	console.log("set_color      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''));
-		// adjustColor(self);
+		adjustColor(self);
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
 			.replace('{args}',frame);

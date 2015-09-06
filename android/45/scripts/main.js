@@ -118,7 +118,7 @@ function powerSend(){
 function adjustColor(self){
 	var self=$(this)||self,
 		dt=self.attr("data")-0,
-		value=self.val(),
+		value=self[0].value,
 		brightnessNum=$("#brightnessNum");
 		if(dt==0){
 			brightnessNum.text(value+"%");
