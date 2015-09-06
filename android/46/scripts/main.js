@@ -114,7 +114,7 @@ function powerSend(){
 function windSend(){
 	$(".wind").removeClass("press");
 	var self=$(this),
-		id=self.attr("data"),
+		id=self.attr("id"),
 		str=null,
 		powerDT=$("#power").attr("data")-0;
 	switch(id){
@@ -131,7 +131,7 @@ function windSend(){
 		break;
 	}
 	if(str==null||powerDT==0){return;}
-	 var data="0101"+i+"00",
+	 var data="0101"+str+"00",
 	    frame=UARTDATA.encode(0x02,data);
 	console.log("set_wind      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
