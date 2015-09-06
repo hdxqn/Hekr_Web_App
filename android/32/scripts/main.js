@@ -27,12 +27,6 @@ $(document).ready(function(){
    t = new Toast({
      			message:i18n.t("message")
  			});
-   $("#power").bind(touchEvents.touchstart,touchSt);
-   $("#power").bind(touchEvents.touchend,powerSend);
-   $(".slider").bind(touchEvents.touchstart,adjustColor);
-   $(".slider").bind(touchEvents.touchmove,adjustColor);
-   $(".slider").bind(touchEvents.touchend,colorValueSend);
-
 });
 
 function browserRedirect(obj) {
@@ -67,11 +61,7 @@ var resources={
 		"translation":{
 			"hekr":"HEKR",
 			"about":"关于",
-			"diming":"RGB调光",
-			"Switch":"开关",
-			"Red":"红",
-			"Green":"绿",
-			"Blue":"蓝",
+			"light":"光:",
 			"connecting":"拼命连接中...",
 			"off":"关",
 			"on":"开",
@@ -82,11 +72,7 @@ var resources={
 		"translation":{
 			"hekr":"HEKR",
 			"about":"about",
-			"diming":"RGB diming",
-			"Switch":"Switch",
-			"Red":"Red",
-			"Green":"Green",
-			"Blue":"Blue",
+			"light":"light:",
 			"connecting":"connecting...",
 			"off":"off",
 			"on":"on",
@@ -95,63 +81,7 @@ var resources={
 	}
 };
 
-function touchSt(){
-	$(this).addClass("press");
-}
-function powerSend(){
-	var self=$(this),
-		dt=self.attr("data")-0,
-		i=dt==0?"01":"02",
-		data="02"+i+"00000000000000",
-	    frame=UARTDATA.encode(0x02,data);
-	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		self.removeClass("press");
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
 
-}
-function adjustColor(self){
-	var self=$(this)||self,
-		dt=self.attr("data")-0,
-		value=self.val();
-		if(dt==0){
-			rOfRgb=value;
-		}else if(dt==1){
-			gOfRgb=value;
-		}else if(dt==2){
-			bOfRgb=value;
-		}
-		
-	render();
-}
-function colorValueSend(){
-	var self=$(this),
-		dt=self.attr("data")-0,
-		value=self.val(),
-		i=numTransformate(value),
-		data=null;
-		if(dt==0){
-			data="0700000000"+i+"000000";
-		}else if(dt==1){
-			data="070000000000"+i+"0000";
-		}else if(dt==2){
-			data="07000000000000"+i+"00";
-		}else{
-			return;
-		}
-	   var frame=UARTDATA.encode(0x02,data);
-	console.log("set_color      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''));
-		adjustColor(self);
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
-
-}
 
 function numTransformate(value){
 	if(typeof(value)=="number"){
@@ -162,38 +92,7 @@ function numTransformate(value){
 	}
 	return value;
 }
-function render(){
-	$(".rgbColor").css("background-color","rgb("+rOfRgb+","+gOfRgb+","+bOfRgb+")");
-}
-function setPowerState(e){
-	var power=$("#power"),
-		i=e==1?1:0;
-		if(e==1){
-			power.addClass("powerOn");
-		}else if(e==2){
-			power.removeClass("powerOn");
-		}
-		power.attr("data",i);
-}
 
-function setRedValue(e){
-	if (e==0) {return}
-		rOfRgb=e;
-	$("#redSlider").val(e);
-	render();
-}
-function setGreenValue(e){
-	if (e==0) {return}
-		gOfRgb=e;
-	$("#greenSlider").val(e);
-	render();
-}
-function setBlueValue(e){
-	if (e==0) {return}
-		bOfRgb=e;
-	$("#blueSlider").val(e);
-	render();
-}
 
  function getUrlParam(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -201,10 +100,6 @@ function setBlueValue(e){
      if (r != null) return unescape(r[2]);
      return null;
  }
-
-var rOfRgb=255;
-var gOfRgb=246;
-var bOfRgb=105;
 var Toast = function(config){
 	this.context = config.context || $('body');
 	this.message =config.message;
@@ -234,6 +129,16 @@ Toast.prototype = {
 		
 	}
 }
+function setLightState(a,b,c){
+	$("#light").css("background-color","rgb("+a+","+a+","+a+")");
+	$("#lightNum").text(b+""+c);
+}
+function setRgbState(r,g,b){
+	$("#rgb").css("background-color","rgb("+r+","+g+","+b+")");
+	$("#rNum").text(r);
+	$("#gNum").text(g);
+	$("#bNum").text(b);
+}
 
   
 
@@ -261,7 +166,7 @@ ws.onerror=function(){
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
-	 var data="000000000000000000",
+	 var data="0000000000000000",
 	    frame=UARTDATA.encode(0x02,data); 
 	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
@@ -285,31 +190,8 @@ console.debug("[STATE] ================");
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
-     		switch(mes[0]){
-					case 0:
-					setPowerState(mes[1]);
-					setRedValue(mes[5]);
-					setGreenValue(mes[6]);
-					setBlueValue(mes[7]);
-					break;
-					case 1:
-					setPowerState(mes[1]);
-					setRedValue(mes[5]);
-					setGreenValue(mes[6]);
-					setBlueValue(mes[7]);
-					break;
-					case 2:
-					setPowerState(mes[1]);
-					break;
-					case 7:
-					setRedValue(mes[5]);
-					setGreenValue(mes[6]);
-					setBlueValue(mes[7]);
-					break;
-					default:
-					break;	
-				}
+     		setLightState(mes[4],mes[5],mes[6]);
+     		setRgbState(mes[1],mes[2],mes[3]);
      	}	
 };
-
 
