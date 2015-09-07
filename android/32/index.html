@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="styles/main.css" />
   <title>奥科曼电子</title>
+  <script type="text/javascript">
+  function setposition (ts) {
+      ts.style.margin="0 0 0"+"-"+ts.clientWidth/2+"px ";
+  } 
+</script>
 </head>
 <body>
   <div class="nav">
@@ -47,6 +52,12 @@
          <div class="Triangle"></div>
          <div class="Triangle transparent"></div>
          <span data-i18n="timeRemind">时间拖至0为取消定时</span>
+         <span>0</span>
+          <span>23</span>
+          <span>0</span>
+          <span>59</span>
+          <input type="range" class="slider" value="0"  min="0" max="23" data=1>
+          <input type="range" class="slider" value="0"  min="0" max="59" data=2 >
        </li>
      </ul>
   </div>
@@ -63,11 +74,7 @@
 
 
 
-<script type="text/javascript">
-  function setposition (ts) {
-      ts.style.margin="0 0 0"+"-"+ts.clientWidth/2+"px ";
-  }
-</script>
+
 
 
 <!--          // <script src="../common/js/jquery.min.js"></script> 

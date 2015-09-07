@@ -14,7 +14,7 @@ $(document).ready(function(){
 		break;
 	}
 
-		i18n.init({
+	i18n.init({
         "lng": lang,
         "resStore": resources,
         "fallbackLng" : 'en'
@@ -183,19 +183,16 @@ function setPowerState(e){
 }
 
 function setRedValue(e){
-	if (e==0) {return}
 		rOfRgb=e;
 	$("#redSlider").val(e);
 	render();
 }
 function setGreenValue(e){
-	if (e==0) {return}
 		gOfRgb=e;
 	$("#greenSlider").val(e);
 	render();
 }
 function setBlueValue(e){
-	if (e==0) {return}
 		bOfRgb=e;
 	$("#blueSlider").val(e);
 	render();
@@ -222,7 +219,6 @@ var msgEntity;
 Toast.prototype = {
 	init :function(){
 		$("#toastMessage").remove();
-
 		var msgDIV = new Array();
 		msgDIV.push('<div id="toastMessage">');
 		msgDIV.push('<span>'+this.message+'</span>');
@@ -233,11 +229,10 @@ Toast.prototype = {
 
 	show :function(){
 		msgEntity.stop(true);
-		var left = msgEntity.find('span').width()/2 ;
-		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.fadeIn(this.time/2);
+		var left = msgEntity[0].clientWidth/2 ;
+		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.fadeOut(this.time/2);
-		
 	}
 }
 
