@@ -134,11 +134,17 @@ function colorValueSend(){
 		i=numTransformate(value),
 		data=null;
 		if(dt==0){
-			data="0700000000"+i+"000000";
+			var g=numTransformate(gOfRgb),
+			      b=numTransformate(bOfRgb);
+			data="0700000000"+i+g+b+"00";
 		}else if(dt==1){
-			data="070000000000"+i+"0000";
+			var r=numTransformate(rOfRgb),
+			      b=numTransformate(bOfRgb);
+			data="070000000000"+r+i+b+"00";
 		}else if(dt==2){
-			data="07000000000000"+i+"00";
+			var r=numTransformate(rOfRgb),
+			      g=numTransformate(gOfRgb);
+			data="07000000000000"+r+g+i+"00";
 		}else{
 			return;
 		}
