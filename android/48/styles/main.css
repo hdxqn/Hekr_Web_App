@@ -125,6 +125,14 @@ body{
 	top: -21px;
 	margin: 46.5vh 0 0 0;
 }
+.container:nth-child(3)  span{
+	margin: 46.5vh 20px 0 20px;
+}
+@media screen and (max-width: 257px){
+.container:nth-child(3)  span{
+	margin: 46.5vh 10px 0 10px;
+}
+}
 @media screen and (max-height: 490px){
 	.container span{
 	display: inline-block;

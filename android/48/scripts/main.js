@@ -60,8 +60,8 @@ var resources={
 	"zh-CN":{
 		"translation":{
 			"hekr":"HEKR",
-			"about":"关于",
-			"light":"光:",
+			"about":"about",
+			"light":"光照:",
 			"connecting":"拼命连接中...",
 			"off":"关",
 			"on":"开",
@@ -72,7 +72,7 @@ var resources={
 		"translation":{
 			"hekr":"HEKR",
 			"about":"about",
-			"light":"light:",
+			"light":"illuminance:",
 			"connecting":"connecting...",
 			"off":"off",
 			"on":"on",
