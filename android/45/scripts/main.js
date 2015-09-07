@@ -34,7 +34,6 @@ $(document).ready(function(){
    $(".slider").bind(touchEvents.touchend,colorValueSend);
 
 });
-
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
     var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
@@ -177,6 +176,7 @@ function setPowerState(e){
 function setBrightnessState(e){
 	lOfHsl=e;
 	$("#brightnessSlider").val(e);
+	$("#brightnessNum").text(e+"%");
 	render();
 	
 }
@@ -301,17 +301,4 @@ console.debug("[STATE] ================");
 				}
      	}	
 };
-var keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-
-function clearKeep(){
-    clearInterval(keepconnecting);
-}
-
-function resetKeep(){
-     keepconnecting=setInterval(function(){
-        ws.send('(ping)');
-    },50000);
-}
 

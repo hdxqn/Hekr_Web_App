@@ -10,30 +10,46 @@
 </head>
 <body>
   <div class="nav">
-    <span data-i18n="hekr"></span>
-    <span>
-      <a href="#" data-i18n="about"></a>
-    </span>
+    <span data-i18n="Socket">插座</span>
+    <div id="back">
+      <img src="images/back.png" alt="">
+    </div>
   </div>
-  <div class="container">
-    <div class="circle1 circle"></div>
-    <div class="circle2 circle"></div>
-    <div class="circle3 circle"></div>
-    <div class="circle4 circle" id="light"></div>
-    <span data-i18n="light"></span>
-    <span id="lightNum">56295</span>
-    <span>Lux</span>
+  
+  <div class="top">
+    <img src="images/zh-logo.png" alt="" id="logo" onload="setposition(this)">
+    <span data-i18n="titleOne">家庭智能产品和家庭护理产品</span>
+    <span data-i18n="titleTwo">专业制造商</span>
   </div>
-    <div class="container">
-    <div class="circle1 circle"></div>
-    <div class="circle2 circle"></div>
-    <div class="circle3 circle"></div>
-    <div class="circle4 circle" id="rgb"></div>
-    <span>R:<i id="rNum">24</i></span>
-    <span>G:<i id="gNum">228</i></span>
-    <span>B:<i id="bNum">182</i></span>
+  
+  <div class="center">
+    <span id="zh-CN"><i id="OnState">OFF</i> after</span>
+    <span><i>5</i>h<i>15</i>m</span>
+    <span id="en-US">后 <i id="OnState">关闭</i></span>
+    <div id="power">
+      <i class="iconfont">&#xe636;</i>
+      <span>ON</span>
+    </div>
+    <div id="horn">
+      <i class="iconfont">&#xe611;</i>
+    </div>
   </div>
-  <div class="bottom"></div>
+  
+  <div class="bottom">
+    <i class="iconfont" id="short" data=0>&#xe662;</i>
+     <i class="iconfont" id="long" data=1 style="opacity:0;">&#xe65d;</i>
+     <ul id="timeCtrl">
+       <li>
+         <div class="timePanel" data-i18n="timing ON">定时 开</div>
+          <div class="timePanel" data-i18n="timing OFF">定时 关</div>
+       </li>
+       <li>
+         <div class="Triangle"></div>
+         <div class="Triangle transparent"></div>
+         <span data-i18n="timeRemind">时间拖至0为取消定时</span>
+       </li>
+     </ul>
+  </div>
 
   
 
@@ -47,7 +63,11 @@
 
 
 
-
+<script type="text/javascript">
+  function setposition (ts) {
+      ts.style.margin="0 0 0"+"-"+ts.clientWidth/2+"px ";
+  }
+</script>
 
 
 <!--          // <script src="../common/js/jquery.min.js"></script> 
