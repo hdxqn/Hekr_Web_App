@@ -173,7 +173,7 @@ var resources={
 		"translation":{
 			"Socket":"插座",
 			"titleOne":"家庭智能产品和家庭护理产品",
-			"titleTwo":"专业制造商:",
+			"titleTwo":"专业制造商",
 			"timingON":"定时 开",
 			"timingOFF":"定时 关",
 			"timeRemind":"时间拖至0为取消定时",
