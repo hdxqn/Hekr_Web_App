@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>插座</title>
+</head>
+<body>
+  <div id="nav">
+      <div id="back">
+          <img src="images/back.png" alt="">
+      </div>
+      <span class="title" data-i18n="socket"></span>
+  </div>
+
+  <div class="center">
+      <div class="circle">
+        <img src="images/cz.png" alt="" class="logo">
+        <span class="state" data-i18n="state"></span>
+        <span id="on" data-i18n="off"></span>
+        <div id="timerState">
+        <span id="hourState">--</span>h<span id="minState">--</span>m<span id="onMode" data-i18n="timeShut"></span>
+        </div>
+      </div>
+  </div>
+
+  <div class="ctrl">
+        <div id="power" data=1>
+          <img src="images/power.png" alt="" class="powerimg">
+          <span class="powerword" data-i18n="power"></span>
+        </div>
+
+        <ul class="panels">
+
+          <li id="timerpanels">
+          <span id="onTriangle" data=1></span>
+            <span id="timerOn" data-i18n="timerOn"></span>
+            
+             <span id="timerOff" data-i18n="timerOff"></span>
+           <span id="offTriangle" data=0></span>
+          </li>
+          <li class="slider1">
+          <span class="sliderCount" id="sliderCount1"></span>
+            <span class="slider_font1">0&nbsp;</span>
+            <input type="range" class="slider hours" value="0" id="hours" min="0" max="23">
+             <span class="slider_back1">&nbsp;23</span>
+          </li>
+
+          <li class="slider2">
+          <span class="sliderCount" id="sliderCount2"></span>
+            <span class="slider_font2">0&nbsp;</span>
+            <input type="range" class="slider minute" value="0" id="minutes" min="0" max="59">
+            <span class="slider_back2">&nbsp;59</span>
+          </li>
+
+        </ul>
+      
+  </div>
+
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+     
+             <script src="../common/js/jquery.min.js"></script> 
+            <script src="../common/js/i18n.js"></script>
+            <script src="../common/js/lambdaTM.js"></script>
+            <script src="../common/js/reconnecting-websocket.min.js"></script>
+            <script src="scripts/main.js?v=2015_08_21_01"></script>
+  
+</body>
+</html>

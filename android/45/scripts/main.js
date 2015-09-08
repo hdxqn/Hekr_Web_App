@@ -22,7 +22,7 @@ $(document).ready(function(){
         $(document).i18n();
     	});
     	
- 
+
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
      			message:i18n.t("message")
@@ -181,10 +181,9 @@ function setBrightnessState(e){
 	
 }
 function setColorTemperature(e){
+	$("#temperatureSlider").val(e);
 	e=Math.floor(e*20/51);
 	sOfHsl=e;
-	console.log("sasasasas       "+ e);
-	$("#temperatureSlider").val(e);
 	render();
 }
  function getUrlParam(name) {

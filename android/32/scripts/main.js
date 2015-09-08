@@ -26,7 +26,13 @@ $(document).ready(function(){
     	window.close();
     });
     $(".timePanel").bind(touchEvents.touchend,timeModeSwitch);
- 
+    $("#short").bind(touchEvents.touchend,beShortState);
+    $("#long").bind(touchEvents.touchend,beLongState);
+    $(".slider").bind(touchEvents.touchstart,sliderMove);
+     $(".slider").bind(touchEvents.touchmove,sliderMove);
+      $(".slider").bind(touchEvents.touchend,sliderMoveEnd);
+      $("#power").bind(touchEvents.touchend,powerSend);
+      $("#horn").bind(touchEvents.touchend,hornSend);
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
      			message:i18n.t("message")
@@ -83,6 +89,82 @@ function timeModeSwitch(){
 	       $(str).removeClass("transparent").attr("data",1);
 }
 
+function beShortState () {
+	var self=$(this),
+		dt=self.attr("data")-0;
+		if(dt==1){return;}
+		self.addClass("transparent").attr("data",1);
+		$("#btmArea").addClass("bottom-short");
+		$("#timeCtrl").addClass("doDown");
+		$("#long").removeClass("transparent").attr("data",0);
+		
+}
+function beLongState () {
+	var self=$(this),
+		dt=self.attr("data")-0;
+		if(dt==1){return;}
+		self.addClass("transparent").attr("data",1);
+		$("#btmArea").removeClass("bottom-short");
+		$("#timeCtrl").removeClass("doDown");
+		$("#short").removeClass("transparent").attr("data",0);
+}
+function sliderMove () {
+	var self=$(this),
+                   dt=self.attr("data")-0,
+                   max=self.attr("max")-0+1,
+	      value=self[0].value,
+	      str=dt==1?"#hourNum":"#minNum",
+	      lt=10+Math.floor(value/max*80);
+	      console.log(str);
+	      $(str).removeClass("transparent").text(value).css("left",lt+"%");
+}
+function sliderMoveEnd(){
+	$(".timeNum").addClass("transparent");
+	var self=$(this),
+                   dt=self.attr("data")-0,
+	      value=numTransformate(self[0].value),
+	      hours=null,
+	      mins=null,
+	      timeTodo=$("#OnTriangle").attr("data")-0==0?"02":"01",
+	      data="030000{{timeToDo}}{{hours}}{{mins}}00";
+	      dt==1?hours=value:mins=value;
+	      hours=hours==null?"00":hours;
+	      mins=mins==null?"00":mins;
+	      data=data.replace("{{timeToDo}}",timeTodo)
+	      		.replace("{{hours}}",hours)
+	      		.replace("{{mins}}",mins);
+	    var frame=UARTDATA.encode(0x02,data);
+	console.log("set_timer      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+			ws.send(code);
+		t.show();
+}
+function powerSend(){
+	var self=$(this),
+	      dt=self.attr("data")-0,
+	      data=dt==0?"01010000000000":"01020000000000",
+	       frame=UARTDATA.encode(0x02,data);
+	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+			ws.send(code);
+		t.show();
+}
+function hornSend(){
+	var self=$(this),
+	      dt=self.attr("data")-0,
+	        data=dt==0?"02000100000000":"02000100000000",
+	       frame=UARTDATA.encode(0x02,data);
+	console.log("set_horn      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
+		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
+			.replace('{tid}',tid)
+			.replace('{args}',frame);
+			ws.send(code);
+		t.show();
+}
 var resources={
 	"zh-CN":{
 		"translation":{
@@ -93,8 +175,11 @@ var resources={
 			"timingOFF":"定时 关",
 			"timeRemind":"时间拖至0为取消定时",
 			"connecting":"拼命连接中...",
-			"off":"关",
-			"on":"开",
+			"timingWord":"定时",
+			"off":"OFF",
+			"on":"ON",
+			"shutDown":"关闭",
+			"turnOn":"开启",
 			"message":"指令已发送"
 		}
 	},
@@ -106,16 +191,65 @@ var resources={
 			"timingON":"timing ON",
 			"timingOFF":"timing OFF",
 			"timeRemind":"Drag to 0 to cancle the fixed time",
+			"timingWord":"timing",
 			"connecting":"connecting...",
-			"off":"off",
-			"on":"on",
+			"off":"OFF",
+			"on":"ON",
+			"shutDown":"OFF",
+			"turnOn":"ON",
 			"message":"sended"
 		}
 	}
 };
 
-
-
+function setPowerState(e){
+	var power=$("#power"),
+	      str=null;
+	if(e==1){
+		power.addClass("pressed").attr("data",1);
+		str="on";
+	}else if(e==2){
+		power.removeClass("pressed").attr("data",0);
+		str="off";
+	}else{return;}
+	$("#powerState").text(i18n.t(str));
+}
+function setHornState(e){
+	if(e==1){
+		$("#hornImg").text("&#xf01f4;");
+	}else if(e==2){
+		$("#hornImg").text("&#xe611;");
+	}else{return;}
+}
+function setTimerPanel(e){
+	if(e==1){
+		$("#OnState").text(i18n.t("turnOn"));
+		$("#timerToOn").click();
+	}else if(e==2){
+		$("#OnState").text(i18n.t("shutDown"));
+		$("#timerToOff").click();
+	}else{return;}
+}
+function setHourState(e){
+	if(e==0){return;}
+	if(e==255){
+		$("#hourShow").text(0);
+		$("#hourSlider").val(0);
+		return;
+	}
+	$("#hourShow").text(e);
+	$("#hourSlider").val(e);
+}
+function setMinState(e){
+	if(e==0){return;}
+	if(e==255){
+		$("#minShow").text(0);
+		$("#minSlider").val(0);
+		return;
+	}
+	$("#minShow").text(e);
+	$("#minSlider").val(e);
+}
 function numTransformate(value){
 	if(typeof(value)=="number"){
 		value = UARTDATA.hex2str(value);
@@ -166,10 +300,10 @@ Toast.prototype = {
 
 
 
-var tid  = getUrlParam("tid");
+var tid  = getUrlParam("tid") || "VDEV_1AFE349C3DJS";
 var host = getUrlParam("host") || "device.hekr.me";
 
-var token =getUrlParam("access_key") ;
+var token =getUrlParam("access_key")  || "azBBaDZpaUNCbjRKUlkxK29IR2dTVy9XblRQQ1JCOVpIU1RFR0IyZzBMazNWQzRnOW5DR3E4cVVIc2FxQmZYMzBu";
 
 var user = Math.floor(Math.random()*100);
 var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
@@ -212,7 +346,28 @@ console.debug("[STATE] ================");
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
-     	
+     		switch(mes[0]){
+     			case 0:
+     			setPowerState(mes[1]);
+     			setHornState(mes[2]);
+     			setTimerPanel(mes[3]);
+     			setHourState(mes[4]);
+     			setMinState(mes[5]);
+     			break;
+     			case 1:
+     			setPowerState(mes[1]);
+     			break;
+     			case 2:
+     			setHornState(mes[2]);
+     			break;
+     			case 3:
+     			setTimerPanel(mes[3]);
+     			setHourState(mes[4]);
+     			setMinState(mes[5]);
+     			break;
+     			default:
+     			break;
+     		}
      	}	
 };
 
