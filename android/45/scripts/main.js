@@ -100,7 +100,7 @@ function touchSt(){
 	$(this).addClass("press");
 }
 function powerSend(){
-	var self=$("this"),
+	var self=$(this),
 		dt=self.attr("data")-0,
 		i=dt==0?"01":"02",
 		data="02"+i+"00000000000000",
@@ -229,10 +229,10 @@ Toast.prototype = {
 
 
 
-var tid  = getUrlParam("tid");
+var tid  = getUrlParam("tid") || "VDEV_1AFE349C3DJS";
 var host = getUrlParam("host") || "device.hekr.me";
 
-var token =getUrlParam("access_key") ;
+var token =getUrlParam("access_key")  || "azBBaDZpaUNCbjRKUlkxK29IR2dTVy9XblRQQ1JCOVpIU1RFR0IyZzBMazNWQzRnOW5DR3E4cVVIc2FxQmZYMzBu";
 
 var user = Math.floor(Math.random()*100);
 var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";

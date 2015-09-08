@@ -98,6 +98,12 @@ body{
 	margin: 26px 0 0 0;
 	font-size: 19px;
 }
+@media screen and (min-height: 667px){
+	.top > span:nth-child(3){
+	margin: 40px 0 0 0;
+	font-size: 19px;
+}
+}
 .center{
 	position: relative;
 	width: 100%;
