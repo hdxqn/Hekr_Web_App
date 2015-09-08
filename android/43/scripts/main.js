@@ -90,14 +90,35 @@ var resources={
 			"message":"sended"
 		}
 	}
-};
+}; 
 function setAirQlty(e){
 	$("#airQ"+e).click();
+	var cl=null;
+	switch(e){
+		case 1:
+		cl="rgba(68, 176, 216, 0.75)";
+		break;
+		case 2:
+		cl="rgba(199, 237, 67, 0.75)";
+		break;
+		case 3:
+		cl="rgba(255, 158, 111, 0.75)";
+		break;
+		case 4:
+		cl="rgba(253, 80, 63, 0.75)";
+		break;
+		case 5:
+		cl="rgba(111, 23, 13, 0.75)";
+		break;
+		default:
+		break;
+	}
+	if(cl==null){return;}
+	$(".cloud").css("color",cl);
 }
 function setAirNum(e){
 	$("#airNum").text(e);
 }
-
  function getUrlParam(name) {
      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
      var r = window.location.search.substr(1).match(reg);
