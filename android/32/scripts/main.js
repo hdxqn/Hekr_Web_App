@@ -14,6 +14,7 @@ $(document).ready(function(){
 		break;
 	}
 	adjustLangContent(lang);
+	adjustLogo(lang);
 		i18n.init({
         "lng": lang,
         "resStore": resources,
@@ -67,7 +68,9 @@ function browserRedirect(obj) {
 function adjustLangContent(e){
 	$("#"+e).remove();
 }
-
+function adjustLogo(e){
+	$("#logo").attr("src","images/"+e+"logo.png");
+}
 function timeModeSwitch(){
 	var self=$(this),
 	       id=self.data("id")-0,
