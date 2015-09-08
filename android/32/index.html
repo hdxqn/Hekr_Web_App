@@ -15,7 +15,7 @@
 </head>
 <body>
   <div class="nav">
-    <span data-i18n="Socket">插座</span>
+    <span data-i18n="Socket"></span>
     <div id="back">
       <img src="images/back.png" alt="">
     </div>
@@ -23,8 +23,8 @@
   
   <div class="top">
     <img src="images/zh-logo.png" alt="" id="logo" onload="setposition(this)">
-    <span data-i18n="titleOne">家庭智能产品和家庭护理产品</span>
-    <span data-i18n="titleTwo">专业制造商</span>
+    <span data-i18n="titleOne"></span>
+    <span data-i18n="titleTwo"></span>
   </div>
   
   <div class="center">
@@ -45,17 +45,19 @@
      <i class="iconfont" id="long" data=1 style="opacity:0;">&#xe65d;</i>
      <ul id="timeCtrl">
        <li>
-         <div class="timePanel" data-i18n="timing ON">定时 开</div>
-          <div class="timePanel" data-i18n="timing OFF">定时 关</div>
+         <div class="timePanel pressed" data-i18n="timingON"  data-id=1></div>
+          <div class="timePanel" data-i18n="timingOFF" data-id=0></div>
        </li>
        <li>
-         <div class="Triangle"></div>
-         <div class="Triangle transparent"></div>
-         <span data-i18n="timeRemind">时间拖至0为取消定时</span>
+         <div class="Triangle" id="OnTriangle" data=1></div>
+         <div class="Triangle transparent" id="OffTriangle" data=0></div>
+         <span data-i18n="timeRemind"></span>
          <span>0</span>
           <span>23</span>
           <span>0</span>
           <span>59</span>
+          <span id="hourNum">0</span>
+          <span id="minNum">0</span>
           <input type="range" class="slider" value="0"  min="0" max="23" data=1>
           <input type="range" class="slider" value="0"  min="0" max="59" data=2 >
        </li>
@@ -77,12 +79,12 @@
 
 
 
-<!--          // <script src="../common/js/jquery.min.js"></script> 
-         //   <script src="../common/js/i18n.js"></script>
-         //   <script src="../common/js/lambdaTM.js"></script>
-         //    <script src="../common/js/reconnecting-websocket.min.js"></script>
-         // <script src="../common/js/UARTDATA.js"></script>
-         //   <script src="scripts/main.js?v=2015_08_21_01"></script> -->
+          <script src="../common/js/jquery.min.js"></script> 
+            <script src="../common/js/i18n.js"></script>
+            <script src="../common/js/lambdaTM.js"></script>
+            <script src="../common/js/reconnecting-websocket.min.js"></script>
+          <script src="../common/js/UARTDATA.js"></script>
+            <script src="scripts/main.js?v=2015_08_21_01"></script>
   
 </body>
 </html>

@@ -13,6 +13,7 @@ $(document).ready(function(){
 		lang='en-US';
 		break;
 	}
+	adjustLangContent(lang);
 		i18n.init({
         "lng": lang,
         "resStore": resources,
@@ -20,8 +21,12 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
-    	
-  
+    
+    $("#back").bind(touchEvents.touchend,function () {
+    	window.close();
+    });
+    $(".timePanel").bind(touchEvents.touchend,timeModeSwitch);
+ 
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
      			message:i18n.t("message")
@@ -53,14 +58,40 @@ function browserRedirect(obj) {
     }
  }
 
+function adjustLangContent(e){
+	$("#"+e).remove();
+}
 
+function timeModeSwitch(){
+	var self=$(this),
+	       id=self.data("id")-0,
+	       str=null;
+	       switch(id){
+	       	case 1:
+	       	str="#OnTriangle";
+	       	break;
+	       	case 0:
+	       	str="#OffTriangle";
+	       	break;
+	       	default: 
+	       	break;
+	       }
+	       if(str==null){return;}
+	       $(".timePanel").removeClass("pressed");
+	       $(".Triangle").addClass("transparent").attr("data",0);
+	       self.addClass("pressed");
+	       $(str).removeClass("transparent").attr("data",1);
+}
 
 var resources={
 	"zh-CN":{
 		"translation":{
-			"hekr":"HEKR",
-			"about":"关于",
-			"light":"光:",
+			"Socket":"插座",
+			"titleOne":"家庭智能产品和家庭护理产品",
+			"titleTwo":"专业制造商:",
+			"timingON":"定时 开",
+			"timingOFF":"定时 关",
+			"timeRemind":"时间拖至0为取消定时",
 			"connecting":"拼命连接中...",
 			"off":"关",
 			"on":"开",
@@ -69,9 +100,12 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
-			"hekr":"HEKR",
-			"about":"about",
-			"light":"light:",
+			"Socket":"Socket",
+			"titleOne":"Smart Household & Lifecare product",
+			"titleTwo":"manufacturer",
+			"timingON":"timing ON",
+			"timingOFF":"timing OFF",
+			"timeRemind":"Drag to 0 to cancle the fixed time",
 			"connecting":"connecting...",
 			"off":"off",
 			"on":"on",
@@ -127,16 +161,6 @@ Toast.prototype = {
 		msgEntity.fadeOut(this.time/2);
 	}
 }
-function setLightState(a,b,c){
-	$("#light").css("background-color","rgb("+a+","+a+","+a+")");
-	$("#lightNum").text(b+""+c);
-}
-function setRgbState(r,g,b){
-	$("#rgb").css("background-color","rgb("+r+","+g+","+b+")");
-	$("#rNum").text(r);
-	$("#gNum").text(g);
-	$("#bNum").text(b);
-}
 
   
 
@@ -164,7 +188,7 @@ ws.onerror=function(){
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
-	 var data="0000000000000000",
+	 var data="00000000000000",
 	    frame=UARTDATA.encode(0x02,data); 
 	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
 			.replace('{tid}',tid)
@@ -188,8 +212,7 @@ console.debug("[STATE] ================");
      if(e.tid===tid){
      	var mes=UARTDATA.decode(e.uartdata);
      		console.debug(mes);
-     		setLightState(mes[4],mes[5],mes[6]);
-     		setRgbState(mes[1],mes[2],mes[3]);
+     	
      	}	
 };
 

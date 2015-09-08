@@ -335,6 +335,31 @@ body{
 	margin: -5px 0 0 0;
 	right: 0;
 }
+.bottom ul li:nth-child(2) >span:nth-child(8){
+	position: absolute;
+	width: 20px;
+	height: 10px;
+	text-align: center;
+	line-height: 10px;
+	font-size: 16px;
+	top: 25%;
+	margin: -25px 0 0 0;
+	left:10%;
+	opacity: 0;
+}
+.bottom ul li:nth-child(2) >span:nth-child(9){
+	position: absolute;
+	width: 20px;
+	height: 10px;
+	text-align: center;
+	line-height: 10px;
+	font-size: 16px;
+	top: 75%;
+	margin: -25px 0 0 0;
+	left:10%;
+	opacity: 0;
+}
+
 .bottom ul li:nth-child(2) >input{
 	display: block;
   	position: absolute;
@@ -342,16 +367,15 @@ body{
   	width:80%;
   	height:6px;
   	margin:-3px 0 0 0;
-  	bottom: 30%;
   	-webkit-appearance:none;
   	border-radius:5px;
   	outline:none;
   	cursor: pointer;
 }
-.bottom ul li:nth-child(2) >input:nth-child(8){
+.bottom ul li:nth-child(2) >input:nth-child(10){
 	top: 25%;
 }
-.bottom ul li:nth-child(2) >input:nth-child(9){
+.bottom ul li:nth-child(2) >input:nth-child(11){
 	top: 75%;
 }
 .bottom ul li:nth-child(2) >input::-webkit-slider-thumb{
@@ -363,6 +387,7 @@ body{
   transition:background .15s ease-in-out;
   border:none;
   position:relative;
+  z-index: 999;
 }
 .bottom ul li:nth-child(2) >input::-webkit-slider-thumb::before{
   display: block;
