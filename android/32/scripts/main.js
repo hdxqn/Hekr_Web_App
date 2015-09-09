@@ -12,7 +12,7 @@ $(document).ready(function(){
 		default:
 		lang='en-US';
 		break;
-	}
+	} 
 	adjustLangContent(lang);
 	adjustLogo(lang);
 		i18n.init({
@@ -145,6 +145,7 @@ function sliderMoveEnd(){
 		t.show();
 }
 function powerSend(){
+	autoPlay();
 	var self=$(this),
 	      dt=self.attr("data")-0,
 	      data=dt==0?"01010000000000":"01020000000000",
@@ -172,7 +173,7 @@ var resources={
 	"zh-CN":{
 		"translation":{
 			"Socket":"插座",
-			"titleOne":"家庭智能产品和家庭护理产品",
+			"titleOne":"家庭智能产品和生活护理产品",
 			"titleTwo":"专业制造商",
 			"timingON":"定时 开",
 			"timingOFF":"定时 关",
@@ -204,7 +205,10 @@ var resources={
 		}
 	}
 };
-
+function autoPlay(){
+var myAuto = document.getElementById('myaudio');
+myAuto.play();
+}
 function setPowerState(e){
 	var power=$("#power"),
 	      str=null;

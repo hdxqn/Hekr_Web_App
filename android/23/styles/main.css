@@ -15,7 +15,8 @@ html{
 	html{
 		min-height:200vw;
 	}
-}
+} 
+
 body{
 	width: 100%;
 	height: 100%;
@@ -26,7 +27,7 @@ body{
   	font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   	margin:0;
   	color:#FFF;
-  	text-shadow:1px 1px 0 rgba(0,0,0,.2);
+ 
 }
 #nav{
 	position: relative;
@@ -138,6 +139,16 @@ body{
 	height: 90px;
 	position: relative;
 }
+@media screen and (max-width: 334px){
+	.main_0 .btn .btns{
+		margin: 30% 5px 0 5px;
+	}
+}
+@media screen and (max-width: 296px){
+	.main_0 .btn .btns{
+		margin: 30% 2px 0 2px;
+	}
+}
 .main_0 .btn .btns img{
 	display: block;
 	position:absolute;
@@ -154,6 +165,7 @@ body{
 	left: 0;
 	line-height: 30px;
 	font-size: 18px;
+	overflow: hidden;
 }
 
 .little{
@@ -236,8 +248,101 @@ body{
 	font-size: 1px;
 	margin: 0 0 0 -6vw;
 }
-
-
+#changeName{
+	display: none;
+	position: fixed;
+	top: 50vh;
+	left: 15vw;
+	margin: -16vw 0 0 0;
+	width: 70vw;
+	height: 32vw;
+	border-radius: 4px;
+	background-color: #E7E7E7;
+	overflow: hidden;
+	max-width: 450px;
+	max-height: 206px;
+	z-index: 999;
+}
+#changeName > div{
+	position: absolute;
+	  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+#changeName > div:nth-child(1){
+	height: 67%;
+	width: 100%;
+}
+#changeName > div:nth-child(1) > input{
+	position: absolute;
+	height: 47.6%;
+	top: 26.2%;
+	width: 80%;
+	left: 10%;
+	line-height: 200px;
+	font-size: 6.2vw;
+	color:  #727272;
+	padding: 0 20% 0 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+#changeName > div:nth-child(1) > img{
+	position: absolute;
+	height: 6vw;
+	top: 53%;
+	width: 6vw;
+	right: 13.5%;
+	margin: -3vw 0  0 0;
+	max-width: 38px;
+	max-height: 38px;
+}
+#changeName > div:nth-child(2),
+#changeName > div:nth-child(3){
+	height: 33%;
+	width: 50%;
+	bottom: 0;
+	border-style: solid;
+	border-color: #727272;
+	line-height: 200%;
+	text-align: center;
+	color: #5AA1A5;
+	font-size: 5vw;
+	font-family:"Comic Sans MS","幼圆","黑体",sans-serif;
+}
+#changeName > div:nth-child(2){
+	left: 0;
+	border-width:2px 2px 0 0;
+}
+#changeName > div:nth-child(3){
+	left: 50%;
+	border-width:2px 0 0 0;
+}
+@media screen and (min-width: 640px){
+	#changeName{
+		left: 50vw;
+		margin: -103px 0 0 -225px;
+	}
+	#changeName > div:nth-child(1) > img{
+		margin: -19px 0 0 0;
+	}
+	#changeName > div:nth-child(2),
+#changeName > div:nth-child(3){
+	font-size: 32px;
+	line-height: 64px;
+}
+}
+.pressed{
+	background-color: #59A2A8 !important;
+	color:#FEFFFE !important ;
+}
 
 
 

@@ -81,7 +81,7 @@ body{
 }
 .top > img{
 	position: absolute;
-	height: 4.4vh;
+	height: 5.8vh;
 	left: 50%;
 }
 .top > span{
@@ -91,12 +91,12 @@ body{
 	position: relative;
 }
 .top > span:nth-child(2){
-	top: 5vh;
-	font-size: 15px;
+	top: 5.8vh;
+	font-size: 2.4vh;
 }
 .top > span:nth-child(3){
-	margin: 26px 0 0 0;
-	font-size: 19px;
+	margin: 6vh 0 0 0;
+	font-size: 3vh;
 }
 @media screen and (min-height: 667px){
 	.top > span:nth-child(3){
@@ -120,9 +120,9 @@ body{
 	position: absolute;
 	top: 15vh;
 	left: 50%;
-	width: 13vh;
-	height: 13vh;
-	margin: 0 0 0 -6.5vh;
+	width: 15.4vh;
+	height: 15.4vh;
+	margin: 0 0 0 -7.7vh;
 	border:2px solid #fff;
 	border-radius: 50%;
 	  box-sizing:border-box;

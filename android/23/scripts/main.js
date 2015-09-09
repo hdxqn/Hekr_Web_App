@@ -13,7 +13,9 @@ $(document).ready(function(){
 		lang='en-US';
 		break;
 	}
-
+	localInit();
+	saveChanges(lang);
+ 
 		i18n.init({
         "lng": lang,
         "resStore": resources,
@@ -30,6 +32,9 @@ $(document).ready(function(){
  $(".btns").bind(touchEvents.touchstart,press);
   $(".btns").bind(touchEvents.touchend,release);
   $("#return").bind(touchEvents.touchend,returnChoose);
+  $(".changeN").bind(touchEvents.touchstart,cancleNamePress);
+    $(".changeN").bind(touchEvents.touchend,cancleNamePressed);
+    $(".btnName").bind(touchEvents.touchend,otherName);
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
      			message:i18n.t("message")
@@ -61,11 +66,62 @@ function browserRedirect(obj) {
          
     }
  }
-
-
-
-
-
+// localStorage.removeItem("zh-CN");
+// localStorage.removeItem("en-US");
+function localInit(){
+	var a=localStorage.getItem("zh-CN"),
+	      b=localStorage.getItem("en-US");
+	      if(a||b){return;}
+	      localStorage.setItem("zh-CN",'{"btn1":"按钮1","btn2":"按钮2","btn3":"按钮3","btn4":"按钮4","last":"9"}');
+ 	      localStorage.setItem("en-US",'{"btn1":"button1","btn2":"button2","btn3":"button3","btn4":"button4","last":"9"}');
+}
+function saveChanges(lang){
+	if(lang==undefined){return;}
+	var jd=null,
+	cg=null;
+	jd=resources[lang]["translation"],
+	num=null;
+	cg=$.parseJSON(localStorage.getItem(lang));
+	 jd=$.extend(jd,cg);
+	 num=cg["last"]-0;
+	 if(num>3){return;}
+	 chooseMain($(".little").eq(num));
+}
+function cancleNamePress(){
+	$(this).addClass("pressed");
+}
+function cancleNamePressed(){
+	$(".changeN").removeClass("pressed");
+	var dt=$(this).attr("data-cd")-0;
+	if(dt==0){
+		$("#nameText").val("");
+		$("#changeName").css("display","none");
+		return;
+	}
+	var nameText=$("#nameText"),
+  	      ndt=nameText.attr("data"),
+  	      newname=nameText.val();
+  	      if(newname==null){return; }
+  	      $("#"+ndt).find("span").text(newname);
+  	      nameText.val("");
+  	      $("#changeName").css("display","none");
+  	      localReset(ndt,newname);
+}
+function localReset(a,b){
+	var lang=getUrlParam('lang')||"en-US",
+	      re=localStorage.getItem(lang),
+	      ps=$.parseJSON(re),
+	      str=null;
+	      ps[a]=b;
+	      str=JSON.stringify(ps);
+	       localStorage.setItem(lang,str);
+}
+function otherName(){
+	var changeName=$("#changeName"),
+	      father=$(this).data("father");
+	changeName.css("display","block");
+	$("#nameText").attr("data",father);
+}
 var resources={
 	"zh-CN":{
 		"translation":{
@@ -92,7 +148,9 @@ var resources={
 			"timer":"h后",
 			"power":"开关",
 			"timing":"定时",
-			"message":"指令已发送"
+			"message":"指令已发送",
+			"OK":"确定",
+			"CANCLE":"取消"
 		}
 	},
 	"en-US":{
@@ -120,24 +178,30 @@ var resources={
 			"timer":"h to",
 			"power":"Power",
 			"timing":"timer",
-			"message":"sended"
+			"message":"sended",
+			"OK":"OK",
+			"CANCLE":"CANCLE"
 		}
 	}
 };
 
 
-function chooseMain(){
+function chooseMain(ts){
+	ts=ts instanceof jQuery?ts:undefined;
+	var self=ts||$(this),
+	     dt=self.attr("data")-0;
 	$(".little").css("display","none");
 	$(".main1").css({
 		"opacity":"1",
 		"z-index":"99"
 	});
 	$(".btns").css("display","none");
-	var eles=$(this).find(".lbtns");
+	var eles=self.find(".lbtns");
 	for(var i=1;i<eles.length+1;i++){
 			$("#btn"+i).css("display","inline-block");
 	}
 	$("#return").css("opacity","1").attr("data","1");
+	localReset("last",dt);
 }
 
 function returnChoose(){
@@ -216,11 +280,10 @@ Toast.prototype = {
 
 
 
-var tid  = getUrlParam("tid");
+var tid  = getUrlParam("tid") || "VDEV_1AFE349C3DJS";
 var host = getUrlParam("host") || "device.hekr.me";
 
-var token =getUrlParam("access_key") ;
-
+var token =getUrlParam("access_key")  || "azBBaDZpaUNCbjRKUlkxK29IR2dTVy9XblRQQ1JCOVpIU1RFR0IyZzBMazNWQzRnOW5DR3E4cVVIc2FxQmZYMzBu";
 var user = Math.floor(Math.random()*100);
 var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
 var ws   = new ReconnectingWebSocket(url);

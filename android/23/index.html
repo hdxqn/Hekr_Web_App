@@ -29,26 +29,26 @@
     <ul class="btn">
       <li class="btns" id="btn1">
         <img src="images/unpressed.png" alt="">
-        <span data-i18n="btn1"></span>
+        <span data-i18n="btn1" class="btnName" data-father=btn1></span>
       </li>
       <li class="btns" id="btn2">
         <img src="images/unpressed.png" alt="">
-        <span data-i18n="btn2"></span>
+        <span data-i18n="btn2" class="btnName" data-father=btn2></span>
       </li>
       <li class="btns" id="btn3">
         <img src="images/unpressed.png" alt="">
-        <span data-i18n="btn3"></span>
+        <span data-i18n="btn3" class="btnName" data-father=btn3></span>
       </li>
       <li class="btns" id="btn4">
         <img src="images/unpressed.png" alt="">
-        <span data-i18n="btn4"></span>
+        <span data-i18n="btn4" class="btnName" data-father=btn4></span>
       </li>
     </ul>
 
     </div>
 
 
- <div class="little little1">
+ <div class="little little1" data=0>
    <div class="center">
      <img src="images/lcontrol.png" alt="">
    </div>
@@ -59,7 +59,7 @@
      </li>
    </ul>
  </div>
- <div class="little little2">
+ <div class="little little2" data=1>
    <div class="center">
      <img src="images/lcontrol.png" alt="">
    </div>
@@ -74,7 +74,7 @@
      </li>
    </ul>
  </div>
- <div class="little little3">
+ <div class="little little3" data=2>
    <div class="center">
      <img src="images/lcontrol.png" alt="">
    </div>
@@ -93,7 +93,7 @@
      </li>
    </ul>
  </div>
- <div class="little little4">
+ <div class="little little4" data=3>
    <div class="center">
      <img src="images/lcontrol.png" alt="">
    </div>
@@ -121,7 +121,14 @@
 
  
 
-
+<div id="changeName">
+  <div>
+    <input type="text" id="nameText" data=0>
+    <img src="images/cancle.png" alt="" id="deleteText">
+  </div>
+  <div data-i18n="OK" data-cd=1 class="changeN"></div>
+  <div data-i18n="CANCLE" data-cd=0 class="changeN"></div>
+</div>
 
 
   <div id="modal" class="popup modal"  style="display:none;">
