@@ -264,15 +264,16 @@ body{
 }
 .bottom ul li:nth-child(1) >div{
 	position: absolute;
-	width: 30%;
-	height: 4vh;
+	width: 24vw;
+	height: 4.8vh;
 	top: 0;
 	border:1px solid #fff;
 	border-radius: 3px;
 	overflow: hidden;
 	text-align: center;
-	line-height: 4vh;
+	line-height: 4.8vh;
 	font-size: 2vh;
+	margin: 0 0 0 -12vw;
 	 box-sizing:border-box;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -280,28 +281,28 @@ body{
   -o-box-sizing:border-box;
 }
 .bottom ul li:nth-child(1) >div:nth-child(1){
-	left: 10%;
+	left: 25%;
 }
 .bottom ul li:nth-child(1) >div:nth-child(2){
-	right: 10%;
+	left: 75%;
 }
 .bottom ul li:nth-child(2) >div{
 	position: absolute;
   	width: 0;
   	height: 0;
   	bottom: 100%;
-  	border-width:0 12px 12px 12px;
+  	border-width:0 1.4vh 1.4vh 1.4vh;
   	border-style:solid;
   	border-color:transparent transparent rgba(0,0,0,0.1) transparent;
   	opacity: 1;
 }
 .bottom ul li:nth-child(2) >div:nth-child(1){
 	left: 25%;
-	margin: 0 0 0 -12px;
+	margin: 0 0 0 -1.4vh;
 }
 .bottom ul li:nth-child(2) >div:nth-child(2){
 	right: 25%;
-	margin: 0 -12px 0 0;
+	margin: 0 -1.4vh 0 0;
 }
 .bottom ul li:nth-child(2) >span:nth-child(3){
 	position: absolute;
@@ -478,7 +479,7 @@ body{
 -o-box-shadow: 0 0 10px #000;
 -ms-box-shadow: 0 0 10px #000;
 box-shadow: 0 0 10px #000;
-}
+} 
 #toastMessage{
 	position: fixed;
 	bottom: 20px;

@@ -12,7 +12,7 @@ $(document).ready(function(){
 		default:
 		lang='en-US';
 		break;
-	}
+	} 
 
 		i18n.init({
         "lng": lang,

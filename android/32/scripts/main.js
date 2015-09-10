@@ -201,10 +201,10 @@ myAuto.play();
 function setPowerState(e){
 	var power=$("#power"),
 	      str=null;
-	if(e==0){
+	if(e==1){
 		power.addClass("pressed").attr("data",1);
 		str="on";
-	}else if(e==1){
+	}else if(e==0){
 		power.removeClass("pressed").attr("data",0);
 		str="off";
 	}else{return;}
@@ -227,8 +227,8 @@ function setHourState(e){
 }
 function setMinState(e){
 	var value=Math.floor((e%3600)/60);
-	$("#minShow").text(e);
-	$("#minSlider").val(e);
+	$("#minShow").text(value);
+	$("#minSlider").val(value);
 }
 function numTransformate(value){
 	if(typeof(value)=="number"){
@@ -299,7 +299,7 @@ ws.onerror=function(){
 	
 	console.error("[WEBSOCKET] connection error");
 };
-
+ 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
 		setTimeout(function(){
