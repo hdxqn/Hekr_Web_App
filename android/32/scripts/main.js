@@ -118,56 +118,43 @@ function sliderMove () {
 	      value=self[0].value,
 	      str=dt==1?"#hourNum":"#minNum",
 	      lt=10+Math.floor(value/max*80);
-	      console.log(str);
 	      $(str).removeClass("transparent").text(value).css("left",lt+"%");
 }
 function sliderMoveEnd(){
 	$(".timeNum").addClass("transparent");
-	var self=$(this),
-                   dt=self.attr("data")-0,
-	      value=numTransformate(self[0].value),
-	      hours=null,
-	      mins=null,
-	      timeTodo=$("#OnTriangle").attr("data")-0==0?"02":"01",
-	      data="030000{{timeToDo}}{{hours}}{{mins}}00";
-	      dt==1?hours=value:mins=value;
-	      hours=hours==null?"00":hours;
-	      mins=mins==null?"00":mins;
-	      data=data.replace("{{timeToDo}}",timeTodo)
-	      		.replace("{{hours}}",hours)
-	      		.replace("{{mins}}",mins);
-	    var frame=UARTDATA.encode(0x02,data);
-	console.log("set_timer      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
+	var hour=$('#hourSlider').val(),
+	      minute=$('#minSlider').val(),
+	      timeTodo=$("#OnTriangle").attr("data")-0==0?0:1,
+	      code ='(@devcall "{tid}" (controltimer {args} {args2}) (lambda (x) x))'
+    		.replace("{tid}",tid)
+    		.replace("{args}",hour*3600+minute*60)
+    		.replace("{args2}",timeTodo);
+				console.debug("[CODE] "+code);
+				ws.send(code);
+    			t.show();
 }
 function powerSend(){
 	autoPlay();
 	var self=$(this),
 	      dt=self.attr("data")-0,
-	      data=dt==0?"01010000000000":"01020000000000",
-	       frame=UARTDATA.encode(0x02,data);
-	console.log("set_power      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
+	     code ='(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
+    		.replace("{tid}",tid)
+    		.replace("{args}",dt==0?1:0);
+				console.debug("[CODE] "+code);
+				ws.send(code);
+    			t.show();
 }
 function hornSend(){
 	var self=$(this),
 	      dt=self.attr("data")-0,
-	        data=dt==0?"02000100000000":"02000100000000",
-	       frame=UARTDATA.encode(0x02,data);
-	console.log("set_horn      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
-		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
-			ws.send(code);
-		t.show();
+	      i=dt==0?1:0,
+	      eles=document.getElementById("hornImg");
+	      if(dt==0){
+	      	eles.innerHTML="&#xf01f4;";
+	}else if(dt==1){
+		eles.innerHTML="&#xe611;";
+	}else{return;}
+	self.attr("data",i);
 }
 var resources={
 	"zh-CN":{
@@ -206,54 +193,40 @@ var resources={
 	}
 };
 function autoPlay(){
-var myAuto = document.getElementById('myaudio');
+var myAuto = document.getElementById('myaudio'),
+	horn=document.getElementById("horn").getAttribute("data")-0;
+	if(horn==0){return;}
 myAuto.play();
 }
 function setPowerState(e){
 	var power=$("#power"),
 	      str=null;
-	if(e==1){
+	if(e==0){
 		power.addClass("pressed").attr("data",1);
 		str="on";
-	}else if(e==2){
+	}else if(e==1){
 		power.removeClass("pressed").attr("data",0);
 		str="off";
 	}else{return;}
 	$("#powerState").text(i18n.t(str));
 }
-function setHornState(e){
-	if(e==1){
-		$("#hornImg").text("&#xf01f4;");
-	}else if(e==2){
-		$("#hornImg").text("&#xe611;");
-	}else{return;}
-}
+
 function setTimerPanel(e){
 	if(e==1){
 		$("#OnState").text(i18n.t("turnOn"));
 		$("#timerToOn").click();
-	}else if(e==2){
+	}else if(e==0){
 		$("#OnState").text(i18n.t("shutDown"));
 		$("#timerToOff").click();
 	}else{return;}
 }
 function setHourState(e){
-	if(e==0){return;}
-	if(e==255){
-		$("#hourShow").text(0);
-		$("#hourSlider").val(0);
-		return;
-	}
-	$("#hourShow").text(e);
-	$("#hourSlider").val(e);
+	var value=Math.floor(e/3600);
+	$("#hourShow").text(value);
+	$("#hourSlider").val(value);
 }
 function setMinState(e){
-	if(e==0){return;}
-	if(e==255){
-		$("#minShow").text(0);
-		$("#minSlider").val(0);
-		return;
-	}
+	var value=Math.floor((e%3600)/60);
 	$("#minShow").text(e);
 	$("#minSlider").val(e);
 }
@@ -329,52 +302,23 @@ ws.onerror=function(){
 
 ws.onopen=function(){
 	console.debug("[WEBSOCKET] connection opened");
-	 var data="00000000000000",
-	    frame=UARTDATA.encode(0x02,data); 
-	var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
-			.replace('{tid}',tid)
-			.replace('{args}',frame);
 		setTimeout(function(){
-			 ws.send(code);
+			   ws.send('(get-state "{tid}")'.replace("{tid}", tid));
 			},500);	
-   console.debug(code);
 	$.modal.close();
 };
 ws.onclose=function(){
 	console.error("[WEBSOCKET] connection closed");
 };
 
-window.changestate=function(e){
+window.changestate=function(o){
 	
 console.debug("[STATE] ================");
-     console.debug(e); 
+     console.debug(o); 
      console.debug("[STATE] ================");
-     console.debug(e.uartdata);
-     if(e.tid===tid){
-     	var mes=UARTDATA.decode(e.uartdata);
-     		console.debug(mes);
-     		switch(mes[0]){
-     			case 0:
-     			setPowerState(mes[1]);
-     			setHornState(mes[2]);
-     			setTimerPanel(mes[3]);
-     			setHourState(mes[4]);
-     			setMinState(mes[5]);
-     			break;
-     			case 1:
-     			setPowerState(mes[1]);
-     			break;
-     			case 2:
-     			setHornState(mes[2]);
-     			break;
-     			case 3:
-     			setTimerPanel(mes[3]);
-     			setHourState(mes[4]);
-     			setMinState(mes[5]);
-     			break;
-     			default:
-     			break;
-     		}
-     	}	
+   setPowerState(o.power);
+	setHourState(o.timer);
+	setMinState(o.timer)
+	setTimerPanel(o.timertodo);
 };
 

@@ -9,7 +9,7 @@ html{
 	background:linear-gradient(#605ca1,#58a2a7);
 	/*min-width: 340px;*/
 	width: 100%;
-	min-height: 150vw;
+	min-height: 150vh;
 }
 @media(max-device-aspect-ratio:3/5){
 	html{

@@ -29,7 +29,7 @@ $("button").bind(touchEvents.touchend,PostMessage);
         }
     });
         mainOneAnimation();
-  
+   
 })
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
