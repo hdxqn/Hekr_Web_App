@@ -23,7 +23,7 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
-    	
+    	 
   $("#back").click(function() {
         console.debug("[EVENT] back button clicked");
         window.close();
@@ -34,6 +34,7 @@ $(document).ready(function(){
   $("#return").bind(touchEvents.touchend,returnChoose);
   $(".changeN").bind(touchEvents.touchstart,cancleNamePress);
     $(".changeN").bind(touchEvents.touchend,cancleNamePressed);
+      $(".btnName").bind(touchEvents.touchstart,otherNameStart);
     $(".btnName").bind(touchEvents.touchend,otherName);
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
@@ -90,7 +91,7 @@ function saveChanges(lang){
 function cancleNamePress(){
 	$(this).addClass("pressed");
 }
-function cancleNamePressed(){
+function cancleNamePressed(event){
 	$(".changeN").removeClass("pressed");
 	var dt=$(this).attr("data-cd")-0;
 	if(dt==0){
@@ -101,7 +102,7 @@ function cancleNamePressed(){
 	var nameText=$("#nameText"),
   	      ndt=nameText.attr("data"),
   	      newname=nameText.val();
-  	      if(newname==null){return; }
+  	      if(newname==""){return; }
   	      $("#"+ndt).find("span").text(newname);
   	      nameText.val("");
   	      $("#changeName").css("display","none");
@@ -116,11 +117,15 @@ function localReset(a,b){
 	      str=JSON.stringify(ps);
 	       localStorage.setItem(lang,str);
 }
-function otherName(){
+function otherName(event){
+	event.stopPropagation();
 	var changeName=$("#changeName"),
 	      father=$(this).data("father");
 	changeName.css("display","block");
 	$("#nameText").attr("data",father);
+}
+function otherNameStart(event){
+	event.stopPropagation();
 }
 var resources={
 	"zh-CN":{
@@ -220,6 +225,7 @@ function press(){
 	$(this).find("img").attr("src","images/press.png");
 }
 function release(){
+	console.log("big");
 	$(".btns img").attr("src","images/unpressed.png");
 		// clearKeep();
 			var id=$(this).attr("id"),
@@ -268,9 +274,9 @@ Toast.prototype = {
 
 	show :function(){
 		msgEntity.stop(true);
-		var left = msgEntity.find('span').width()/2 ;
-		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.fadeIn(this.time/2);
+		var left = msgEntity[0].clientWidth/2 ;
+		msgEntity.css("margin","0 0 0 -"+left+"px");
 		msgEntity.fadeOut(this.time/2);
 		
 	}
