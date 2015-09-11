@@ -134,7 +134,6 @@ function sliderMoveEnd(){
     			t.show();
 }
 function powerSend(){
-	autoPlay();
 	var self=$(this),
 	      dt=self.attr("data")-0,
 	     code ='(@devcall "{tid}" (controlpower {args}) (lambda (x) x))'
@@ -204,13 +203,15 @@ function setPowerState(e){
 	if(e==1){
 		power.addClass("pressed").attr("data",1);
 		str="on";
+			autoPlay();
 	}else if(e==0){
 		power.removeClass("pressed").attr("data",0);
 		str="off";
+		autoPlay();
 	}else{return;}
 	$("#powerState").text(i18n.t(str));
 }
-
+    
 function setTimerPanel(e){
 	if(e==1){
 		$("#OnState").text(i18n.t("turnOn"));
