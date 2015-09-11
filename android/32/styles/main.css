@@ -13,7 +13,7 @@ html{
 	background:linear-gradient(#605ca1,#58a2a7);
 	width: 100%;
 	/*height: 100%;*/
-	height: 100vh;
+	min-height: 100vh;
 }
 body{
 	width: 100%;

@@ -224,11 +224,21 @@ function setHourState(e){
 	var value=Math.floor(e/3600);
 	$("#hourShow").text(value);
 	$("#hourSlider").val(value);
+	if(e==0){
+		$(".timerMes").css("opacity","0");
+	}else{
+		$(".timerMes").css("opacity","1");
+	}
 }
 function setMinState(e){
 	var value=Math.floor((e%3600)/60);
 	$("#minShow").text(value);
 	$("#minSlider").val(value);
+	if(e==0){
+		$(".timerMes").css("opacity","0");
+	}else{
+		$(".timerMes").css("opacity","1");
+	}
 }
 function numTransformate(value){
 	if(typeof(value)=="number"){
@@ -238,7 +248,7 @@ function numTransformate(value){
 		value = UARTDATA.hex2str(value);
 	}
 	return value;
-}
+} 
 
 
  function getUrlParam(name) {

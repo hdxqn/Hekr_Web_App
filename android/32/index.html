@@ -5,6 +5,7 @@
     <meta name="description" content="">
     <meta name="keyword" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" href="styles/main.css" />
   <title>奥科曼电子</title>
   <script type="text/javascript">
@@ -19,7 +20,7 @@
     <div id="back">
       <img src="images/back.png" alt="">
     </div>
-  </div>
+  </div> 
     
   <div class="top">
     <img src="images/en-USlogo.png" alt="" id="logo" onload="setposition(this)">
@@ -28,9 +29,9 @@
   </div>
   
   <div class="center">
-    <span id="zh-CN"><i id="OnState">OFF</i> after</span>
-    <span><i id="hourShow">0</i>h<i id="minShow">0</i>m</span>
-    <span id="en-US">后 <i id="OnState">关闭</i></span>
+    <span id="zh-CN" class="timerMes"><i id="OnState">OFF</i> after</span>
+    <span class="timerMes"><i id="hourShow">0</i>h<i id="minShow">0</i>m</span>
+    <span id="en-US" class="timerMes">后 <i id="OnState">关闭</i></span>
     <div id="power" data=0>
       <i class="iconfont">&#xe636;</i>
       <span data-i18n="off" id="powerState"></span>
