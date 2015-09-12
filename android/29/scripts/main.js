@@ -288,11 +288,10 @@ function timerSwitch(){
 
 }
 
-function setPowerState(e,b){
+function setPowerState(e){
 	var power=$("#power"),
 		mode=$("#mode");
-	    if(e==0||b!=0){return;}
-	    else if(e==1){
+	     if(e==1){
 	    	power.attr("data","1").css("opacity","1");
 	    	mode.css("opacity","1");
 	    	 $("#timeroff").click();
@@ -405,7 +404,7 @@ function setTimerState(a,b,c){
 	// if(a!=1){return;}
 	var arr=["turnOn","shutDown"];
 	if(c==0){
-		arr=arr.reverse();
+		$("#timerShowMes").css("opacity","0");
 	}else if(c!=0){
 		$("#timerShowMes").css("opacity","1");
 	}
@@ -520,18 +519,16 @@ console.debug("[STATE] ================");
      		console.debug(mes);
      		switch(mes[0]){
 					case 0:
-					setPowerState(mes[1],mes[8]);
+					setPowerState(mes[1]);
 					setDrainageState(mes[2],mes[0]);
 					setModeState(mes[3]);
-					setHumidityState(mes[4]);
+					setHumidityState(mes[9]);
 					setTemperatureState(mes[5]);
 					reminder(mes[6]);
 					setDefrostState(mes[7]);
-					setTimerState(mes[0],mes[1],mes[8]);
 					break;
 					case 1:
-					setPowerState(mes[1],mes[8]);
-					setTimerState(mes[0],mes[1],mes[8]);
+					setPowerState(mes[1]);
 					break;
 					case 2:
 					setDrainageState(mes[2],mes[0]);
@@ -540,7 +537,10 @@ console.debug("[STATE] ================");
 					setModeState(mes[3]);
 					break;
 					case 4:
-					setHumidityState(mes[4]);
+					setHumidityState(mes[9]);
+					break;
+					case 5:
+					setTimerState(mes[0],mes[1],mes[8]);
 					break;
 					default:
 					break;	
