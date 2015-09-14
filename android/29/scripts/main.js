@@ -35,7 +35,7 @@ $(document).ready(function(){
   $("#timer").bind(touchEvents.touchend,timerSend);
   $("#timer").bind(touchEvents.touchstart,timerShow);
   $("#timer").bind(touchEvents.touchmove,timerShow);
-  $(".timerSwitch").bind(touchEvents.touchend,timerSwitch);
+  // $(".timerSwitch").bind(touchEvents.touchend,timerSwitch);
   $(".reimndBtn").bind(touchEvents.touchend,remindCancle);
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
@@ -259,9 +259,9 @@ function timerShow(){
 		});
 		$("#timerShowMes").css("opacity","1");
 }
-function timerSwitch(){
+function timerSwitch(ts){
 
-	var self=$(this),
+	var self=ts,
 		id=self.attr("id"),
 		dt=self.attr("data")-0,
 		str=null,
@@ -294,11 +294,13 @@ function setPowerState(e){
 	     if(e==1){
 	    	power.attr("data","1").css("opacity","1");
 	    	mode.css("opacity","1");
-	    	 $("#timeroff").click();
+	    	 // $("#timeroff").click();
+	    	 timerSwitch($("#timeroff"));
 	    }else if(e==2){
 	    	power.attr("data","0").css("opacity","0.2");
 	    	mode.css("opacity","0.2");
-	    	 $("#timeron").click();
+	    	 // $("#timeron").click();
+	    	 timerSwitch( $("#timeron"));
 	    }
 
 }

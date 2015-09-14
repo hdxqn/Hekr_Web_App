@@ -22,7 +22,7 @@ $(document).ready(function(){
    	 }, function (t) {
         $(document).i18n();
     	});
-    
+     
     $("#back").bind(touchEvents.touchend,function () {
     	window.close();
     });
@@ -199,7 +199,8 @@ myAuto.play();
 }
 function setPowerState(e){
 	var power=$("#power"),
-	      str=null;
+	      str=null,
+	      str_=null;
 	if(e==1){
 		power.addClass("pressed").attr("data",1);
 		str="on";
