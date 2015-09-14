@@ -299,17 +299,22 @@ function timerSwitch(ts){
 
 function setPowerState(e){
 	var power=$("#power"),
-		mode=$("#mode");
+		mode=$("#mode"),
+		modedt=mode.attr("data")-0;
 	     if(e==1){
 	    	power.attr("data","1").css("opacity","1");
 	    	mode.css("opacity","1");
 	    	 // $("#timeroff").click();
 	    	 timerSwitch($("#timeroff"));
+	    	 if(modedt==3){
+	    	 	$("#humidityContainer").removeClass("heightCtrl").attr("data","1");
+	    	 }
 	    }else if(e==2){
 	    	power.attr("data","0").css("opacity","0.2");
 	    	mode.css("opacity","0.2");
 	    	 // $("#timeron").click();
 	    	 timerSwitch( $("#timeron"));
+	    	 $("#humidityContainer").addClass("heightCtrl").attr("data","0");
 	    }
 
 }
@@ -367,6 +372,11 @@ function setModeState(e){
 	    }
 	    mode.attr("data",e);
 }
+// function slowlyGoingDown(){
+// 	var body=document.getElementsByTagName("body")[0],
+// 	       bodyHeight=body.scrollHeight;
+// 	       for(var i=100;i>1;i-=20)
+// }
 
 function setHumidityState(e,b){
 	var humidity=$("#humidity"),
@@ -421,10 +431,10 @@ function setTimerState(a,b,c){
 	}
 	if(b==1){
 		// $("#timeron").click();
-		$("#timerState").text(i18n.t(arr[0]));
+		$("#timerState").text(i18n.t(arr[1]));
 	}else if(b==2){
 		// $("#timeroff").click();
-		$("#timerState").text(i18n.t(arr[1]));
+		$("#timerState").text(i18n.t(arr[0]));
 	}else{
 		return;
 	}
@@ -537,6 +547,7 @@ console.debug("[STATE] ================");
 					setTemperatureState(mes[5]);
 					reminder(mes[6]);
 					setDefrostState(mes[7]);
+					setTimerState(mes[0],mes[1],mes[8]);
 					break;
 					case 1:
 					setPowerState(mes[1]);

@@ -17,7 +17,7 @@
       </div>
       <span class="title" data-i18n="Desiccant"></span>
   </div>
-  
+   
  
   <div class="center">
     <div class="circle">
@@ -56,6 +56,13 @@
         <span data-i18n="Drainage"></span>
       </div>
     </li>
+        <li id="humidityContainer" data=0 class="heightCtrl">
+      <i data-i18n="humidity"></i>
+      <i>20</i>
+      <i>90</i>
+      <input type="range" class="slider" value="20" id="humidity" min="20" max="90" step="5">
+      <span id="humidityNum"></span>
+    </li>
     <li>
       <div>
         <span id="onTriangle" class="timerTriangle"></span>
@@ -68,13 +75,6 @@
          <input type="range" class="slider" value="0" id="timer" min="0" max="24">
          <span id="timerNum"></span>
       </div>
-    </li>
-    <li id="humidityContainer" data=0 class="heightCtrl">
-      <i data-i18n="humidity"></i>
-      <i>20</i>
-      <i>90</i>
-      <input type="range" class="slider" value="20" id="humidity" min="20" max="90" step="5">
-      <span id="humidityNum"></span>
     </li>
   </ul>
 

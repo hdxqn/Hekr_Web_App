@@ -6,7 +6,7 @@
 -moz-user-select:none;
 -ms-user-select:none;
 user-select:none; 
-}
+}  
 html{
 	margin: 0;
 	padding: 0;
@@ -24,6 +24,10 @@ body{
   	font-family:"SimHei","Microsoft YaHei";
   	margin:0;
   	color:#FFF;
+  	/*-webkit-transition: height 0.5s;
+  -moz-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  transition: height0.5s;*/
 }
 @font-face {font-family: 'iconfont';
     src: url('iconfont.eot'); /* IE9*/
@@ -218,7 +222,7 @@ ul li:nth-child(1){
 	margin: 40px 0 0 0;
 	min-height: 100px;
 }
-ul li:nth-child(3){
+ul li:nth-child(2){
 	height: 35vw;
 	width: 80%;
 	left: 10%;
@@ -227,7 +231,7 @@ ul li:nth-child(3){
   -o-transition: all 0.9s;
   transition: all 0.9s;
 }
-ul li:nth-child(2){
+ul li:nth-child(3){
 	height: 47vw;
 	width: 80%;
 	left: 10%;
@@ -281,7 +285,7 @@ ul li:nth-child(1) div:nth-child(2){
 ul li:nth-child(1) div:nth-child(3){
 	left: 75%;
 }
-ul li:nth-child(3)::before{
+ul li:nth-child(2)::before{
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -329,7 +333,7 @@ ul li > input::-webkit-slider-thumb::before{
   left:50%;
   margin: -10px 0 0 -10px;
 }
-ul li:nth-child(3) > i{
+ul li:nth-child(2) > i{
 	font-style: normal;
 	display: block;
 	position: relative;
@@ -339,11 +343,11 @@ ul li:nth-child(3) > i{
     -ms-box-sizing:border-box;
     -o-box-sizing:border-box;
 }
-ul li:nth-child(3) > i:nth-child(1){
+ul li:nth-child(2) > i:nth-child(1){
 	top: 14%;
 	left: 7%;
 }
-ul li:nth-child(3) > i:nth-child(2){
+ul li:nth-child(2) > i:nth-child(2){
 	position: absolute;
 	width: 100%;
 	height: 18px;
@@ -354,7 +358,7 @@ ul li:nth-child(3) > i:nth-child(2){
 	font-size: 16px;
 	padding: 0 0 0 8px;
 }
-ul li:nth-child(3) > i:nth-child(3){
+ul li:nth-child(2) > i:nth-child(3){
 	position: absolute;
 	width: 100%;
 	height: 18px;
@@ -365,7 +369,7 @@ ul li:nth-child(3) > i:nth-child(3){
 	font-size: 16px;
 	padding: 0 8px 0 0;
 }
-ul li:nth-child(3) > span{
+ul li:nth-child(2) > span{
 	position: absolute;
 	width: 30px;
 	height: 18px;
@@ -376,7 +380,7 @@ ul li:nth-child(3) > span{
 	left: 30%;
 	margin: -30px 0 0 -15px;
 }
-ul li:nth-child(2)> div{
+ul li:nth-child(3)> div{
 	position: absolute;
 	width: 100%;
 	height: 27vw;
@@ -384,7 +388,7 @@ ul li:nth-child(2)> div{
 	background-color: rgba(0,0,0,.1);
 	border-radius: 5px;
 }
-ul li:nth-child(2)> div span{
+ul li:nth-child(3)> div span{
 	position: absolute;
   	width: 0;
   	height: 0;
@@ -394,16 +398,16 @@ ul li:nth-child(2)> div span{
   	border-color:transparent transparent rgba(0,0,0,0.1) transparent;
   	opacity: 1;
 }
-ul li:nth-child(2)> div span:nth-child(1){
+ul li:nth-child(3)> div span:nth-child(1){
 	right: 70%;
 	margin: 0 -12px 0 0;
 }
-ul li:nth-child(2)> div span:nth-child(2){
+ul li:nth-child(3)> div span:nth-child(2){
 	left: 70%;
 	margin: 0 0 0 -12px;
 	opacity: 0;
 }
-ul li:nth-child(2)> div span:nth-child(3){
+ul li:nth-child(3)> div span:nth-child(3){
 	width: 30%;
 	height: 30px;
 	line-height: 30px;
@@ -414,7 +418,7 @@ ul li:nth-child(2)> div span:nth-child(3){
 	border-radius: 5px;
 	border:1px solid #fff;
 }
-ul li:nth-child(2)> div span:nth-child(4){
+ul li:nth-child(3)> div span:nth-child(4){
 	width: 30%;
 	height: 30px;
 	line-height: 30px;
@@ -426,7 +430,7 @@ ul li:nth-child(2)> div span:nth-child(4){
 	border:1px solid #fff;
 	opacity: 0.2;
 }
-ul li:nth-child(2)> div span:nth-child(5){
+ul li:nth-child(3)> div span:nth-child(5){
 	width: 100%;
 	height: 18px;
 	top: 5%;
@@ -435,7 +439,7 @@ ul li:nth-child(2)> div span:nth-child(5){
 	line-height: 18px;
 	border:none;
 }
-ul li:nth-child(2)> div span:nth-child(6){
+ul li:nth-child(3)> div span:nth-child(6){
 	width: 100%;
 	height: 18px;
 	top: 60%;
@@ -451,7 +455,7 @@ ul li:nth-child(2)> div span:nth-child(6){
     -ms-box-sizing:border-box;
     -o-box-sizing:border-box;
 }
-ul li:nth-child(2)> div span:nth-child(7){
+ul li:nth-child(3)> div span:nth-child(7){
 	width: 100%;
 	height: 18px;
 	top: 60%;
@@ -467,7 +471,7 @@ ul li:nth-child(2)> div span:nth-child(7){
     -ms-box-sizing:border-box;
     -o-box-sizing:border-box;
 }
-ul li:nth-child(2)> div span:nth-child(9){
+ul li:nth-child(3)> div span:nth-child(9){
 	position: absolute;
 	width: 30px;
 	height: 18px;
@@ -479,7 +483,7 @@ ul li:nth-child(2)> div span:nth-child(9){
 	margin: -30px 0 0 -15px;
 	border: none;
 }
-ul li:nth-child(2)> div input{
+ul li:nth-child(3)> div input{
 	display: block;
   	position: absolute;
   	top: 60%;
@@ -492,7 +496,7 @@ ul li:nth-child(2)> div input{
   	outline:none;
   	cursor: pointer;
 }
-ul li:nth-child(2)> div input::-webkit-slider-thumb{
+ul li:nth-child(3)> div input::-webkit-slider-thumb{
 -webkit-appearance:none;
   width:20px;
   height:40px;
@@ -502,7 +506,7 @@ ul li:nth-child(2)> div input::-webkit-slider-thumb{
   border:none;
   position:relative;
 }
-ul li:nth-child(2)> div input::-webkit-slider-thumb::before{
+ul li:nth-child(3)> div input::-webkit-slider-thumb::before{
 	display: block;
   content: '';
   width:20px;
