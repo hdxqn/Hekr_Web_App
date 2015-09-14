@@ -21,7 +21,7 @@ $(document).ready(function(){
         "fallbackLng" : 'en'
    	 }, function (t) {
         $(document).i18n();
-    	});
+    	});   
      
     $("#back").bind(touchEvents.touchend,function () {
     	window.close();

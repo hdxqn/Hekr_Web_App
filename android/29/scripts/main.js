@@ -197,7 +197,7 @@ function drainageSend(){
 function humiditySend(){
 	var humidityNum=$("#humidityNum"),
 		self=$(this),
-		j=self.val(),
+		j=self[0].value,
 		i=numTransformate(j),
 		data="04000000"+i+"0000000000",
 		frame=UARTDATA.encode(0x02,data);
@@ -220,7 +220,7 @@ function timerSend(){
 		tm=timeron.attr("data")-0,
 		k=tm==1?"01":"02",
 		self=$(this),
-		j=self.val(),
+		j=self[0].value,
 		i=numTransformate(j),
 		data="05"+k+"000000000000"+i+"00",
 		frame=UARTDATA.encode(0x02,data);
@@ -239,34 +239,38 @@ function timerSend(){
 }
 
 
-function humidityShow(event,vl){
-	var humidityNum=$("#humidityNum");
-		if(!vl){
-			var i=$(this).val();
-		}else if(vl){
+function humidityShow(e,vl){
+	var humidityNum=$("#humidityNum"),
+	      o="1";
+		if(e!=null){
+			var i=$(this)[0].value;
+		}else if(e==null){
 			var i=vl;
 		}
+		if(vl==20){o="0";}
 		
 		var num=Math.floor((i-20)/7*8+10);
 		humidityNum.text(i).css({
-			"opacity":"1",
+			"opacity":o,
 			"left":num+"%"
 		});
 
 }
-function timerShow(event,vl){
-	var timerNum=$("#timerNum");
-		if(!vl){
-			var i=$(this).val();
-		}else if(vl){
+function timerShow(e,vl){
+	var timerNum=$("#timerNum"),
+	       o="1";
+		if(e!=null){
+			var i=$(this)[0].value;
+		}else if(e==null){
 			var i=vl;
 		}
+		if(vl==0){o="0";}
 		var num=Math.floor(i/24*80+10);
 		timerNum.text(i).css({
-			"opacity":"1",
+			"opacity":o,
 			"left":num+"%"
 		});
-		$("#timerShowMes").css("opacity","1");
+		$("#timerShowMes").css("opacity",o);
 }
 function timerSwitch(ts){
 
@@ -379,13 +383,19 @@ function setModeState(e){
 // }
 
 function setHumidityState(e,b){
+	console.log("湿度值为   "+e+"    "+b);
+	if(e>100||b>90){return;}
+	if(e<20||b<20){return;}
 	var humidity=$("#humidity"),
 		HumidityShow=$("#HumidityShow");
-		humidity.val(b);
+		humidity[0].value=b;
 		HumidityShow.text(e+"%");
+		humidityShow(null,b);
+		
 }
 
 function setTemperatureState(e){
+	if(e<5||e>38){return;}
 	var temperatureNum=$("#temperatureNum");
 	temperatureNum.text(e);
 }
@@ -423,6 +433,7 @@ var remindState=false;
 
 function setTimerState(a,b,c){
 	// if(a!=1){return;}
+	if(c<0||c>24){return;}
 	var arr=["turnOn","shutDown"];
 	if(c==0){
 		$("#timerShowMes").css("opacity","0");
@@ -440,6 +451,7 @@ function setTimerState(a,b,c){
 	}
 	$("#timerHours").text(c);
 	$("#timer").val(c);
+	timerShow(null,c);
 }
 function numTransformate(value){
 	if(typeof(value)=="number"){
@@ -549,21 +561,21 @@ console.debug("[STATE] ================");
 					setDefrostState(mes[7]);
 					setTimerState(mes[0],mes[1],mes[8]);
 					break;
-					case 1:
-					setPowerState(mes[1]);
-					break;
-					case 2:
-					setDrainageState(mes[2],mes[0]);
-					break;
-					case 3:
-					setModeState(mes[3]);
-					break;
-					case 4:
-					setHumidityState(mes[9],mes[4]);
-					break;
-					case 5:
-					setTimerState(mes[0],mes[1],mes[8]);
-					break;
+					// case 1:
+					// setPowerState(mes[1]);
+					// break;
+					// case 2:
+					// setDrainageState(mes[2],mes[0]);
+					// break;
+					// case 3:
+					// setModeState(mes[3]);
+					// break;
+					// case 4:
+					// setHumidityState(mes[9],mes[4]);
+					// break;
+					// case 5:
+					// setTimerState(mes[0],mes[1],mes[8]);
+					// break;
 					default:
 					break;	
 				}
