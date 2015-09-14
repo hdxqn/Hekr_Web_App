@@ -201,7 +201,8 @@ function humiditySend(){
 		i=numTransformate(j),
 		data="04000000"+i+"0000000000",
 		frame=UARTDATA.encode(0x02,data);
-		humidityNum.css("opacity",0);
+		// humidityNum.css("opacity",0);
+		humidityShow(null,j);
 	console.log("set_humidity      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
 
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
@@ -221,9 +222,10 @@ function timerSend(){
 		self=$(this),
 		j=self.val(),
 		i=numTransformate(j),
-		data="01"+k+"000000000000"+i+"00",
+		data="05"+k+"000000000000"+i+"00",
 		frame=UARTDATA.encode(0x02,data);
-		timerNum.css("opacity",0);
+		// timerNum.css("opacity",0);
+		timerShow(null,j);
 	console.log("set_timer      :"+frame.replace(/(\w{2})/g,'$1 ').replace(/\s*$/,''))
 
 		 var code ='(@devcall "{tid}" (uartdata "{args}") (lambda (x) x))'
@@ -237,22 +239,29 @@ function timerSend(){
 }
 
 
-function humidityShow(){
-	var humidityNum=$("#humidityNum"),
-		self=$(this),
-		i=self.val(),
-		num=Math.floor((i-20)/7*8+10);
+function humidityShow(event,vl){
+	var humidityNum=$("#humidityNum");
+		if(!vl){
+			var i=$(this).val();
+		}else if(vl){
+			var i=vl;
+		}
+		
+		var num=Math.floor((i-20)/7*8+10);
 		humidityNum.text(i).css({
 			"opacity":"1",
 			"left":num+"%"
 		});
 
 }
-function timerShow(){
-	var timerNum=$("#timerNum"),
-		self=$(this),
-		i=self.val(),
-		num=Math.floor(i/24*80+10);
+function timerShow(event,vl){
+	var timerNum=$("#timerNum");
+		if(!vl){
+			var i=$(this).val();
+		}else if(vl){
+			var i=vl;
+		}
+		var num=Math.floor(i/24*80+10);
 		timerNum.text(i).css({
 			"opacity":"1",
 			"left":num+"%"
@@ -359,10 +368,10 @@ function setModeState(e){
 	    mode.attr("data",e);
 }
 
-function setHumidityState(e){
+function setHumidityState(e,b){
 	var humidity=$("#humidity"),
 		HumidityShow=$("#HumidityShow");
-		humidity.val(e);
+		humidity.val(b);
 		HumidityShow.text(e+"%");
 }
 
@@ -378,7 +387,7 @@ function setDefrostState(e){
 	}else if(e==1){
 		defrostState.text(i18n.t("on"));
 	}
-}
+}   
 function reminder(e){
 	
 	if(e==0||remindState){return;}
@@ -473,10 +482,10 @@ Toast.prototype = {
 
 
 
-var tid  = getUrlParam("tid");
+var tid  = getUrlParam("tid") || "VDEV_1AFE349C3DJS";
 var host = getUrlParam("host") || "device.hekr.me";
 
-var token =getUrlParam("access_key") ;
+var token =getUrlParam("access_key")  || "azBBaDZpaUNCbjRKUlkxK29IR2dTVy9XblRQQ1JCOVpIU1RFR0IyZzBMazNWQzRnOW5DR3E4cVVIc2FxQmZYMzBu";
 
 var user = Math.floor(Math.random()*100);
 var url  = "ws://"+host+":8080/websocket/t/"+user+"/code/"+token+"/user";
@@ -524,7 +533,7 @@ console.debug("[STATE] ================");
 					setPowerState(mes[1]);
 					setDrainageState(mes[2],mes[0]);
 					setModeState(mes[3]);
-					setHumidityState(mes[9]);
+					setHumidityState(mes[9],mes[4]);
 					setTemperatureState(mes[5]);
 					reminder(mes[6]);
 					setDefrostState(mes[7]);
@@ -539,7 +548,7 @@ console.debug("[STATE] ================");
 					setModeState(mes[3]);
 					break;
 					case 4:
-					setHumidityState(mes[9]);
+					setHumidityState(mes[9],mes[4]);
 					break;
 					case 5:
 					setTimerState(mes[0],mes[1],mes[8]);
