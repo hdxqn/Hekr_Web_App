@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+     <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="styles/main.css" />
+  <title>玖龙电子</title>
+</head>
+<body>
+  <div class="nav">
+    <span>电子鱼缸</span>
+    <div id="back">
+      <img src="images/back.png" alt="" class="halfY">
+    </div>
+  </div> 
+  <div class="logo">
+      <img src="images/logo.png" alt="" class="halfX">
+  </div>
+  <div class="center">
+   <img src="images/off.png" alt="" class="halfX" id="power" data=0>
+   <span>温度：<i id="temNum">20</i>&#8451;</span>
+  </div>
+  <div class="ctrl">
+     <img src="images/light_off.png" alt="" class="ctrlimg first_row first_col halfX" id="img2" data-state=0 data-pos=2 data-mes=02>
+    <img src="images/air_off.png" alt="" class="ctrlimg first_row sec_col halfX" id="img3" data-state=0 data-pos=3 data-mes=03>
+    <img src="images/wave_off.png" alt="" class="ctrlimg first_row third_col halfX" id="img5" data-state=0 data-pos=6 data-mes=05>
+    <img src="images/uv_off.png" alt="" class="ctrlimg second_row first_col halfX" id="img7" data-state=0 data-pos=5 data-mes=07>
+    <img src="images/cycle_off.png" alt="" class="ctrlimg second_row sec_col halfX" id="img4" data-state=0 data-pos=4 data-mes=04>
+    <img src="images/care_off.png" alt="" class="ctrlimg second_row third_col halfX" id="img6" data-state=0 data-pos=8 data-mes=06>
+    <span class="ctrlspan spanOne first_col halfX">灯光</span>
+    <span class="ctrlspan spanOne sec_col halfX">增氧</span>
+    <span class="ctrlspan spanOne third_col halfX">造浪</span>
+    <span class="ctrlspan spanTwo first_col halfX">UV</span>
+    <span class="ctrlspan spanTwo sec_col halfX">循环过滤</span>
+    <span class="ctrlspan spanTwo third_col halfX">护理灯</span>
+  </div>
+    
+
+
+  <div id="modal" class="popup modal"  style="display:none;">
+        <div class="panel">
+            <div class="fill supper-center">
+                <span data-i18n="connecting"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+         <script src="../common/js/jquery.min.js"></script> 
+             <script src="../common/js/i18n.js"></script>
+             <script src="../common/js/lambdaTM.js"></script>
+            <script src="../common/js/reconnecting-websocket.min.js"></script>
+            <script src="../common/js/UARTDATA.js"></script>
+             <script src="scripts/main.js?v=2015_08_21_01"></script>
+  
+</body>
+</html>
