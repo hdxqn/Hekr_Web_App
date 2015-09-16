@@ -173,8 +173,10 @@ function setImgState(a,b){
 		       src=self.attr("src");
 		       if(b[pos]==1){
 		       	src=src.replace("off","on");
+		       	self.addClass("borderColor");
 		       }else if(b[pos]==2){
 		       	src=src.replace("on","off");
+		       	self.removeClass("borderColor");
 		       }
 		       self.attr({
 		       	"src":src,

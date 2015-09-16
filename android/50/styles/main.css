@@ -15,7 +15,7 @@ html{
 	/*height: 100%;*/
 	min-height: 100vh;
 }
-body{
+body{  
 	width: 100%;
 	min-height: 100vh;
 	position: relative;
@@ -79,11 +79,31 @@ body{
 	height:26.7vh; 
 	text-align: center;
 }
-.center #power{
+.center .powerWrap{
 	position: absolute;
 	height: 21vh;
+	width: 21vh;
 	left: 50%;
-  	max-height: 360px;
+	background: url(../images/power1.png) no-repeat;
+	background-size: 100% 100%;
+}
+@media screen and(min-width:571px ){
+	.center .powerWrap{
+	background: url(../images/power2.png) no-repeat;
+	}
+}
+@media screen and(min-width:1142px ){
+	.center .powerWrap{
+	background: url(../images/power3.png) no-repeat;
+	}
+}
+.center #power{
+	top: 15%;
+	left: 15%;
+	width: 70%;
+	height: 70%;
+	position: absolute;
+	z-index: 99;
 }
 .center span{
 	position: absolute;
@@ -104,7 +124,16 @@ body{
 .ctrl  .ctrlimg{
 	position: absolute;
 	height: 11.6vh;
+	border-width: 0.5vh;
+	border-style: solid;
+	border-color:#8C8C8C; 
+	border-radius: 50%;
 	max-height: 199px;
+	 box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
 }
 .ctrl  .ctrlspan{
 	position: absolute;
@@ -140,7 +169,7 @@ body{
   -o-transform:translate3D(-50%,0,0);
   -ms-transform:translateX(-50%);
   transform:translate3D(-50%,0,0); 
-}
+} 
 .halfY{
 	-webkit-transform:translate3D(0,-50%,0);
   -moz-transform:translate3D(0,-50%,0);
@@ -151,6 +180,9 @@ body{
 .press{
 	background: -moz-radial-gradient(center center,rgba(255,255,255,.3),transparent 70%);
  	background: -webkit-radial-gradient(center center,rgba(255,255,255,.3),transparent 70%);
+}
+.borderColor{
+	border-color: #fff !important;
 }
 .popup{
   width:100%;
