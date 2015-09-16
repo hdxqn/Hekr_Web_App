@@ -32,7 +32,7 @@ $(document).ready(function(){
    t = new Toast({
      			message:i18n.t("message")
  			});
-});
+});  
 
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -99,6 +99,10 @@ var resources={
 function powerPress(){
 	$(this).addClass("press");
 }
+function powerState(){
+	var i=$("#power").attr("data")-0;
+	return i==0?true:false;
+}
 function powerSend(){
 	var self=$(this),
 		dt=self.attr("data")-0,
@@ -114,10 +118,15 @@ function powerSend(){
 		t.show();
 }
 function messageSend(){
+	var ps=powerState();
+	if(ps){
+		$(this).removeClass("press");
+		return;
+	};
 	var self=$(this),
-	      pos=self.data("pos")-0,
-	      state=self.data("state")-0,
-	      mes=self.data("mes"),
+	      pos=self.attr("data-pos")-0,
+	      state=self.attr("data-state")-0,
+	      mes=self.attr("data-mes"),
 	      i=state==0?"01":"02",
 	      arr=["00","00","00","00","00","00","00","00","00"],
 	      data=null,
@@ -144,12 +153,26 @@ function setPowerState(e){
 		num=1;
 	}else if(e==2){
 		str=str.replace("on","off");
-		num=1;
+		num=0;
+		closeAll();
 	}
 	power.attr({
 		"src":str,
 		"data":num
 	});
+}
+function closeAll(){
+	var eles=$(".ctrlimg"),
+	       src=null,
+	       i=null;
+	       for(i=0;i<eles.length;i++){
+	       	src=eles.eq(i).attr("src");
+	       	src=src.replace("on","off");
+	       	eles.eq(i).removeClass("borderColor").attr({
+	       		"data-state":"0",
+	       		"src":src
+	       	});
+	       }
 }
 function handleMes(e,arr){
 	var a=null;
@@ -168,7 +191,7 @@ function setImgState(a,b){
 	if(!a||!b||!acon||!bcon){return;}
 	for(var i=0;i<a.length;i++){
 		var self=$("#img"+a[i]),
-		       pos=self.data("pos")-0,
+		       pos=self.attr("data-pos")-0,
 		       state=b[pos]==1?1:0,
 		       src=self.attr("src");
 		       if(b[pos]==1){
