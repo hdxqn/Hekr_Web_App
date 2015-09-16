@@ -208,7 +208,7 @@ function setImgState(a,b){
 	}
 }
 function setTemState(e){
-	if(e==0){return;}
+	if(e<=0||e>100){return;}
 	$("#temNum").text(e);
 }
 function numTransformate(value){
