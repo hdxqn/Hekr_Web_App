@@ -32,15 +32,15 @@ html,body{
   position: relative;
   width: 100%;
   height: 100%;
-}
+} 
 .container{
   position: relative;
   width: 100%; 
-  height: 100%;
+  height: 100%;  
   top: 0;
   left: 0;
   overflow: hidden;
-}
+} 
 /*包裹层以及内容容器结束*/
 
 /*导航样式以及页面跳转功能开始*/
