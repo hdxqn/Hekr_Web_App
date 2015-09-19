@@ -13,6 +13,8 @@ $(document).ready(function(){
 		lang='en-US';
 		break;
 	} 
+	localInit();
+	saveChanges(lang);
 		i18n.init({
         "lng": lang,
         "resStore": resources,
@@ -27,6 +29,8 @@ $(document).ready(function(){
      $(".btn").bind(touchEvents.touchend,BtnSend);
      $(".scroll").bind(touchEvents.touchmove,scrollMove);
      $(".scroll").bind(touchEvents.touchend,scrollMoveEnd);
+     $(".set").bind(touchEvents.touchend,changeNameWindow);
+     $(".changeN").bind(touchEvents.touchend,closeNameWindow);
   $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
    t = new Toast({
      			message:i18n.t("message")
@@ -57,15 +61,23 @@ function browserRedirect(obj) {
          
     }
  }
-
+//  localStorage.removeItem("zh-CN");
+// localStorage.removeItem("en-US");
+function localInit(){
+	var a=localStorage.getItem("zh-CN"),
+	      b=localStorage.getItem("en-US");
+	      if(a||b){return;}
+	      localStorage.setItem("zh-CN",'{"lamp1":"lamp1","lamp2":"lamp2","lamp3":"lamp3","lamp4":"lamp4"}');
+ 	      localStorage.setItem("en-US",'{"lamp1":"lamp1","lamp2":"lamp2","lamp3":"lamp3","lamp4":"lamp4"}');
+}
 
 var resources={
 	"zh-CN":{
 		"translation":{
-			"Socket":"插座",
-			"titleOne":"家庭智能产品和生活护理产品",
-			"titleTwo":"专业制造商",
-			"timingON":"定时 开",
+			"lamp1":"lamp1",
+			"lamp2":"lamp2",
+			"lamp3":"lamp3",
+			"lamp4":"lamp4",
 			"timingOFF":"定时 关",
 			"timeRemind":"时间拖至0为取消定时",
 			"connecting":"拼命连接中...",
@@ -79,10 +91,10 @@ var resources={
 	},
 	"en-US":{
 		"translation":{
-			"Socket":"Socket",
-			"titleOne":"Smart Household & Lifecare product",
-			"titleTwo":"manufacturer",
-			"timingON":"timing ON",
+			"lamp1":"lamp1",
+			"lamp2":"lamp2",
+			"lamp3":"lamp3",
+			"lamp4":"lamp4",
 			"timingOFF":"timing OFF",
 			"timeRemind":"Drag to 0 to cancle the fixed time",
 			"timingWord":"timing",
@@ -144,7 +156,44 @@ function powerSend(){
 		ws.send(code);
 		t.show();
 }
-
+function changeNameWindow(){
+	var changeName=$("#changeName"),
+	       self=$(this),
+	       dt=self.attr("data")-0;
+	       changeName.css("display","block").attr("data",dt);
+}
+function closeNameWindow(){
+	var changeName=$("#changeName"),
+	       nameDt=changeName.attr("data")-0,
+	       nameText=$("#nameText"),
+	       text=nameText.val(),
+	       self=$(this),
+	       cd=self.data("cd");
+	      nameText.val("");
+	      changeName.css("display","none");
+	       doNameChange(cd,text,nameDt);
+}
+function doNameChange(a,t,n){
+	if(a==0||t==""||n==0){return;};
+	$("#spanText"+n).text(t);
+	var lang=getUrlParam('lang')||"en-US",
+	      re=localStorage.getItem(lang),
+	      ps=$.parseJSON(re),
+	      str=null;
+	      ps["lamp"+n]=t;
+	      str=JSON.stringify(ps);
+	       localStorage.setItem(lang,str);
+	
+}
+function saveChanges(lang){
+	if(lang==undefined){return;}
+	var jd=null,
+	cg=null;
+	jd=resources[lang]["translation"],
+	num=null;
+	cg=$.parseJSON(localStorage.getItem(lang));
+	 jd=$.extend(jd,cg);
+}
 function numTransformate(value){
 	if(typeof(value)=="number"){
 		value = UARTDATA.hex2str(value);

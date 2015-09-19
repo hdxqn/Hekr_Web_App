@@ -86,7 +86,7 @@ body{
 	overflow: hidden;
 }
 .ulContainer .liEles{
-	display: block;
+	display: none;
 	position: relative;
 	margin: 0;
 	padding: 0;

@@ -14,7 +14,7 @@ $(document).ready(function(){
 		lang='en-US';
 		break;
 	}
-
+ 
 		i18n.init({
         "lng": lang,
         "resStore": resources,

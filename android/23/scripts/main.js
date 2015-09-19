@@ -11,7 +11,7 @@ $(document).ready(function(){
 		break;
 		default:
 		lang='en-US';
-		break;
+		break; 
 	}
 	localInit();
 	saveChanges(lang);
